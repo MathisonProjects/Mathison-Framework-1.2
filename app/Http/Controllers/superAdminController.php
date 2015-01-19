@@ -31,6 +31,22 @@ class SuperAdminController extends Controller {
 	}
 
 	public function viewRecords($objectName) {
+		return view('superAdmin.view', compact('objectName'));
+	}
+
+	public function createObject() {
+		return null;
+	}
+
+	public function installRequired() {
+		return null;
+	}
+
+	public function viewRequired() {
+		return null;
+	}
+
+	public function relationships() {
 		return null;
 	}
 }
