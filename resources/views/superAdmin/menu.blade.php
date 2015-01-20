@@ -18,7 +18,7 @@
 				<a tabindex="0" data-toggle="dropdown">Objects</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a tabindex="0">Create Object</a>
+						<a tabindex="0" href="/admin/super/createObject">Create Object</a>
 					</li>
 					<li></li>
 					<li class="divider"></li>

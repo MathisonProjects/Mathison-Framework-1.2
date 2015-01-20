@@ -35,7 +35,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createObject() {
-		return null;
+		return view('superAdmin.createObject');
 	}
 
 	public function installRequired() {

@@ -13,7 +13,9 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG'),
+	// 'debug' => env('APP_DEBUG'),
+	
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -145,6 +147,10 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		 * Not native to Laravel
+		 */
+		'Illuminate\Html\HtmlServiceProvider',
 	],
 
 	/*
@@ -190,7 +196,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-
+		// Not native to Laravel
+		'Form'		=> 'Illuminate\Html\FormFacade',
+		'HTML'		=> 'Illuminate\Html\HtmlFacade',
 	],
 
 ];
