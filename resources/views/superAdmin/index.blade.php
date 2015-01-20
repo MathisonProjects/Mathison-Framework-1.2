@@ -39,6 +39,7 @@
 			</tr>
 			<tr>
 				<td>MySQL                  </td>
+				<td>PHP Blade              </td>
 			</tr>
 
 		</tbody>

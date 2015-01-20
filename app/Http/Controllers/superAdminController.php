@@ -38,6 +38,19 @@ class SuperAdminController extends Controller {
 		return view('superAdmin.createObject');
 	}
 
+	public function createObjectPost() {
+		$post = $_POST;
+		$defaultRedirect = true;
+		if ($defaultRedirect == true) {
+			$redirect = 'admin/super/view/'.$post['objectName'];	
+		} else {
+			
+		}
+		
+
+		return redirect($redirect);
+	}
+
 	public function installRequired() {
 		return null;
 	}

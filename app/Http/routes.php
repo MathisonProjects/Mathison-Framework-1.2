@@ -15,9 +15,10 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 // Super Admin Controller
-Route::get('/admin/super/'                  , 'superAdminController@index');
-Route::get('/admin/super/view/{objectName}' , 'superAdminController@viewRecords');
-Route::get('/admin/super/createObject'      , 'superAdminController@createObject');
+Route::get('/admin/super/'                   , 'superAdminController@index');
+Route::get('/admin/super/view/{objectName}'  , 'superAdminController@viewRecords');
+Route::get('/admin/super/createObject'       , 'superAdminController@createObject');
+Route::post('/admin/super/createObject'      , 'superAdminController@createObjectPost');
 // Admin Controller
 Route::get('/admin/'                        , 'adminController@index');
 // Front Controller

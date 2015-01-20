@@ -1,5 +1,5 @@
 @extends('superAdmin.master')
 
 @section('content')
-	{{ $objectName }}
+	<h2>{{ $objectName }}</h2>
 @stop
