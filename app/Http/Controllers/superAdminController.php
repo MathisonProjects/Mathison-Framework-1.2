@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+
 class SuperAdminController extends Controller {
 
 	/*
@@ -42,12 +43,11 @@ class SuperAdminController extends Controller {
 		$post = $_POST;
 		$defaultRedirect = true;
 		if ($defaultRedirect == true) {
-			$redirect = 'admin/super/view/'.$post['objectName'];	
+			$redirect = 'admin/super/view/'.$post['objectName'];
 		} else {
-			
+
 		}
 		
-
 		return redirect($redirect);
 	}
 
