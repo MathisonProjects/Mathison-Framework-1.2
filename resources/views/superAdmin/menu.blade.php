@@ -34,6 +34,59 @@
 					<li class="divider"></li>
 				</ul>
 			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">APIs</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">Create API</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Middleware</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">Create Middleware Map</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+			<li></li>
+			<li class="divider"></li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Workflow</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">Create Workflow Chain</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Forms</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">Create Form</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Custom Reports</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">Create Custom Report</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+
 			<li></li>
 			<li class="divider"></li>
 			<li class="dropdown-submenu">
