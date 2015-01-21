@@ -25,6 +25,11 @@
 					</li>
 					<li></li>
 					<li class="divider"></li>
+					@foreach ($menu['objects'] as $item)
+					<li>
+						<a tabindex="0" href="/admin/super/view/{{ $item->name }}">{{ $item->name }}</a>
+					</li>
+					@endforeach
 				</ul>
 			</li>
 			<li class="dropdown-submenu">
