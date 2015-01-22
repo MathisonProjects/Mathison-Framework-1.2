@@ -2,7 +2,7 @@
 	
 	use Illuminate\Database\Eloquent\Model as Eloquent;
 
-	class mfwworkflow extends Eloquent {
+	class mfwworkflows extends Eloquent {
 		
 	}
 ?>

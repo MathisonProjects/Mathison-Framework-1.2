@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\mfwobjects;
-use App\mfwworkflow;
+use App\mfwworkflows;
 
 class SuperAdminController extends Controller {
 
@@ -52,13 +52,7 @@ class SuperAdminController extends Controller {
 
 	public function createObjectPost() {
 		$post = $_POST;
-		$workflow = mfwworkflow::where('workflowitem', 'createObjectPost')->first();
-		if (!$workflow->id) {
-			mfwworkflow::insert(['default' => true,
-				'workflowitem' => 'createObjectPost',
-				'originaldestination' => 'admin/super/view/']);
-			$workflow = mfwworkflow::where('workflowitem', 'createObjectPost')->first();
-		}
+		$workflow = self::workflowManage('createObjectPost','admin/super/view/');
 		
 		if ($workflow->default) {
 			$redirect = $workflow->originaldestination.$this->sanitizeName($post['objectName']);
@@ -101,5 +95,16 @@ class SuperAdminController extends Controller {
 
 	private function sanitizeName($field) {
 		return str_replace(' ', '_', $field);
+	}
+
+	private function workflowManage($postName, $defaultDestination) {
+		$workflow = mfwworkflows::where('workflowitem', $postName)->first();
+		if (!$workflow) {
+			mfwworkflows::insert(['default' => true,
+				'workflowitem' => $postName,
+				'originaldestination' => $defaultDestination]);
+			$workflow = mfwworkflows::where('workflowitem', $postName)->first();
+		}
+		return $workflow;
 	}
 }

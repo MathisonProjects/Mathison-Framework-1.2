@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateObjectsTable extends Migration {
+class CreateWorkflowTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateObjectsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('mfwworkflow', function(Blueprint $table)
+		Schema::create('mfwworkflows', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
@@ -30,7 +30,7 @@ class CreateObjectsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('mfwworkflow');
+		Schema::drop('mfwworkflows');
 	}
 
 }
