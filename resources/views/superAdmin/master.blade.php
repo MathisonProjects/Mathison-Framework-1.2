@@ -18,6 +18,9 @@
 				</div>
 			</div>
 		</div>
+		
+		@yield('modal');
+
 		@include('superAdmin.bootstrap-footer')
 	</body>
 </html>

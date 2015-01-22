@@ -1,7 +1,7 @@
 <ul class="nav nav-pills">
 	<li class="active"><a href='#' title="Filler for now...">MFW 1.2</a></li>
 	<li class="dropdown">
-		<a tabindex="0" data-toggle="dropdown"><i class="glyphicon glyphicon-menu-hamburger"></i><span class="caret"></span></a>
+		<a tabindex="0" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 			<li class="dropdown-submenu">
 				<a tabindex="0" data-toggle="dropdown">Required Files</a>
@@ -27,7 +27,7 @@
 					<li class="divider"></li>
 					@foreach ($menu['objects'] as $item)
 					<li>
-						<a tabindex="0" href="/admin/super/view/{{ $item->name }}">
+						<a tabindex="0" href="/admin/super/viewObject/{{ $item->name }}">
 						<?php
 							echo ucwords(str_replace('_', ' ',$item->name));
 						?></a>
@@ -46,6 +46,14 @@
 					</li>
 					<li></li>
 					<li class="divider"></li>
+					@foreach ($menu['relationships'] as $item)
+					<li>
+						<a tabindex="0" href="/admin/super/viewRelationships/{{ $item->name }}">
+						<?php
+							echo ucwords(str_replace('_', ' ',$item->name));
+						?></a>
+					</li>
+					@endforeach
 				</ul>
 			</li>
 			<li class="dropdown-submenu">
@@ -80,13 +88,21 @@
 				<a tabindex="0" data-toggle="dropdown">Workflow</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a tabindex="0">Create Workflow Chain</a>
+						<a tabindex="0" href="/admin/super/createWorkflow">Create Workflow Chain</a>
 					</li>
 					<li>
-						<a tabindex="0">View Workflow Chains</a>
+						<a tabindex="0" href="/admin/super/viewWorkflows">View Workflow Chains</a>
 					</li>
 					<li></li>
 					<li class="divider"></li>
+					@foreach ($menu['workflows'] as $item)
+					<li>
+						<a tabindex="0" href="/admin/super/viewWorkflow/{{ $item->workflowitem }}">
+						<?php
+							echo ucwords(preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('_', ' ',$item->workflowitem)));
+						?></a>
+					</li>
+					@endforeach
 				</ul>
 			</li>
 			<li class="dropdown-submenu">

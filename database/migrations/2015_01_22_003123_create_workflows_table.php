@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkflowTable extends Migration {
+class CreateWorkflowsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -17,7 +17,7 @@ class CreateWorkflowTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->boolean('default');
-			$table->string('workflowitem');
+			$table->string('workflowitem')->unique();
 			$table->string('originaldestination');
 			$table->string('finaldestination')->nullable();
 		});

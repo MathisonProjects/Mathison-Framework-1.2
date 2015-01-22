@@ -2,10 +2,13 @@
 
 use App\mfwobjects;
 use App\mfwworkflows;
+use App\mfwobjectrelationships;
+use DB;
 
 class SuperAdminController extends Controller {
 
 	private $menu;
+	private $post;
 	/*
 	|--------------------------------------------------------------------------
 	| Home Controller
@@ -24,6 +27,11 @@ class SuperAdminController extends Controller {
 	 */
 	public function __construct() {
 		$this->menu['objects'] = mfwobjects::where('oid', 0)->get();
+		$this->menu['workflows'] = mfwworkflows::get();
+		$this->menu['relationships'] = mfwobjectrelationships::get();
+		if (isset($_POST)) {
+			$this->post = $_POST;
+		}
 	}
 
 	/**
@@ -36,13 +44,26 @@ class SuperAdminController extends Controller {
 		return view('superAdmin.index', compact('menu'));
 	}
 
-	public function viewRecords($objectName) {
+	public function viewRecords(mfwobjects $object) {	
+		$fields = mfwobjects::where('oid', $object->id)->get();
+		$object->createTable($object->name, $fields);
+		$records = DB::table('mfwcus_'.$object->name)->get();
 		$menu = $this->menu;
-		$data = mfwobjects::where('name', $objectName)->first();
-		$description = $data->objectDescription;
-		$fields = mfwobjects::where('oid', $data->id)->get();
-		$objectName = ucwords(str_replace('_', ' ', $objectName));
-		return view('superAdmin.view', compact('objectName','description','fields','menu'));
+		$description = $object->objectDescription;
+		$dbName = $object->name;
+		$objectName = ucwords(str_replace('_', ' ', $object->name));
+		return view('superAdmin.view', compact('objectName', 'dbName', 'records', 'description','fields','menu'));
+	}
+
+	public function viewWorkflow(mfwworkflows $entry) {
+		$menu = $this->menu;
+		$fields = DB::select(" SHOW COLUMNS FROM mfwworkflows");
+		$workflowName = ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/',
+			' $1',
+			str_replace('_',
+				' ',
+				$entry->workflowitem)));
+		return view('superAdmin.viewWorkflow', compact('workflowName','fields','entry','menu'));
 	}
 
 	public function createObject() {
@@ -50,27 +71,36 @@ class SuperAdminController extends Controller {
 		return view('superAdmin.createObject', compact('menu'));
 	}
 
+	public function createWorkflow() {
+		$menu = $this->menu;
+		return view('superAdmin.createWorkflow', compact('menu'));
+	}
+
 	public function createObjectPost() {
-		$post = $_POST;
-		$workflow = self::workflowManage('createObjectPost','admin/super/view/');
+		$redirect = self::workflowManage('createObjectPost','admin/super/viewObject/');
 		
-		if ($workflow->default) {
-			$redirect = $workflow->originaldestination.$this->sanitizeName($post['objectName']);
-		} else {
-			$redirect = $workflow->finaldestination;
-		}
-		
-		mfwobjects::insert(['name' => $this->sanitizeName($post['objectName']),
-			'objectDescription' => $post['objectDescription']]);
-		$data = mfwobjects::where('name',$this->sanitizeName($post['objectName']))->first();
+		mfwobjects::insert(['name' => $this->sanitizeName($this->post['objectName']),
+			'objectDescription' => $this->post['objectDescription']]);
+		$data = mfwobjects::where('name',$this->sanitizeName($this->post['objectName']))->first();
 		$id = $data->id;
 
-		for ($i = 1; $i <= $post['totalFields']; $i++) {
+		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
 			mfwobjects::insert(['oid' => $id,
-				'name' => $this->sanitizeName($post['objectItemFieldName'.$i]),
-				'datatype' => $post['objectItemDataType'.$i],
-				'dataquantity' => $post['objectItemQuantity'.$i]]);
+				'name' => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
+				'datatype' => $this->post['objectItemDataType'.$i],
+				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
 		}
+
+		return redirect($redirect);
+	}
+
+	public function createWorkflowPost() {
+		$redirect = self::workflowManage('createWorkflowPost','admin/super/viewWorkflow/');
+
+		mfwworkflows::insert(['default' => $this->post['default'],
+				'workflowitem' => $this->sanitizeName($this->post['workflowitem']),
+				'originaldestination' => $this->post['originaldestination'],
+				'finaldestination' => $this->post['finaldestination']]);
 
 		return redirect($redirect);
 	}
@@ -79,6 +109,19 @@ class SuperAdminController extends Controller {
 		$menu = $this->menu;
 
 		return view('superAdmin.viewObjects', compact('menu'));
+	}
+
+	public function viewWorkflows() {
+		$menu = $this->menu;
+
+		return view('superAdmin.viewWorkflows', compact('menu'));
+	}
+
+	public function viewObjectAddRecord(array $array) {
+		$redirect = self::workflowManage('addRecordPost','admin/super/viewObject/');
+		$objects = new mfwobjects;
+		$objects->insertCustomData($array[0],$array[1],$this->post);
+		return redirect($redirect);
 	}
 
 	public function installRequired() {
@@ -105,6 +148,21 @@ class SuperAdminController extends Controller {
 				'originaldestination' => $defaultDestination]);
 			$workflow = mfwworkflows::where('workflowitem', $postName)->first();
 		}
-		return $workflow;
+
+		if ($workflow->default) {
+			$extra = '';
+			if (isset($this->post['objectName'])) {
+				$extra = $this->sanitizeName($this->post['objectName']);
+			}
+			else if (isset($this->post['workflowitem'])) {
+				$extra = $this->sanitizeName($this->post['workflowitem']);
+			}
+
+			$redirect = $workflow->originaldestination.$extra;
+		} else {
+			$redirect = $workflow->finaldestination;
+		}
+
+		return $redirect;
 	}
 }

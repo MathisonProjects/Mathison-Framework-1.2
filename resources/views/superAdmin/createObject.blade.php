@@ -8,7 +8,6 @@
 	
 	<h2>Create Object</h2>
 	{!! Form::open() !!}
-	{!! Form::hidden('formLocation', 'createObject') !!}
 	{!! Form::hidden('totalFields', '1', array('class' => 'totalFields')) !!}
 	<div class='row'>
 		<div class='col-md-4'>
