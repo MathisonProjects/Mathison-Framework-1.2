@@ -25,6 +25,9 @@ Route::bind('workflowItem', function($input) {
 	return App\mfwworkflows::where('workflowitem', $input)->first();
 });
 
+Route::bind('relationshipName', function($input) {
+	return App\mfwobjectrelationships::where('name', $input)->first();
+});
 
 
 // Super Admin Controller
@@ -36,11 +39,15 @@ Route::get('/admin/super/createObject'                , 'superAdminController@cr
 Route::get('/admin/super/createWorkflow'              , 'superAdminController@createWorkflow');
 Route::get('/admin/super/viewObjects'                 , 'superAdminController@viewObjects');
 Route::get('/admin/super/viewWorkflows'               , 'superAdminController@viewWorkflows');
+Route::get('/admin/super/viewRelationship/{relationshipName}'), 'superAdminController@viewRelationship');
+Route::get('/admin/super/viewRelationships'), 'superAdminController@viewRelationships');
+
 
 // Super Admin Post
 Route::post('/admin/super/createObject'     , 'superAdminController@createObjectPost');
 Route::post('/admin/super/createWorkflow'   , 'superAdminController@createWorkflowPost');
 Route::post('/admin/super/viewObject/{objectFieldsNeeded}', 'superAdminController@viewObjectAddRecord');
+Route::get('/admin/super/createRelationship' , 'superAdminController@createRelationshipPost');
 // Admin Controller
 Route::get('/admin/'                        , 'adminController@index');
 // Front Controller

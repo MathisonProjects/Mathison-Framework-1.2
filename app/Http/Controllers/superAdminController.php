@@ -105,6 +105,17 @@ class SuperAdminController extends Controller {
 		return redirect($redirect);
 	}
 
+	public function createRelationshipPost() {
+		$redirect = self::workflowManage('createRelationshipPost','admin/super/viewRelationship/');
+		mfwobjectrelationships::insert(['name' => $this->post['relationshipname'],
+			'relationshiptype' => $this->post['relationshiptype'],
+			'tableone' => $this->post['objectName'],
+			'tabletwo' => $this->post['totable'],
+			'fieldone' => $this->post['fromfield'],
+			'fieldtwo' => $this->post['tofield']]);
+		return redirect($redirect);
+	}
+
 	public function viewObjects() {
 		$menu = $this->menu;
 
@@ -113,7 +124,6 @@ class SuperAdminController extends Controller {
 
 	public function viewWorkflows() {
 		$menu = $this->menu;
-
 		return view('superAdmin.viewWorkflows', compact('menu'));
 	}
 
@@ -132,10 +142,6 @@ class SuperAdminController extends Controller {
 		return null;
 	}
 
-	public function relationships() {
-		return null;
-	}
-
 	private function sanitizeName($field) {
 		return str_replace(' ', '_', $field);
 	}
@@ -151,11 +157,12 @@ class SuperAdminController extends Controller {
 
 		if ($workflow->default) {
 			$extra = '';
-			if (isset($this->post['objectName'])) {
+			if ($postname == 'createObjectPost') {
 				$extra = $this->sanitizeName($this->post['objectName']);
-			}
-			else if (isset($this->post['workflowitem'])) {
+			} else if ($postname == 'createWorkflowPost') {
 				$extra = $this->sanitizeName($this->post['workflowitem']);
+			} else if ($postname == 'createRelationshipPost') {
+				$extra = $this->sanitizeName($this->post['relationshipname']);
 			}
 
 			$redirect = $workflow->originaldestination.$extra;
