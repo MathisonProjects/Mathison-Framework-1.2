@@ -134,6 +134,10 @@ class SuperAdminController extends Controller {
 		return redirect($redirect);
 	}
 
+	public function getObjectFields(array $array) {
+		return json_encode($array[1]);
+	}
+
 	public function installRequired() {
 		return null;
 	}
@@ -157,11 +161,11 @@ class SuperAdminController extends Controller {
 
 		if ($workflow->default) {
 			$extra = '';
-			if ($postname == 'createObjectPost') {
+			if ($postName == 'createObjectPost' || $postName == 'addRecordPost') {
 				$extra = $this->sanitizeName($this->post['objectName']);
-			} else if ($postname == 'createWorkflowPost') {
+			} else if ($postName == 'createWorkflowPost') {
 				$extra = $this->sanitizeName($this->post['workflowitem']);
-			} else if ($postname == 'createRelationshipPost') {
+			} else if ($postName == 'createRelationshipPost') {
 				$extra = $this->sanitizeName($this->post['relationshipname']);
 			}
 

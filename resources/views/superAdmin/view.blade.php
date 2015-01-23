@@ -1,5 +1,9 @@
 @extends('superAdmin.master')
 
+@section ('header')
+	<script src='/js/superAdminBlade.js'></script>
+@stop
+
 @section('content')
 	<h2>
 		{{ $objectName }}
@@ -47,7 +51,7 @@
 			<tr>
 				@foreach ($fields as $field)
 					@if ($field->name == 'id')
-						<td style='width: 60px;text-align: center;'><a href='#'><i><span class='glyphicon glyphicon-eye-open'></span></i></a></td>
+						<td style='width: 60px;text-align: center;'><a href='/admin/super/viewObject/{{ $dbName }}/{{ $record->id }}'><i><span class='glyphicon glyphicon-eye-open'></span></i></a></td>
 						<td style='width: 60px;text-align: center;'><a href='#'><i><span class='glyphicon glyphicon-edit'></span></i></a></td>
 						<td style='width: 60px;text-align: center;'><a href='#'><i><span class='glyphicon glyphicon-remove'></span></i></a></td>
 					@endif
@@ -63,7 +67,5 @@
 	@include('modals.addRelationship')
 	@include('modals.createAPI')
 	@include('modals.createForm')
-	@include('modals.createReport')
 	@include('modals.deleteObject')
-
 @stop

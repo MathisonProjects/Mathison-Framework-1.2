@@ -5,7 +5,7 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title" id="myModalLabel">Add Relationship for {{ $objectName }}</h4>
 	      </div>
-		  {!! Form::open() !!}
+		  {!! Form::open(['url' => '/admin/super/createRelationship']) !!}
 		  {!! Form::hidden('objectName', $dbName) !!}
 	      <div class="modal-body">
 	      	<div class='form-group'>
@@ -33,7 +33,7 @@
 		    </div>
 			<div class='form-group'>
 				<label for='totable'>Related Table</label>
-		      	<select name='totable' id='totable' class='form-control'>
+		      	<select name='totable' id='totable' class='form-control totable'>
 		      		<option value></option>
 					@foreach ($menu['objects'] as $item)
 						<option value='{{ $item->name }}'>{{ $item->name }}</option>
