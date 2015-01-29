@@ -133,7 +133,7 @@ class SuperAdminController extends Controller {
 		return view('superAdmin.viewObjects', compact('menu'));
 	}
 
-	public function viewObjectItem(mfwobjects $object) {
+	public function viewObjectItem(mfwobjects $object, $id) {
 		$menu = $this->menu;
 
 		// Relationship Builder
@@ -143,22 +143,23 @@ class SuperAdminController extends Controller {
 		$this->sharedData['secondary'] = array();
 		// One to Many, A one, B many
 		foreach ($allPrimaryRelationships as $primary) {
-			$data['object'] = $primary->tabletwo;
-			array_push($data, DB::table('mfwcus_'.$primary->tableone.' as a')
+			$info['object'] = $primary->tabletwo;
+			$info['data'] = DB::table('mfwcus_'.$primary->tableone.' as a')
 								->join('mfwcus_'.$primary->tabletwo.' as b', 'a.'.$primary->fieldone, '=', 'b.'.$primary->fieldtwo)
-								->get());
+								->where('a.id',$id)
+								->get();
 			
-			array_push($this->sharedData['primary'], $data);
+			array_push($this->sharedData['primary'], $info);
 		}
 
 		foreach ($allSecondaryRelationships as $secondary) {
 			array_push($this->sharedData['secondary'], null);
 		}
 		// End Relationship Builder
-
 		$sharedData = $this->sharedData;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
-		return view('superAdmin.viewObjectItem', compact('menu','sharedData','objectName','object'));
+		$record = DB::table('mfwcus_'.$object->name)->where('id', $id)->get();
+		return view('superAdmin.viewObjectItem', compact('menu','sharedData','objectName','record','object'));
 	}
 
 	public function viewWorkflows() {
