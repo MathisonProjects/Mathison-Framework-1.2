@@ -21,7 +21,7 @@
 				<td>Sugar CRM              </td>
 			</tr>
 			<tr>
-				<td>PHP 5.2                </td>
+				<td>PHP 5.4                </td>
 				<td>Bootstrap 3.3.2        </td>
 				<td>MFW 1.1 (Upgraded)     </td>
 				<td>Wordpress              </td>

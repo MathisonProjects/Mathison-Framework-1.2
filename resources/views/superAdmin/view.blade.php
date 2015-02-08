@@ -52,7 +52,7 @@
 				@foreach ($fields as $field)
 					@if ($field->name == 'id')
 						<td style='width: 60px;text-align: center;'><a href='/admin/super/viewObject/{{ $dbName }}/{{ $record->id }}'><i><span class='glyphicon glyphicon-eye-open'></span></i></a></td>
-						<td style='width: 60px;text-align: center;'><a href='#'><i><span class='glyphicon glyphicon-edit'></span></i></a></td>
+						<td style='width: 60px;text-align: center;'><a href='/admin/super/viewObject/{{ $dbName }}/{{ $record->id }}/edit'><i><span class='glyphicon glyphicon-edit'></span></i></a></td>
 						<td style='width: 60px;text-align: center;'><a href='#'><i><span class='glyphicon glyphicon-remove'></span></i></a></td>
 					@endif
 					<td style='text-align: center;'>{{ $record->{$field->name} }}</td>

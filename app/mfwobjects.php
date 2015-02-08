@@ -22,7 +22,10 @@
 							$table->integer($field->name)->nullable();
 						} elseif ($field->datatype == 'blob') {
 							$table->binary($field->name)->nullable();
+						} elseif ($field->datatype == 'datetime') {
+							$table->timestamps();
 						}
+
 					}
 				});
 			}

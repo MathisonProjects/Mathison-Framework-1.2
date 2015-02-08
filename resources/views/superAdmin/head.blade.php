@@ -9,3 +9,5 @@
 <script src="/js/jquery-2.1.1.js"></script>
 <script src='/js/bootstrap-submenu.min.js'></script>
 <script src='/js/submenu-activate.js'></script>
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">

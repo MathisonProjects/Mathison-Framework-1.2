@@ -133,12 +133,19 @@ class SuperAdminController extends Controller {
 		return view('superAdmin.viewObjects', compact('menu'));
 	}
 
+	public function viewRelationships()
+	{
+		$menu = $this->menu;
+
+		return view('superAdmin.viewRelationships', compact('menu'));
+	}
+
 	public function viewObjectItem(mfwobjects $object, $id) {
 		$menu = $this->menu;
 
 		// Relationship Builder
 		$allPrimaryRelationships       = mfwobjectrelationships::where('tableone', $object->name)->get();
-		$allSecondaryRelationships     = mfwobjectrelationships::where('tableone', $object->name)->get();
+		$allSecondaryRelationships     = mfwobjectrelationships::where('tabletwo', $object->name)->get();
 		$this->sharedData['primary']   = array();
 		$this->sharedData['secondary'] = array();
 		// One to Many, A one, B many
@@ -153,7 +160,13 @@ class SuperAdminController extends Controller {
 		}
 
 		foreach ($allSecondaryRelationships as $secondary) {
-			array_push($this->sharedData['secondary'], null);
+			$info['object'] = $secondary->tableone;
+			$info['data'] = DB::table('mfwcus_'.$secondary->tabletwo.' as a')
+								->join('mfwcus_'.$secondary->tableone.' as b', 'a.'.$secondary->fieldtwo, '=', 'b.'.$secondary->fieldone)
+								->where('a.id',$id)
+								->get();
+
+			array_push($this->sharedData['secondary'], $info);
 		}
 		// End Relationship Builder
 		$sharedData = $this->sharedData;
@@ -172,6 +185,37 @@ class SuperAdminController extends Controller {
 		$objects = new mfwobjects;
 		$objects->insertCustomData($array[0],$array[1],$this->post);
 		return redirect($redirect);
+	}
+	public function editObjectItem(mfwobjects $object, $id) {
+		$menu = $this->menu;
+		$objectName = ucwords(str_replace('_', ' ', $object->name));
+		$fields = mfwobjects::where('oid', $object->id)->get();
+		$record = DB::table('mfwcus_'.$object->name)->where('id', $id)->first();
+		return view('superAdmin.editObjectItem', compact('menu','objectName','fields','record','id','object'));
+	}
+
+	public function editObjectItemPost(mfwobjects $object, $id)
+	{
+		$redirect = self::workflowManage('editRecordPost','admin/super/viewObject/');
+		foreach ($this->post as $key => $value) {
+			if ($key != 'id' && $key != 'objectName' && $key != '_token') {
+				$update[$key] = $value;
+			}
+		}
+		DB::table('mfwcus_'.$this->post['objectName'])
+				->where('id', $this->post['id'])
+				->update($update);
+		return redirect($redirect);
+	}
+
+	public function viewForms() {
+		$menu = $this->menu;
+		return view('superAdmin.viewForms', compact('menu'));
+	}
+
+	public function createForms() {
+		$menu = $this->menu;
+		return view('superAdmin.createForm', compact('menu'));
 	}
 
 	public function getObjectFields(array $array) {
@@ -207,7 +251,9 @@ class SuperAdminController extends Controller {
 				$extra = $this->sanitizeName($this->post['workflowitem']);
 			} else if ($postName == 'createRelationshipPost') {
 				$extra = $this->sanitizeName($this->post['relationshipname']);
-			}
+			} else if ($postName == 'editRecordPost') {
+				$extra = $this->sanitizeName($this->post['objectName']).'/'.$this->post['id'];
+			} 
 
 			$redirect = $workflow->originaldestination.$extra;
 		} else {
