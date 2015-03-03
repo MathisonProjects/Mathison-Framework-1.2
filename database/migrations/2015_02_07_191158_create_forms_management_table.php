@@ -17,11 +17,20 @@ class CreateFormsManagementTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->integer('fieldOrder')->default('0');
+<<<<<<< HEAD
 			$table->integer('fid')->default('0');
 			$table->string('name');
 			$table->string('description')->nullable();
 			$table->integer('fieldtype')->nullable();
 			$table->string('fieldoptions')->nullable();
+=======
+			$table->string('name');
+			$table->string('description');
+			$table->integer('fid')->default('0');
+			$table->integer('oid');
+			$table->integer('fieldtype');
+			$table->string('fieldoptions');
+>>>>>>> origin/master
 		});
 	}
 

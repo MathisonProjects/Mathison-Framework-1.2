@@ -138,7 +138,11 @@ class SuperAdminController extends Controller {
 	{
 		$menu = $this->menu;
 
+<<<<<<< HEAD
 		return view('superAdmin.relationships.viewRelationships', compact('menu'));
+=======
+		return view('superAdmin.viewRelationships', compact('menu'));
+>>>>>>> origin/master
 	}
 
 	public function viewObjectItem(mfwobjects $object, $id) {
@@ -209,15 +213,22 @@ class SuperAdminController extends Controller {
 		return redirect($redirect);
 	}
 
+<<<<<<< HEAD
 	public function viewForms(mfwmanageforms $forms) {
 		$menu = $this->menu;
 		$forms->viewAllForms();
 		$formList = $forms->allForms;
 		return view('superAdmin.forms.views', compact('menu','formList'));
+=======
+	public function viewForms() {
+		$menu = $this->menu;
+		return view('superAdmin.viewForms', compact('menu'));
+>>>>>>> origin/master
 	}
 
 	public function createForms() {
 		$menu = $this->menu;
+<<<<<<< HEAD
 		return view('superAdmin.forms.create', compact('menu'));
 	}
 
@@ -225,6 +236,9 @@ class SuperAdminController extends Controller {
 		$redirect = self::workflowManage('createFormPost','admin/super/viewForms/');
 		$forms->createForm($this->post);
 		return redirect($redirect);
+=======
+		return view('superAdmin.createForm', compact('menu'));
+>>>>>>> origin/master
 	}
 
 	public function getObjectFields(array $array) {

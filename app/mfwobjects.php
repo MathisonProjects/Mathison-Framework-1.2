@@ -23,7 +23,11 @@
 						} elseif ($field->datatype == 'blob') {
 							$table->binary($field->name)->nullable();
 						} elseif ($field->datatype == 'datetime') {
+<<<<<<< HEAD
 							$table->dateTime($field->name)->nullable();
+=======
+							$table->timestamps();
+>>>>>>> origin/master
 						}
 
 					}

@@ -14,6 +14,7 @@ $( document ).ready(function() {
   }
 
   $('.addField').click(function(event) {
+<<<<<<< HEAD
     var totalFields = Number($('.totalFields').val()) + 1;
     $('.totalFields').val(totalFields);
 
@@ -59,3 +60,29 @@ $( document ).ready(function() {
   function add_Submit(totalFields,name) {
     return '<input type="text" placeholder="Submit Display" class="form-control" maxlength="255"'+name+' />';
   }
+=======
+  	var totalFields = Number($('.totalFields').val()) + 1;
+    $('.totalFields').val(totalFields);
+  	
+    $extraFields = $('.extraFields').html();
+    $fieldLabel = '<div class="col-md-4"><div class="form-group"><label for="formItem'+totalFields+'">Field '+totalFields+':</label>';
+    $fieldText = '<input type="text" id="formItemFieldNameDisplay'+totalFields+'" placeholder="Field Name Display" class="form-control" maxlength="255" name="formItemFieldNameDisplay'+totalFields+'">';
+
+    Field Chosen
+    $('.extraFields').html($extraFields + $fieldLabel + $fieldText +
+      $datatypeoptions.format(totalFields) + '</div></div>');
+
+  });
+
+
+  $('#baseObject').change(function() {
+    $(this).prop('disabled', true);
+  });
+
+  $('#baseRelationship').change(function() {
+    $(this).prop('disabled', true);
+  });
+
+
+ });
+>>>>>>> origin/master

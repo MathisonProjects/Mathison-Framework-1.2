@@ -53,7 +53,10 @@ Route::post('/admin/super/createWorkflow'                     , 'superAdminContr
 Route::post('/admin/super/viewObject/{objectFieldsNeeded}'    , 'superAdminController@viewObjectAddRecord');
 Route::post('/admin/super/createRelationship'                 , 'superAdminController@createRelationshipPost');
 Route::post('/admin/super/viewObject/{objectName}/{id}/edit'  , 'superAdminController@editObjectItemPost');
+<<<<<<< HEAD
 Route::post('/admin/super/createForms'                        , 'superAdminController@createFormsPost');
+=======
+>>>>>>> origin/master
 // Super Admin Ajax Post
 Route::post('/admin/super/getFields/{objectFieldsNeeded}'     , 'superAdminController@getObjectFields');
 // Admin Controller
