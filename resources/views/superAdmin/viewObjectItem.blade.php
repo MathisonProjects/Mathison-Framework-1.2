@@ -38,4 +38,26 @@
 		@endforeach
 		</table>
 	@endforeach
+
+	@foreach ($sharedData['secondary'] as $key => $info)
+		<h3>{{ $info['object'] }}s Secondary Relationship</h3>
+		<table class='table table-hover table-condensed'>
+		@foreach ($info['data'] as $id => $data)
+			@if ($id === 0)
+				<tr>
+				@foreach ($data as $key => $field)
+					<th>{{ $key }}</th>
+				@endforeach
+				</tr>
+			@endif
+			<tr>
+			@foreach ($data as $key => $field)
+				<td>{{ $field }}</td>
+			@endforeach
+			</tr>
+		@endforeach
+		</table>
+	@endforeach
+
+
 @stop

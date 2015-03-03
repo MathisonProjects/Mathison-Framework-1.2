@@ -4,17 +4,6 @@
 		<a tabindex="0" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 			<li class="dropdown-submenu">
-				<a tabindex="0" data-toggle="dropdown">Required Files</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a tabindex="0">(Re)install</a>
-					</li>
-					<li>
-						<a tabindex="0">View</a>
-					</li>
-				</ul>
-			</li>
-			<li class="dropdown-submenu">
 				<a tabindex="0" data-toggle="dropdown">Objects</a>
 				<ul class="dropdown-menu">
 					<li>
@@ -42,7 +31,7 @@
 						<a tabindex="0">Create Relationship</a>
 					</li>
 					<li>
-						<a tabindex="0">View Relationships</a>
+						<a tabindex="0" href="/admin/super/viewRelationships">View Relationships</a>
 					</li>
 					<li></li>
 					<li class="divider"></li>
@@ -56,6 +45,8 @@
 					@endforeach
 				</ul>
 			</li>
+			<li></li>
+			<li class="divider"></li>
 			<li class="dropdown-submenu">
 				<a tabindex="0" data-toggle="dropdown">APIs</a>
 				<ul class="dropdown-menu">
@@ -85,34 +76,45 @@
 			<li></li>
 			<li class="divider"></li>
 			<li class="dropdown-submenu">
-				<a tabindex="0" data-toggle="dropdown">Workflow</a>
+				<a tabindex="0" data-toggle="dropdown">Templates</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a tabindex="0" href="/admin/super/createWorkflow">Create Workflow Chain</a>
+						<a tabindex="0"><a href='#'>Create Template</a>
 					</li>
 					<li>
-						<a tabindex="0" href="/admin/super/viewWorkflows">View Workflow Chains</a>
+						<a tabindex="0"><a href='#'>View Templates</a>
 					</li>
+					<li>
+						<a tabindex="0"><a href='#'>Select Template</a>
+					</li>
+
 					<li></li>
 					<li class="divider"></li>
-					@foreach ($menu['workflows'] as $item)
-					<li>
-						<a tabindex="0" href="/admin/super/viewWorkflow/{{ $item->workflowitem }}">
-						<?php
-							echo ucwords(preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('_', ' ',$item->workflowitem)));
-						?></a>
-					</li>
-					@endforeach
 				</ul>
 			</li>
+			<li></li>
+			<li class="divider"></li>
 			<li class="dropdown-submenu">
 				<a tabindex="0" data-toggle="dropdown">Forms</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a tabindex="0">Create Form</a>
+						<a tabindex="0"><a href='/admin/super/createForms'>Create Form</a>
 					</li>
 					<li>
-						<a tabindex="0">View Forms</a>
+						<a tabindex="0"><a href='/admin/super/viewForms'>View Forms</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Form Processing</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0"><a href='/admin/super/createFormProcess'>Create Form</a>
+					</li>
+					<li>
+						<a tabindex="0"><a href='/admin/super/viewFormsProcesses'>View Forms</a>
 					</li>
 					<li></li>
 					<li class="divider"></li>
@@ -135,6 +137,38 @@
 			<li></li>
 			<li class="divider"></li>
 			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Workflow</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0" href="/admin/super/createWorkflow">Create Workflow Chain</a>
+					</li>
+					<li>
+						<a tabindex="0" href="/admin/super/viewWorkflows">View Workflow Chains</a>
+					</li>
+					<li></li>
+					<li class="divider"></li>
+					@foreach ($menu['workflows'] as $item)
+					<li>
+						<a tabindex="0" href="/admin/super/viewWorkflow/{{ $item->workflowitem }}">
+						<?php
+							echo ucwords(preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('_', ' ',$item->workflowitem)));
+						?></a>
+					</li>
+					@endforeach
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Required Files</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">(Re)install</a>
+					</li>
+					<li>
+						<a tabindex="0">View</a>
+					</li>
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
 				<a tabindex="0" data-toggle="dropdown">Unit Tests</a>
 				<ul class="dropdown-menu">
 					<li>
@@ -145,6 +179,19 @@
 					</li>
 					<li></li>
 					<li class="divider"></li>
+				</ul>
+			</li>
+			<li></li>
+			<li class="divider"></li>
+			<li class="dropdown-submenu">
+				<a tabindex="0" data-toggle="dropdown">Other</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="0">Clone</a>
+					</li>
+					<li>
+						<a tabindex="0">Change Database</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
