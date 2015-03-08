@@ -31,30 +31,45 @@ Route::bind('relationshipName', function($input) {
 
 // Super Admin Controller
 // Super Admin Get
-Route::get('/admin/super/'                                    , 'superAdminController@index');
-Route::get('/admin/super/viewObject/{objectName}'             , 'superAdminController@viewRecords');
-Route::get('/admin/super/viewWorkflow/{workflowItem}'         , 'superAdminController@viewWorkflow');
-Route::get('/admin/super/createObject'                        , 'superAdminController@createObject');
-Route::get('/admin/super/createWorkflow'                      , 'superAdminController@createWorkflow');
-Route::get('/admin/super/viewObjects'                         , 'superAdminController@viewObjects');
-Route::get('/admin/super/viewWorkflows'                       , 'superAdminController@viewWorkflows');
-Route::get('/admin/super/viewRelationship/{relationshipName}' , 'superAdminController@viewRelationship');
-Route::get('/admin/super/viewRelationships'                   , 'superAdminController@viewRelationships');
-Route::get('/admin/super/viewObject/{objectName}/{id}'        , 'superAdminController@viewObjectItem');
+$superAdminList = array(
+	array('GET'  , ''                                    , 'index')                  ,
+	array('GET'  , 'createObject'                        , 'createObject')           ,
+	array('GET'  , 'viewObject/{objectName}'             , 'viewRecords')            ,
+	array('GET'  , 'viewObjects'                         , 'viewObjects')            ,
+	array('GET'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
+	array('GET'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
+	array('GET'  , 'viewRelationship/{relationshipName}' , 'viewRelationship')       ,
+	array('GET'  , 'viewRelationships'                   , 'viewRelationships')      ,
+	array('GET'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
+	array('GET'  , 'viewWorkflows'                       , 'viewWorkflows')          ,
+	array('GET'  , 'createWorkflow'                      , 'createWorkflow')         ,
+	array('GET'  , 'viewForm/{id}'                       , 'viewForm')               ,
+	array('GET'  , 'viewForms'                           , 'viewForms')              ,
+	array('GET'  , 'createForms'                         , 'createForms')            ,
+	array('GET'  , 'createFormProcess'                   , 'createFormProcesses')    ,
+	array('GET'  , 'viewFormProcesses'                   , 'viewFormProcesses')      ,
+	array('GET'  , 'viewFormProcess/{id}'                , 'viewFormProcess')        ,
+	array('GET'  , 'createApi'                           , 'createApi')              ,
+	array('GET'  , 'viewApis'                            , 'viewApis')               ,
+	array('GET'  , 'viewApi/{id}'                        , 'viewApi')                ,
+	array('POST' , 'createObject'                        , 'createObjectPost')       ,
+	array('POST' , 'createWorkflow'                      , 'createWorkflowPost')     ,
+	array('POST' , 'createRelationship'                  , 'createRelationshipPost') ,
+	array('POST' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
+	array('POST' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
+	array('POST' , 'createForms'                         , 'createFormsPost')        ,
+	array('POST' , 'createApi'                           , 'createApiPost')              ,
+	array('POST' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
+	);
 
-// Super Admin Post
-Route::post('/admin/super/createObject'                       , 'superAdminController@createObjectPost');
-Route::post('/admin/super/createWorkflow'                     , 'superAdminController@createWorkflowPost');
-Route::post('/admin/super/viewObject/{objectFieldsNeeded}'    , 'superAdminController@viewObjectAddRecord');
-Route::post('/admin/super/createRelationship'                 , 'superAdminController@createRelationshipPost');
-// Super Admin Ajax Post
-Route::post('/admin/super/getFields/{objectFieldsNeeded}'     , 'superAdminController@getObjectFields');
+foreach ($superAdminList as $item) {
+	if ($item[0] == 'GET') {
+		get( '/admin/super/'.$item[1], 'superAdminController@'.$item[2]);
+	} else if ($item[0] == 'POST') {
+		post('/admin/super/'.$item[1], 'superAdminController@'.$item[2]);
+	}
+}
+
 // Admin Controller
-Route::get('/admin/'                                          , 'adminController@index');
+Route::get('/admin/', 'adminController@index');
 // Front Controller
-
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);

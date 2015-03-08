@@ -19,7 +19,9 @@ $( document ).ready(function() {
     var $datatypeoptions = '<select name="objectItemDataType{0}" id="objectItemDataType{0}" class="form-control">' + 
                       '<option value="varchar">varchar</option>' +
                       '<option value="int">int</option>' +
-                      '<option value="blob">blob</option>';
+                      '<option value="blob">blob</option>' +
+                      '<option value="datetime">datetime</option>' +
+                      '<option value="decimal">decimal</option>';
 
   	$('.totalFields').val(totalFields);
   	$extraFields = $('.extraFields').html();
@@ -30,7 +32,5 @@ $( document ).ready(function() {
 			'<input type="text" id="objectItemQuantity'+totalFields+'" placeholder="Permitted Characters" class="form-control" maxlength="255" name="objectItemQuantity'+totalFields+'">' +
 		'</div></div>');
   });
-
-  
 
 });
