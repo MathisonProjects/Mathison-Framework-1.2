@@ -54,10 +54,10 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => env('DB_HOST', 'mathisonprojects.com'),
-			'database'  => env('DB_DATABASE', 'jmathias_mathisonprojects'),
-			'username'  => env('DB_USERNAME', 'jmathias_admin'),
-			'password'  => env('DB_PASSWORD', 'asd34964'),
+			'host'      => env('DB_HOST', 'XXXXXX'),
+			'database'  => env('DB_DATABASE', 'XXXXXX'),
+			'username'  => env('DB_USERNAME', 'XXXXXX'),
+			'password'  => env('DB_PASSWORD', 'XXXXXX'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
