@@ -1,0 +1,4 @@
+[05-Feb-2015 03:07:35 UTC] PHP Warning:  Module 'zip' already loaded in Unknown on line 0
+[05-Feb-2015 03:07:35 UTC] PHP Parse error:  syntax error, unexpected '[' in /home/jmathias/public_html/dev.mathisonprojects.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php on line 350
+[05-Feb-2015 03:24:08 UTC] PHP Warning:  Module 'zip' already loaded in Unknown on line 0
+[05-Feb-2015 03:24:08 UTC] PHP Parse error:  syntax error, unexpected '[' in /home/jmathias/public_html/dev.mathisonprojects.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php on line 350
