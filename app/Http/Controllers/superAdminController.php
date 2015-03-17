@@ -5,6 +5,7 @@ use App\mfwworkflows;
 use App\mfwobjectrelationships;
 use App\mfwmanageforms;
 use App\mfwapis;
+use App\mfwformprocessings;
 use DB;
 
 class SuperAdminController extends Controller {
@@ -29,11 +30,12 @@ class SuperAdminController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->menu['objects'] = mfwobjects::where('oid', 0)->get();
-		$this->menu['workflows'] = mfwworkflows::get();
-		$this->menu['relationships'] = mfwobjectrelationships::get();
-		$this->menu['forms'] = mfwmanageforms::where('fid', 0)->get();
-		$this->menu['apis'] = mfwapis::get();
+        $this->menu['objects']        = mfwobjects::where('oid', 0)->get();
+        $this->menu['workflows']      = mfwworkflows::get();
+        $this->menu['relationships']  = mfwobjectrelationships::get();
+        $this->menu['forms']          = mfwmanageforms::where('fid', 0)->get();
+        $this->menu['apis']           = mfwapis::get();
+        $this->menu['formprocessing'] = mfwformprocessings::get();
 		if (isset($_POST)) {
 			$this->post = $_POST;
 		}
@@ -55,7 +57,7 @@ class SuperAdminController extends Controller {
 		$description = $object->objectDescription;
 		$dbName = $object->name;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
-		return $this->launchView('view', compact('objectName', 'dbName', 'records', 'description','fields'));
+		return $this->launchView('objects.view', compact('objectName', 'dbName', 'records', 'description','fields'));
 	}
 
 	public function viewWorkflow(mfwworkflows $entry) {
@@ -72,7 +74,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createObject() {
-		return $this->launchView('createObject', array());
+		return $this->launchView('objects.createObject', array());
 	}
 
 	public function createWorkflow() {
@@ -80,7 +82,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createObjectPost() {
-		$redirect = self::workflowManage('createObjectPost','admin/super/viewObject/');
+		$redirect = self::workflowManage('objects.createObjectPost','admin/super/viewObject/');
 		
 		mfwobjects::insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);
@@ -120,7 +122,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function viewObjects() {
-		return $this->launchView('viewObjects', array());
+		return $this->launchView('objects.viewObjects', array());
 	}
 
 	public function viewRelationships()
@@ -158,7 +160,7 @@ class SuperAdminController extends Controller {
 		$sharedData = $this->sharedData;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
 		$record = DB::table('mfwcus_'.$object->name)->where('id', $id)->get();
-		return $this->launchView('viewObjectItem', compact('sharedData','objectName','record','object'));
+		return $this->launchView('objects.viewObjectItem', compact('sharedData','objectName','record','object'));
 	}
 
 	public function viewWorkflows() {
@@ -178,7 +180,7 @@ class SuperAdminController extends Controller {
 			'record' => DB::table('mfwcus_'.$object->name)->where('id', $id)->first(),
 			'object' => $object);
 
-		return $this->launchView('editObjectItem', $compact);
+		return $this->launchView('objects.editObjectItem', $compact);
 	}
 
 	public function editObjectItemPost(mfwobjects $object, $id)
@@ -196,8 +198,9 @@ class SuperAdminController extends Controller {
 	}
 
 	public function viewForm(mfwmanageforms $forms, $id) {
+		$apiId = mfwapis::where('fid', $id)->first()['randomid'];
 		$forms->viewForm($id);
-		return $this->launchView('forms.views', array('formItem' => $forms->form));
+		return $this->launchView('forms.view', array('formItem' => $forms->form, 'apiId' => $apiId));
 	}
 
 	public function viewForms(mfwmanageforms $forms) {
@@ -214,33 +217,9 @@ class SuperAdminController extends Controller {
 		return redirect($redirect);
 	}
 
-	public function viewFormProcess() {
-		return $this->launchView('formprocessing.view', array());
-	}
-
-	public function viewFormProcesses() {
-		return $this->launchView('formprocessing.views', array());
-	}
-
-	public function createFormProcess() {
-		return $this->launchView('formprocessing.create', array());
-	}
-
-	public function createApi() {
-		return $this->launchView('api.create', array());
-	}
-
 	public function createApiPost() {
 		$redirect = self::workflowManage('createApiPost','admin/super/viewApis/');
 		return redirect($redirect);
-	}
-
-	public function viewApi() {
-		return $this->launchView('api.views', array());
-	}
-
-	public function viewApis() {
-		return $this->launchView('api.view', array());
 	}
 
 	private function launchView($view,$compact) {

@@ -12,6 +12,14 @@ class CreateFormProcessingTable extends Migration {
 	 */
 	public function up()
 	{
+
+		Schema::create('mfwformprocessings', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->timestamps();
+			$table->string('apiid');
+			$table->string('eventlocation');
+		});
 	}
 
 	/**
@@ -21,6 +29,8 @@ class CreateFormProcessingTable extends Migration {
 	 */
 	public function down()
 	{
+
+		Schema::drop('mfwformprocessings');
 	}
 
 }

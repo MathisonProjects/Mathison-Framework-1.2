@@ -29,45 +29,48 @@ Route::bind('relationshipName', function($input) {
 	return App\mfwobjectrelationships::where('name', $input)->first();
 });
 
-// Super Admin Controller
 // Super Admin Get
+$prefix = array(0 => '/admin/super/', 1 => 'superAdmin');
+
 $superAdminList = array(
-	array('GET'  , ''                                    , 'index')                  ,
-	array('GET'  , 'createObject'                        , 'createObject')           ,
-	array('GET'  , 'viewObject/{objectName}'             , 'viewRecords')            ,
-	array('GET'  , 'viewObjects'                         , 'viewObjects')            ,
-	array('GET'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
-	array('GET'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
-	array('GET'  , 'viewRelationship/{relationshipName}' , 'viewRelationship')       ,
-	array('GET'  , 'viewRelationships'                   , 'viewRelationships')      ,
-	array('GET'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
-	array('GET'  , 'viewWorkflows'                       , 'viewWorkflows')          ,
-	array('GET'  , 'createWorkflow'                      , 'createWorkflow')         ,
-	array('GET'  , 'viewForm/{id}'                       , 'viewForm')               ,
-	array('GET'  , 'viewForms'                           , 'viewForms')              ,
-	array('GET'  , 'createForms'                         , 'createForms')            ,
-	array('GET'  , 'createFormProcess'                   , 'createFormProcesses')    ,
-	array('GET'  , 'viewFormProcesses'                   , 'viewFormProcesses')      ,
-	array('GET'  , 'viewFormProcess/{id}'                , 'viewFormProcess')        ,
-	array('GET'  , 'createApi'                           , 'createApi')              ,
-	array('GET'  , 'viewApis'                            , 'viewApis')               ,
-	array('GET'  , 'viewApi/{id}'                        , 'viewApi')                ,
-	array('POST' , 'createObject'                        , 'createObjectPost')       ,
-	array('POST' , 'createWorkflow'                      , 'createWorkflowPost')     ,
-	array('POST' , 'createRelationship'                  , 'createRelationshipPost') ,
-	array('POST' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
-	array('POST' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
-	array('POST' , 'createForms'                         , 'createFormsPost')        ,
-	array('POST' , 'createApi'                           , 'createApiPost')              ,
-	array('POST' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
+	array('get'  , ''                                    , 'index')                  ,
+	array('get'  , 'createObject'                        , 'createObject')           ,
+	array('get'  , 'viewObject/{objectName}'             , 'viewRecords')            ,
+	array('get'  , 'viewObjects'                         , 'viewObjects')            ,
+	array('get'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
+	array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
+	array('get'  , 'viewRelationship/{relationshipName}' , 'viewRelationship')       ,
+	array('get'  , 'viewRelationships'                   , 'viewRelationships')      ,
+	array('get'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
+	array('get'  , 'viewWorkflows'                       , 'viewWorkflows')          ,
+	array('get'  , 'createWorkflow'                      , 'createWorkflow')         ,
+	array('get'  , 'viewForm/{id}'                       , 'viewForm')               ,
+	array('get'  , 'viewForms'                           , 'viewForms')              ,
+	array('get'  , 'createForms'                         , 'createForms')            ,
+	array('post' , 'createObject'                        , 'createObjectPost')       ,
+	array('post' , 'createWorkflow'                      , 'createWorkflowPost')     ,
+	array('post' , 'createRelationship'                  , 'createRelationshipPost') ,
+	array('post' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
+	array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
+	array('post' , 'createForms'                         , 'createFormsPost')        ,
+	array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
 	);
 
 foreach ($superAdminList as $item) {
-	if ($item[0] == 'GET') {
-		get( '/admin/super/'.$item[1], 'superAdminController@'.$item[2]);
-	} else if ($item[0] == 'POST') {
-		post('/admin/super/'.$item[1], 'superAdminController@'.$item[2]);
-	}
+	$item[0]($prefix[0].$item[1], $prefix[1].'Controller@'.$item[2]);
+}
+
+// Super Admin Controller
+
+$superAdminControllers = array(
+	'api'            => 'Api',
+	'pdf'            => 'Pdf',
+	'formprocessing' => 'FormProcessing',
+	'template'       => 'Templates',
+	);
+
+foreach ($superAdminControllers as $key => $item) {
+	$router->resource($prefix[0].$key , $prefix[1].$item.'Controller');
 }
 
 // Admin Controller

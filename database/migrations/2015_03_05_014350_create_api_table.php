@@ -17,9 +17,10 @@ class CreateApiTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->string('randomid');
+			$table->string('action');
 			$table->string('name');
 			$table->integer('fid');
-			$table->binary('jsoncall');
+			$table->integer('oid');
 		});
 	}
 

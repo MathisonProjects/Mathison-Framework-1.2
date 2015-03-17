@@ -20,7 +20,7 @@ class CreateFormsManagementTable extends Migration {
 			$table->integer('fid')->default('0');
 			$table->string('name');
 			$table->string('description')->nullable();
-			$table->integer('fieldtype')->nullable();
+			$table->string('fieldtype')->nullable();
 			$table->string('fieldoptions')->nullable();
 		});
 	}

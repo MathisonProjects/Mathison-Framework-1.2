@@ -9,7 +9,7 @@
 				<div class='col-md12'>
 					<div class="row">
 						<div class="col-md-12">
-							@include('superAdmin.menu')
+							@include('superAdmin.menu.list')
 						</div>
 					</div>
 					<div class="col-md-12">
@@ -18,9 +18,7 @@
 				</div>
 			</div>
 		</div>
-		
-		@yield('modal');
-
+		@yield('modal')
 		@include('superAdmin.bootstrap-footer')
 	</body>
 </html>
