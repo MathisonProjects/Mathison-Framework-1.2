@@ -38,12 +38,16 @@ class superAdminPagesController extends Controller
     }
 
     public function store(Request $request) {
-        
+        mfwpages::insert([
+            'stringurl' => $request->get('stringurl'),
+            'tid'       => $request->get('tid'),
+            'datatext'  => nl2br($request->get('datatext'))]);
+        return redirect('admin/super/pages/');
     }
 
     public function show($id) {
-        $id = array('id' => mfwpages::where('id', $id)->first());
-        return $this->launchView('view',$id);
+        $page = array('page' => mfwpages::where('id', $id)->first());
+        return $this->launchView('view',$page);
     }
 
     public function edit($id) {

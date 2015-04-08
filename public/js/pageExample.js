@@ -7,7 +7,9 @@ $(document).ready(function() {
 
   $('#datatext').on('keyup', function() {
   	$this = $(this);
-  	$('.exampleDisplay').html($this.phpReplace('\n','<br />'));
+  	if ($('#tid').val() == '') {
+	  	$('.exampleDisplay').html($this.phpReplace('\n','<br />'));
+	  }
   });
 
   $('#stringurl').on('keyup', function() {
