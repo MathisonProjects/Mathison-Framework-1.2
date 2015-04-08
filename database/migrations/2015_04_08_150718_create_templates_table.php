@@ -15,6 +15,8 @@ class CreateTemplatesTable extends Migration
         Schema::create('mfwtemplates', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('templatename')->nullable(); //Page Data
+            $table->binary('datatext')->nullable(); //Template Data
         });
     }
 

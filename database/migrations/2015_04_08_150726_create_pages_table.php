@@ -17,7 +17,7 @@ class CreatePagesTable extends Migration
             $table->timestamps();
             $table->string('stringurl')->nullable();
             $table->integer('tid')->nullable(); //Template ID
-            $table->binary('datatext')->nullable(); //Template Data
+            $table->binary('datatext')->nullable(); //Page Data
         });
     }
 
