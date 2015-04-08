@@ -12,9 +12,8 @@ use App\mfwformprocessings;
 use App\mfwtemplates;
 use DB;
 
-class superAdminTemplatesController extends Controller
+class superAdminPagesController extends Controller
 {
-
     public function __construct() {
         $this->menu['objects']        = mfwobjects::where('oid', 0)->get();
         $this->menu['workflows']      = mfwworkflows::get();
@@ -26,76 +25,39 @@ class superAdminTemplatesController extends Controller
             $this->post = $_POST;
         }
     }
-
-    public function index() {
-        return $this->launchView('views', array());
+    
+    public function index()
+    {
+        //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create() {
-        return $this->launchView('create', array());
+    public function create()
+    {
+        //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store()
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function update($id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id)
     {
         //
-    }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.templates.'.$view,$compact);
     }
 }

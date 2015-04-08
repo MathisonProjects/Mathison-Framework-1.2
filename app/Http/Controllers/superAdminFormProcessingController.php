@@ -9,6 +9,7 @@ use App\mfwobjectrelationships;
 use App\mfwmanageforms;
 use App\mfwapis;
 use App\mfwformprocessings;
+use App\mfwtemplates;
 use DB;
 
 class superAdminFormProcessingController extends Controller {

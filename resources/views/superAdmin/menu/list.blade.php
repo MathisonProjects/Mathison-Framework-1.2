@@ -8,6 +8,7 @@
 	@include('superAdmin.menu.list.middleware')
 	<li></li><li class="divider"></li>
 	@include('superAdmin.menu.list.templates')
+	@include('superAdmin.menu.list.pages')
 	<li></li><li class="divider"></li>
 	@include('superAdmin.menu.list.forms')
 	@include('superAdmin.menu.list.formprocessing')

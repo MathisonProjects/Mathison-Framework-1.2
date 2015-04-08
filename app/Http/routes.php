@@ -67,6 +67,7 @@ $superAdminControllers = array(
 	'pdf'            => 'Pdf',
 	'formprocessing' => 'FormProcessing',
 	'template'       => 'Templates',
+	'pages'          => 'Pages',
 	);
 
 foreach ($superAdminControllers as $key => $item) {

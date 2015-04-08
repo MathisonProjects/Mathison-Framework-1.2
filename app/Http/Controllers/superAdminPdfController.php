@@ -8,6 +8,9 @@ use App\mfwworkflows;
 use App\mfwobjectrelationships;
 use App\mfwmanageforms;
 use App\mfwapis;
+use App\mfwformprocessings;
+use App\mfwtemplates;
+use DB;
 
 class superAdminPdfController extends Controller
 {
@@ -18,6 +21,7 @@ class superAdminPdfController extends Controller
         $this->menu['relationships'] = mfwobjectrelationships::get();
         $this->menu['forms']         = mfwmanageforms::where('fid', 0)->get();
         $this->menu['apis']          = mfwapis::get();
+        $this->menu['formprocessing'] = mfwformprocessings::get();
         if (isset($_POST)) {
             $this->post = $_POST;
         }
