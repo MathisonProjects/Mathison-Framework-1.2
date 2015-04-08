@@ -3,17 +3,31 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\mfwobjects;
+use App\mfwworkflows;
+use App\mfwobjectrelationships;
+use App\mfwmanageforms;
+use App\mfwapis;
+use App\mfwformprocessings;
+use DB;
 
 class superAdminTemplatesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
+
+    public function __construct() {
+        $this->menu['objects']        = mfwobjects::where('oid', 0)->get();
+        $this->menu['workflows']      = mfwworkflows::get();
+        $this->menu['relationships']  = mfwobjectrelationships::get();
+        $this->menu['forms']          = mfwmanageforms::where('fid', 0)->get();
+        $this->menu['apis']           = mfwapis::get();
+        $this->menu['formprocessing'] = mfwformprocessings::get();
+        if (isset($_POST)) {
+            $this->post = $_POST;
+        }
+    }
+
+    public function index() {
+        return $this->launchView('views', array());
     }
 
     /**
@@ -21,9 +35,8 @@ class superAdminTemplatesController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return $this->launchView('create', array());
     }
 
     /**
@@ -78,5 +91,10 @@ class superAdminTemplatesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function launchView($view,$compact) {
+        $compact['menu'] = $this->menu;
+        return view('superAdmin.templates.'.$view,$compact);
     }
 }

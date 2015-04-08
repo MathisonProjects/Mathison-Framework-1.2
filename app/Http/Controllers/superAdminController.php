@@ -82,7 +82,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createObjectPost() {
-		$redirect = self::workflowManage('objects.createObjectPost','admin/super/viewObject/');
+		$redirect = self::workflowManage('objects.createObjectPost','admin/super/viewObjects/');
 		
 		mfwobjects::insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);

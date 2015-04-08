@@ -18,5 +18,7 @@
 	@include('superAdmin.menu.list.requiredfiles')
 	@include('superAdmin.menu.list.unittests')
 	<li></li><li class="divider"></li>
+	@include('superAdmin.menu.list.marketing')
+	<li></li><li class="divider"></li>
 	@include('superAdmin.menu.list.other')
 @stop
