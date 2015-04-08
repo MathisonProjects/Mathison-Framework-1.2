@@ -12,9 +12,9 @@
 		</tr>
 		@foreach ($menu['templates'] as $item)
 		<tr>
-			<td style='text-align: center;'><a href='templates/{{ $item->id }}'><i><span class='glyphicon glyphicon-eye-open'></span></i></a></td>
-			<td style='text-align: center;'><a href='templates/{{ $item->id }}/edit'><i><span class='glyphicon glyphicon-edit'></span></i></a></td>
-			<td style='text-align: center;'><a href='templates/{{ $item->id }}'><i><span class='glyphicon glyphicon-remove'></span></i></a></td>
+			<td style='text-align: center;'><a href='template/{{ $item->id }}'><i><span class='glyphicon glyphicon-eye-open'></span></i></a></td>
+			<td style='text-align: center;'><a href='template/{{ $item->id }}/edit'><i><span class='glyphicon glyphicon-edit'></span></i></a></td>
+			<td style='text-align: center;'><a href='template/{{ $item->id }}'><i><span class='glyphicon glyphicon-remove'></span></i></a></td>
 			<td>{{ $item->id }}</td>
 			<td>{{ $item->templatename }}</td>
 		</tr>
