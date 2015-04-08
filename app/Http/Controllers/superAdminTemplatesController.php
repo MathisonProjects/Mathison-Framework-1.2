@@ -10,6 +10,7 @@ use App\mfwmanageforms;
 use App\mfwapis;
 use App\mfwformprocessings;
 use App\mfwtemplates;
+use App\mfwpages;
 use DB;
 
 class superAdminTemplatesController extends Controller
@@ -22,6 +23,8 @@ class superAdminTemplatesController extends Controller
         $this->menu['forms']          = mfwmanageforms::where('fid', 0)->get();
         $this->menu['apis']           = mfwapis::get();
         $this->menu['formprocessing'] = mfwformprocessings::get();
+        $this->menu['templates']      = mfwtemplates::get();
+        $this->menu['pages']          = mfwpages::get();
         if (isset($_POST)) {
             $this->post = $_POST;
         }

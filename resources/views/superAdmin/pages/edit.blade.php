@@ -1,5 +1,9 @@
 @extends('superAdmin.master')
 
-@section('content')
+@section('header')
+	<script src='/js/pageExample.js'></script>
+@stop
 
+@section('content')
+	@include('superAdmin.pages.form')
 @stop
