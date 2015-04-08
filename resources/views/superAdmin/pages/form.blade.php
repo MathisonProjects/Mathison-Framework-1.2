@@ -13,7 +13,7 @@
 		</div>
 		<div class='form-group'>
 			{!! Form::label('tid', 'Template') !!}
-			{!! Form::select('tid', array('' => ''), '', ['class' => 'form-control']) !!}
+			{!! Form::select('tid', $templates, '', ['class' => 'form-control']) !!}
 		</div>
 	</div>
 	<div class='col-md-8'>

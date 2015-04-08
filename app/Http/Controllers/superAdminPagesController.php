@@ -34,7 +34,11 @@ class superAdminPagesController extends Controller
     }
 
     public function create() {
-        return $this->launchView('create', array());
+        $templates = array('' => '');
+        foreach ($this->menu['templates'] as $template) {
+            $templates[$template['id']] = $template['templatename'];
+        }
+        return $this->launchView('create', array('templates' => $templates));
     }
 
     public function store(Request $request) {

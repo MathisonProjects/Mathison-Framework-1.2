@@ -1,35 +1,27 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\mfwobjects;
+use App\mfwworkflows;
+use App\mfwobjectrelationships;
+use App\mfwmanageforms;
+use App\mfwapis;
+use App\mfwformprocessings;
+use App\mfwtemplates;
+use App\mfwpages;
+use DB;
+
 class pagesController extends Controller {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
-
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
+	public function __construct(){
+		
 	}
 
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return 'Welcome to my site!';
+	public function index($custom_url) {
+        $page = array('page' => mfwpages::where('stringurl', $custom_url)->first());
+		return view('page.view', $page);
 	}
 
 }

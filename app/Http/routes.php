@@ -77,3 +77,4 @@ foreach ($superAdminControllers as $key => $item) {
 // Admin Controller
 Route::get('/admin/', 'adminController@index');
 // Front Controller
+Route::get('/{custom_url}', 'pagesController@index');
