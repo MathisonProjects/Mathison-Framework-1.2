@@ -13,7 +13,11 @@ class CreatePagesTable extends Migration
     public function up()
     {
         Schema::create('mfwpages', function (Blueprint $table) {
-            //
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('stringurl')->nullable();
+            $table->integer('tid')->nullable(); //Template ID
+            $table->binary('datatext')->nullable(); //Template Data
         });
     }
 

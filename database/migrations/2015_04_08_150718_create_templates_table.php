@@ -13,7 +13,8 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create('mfwtemplates', function (Blueprint $table) {
-            //
+            $table->increments('id');
+            $table->timestamps();
         });
     }
 

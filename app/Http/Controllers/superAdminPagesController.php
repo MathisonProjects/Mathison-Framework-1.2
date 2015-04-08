@@ -10,6 +10,7 @@ use App\mfwmanageforms;
 use App\mfwapis;
 use App\mfwformprocessings;
 use App\mfwtemplates;
+use App\mfwpages;
 use DB;
 
 class superAdminPagesController extends Controller
@@ -26,38 +27,36 @@ class superAdminPagesController extends Controller
         }
     }
     
-    public function index()
-    {
-        //
+    public function index() {
+        return $this->launchView('views', array());
     }
 
-    public function create()
-    {
-        //
+    public function create() {
+        return $this->launchView('create', array());
     }
 
-    public function store()
-    {
-        //
+    public function store(Request $request) {
+        
     }
 
-    public function show($id)
-    {
-        //
+    public function show($id) {
+        $id = array('id' => mfwpages::where('id', $id)->first());
+        return $this->launchView('view',$id);
     }
 
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $id = array('id' => mfwpages::where('id', $id)->first());
+        return $this->launchView('edit', array());
     }
 
-    public function update($id)
-    {
-        //
+    public function update($id,Request $request) {
     }
 
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+    }
+
+    private function launchView($view,$compact) {
+        $compact['menu'] = $this->menu;
+        return view('superAdmin.pages.'.$view,$compact);
     }
 }
