@@ -54,6 +54,7 @@ $superAdminList = array(
 	array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
 	array('post' , 'createForms'                         , 'createFormsPost')        ,
 	array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
+	array('post' , 'template/format/{id}'                , 'templateFormat')         ,
 	);
 
 foreach ($superAdminList as $item) {
