@@ -54,12 +54,13 @@ $superAdminList = array(
 	array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
 	array('post' , 'createForms'                         , 'createFormsPost')        ,
 	array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
-	array('post' , 'template/format/{id}'                , 'templateFormat')         ,
 	);
 
 foreach ($superAdminList as $item) {
 	$item[0]($prefix[0].$item[1], $prefix[1].'Controller@'.$item[2]);
 }
+get('/admin/super/template/format/{id}' , 'superAdminTemplatesController@templateFormat');
+post('/admin/super/template/format/{id}' , 'superAdminTemplatesController@templateFormat');
 
 // Super Admin Controller
 

@@ -62,6 +62,12 @@ class superAdminTemplatesController extends Controller
         
     }
 
+    public function templateFormat($id) {
+        $template = mfwtemplates::where('id', $id)->first();
+        $jsonData = array('template' => $template->datatext);
+        return json_encode($jsonData);
+    }
+
     private function launchView($view,$compact) {
         $compact['menu'] = $this->menu;
         return view('superAdmin.templates.'.$view,$compact);
