@@ -10,13 +10,14 @@ $(document).ready(function() {
   	var regExp = /\@SECTION ([^)]+)\@/;
   	$.each(sections, function(key, value){
   		if (value != '') {
-  			var partOne = '@SECTION '+regExp.exec(value)[1]+'@';
+        var sectionName = regExp.exec(value)[1];
+  			var partOne = '@SECTION '+sectionName+'@';
   			var newValue = value.split(partOne).join('');
-	  		console.log(key + ' => '+newValue);
+        template = template.replace('[CONTENT='+sectionName+']',newValue);
 	  	}
   	});
   	
-  	return '';
+  	return template;
   }
 
   $('#datatext').on('keyup', function() {
@@ -25,8 +26,6 @@ $(document).ready(function() {
 	  	$('.exampleDisplay').html($this.phpReplace('\n','<br />'));
 	} else {
 		$tid     = $('#tid').val();
-		var $content = new Array();
-		$content[0] = $this.phpReplace('\n','<br />');
 		$.ajax({
 		  type: "POST",
 		  url: '/admin/super/template/format/' + $tid,
@@ -43,7 +42,7 @@ $(document).ready(function() {
 
   $('#datatextTemplate').on('keyup', function() {
   	$this = $(this);
-	$('.exampleDisplay').html($this.phpReplace('\n','<br />'));
+    $('.exampleDisplay').html($this.phpReplace('\n','<br />'));
   });
 
   $('#stringurl').on('keyup', function() {
