@@ -6,13 +6,15 @@ $(document).ready(function() {
   }
 
   $.fn.setContent = function(template) {
-  	var sections = $this.val().split('@ENDSECTION');
-  	var regExp = /\@SECTION ([^)]+)\@/;
+  	var sections = $this.val().split('\n@ENDSECTION');
+  	var regExp = /\SECTION ([^)]+)\@/;
   	$.each(sections, function(key, value){
   		if (value != '') {
+        value = value.substring(value.indexOf("@") + 1);
         var sectionName = regExp.exec(value)[1];
-  			var partOne = '@SECTION '+sectionName+'@';
+  			var partOne = 'SECTION '+sectionName+'@\n';
   			var newValue = value.split(partOne).join('');
+        newValue = newValue.split('\n').join('<br />');
         template = template.replace('[CONTENT='+sectionName+']',newValue);
 	  	}
   	});

@@ -50,7 +50,27 @@ class superAdminPagesController extends Controller
     }
 
     public function show($id) {
-        $page = array('page' => mfwpages::where('id', $id)->first());
+        $pageLayout = mfwpages::where('id', $id)->first();
+        if ($pageLayout['tid'] == 0) {
+            $page     = array('page' => $pageLayout);
+        } else {
+            $template = mfwtemplates::where('id', $pageLayout['tid'])->first();
+            $sections = explode('@ENDSECTION',$pageLayout['datatext']);
+            $regex = '/\@SECTION ([^)]+)\@/';
+            $templateArray = array('datatext' => $template['datatext']);
+
+            foreach ($sections as $key => $value) {
+                if ($value != '') {
+                    preg_match($regex, $value, $sectionName);
+                    $value = substr($value, strrpos($value, '@') + 1);
+                    $partOne = '@SECTION '.$sectionName[1].'@\n';
+                    $newValue = str_replace(array($partOne,'\n'), array('','<br />'), $value);
+                    $templateArray['datatext'] = str_replace('[CONTENT='.$sectionName[1].']', $newValue, $templateArray['datatext']);
+                }
+            }
+            $templateArray['id'] = $id;
+            $page = array('page' => $templateArray);
+        }
         return $this->launchView('view',$page);
     }
 

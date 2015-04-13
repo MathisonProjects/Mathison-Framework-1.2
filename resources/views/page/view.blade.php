@@ -1,5 +1,11 @@
 @extends('page.master')
 
 @section('content')
-	{!! $page->datatext !!}
+		<?php
+		try {
+			echo $page->datatext;
+		} catch(Exception $e) {
+			echo $page['datatext'];
+		}
+	?>
 @stop
