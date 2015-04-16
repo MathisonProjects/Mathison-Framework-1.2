@@ -41,7 +41,7 @@ class superAdminTemplatesController extends Controller
     public function store(Request $request) {
         mfwtemplates::insert([
             'templatename' => $request->get('templatename'),
-            'datatext'  => nl2br($request->get('datatextTemplate'))]);
+            'datatext'     => $request->get('datatext')]);
         return redirect('admin/super/template/');
     }
 
@@ -51,11 +51,14 @@ class superAdminTemplatesController extends Controller
     }
 
     public function edit($id) {
-        
+        $templateData = mfwtemplates::where('id', $id)->first();
+        return $this->launchView('edit', array('templateData' => $templateData));
     }
 
-    public function update($id) {
-        
+    public function update($id,Request $request) {
+        $templates = mfwtemplates::where('id',$id)->first();
+        $templates->fill($request->input())->save();
+        return redirect('admin/super/templates/'.$id);
     }
 
     public function destroy($id) {

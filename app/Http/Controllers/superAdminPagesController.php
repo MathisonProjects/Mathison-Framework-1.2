@@ -76,15 +76,19 @@ class superAdminPagesController extends Controller
 
     public function edit($id) {
         $pageData = mfwpages::where('id', $id)->first();
-        $templates = array();
+
+        $templates = array('' => '');
         foreach ($this->menu['templates'] as $template) {
-                $templates[$template['id']] = $template['templatename'];
+            $templates[$template['id']] = $template['templatename'];
         }
 
         return $this->launchView('edit', array('pageData' => $pageData,'templates' => $templates));
     }
 
     public function update($id,Request $request) {
+        $page = mfwpages::where('id',$id)->first();
+        $page->fill($request->input())->save();
+        return redirect('admin/super/pages/'.$id);
     }
 
     public function destroy($id) {

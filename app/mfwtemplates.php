@@ -8,6 +8,7 @@
 	use DB;
 
 	class mfwtemplates extends Eloquent {
-
+	    protected $table = 'mfwtemplates';
+		protected $fillable = ['templatename', 'datatext'];
 	}
 ?>

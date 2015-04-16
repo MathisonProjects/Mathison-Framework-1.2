@@ -7,7 +7,7 @@
 	use Illuminate\Support\Facades\Schema as Schema;
 	use DB;
 	
-	class mfwpages extends Eloquent
-	{
-	    //
+	class mfwpages extends Eloquent {
+	    protected $table = 'mfwpages';
+		protected $fillable = ['stringurl', 'tid', 'datatext'];
 	}

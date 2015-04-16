@@ -1,6 +1,4 @@
 <h2>Templates</h2>
-{!! Form::open(['url'=>'admin/super/template/']) !!}
-
 <div class='row'>
 	<div class='col-md-4'>
 		<div class='form-group'>
@@ -19,10 +17,9 @@
 	</div>
 	<div class="col-md-12">
 		<div class='form-group'>
-			{!! Form::label('datatextTemplate', 'Template Content') !!}
-			{!! Form::textarea('datatextTemplate', null, ['class' => 'form-control']) !!}
+			{!! Form::label('datatext', 'Template Content') !!}
+			{!! Form::textarea('datatext', null, ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </div>
-{!! Form::close() !!}
 <div class="exampleDisplay"></div>
