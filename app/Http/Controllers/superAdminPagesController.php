@@ -75,8 +75,13 @@ class superAdminPagesController extends Controller
     }
 
     public function edit($id) {
-        $id = array('id' => mfwpages::where('id', $id)->first());
-        return $this->launchView('edit', array());
+        $pageData = mfwpages::where('id', $id)->first();
+        $templates = array();
+        foreach ($this->menu['templates'] as $template) {
+                $templates[$template['id']] = $template['templatename'];
+        }
+
+        return $this->launchView('edit', array('pageData' => $pageData,'templates' => $templates));
     }
 
     public function update($id,Request $request) {

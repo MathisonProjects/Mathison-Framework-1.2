@@ -59,8 +59,8 @@ $superAdminList = array(
 foreach ($superAdminList as $item) {
 	$item[0]($prefix[0].$item[1], $prefix[1].'Controller@'.$item[2]);
 }
-get('/admin/super/template/format/{id}' , 'superAdminTemplatesController@templateFormat');
-post('/admin/super/template/format/{id}' , 'superAdminTemplatesController@templateFormat');
+get($prefix[0].'template/format/{id}' , $prefix[1].'TemplatesController@templateFormat');
+post($prefix[0].'template/format/{id}' , $prefix[1].'TemplatesController@templateFormat');
 
 // Super Admin Controller
 

@@ -1,6 +1,5 @@
 
 <h2>Pages</h2>
-{!! Form::open(['url'=>'admin/super/pages/']) !!}
 
 <div class='row'>
 	<div class='col-md-4'>
@@ -28,5 +27,4 @@
 		</div>
 	</div>
 </div>
-{!! Form::close() !!}
 <div class="exampleDisplay"></div>
