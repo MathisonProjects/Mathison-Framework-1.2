@@ -58,7 +58,7 @@ class superAdminTemplatesController extends Controller
     public function update($id,Request $request) {
         $templates = mfwtemplates::where('id',$id)->first();
         $templates->fill($request->input())->save();
-        return redirect('admin/super/templates/'.$id);
+        return redirect('admin/super/template/'.$id);
     }
 
     public function destroy($id) {

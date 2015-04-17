@@ -9,5 +9,13 @@
 		</li>
 		<li></li>
 		<li class="divider"></li>
+		@foreach ($menu['templates'] as $item)
+			<li>
+				<a tabindex="0" href="/admin/super/template/{{ $item->id }}">
+				<?php
+					echo ucwords(str_replace('_', ' ',$item->templatename));
+				?></a>
+			</li>
+		@endforeach
 	</ul>
 </li>

@@ -1,4 +1,5 @@
 <h2>Templates</h2>
+{!! Form::hidden('form','template', array('id' => 'template')) !!}
 <div class='row'>
 	<div class='col-md-4'>
 		<div class='form-group'>
