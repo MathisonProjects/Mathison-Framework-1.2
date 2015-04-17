@@ -15,22 +15,6 @@ use DB;
 class superAdminApiController extends Controller
 {
 
-    public function __construct() {
-        $this->menu['objects']        = mfwobjects::where('oid', 0)->get();
-        $this->menu['workflows']      = mfwworkflows::get();
-        $this->menu['relationships']  = mfwobjectrelationships::get();
-        $this->menu['forms']          = mfwmanageforms::where('fid', 0)->get();
-        $this->menu['apis']           = mfwapis::get();
-        $this->menu['formprocessing'] = mfwformprocessings::get();
-        if (isset($_POST)) {
-            $this->post = $_POST;
-        }
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index() {
         $compact = array('apis' => $this->menu['apis']);
         return $this->launchView('views',$compact);

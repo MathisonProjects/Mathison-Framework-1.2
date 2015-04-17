@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\mfwobjects;
 use App\mfwworkflows;
 use App\mfwobjectrelationships;
@@ -15,20 +16,6 @@ use DB;
 
 class superAdminTemplatesController extends Controller
 {
-
-    public function __construct() {
-        $this->menu['objects']        = mfwobjects::where('oid', 0)->get();
-        $this->menu['workflows']      = mfwworkflows::get();
-        $this->menu['relationships']  = mfwobjectrelationships::get();
-        $this->menu['forms']          = mfwmanageforms::where('fid', 0)->get();
-        $this->menu['apis']           = mfwapis::get();
-        $this->menu['formprocessing'] = mfwformprocessings::get();
-        $this->menu['templates']      = mfwtemplates::get();
-        $this->menu['pages']          = mfwpages::get();
-        if (isset($_POST)) {
-            $this->post = $_POST;
-        }
-    }
 
     public function index() {
         return $this->launchView('views', array());

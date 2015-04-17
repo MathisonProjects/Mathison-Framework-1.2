@@ -10,46 +10,12 @@ use App\mfwmanageforms;
 use App\mfwapis;
 use App\mfwformprocessings;
 use App\mfwtemplates;
+use App\mfwpages;
 use DB;
 
 class SuperAdminController extends Controller {
-
-	private $menu;
-	private $post;
 	private $sharedData;
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct() {
-        $this->menu['objects']        = mfwobjects::where('oid', 0)->get();
-        $this->menu['workflows']      = mfwworkflows::get();
-        $this->menu['relationships']  = mfwobjectrelationships::get();
-        $this->menu['forms']          = mfwmanageforms::where('fid', 0)->get();
-        $this->menu['apis']           = mfwapis::get();
-        $this->menu['formprocessing'] = mfwformprocessings::get();
-		if (isset($_POST)) {
-			$this->post = $_POST;
-		}
-	}
-
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
 	public function index() {
 		return $this->launchView('index', array());
 	}
