@@ -5,13 +5,13 @@
 			<a tabindex="0">Create Relationship</a>
 		</li>
 		<li>
-			<a tabindex="0" href="/admin/super/viewRelationships">View Relationships</a>
+			<a tabindex="0" href="/admin/super/relationships">View Relationships</a>
 		</li>
 		<li></li>
 		<li class="divider"></li>
 		@foreach ($menu['relationships'] as $item)
 			<li>
-				<a tabindex="0" href="/admin/super/viewRelationship/{{ $item->name }}">
+				<a tabindex="0" href="/admin/super/relationships/{{ $item->id }}">
 				<?php
 				echo ucwords(str_replace('_', ' ',$item->name));
 				?></a>

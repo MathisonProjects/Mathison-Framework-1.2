@@ -39,8 +39,6 @@ $superAdminList = array(
 	array('get'  , 'viewObjects'                         , 'viewObjects')            ,
 	array('get'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
 	array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
-	array('get'  , 'viewRelationship/{relationshipName}' , 'viewRelationship')       ,
-	array('get'  , 'viewRelationships'                   , 'viewRelationships')      ,
 	array('get'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
 	array('get'  , 'viewWorkflows'                       , 'viewWorkflows')          ,
 	array('get'  , 'createWorkflow'                      , 'createWorkflow')         ,
@@ -70,6 +68,8 @@ $superAdminControllers = array(
 	'formprocessing' => 'FormProcessing',
 	'template'       => 'Templates',
 	'pages'          => 'Pages',
+	'relationships'  => 'Relationships',
+	'forms'			 => 'Forms',
 	);
 
 foreach ($superAdminControllers as $key => $item) {

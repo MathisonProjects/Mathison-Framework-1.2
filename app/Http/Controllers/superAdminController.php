@@ -38,11 +38,6 @@ class SuperAdminController extends Controller {
 		return $this->launchView('workflows.viewWorkflow', $compact);
 	}
 
-	public function viewRelationship(mfwobjectrelationships $relationship) {
-		$relationshipName = ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', str_replace('_', ' ', $relationship->name)));
-		return $this->launchView('relationships.viewRelationship', array('relationshipName' => $relationshipName, 'relationship' => $relationship));
-	}
-
 	public function createObject() {
 		return $this->launchView('objects.createObject', array());
 	}
@@ -93,11 +88,6 @@ class SuperAdminController extends Controller {
 
 	public function viewObjects() {
 		return $this->launchView('objects.viewObjects', array());
-	}
-
-	public function viewRelationships()
-	{
-		return $this->launchView('relationships.viewRelationships', array());
 	}
 
 	public function viewObjectItem(mfwobjects $object, $id) {

@@ -18,7 +18,7 @@
 			@foreach ($menu['relationships'] as $item)
 				<tr>
 					<td style="text-align: center;">{{ $item->id }}</td>
-					<td style="text-align: center;"><a href='/admin/super/viewRelationship/{{ $item->name }}'>{{ $item->name }}</a></td>
+					<td style="text-align: center;"><a href='/admin/super/viewRelationship/{{ $item->name }}'>{{ $item->id }}</a></td>
 					<td style="text-align: center;">{{ $item->relationshiptype }}</td>
 					<td style="text-align: center;">{{ $item->tableone }}</td>
 					<td style="text-align: center;">{{ $item->tabletwo }}</td>
