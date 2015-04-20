@@ -59,6 +59,9 @@ foreach ($superAdminList as $item) {
 }
 get($prefix[0].'template/format/{id}' , $prefix[1].'TemplatesController@templateFormat');
 post($prefix[0].'template/format/{id}' , $prefix[1].'TemplatesController@templateFormat');
+get($prefix[0].'forms/format/{id}' , $prefix[1].'FormsController@formFormat');
+post($prefix[0].'forms/format/{id}' , $prefix[1].'FormsController@formFormat');
+
 
 // Super Admin Controller
 

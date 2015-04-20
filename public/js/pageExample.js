@@ -22,10 +22,38 @@ $(document).ready(function() {
   	return template;
   }
 
+  $.fn.setForm = function() {
+    var sections = this.val().split('@API ');
+    var webContent = this.val();
+    
+    $.each(sections, function(key, value){
+      var newValue = value.split('@')[0];
+      if (!isNaN(newValue)) {
+        var newData = '';
+        $.ajax({
+          type: "POST",
+          async: false,
+          url: '/admin/super/forms/format/' + newValue,
+          data: '',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+          complete: function(data) {
+            newData = data.responseText;
+          },
+        });
+        console.log(webContent);
+        webContent = webContent.split('@API 1@').join(newData);
+        console.log(webContent);
+      }
+    });
+    return webContent;
+  }
+
   $('#datatext').on('keyup', function() {
   	$this = $(this);
+    $pageData = $this.setForm();
   	if ($('#tid').val() == '' || $('#template').length > 0) {
-	  	$('.exampleDisplay').html($this.phpReplace('\n','<br />'));
+	  	$('.exampleDisplay').html($pageData.phpReplace('\n','<br />'));
 	} else {
 		$tid     = $('#tid').val();
 		$.ajax({
@@ -35,7 +63,7 @@ $(document).ready(function() {
 	      contentType: "application/json; charset=utf-8",
 	      dataType: 'json',
 		  success: function(data) {
-		  	var displayData = $this.setContent(data.template);
+		  	var displayData = $pageData.setContent(data.template);
 		  	$('.exampleDisplay').html(displayData);
 		  },
 		});

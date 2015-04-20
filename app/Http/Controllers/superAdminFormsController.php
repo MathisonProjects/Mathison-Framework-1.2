@@ -3,6 +3,15 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\mfwobjects;
+use App\mfwworkflows;
+use App\mfwobjectrelationships;
+use App\mfwmanageforms;
+use App\mfwapis;
+use App\mfwformprocessings;
+use App\mfwtemplates;
+use App\mfwpages;
+use DB;
 
 class superAdminFormsController extends Controller
 {
@@ -32,5 +41,16 @@ class superAdminFormsController extends Controller
 
     public function destroy($id) {
         //
+    }
+
+    public function formFormat(mfwmanageforms $forms, $id) {
+        $apiId = mfwapis::where('fid', $id)->first()['randomid'];
+        $forms->viewForm($id);
+        return $this->launchView('forms.formView', array('formItem' => $forms->form, 'apiId' => $apiId));
+    }
+
+    private function launchView($view,$compact) {
+        $compact['menu'] = $this->menu;
+        return view('superAdmin.'.$view,$compact);
     }
 }
