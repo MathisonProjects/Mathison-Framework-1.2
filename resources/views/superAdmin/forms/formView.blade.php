@@ -4,12 +4,14 @@
 {!! Form::hidden('apiId', $apiId) !!}
 @foreach ($formItem[1] as $key => $item)
 <div class='row'>
-	<div class='col-md-4'>
-		<label for="">{{$item['name']}}:</label>
+	<div class='col-md-12'>
+		@if ($item['fieldtype'] != 'add_Submit')
+		{!! Form::label($item['name'], ucfirst($item['name'])) !!}
+		@endif
 		@if ($item['fieldtype'] == 'add_Textbox')
-		<input type='textbox' name='{{$item['name']}}' class='form-control' />
+		{!! Form::text($item['name'], null, ['class' => 'form-control', 'id' => $item['name']]) !!}
 		@elseif ($item['fieldtype'] == 'add_Submit')
-		<input type='submit' class='form-control btn btn-primary' />
+		{!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
 		@endif
 	</div>
 </div>

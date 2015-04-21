@@ -5,8 +5,8 @@ $(document).ready(function() {
   	return this.val().split(search).join(replaceWith);
   }
 
-  $.fn.setContent = function(template) {
-  	var sections = $this.val().split('\n@ENDSECTION');
+  $.fn.setContent = function(template,$pageData) {
+  	var sections = $pageData.split('\n@ENDSECTION');
   	var regExp = /\SECTION ([^)]+)\@/;
   	$.each(sections, function(key, value){
   		if (value != '') {
@@ -14,7 +14,6 @@ $(document).ready(function() {
         var sectionName = regExp.exec(value)[1];
   			var partOne = 'SECTION '+sectionName+'@\n';
   			var newValue = value.split(partOne).join('');
-        newValue = newValue.split('\n').join('<br />');
         template = template.replace('[CONTENT='+sectionName+']',newValue);
 	  	}
   	});
@@ -41,9 +40,7 @@ $(document).ready(function() {
             newData = data.responseText;
           },
         });
-        console.log(webContent);
-        webContent = webContent.split('@API 1@').join(newData);
-        console.log(webContent);
+        webContent = webContent.split('@API '+newValue+'@').join(newData);
       }
     });
     return webContent;
@@ -51,9 +48,9 @@ $(document).ready(function() {
 
   $('#datatext').on('keyup', function() {
   	$this = $(this);
-    $pageData = $this.setForm();
+    var $pageData = $this.setForm();
   	if ($('#tid').val() == '' || $('#template').length > 0) {
-	  	$('.exampleDisplay').html($pageData.phpReplace('\n','<br />'));
+	  	$('.exampleDisplay').html($pageData);
 	} else {
 		$tid     = $('#tid').val();
 		$.ajax({
@@ -63,7 +60,7 @@ $(document).ready(function() {
 	      contentType: "application/json; charset=utf-8",
 	      dataType: 'json',
 		  success: function(data) {
-		  	var displayData = $pageData.setContent(data.template);
+		  	var displayData = $this.setContent(data.template,$pageData);
 		  	$('.exampleDisplay').html(displayData);
 		  },
 		});
