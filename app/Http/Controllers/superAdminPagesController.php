@@ -41,22 +41,7 @@ class superAdminPagesController extends Controller
         if ($pageLayout['tid'] == 0) {
             $page     = array('page' => $pageLayout);
         } else {
-            $template = mfwtemplates::where('id', $pageLayout['tid'])->first();
-            $sections = explode('@ENDSECTION',$pageLayout['datatext']);
-            $regex = '/\@SECTION ([^)]+)\@/';
-            $templateArray = array('datatext' => $template['datatext']);
-
-            foreach ($sections as $key => $value) {
-                if ($value != '') {
-                    preg_match($regex, $value, $sectionName);
-                    $value = substr($value, strrpos($value, '@') + 1);
-                    $partOne = '@SECTION '.$sectionName[1].'@\n';
-                    $newValue = str_replace(array($partOne,'\n'), array('','<br />'), $value);
-                    $templateArray['datatext'] = str_replace('[CONTENT='.$sectionName[1].']', $newValue, $templateArray['datatext']);
-                }
-            }
-            $templateArray['id'] = $id;
-            $page = array('page' => $templateArray);
+            $page = $this->templateMapping($pageLayout, $id);
         }
         return $this->launchView('view',$page);
     }
@@ -79,6 +64,33 @@ class superAdminPagesController extends Controller
     }
 
     public function destroy($id) {
+    }
+
+    private function formMapping() {
+
+    }
+
+    private function templateMapping($pageLayout, $id) {
+        $template = mfwtemplates::where('id', $pageLayout['tid'])->first();
+        $sections = explode('@ENDSECTION',$pageLayout['datatext']);
+        $sections = array_filter($sections);
+        $regex = '/\@SECTION ([^)]+)\@/';
+        $templateArray = array('datatext' => $template['datatext']);
+
+        foreach ($sections as $key => $value) {
+            preg_match($regex, $value, $sectionName);
+            $sectionName[1] = substr($sectionName[1], strpos($sectionName[1], '@') + 1);
+            $value = substr($value, strpos($value, '@') + 1);
+            $partOne = 'SECTION '.$sectionName[1].'@';
+            $newValue = str_replace($partOne, '', $value);
+            echo '<pre>';
+            print_r($sectionName[1]);
+            echo '</pre>';
+            exit;
+            $templateArray['datatext'] = str_replace('[CONTENT='.$sectionName[1].']', $newValue, $templateArray['datatext']);
+        }
+        $templateArray['id'] = $id;
+        return array('page' => $templateArray);
     }
 
     private function launchView($view,$compact) {
