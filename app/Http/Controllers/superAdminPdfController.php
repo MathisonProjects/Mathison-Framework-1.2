@@ -12,16 +12,16 @@ use App\mfwformprocessings;
 use App\mfwtemplates;
 use App\mfwpages;
 use DB;
+use PDF;
 
 class superAdminPdfController extends Controller
 {
 
     public function index() {
-        $pdf = new \TCPDF;
-        $pdf->SetTitle('Hello World');
-        $pdf->AddPage();
-        $pdf->Write(0, 'Hello World');
-        $pdf->Output('hello_world.pdf','D');
+        PDF::SetTitle('Hello World');
+        PDF::AddPage();
+        PDF::Write(0, 'Hello World');
+        PDF::Output('hello_world.pdf','D');
         return 'PDF Generated';
     }
 
