@@ -151,6 +151,7 @@ return [
 		 * Not native to Laravel
 		 */
 		'Illuminate\Html\HtmlServiceProvider',
+    	'Elibyy\TCPDF\ServiceProvider',
 	],
 
 	/*

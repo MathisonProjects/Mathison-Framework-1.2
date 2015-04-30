@@ -17,12 +17,12 @@ class superAdminPdfController extends Controller
 {
 
     public function index() {
-        PDF::SetTitle('Hello World');
-        return 'Something went ok...';
-        PDF::AddPage();
-        PDF::Write(0, 'Hello World');
-        PDF::Output('hello_world.pdf','FD');
-
+        $pdf = new \TCPDF;
+        $pdf->SetTitle('Hello World');
+        $pdf->AddPage();
+        $pdf->Write(0, 'Hello World');
+        $pdf->Output('hello_world.pdf','D');
+        return 'PDF Generated';
     }
 
     public function create() {
