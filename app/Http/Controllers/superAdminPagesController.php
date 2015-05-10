@@ -32,7 +32,7 @@ class superAdminPagesController extends Controller
         mfwpages::insert([
             'stringurl' => $request->get('stringurl'),
             'tid'       => $request->get('tid'),
-            'datatext'  => nl2br($request->get('datatext'))]);
+            'datatext'  => $request->get('datatext')]);
         return redirect('admin/super/pages/');
     }
 
