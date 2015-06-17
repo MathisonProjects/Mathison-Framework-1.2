@@ -3,14 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\mfwobjects;
-use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
-use App\mfwpages;
+
 use DB;
 
 class superAdminFormProcessingController extends Controller {
@@ -25,8 +18,8 @@ class superAdminFormProcessingController extends Controller {
 
 	public function store(Request $request)
 	{
-		$api    = mfwapis::where('randomid', $request->get('apiId'))->first();
-		$object = mfwobjects::where('id', $api['oid'])->first();
+		$api    = $this->module['apis']->where('randomid', $request->get('apiId'))->first();
+		$object = $this->module['objects']->where('id', $api['oid'])->first();
 		$input = array();
 		foreach ($request->input() as $key => $value) {
 			if ($key != '_token' && $key != 'apiId') {

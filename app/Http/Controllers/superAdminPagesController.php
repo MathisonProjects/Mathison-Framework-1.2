@@ -3,14 +3,6 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\mfwobjects;
-use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
-use App\mfwpages;
 use DB;
 
 class superAdminPagesController extends Controller
@@ -29,7 +21,7 @@ class superAdminPagesController extends Controller
     }
 
     public function store(Request $request) {
-        mfwpages::insert([
+        $this->module['pages']->insert([
             'stringurl' => $request->get('stringurl'),
             'tid'       => $request->get('tid'),
             'datatext'  => $request->get('datatext')]);
@@ -37,7 +29,7 @@ class superAdminPagesController extends Controller
     }
 
     public function show($id) {
-        $pageLayout = mfwpages::where('id', $id)->first();
+        $pageLayout = $this->module['pages']->where('id', $id)->first();
         if ($pageLayout['tid'] == 0) {
             $page     = array('page' => $pageLayout);
         } else {
@@ -47,7 +39,7 @@ class superAdminPagesController extends Controller
     }
 
     public function edit($id) {
-        $pageData = mfwpages::where('id', $id)->first();
+        $pageData = $this->module['pages']->where('id', $id)->first();
 
         $templates = array('' => '');
         foreach ($this->menu['templates'] as $template) {
@@ -58,7 +50,7 @@ class superAdminPagesController extends Controller
     }
 
     public function update($id,Request $request) {
-        $page = mfwpages::where('id',$id)->first();
+        $page = $this->module['pages']->where('id',$id)->first();
         $page->fill($request->input())->save();
         return redirect('admin/super/pages/'.$id);
     }
@@ -71,7 +63,7 @@ class superAdminPagesController extends Controller
     }
 
     private function templateMapping($pageLayout, $id) {
-        $template = mfwtemplates::where('id', $pageLayout['tid'])->first();
+        $template = $this->module['templates']->where('id', $pageLayout['tid'])->first();
         $sections = explode('@ENDSECTION',$pageLayout['datatext']);
         $sections = array_filter($sections);
         $regex = '/\@SECTION ([^)]+)\@/';

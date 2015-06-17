@@ -49,7 +49,6 @@ abstract class Controller extends BaseController {
                 $this->menu[$key] = $module->where('fid', 0)->get();
             } else {
                 $this->menu[$key] = $module->get();
-                
             }
         }
     }

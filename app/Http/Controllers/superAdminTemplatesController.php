@@ -4,14 +4,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\mfwobjects;
-use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
-use App\mfwpages;
 use DB;
 
 class superAdminTemplatesController extends Controller
@@ -26,24 +18,24 @@ class superAdminTemplatesController extends Controller
     }
 
     public function store(Request $request) {
-        mfwtemplates::insert([
+        $this->module['templates']->insert([
             'templatename' => $request->get('templatename'),
             'datatext'     => $request->get('datatext')]);
         return redirect('admin/super/template/');
     }
 
     public function show($id) {
-        $template = array('template' => mfwtemplates::where('id', $id)->first());
+        $template = array('template' => $this->module['templates']->where('id', $id)->first());
         return $this->launchView('view',$template);
     }
 
     public function edit($id) {
-        $templateData = mfwtemplates::where('id', $id)->first();
+        $templateData = $this->module['templates']->where('id', $id)->first();
         return $this->launchView('edit', array('templateData' => $templateData));
     }
 
     public function update($id,Request $request) {
-        $templates = mfwtemplates::where('id',$id)->first();
+        $templates = $this->module['templates']->where('id',$id)->first();
         $templates->fill($request->input())->save();
         return redirect('admin/super/template/'.$id);
     }
@@ -53,7 +45,7 @@ class superAdminTemplatesController extends Controller
     }
 
     public function templateFormat($id) {
-        $template = mfwtemplates::where('id', $id)->first();
+        $template = $this->module['templates']->where('id', $id)->first();
         $jsonData = array('template' => $template->datatext);
         return json_encode($jsonData);
     }
