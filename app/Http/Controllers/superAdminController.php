@@ -130,7 +130,7 @@ class SuperAdminController extends Controller {
 	public function viewObjectAddRecord(array $array) {
 		$redirect = self::workflowManage('addRecordPost','admin/super/viewObject/');
 		$objects = new mfwobjects;
-		$objects->insertCustomData($array[0],$array[1],$this->post);
+		$objects->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);
 		return redirect($redirect);
 	}
 	public function editObjectItem(mfwobjects $object, $id) {

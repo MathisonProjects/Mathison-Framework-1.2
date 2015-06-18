@@ -40,7 +40,7 @@
 					$input[$field->name] = $post[$field->name];
 				}
 			}
-			DB::table('mfwcus_'.$datatable)->insert($input);
+			DB::table($datatable)->insert($input);
 		}
 	}
 ?>
