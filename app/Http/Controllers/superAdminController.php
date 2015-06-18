@@ -23,7 +23,7 @@ class SuperAdminController extends Controller {
 	public function viewRecords(mfwobjects $object) {	
 		$fields = mfwobjects::where('oid', $object->id)->get();
 		$object->createTable($object->name, $fields);
-		$records = DB::table('mfwcus_'.$object->name)->get();
+		$records = DB::table($this->db_prefix.$object->name)->get();
 		$description = $object->objectDescription;
 		$dbName = $object->name;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
@@ -99,8 +99,8 @@ class SuperAdminController extends Controller {
 		// One to Many, A one, B many
 		foreach ($allPrimaryRelationships as $primary) {
 			$info['object'] = $primary->tabletwo;
-			$info['data'] = DB::table('mfwcus_'.$primary->tableone.' as a')
-								->join('mfwcus_'.$primary->tabletwo.' as b', 'a.'.$primary->fieldone, '=', 'b.'.$primary->fieldtwo)
+			$info['data'] = DB::table($this->db_prefix.$primary->tableone.' as a')
+								->join($this->db_prefix.$primary->tabletwo.' as b', 'a.'.$primary->fieldone, '=', 'b.'.$primary->fieldtwo)
 								->where('a.id',$id)
 								->get();
 			
@@ -109,8 +109,8 @@ class SuperAdminController extends Controller {
 
 		foreach ($allSecondaryRelationships as $secondary) {
 			$info['object'] = $secondary->tableone;
-			$info['data'] = DB::table('mfwcus_'.$secondary->tabletwo.' as a')
-								->join('mfwcus_'.$secondary->tableone.' as b', 'a.'.$secondary->fieldtwo, '=', 'b.'.$secondary->fieldone)
+			$info['data'] = DB::table($this->db_prefix.$secondary->tabletwo.' as a')
+								->join($this->db_prefix.$secondary->tableone.' as b', 'a.'.$secondary->fieldtwo, '=', 'b.'.$secondary->fieldone)
 								->where('a.id',$id)
 								->get();
 
@@ -119,7 +119,7 @@ class SuperAdminController extends Controller {
 		// End Relationship Builder
 		$sharedData = $this->sharedData;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
-		$record = DB::table('mfwcus_'.$object->name)->where('id', $id)->get();
+		$record = DB::table($this->db_prefix.$object->name)->where('id', $id)->get();
 		return $this->launchView('objects.viewObjectItem', compact('sharedData','objectName','record','object'));
 	}
 
@@ -137,7 +137,7 @@ class SuperAdminController extends Controller {
 		$compact = array(
 			'objectName' => ucwords(str_replace('_', ' ', $object->name)),
 			'fields' => mfwobjects::where('oid', $object->id)->get(),
-			'record' => DB::table('mfwcus_'.$object->name)->where('id', $id)->first(),
+			'record' => DB::table($this->db_prefix.$object->name)->where('id', $id)->first(),
 			'object' => $object);
 
 		return $this->launchView('objects.editObjectItem', $compact);
@@ -151,7 +151,7 @@ class SuperAdminController extends Controller {
 				$update[$key] = $value;
 			}
 		}
-		DB::table('mfwcus_'.$this->post['objectName'])
+		DB::table($this->db_prefix.$this->post['objectName'])
 				->where('id', $this->post['id'])
 				->update($update);
 		return redirect($redirect);

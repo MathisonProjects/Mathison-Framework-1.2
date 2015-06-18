@@ -28,9 +28,9 @@ class superAdminFormProcessingController extends Controller {
 		}
 
 		if ($api['action'] == 'create') {
-			DB::table('mfwcus_'.$object['name'])->insert($input);
+			DB::table($this->db_prefix.$object['name'])->insert($input);
 		} else if ($api['action'] == 'update') {
-			DB::table('mfwcus_'.$object['name'])->where('id', $request->get('id'))->update($input);
+			DB::table($this->db_prefix.$object['name'])->where('id', $request->get('id'))->update($input);
 		}
 
         return redirect('admin/super/viewObject/'.$object['name']);

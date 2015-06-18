@@ -17,9 +17,10 @@ use DB;
 abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
-    public  $module;
-	public  $menu;
-	public  $post;
+    public $module;
+	public $menu;
+	public $post;
+    public $db_prefix = 'mfwcus_';
 
     public function __construct() {
         $this->loadModule();
