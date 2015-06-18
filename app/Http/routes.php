@@ -38,7 +38,6 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		array('get'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
 		array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
 		array('get'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
-		array('get'  , 'viewWorkflows'                       , 'viewWorkflows')          ,
 		array('get'  , 'createWorkflow'                      , 'createWorkflow')         ,
 		array('get'  , 'viewForm/{id}'                       , 'viewForm')               ,
 		array('get'  , 'viewForms'                           , 'viewForms')              ,

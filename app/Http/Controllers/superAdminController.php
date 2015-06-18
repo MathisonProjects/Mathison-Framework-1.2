@@ -110,10 +110,6 @@ class SuperAdminController extends Controller {
 		return $this->launchView('objects.viewObjectItem', compact('sharedData','objectName','record','object'));
 	}
 
-	public function viewWorkflows() {
-		return $this->launchView('workflows.viewWorkflows', array());
-	}
-
 	public function viewObjectAddRecord(array $array) {
 		$objects = new mfwobjects;
 		$objects->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);

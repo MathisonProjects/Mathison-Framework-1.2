@@ -5,7 +5,7 @@
 			<a tabindex="0" href="/admin/super/createWorkflow">Create Workflow Chain</a>
 		</li>
 		<li>
-			<a tabindex="0" href="/admin/super/viewWorkflows">View Workflow Chains</a>
+			<a tabindex="0" href="/admin/super/workflows">View Workflow Chains</a>
 		</li>
 		<li></li>
 		<li class="divider"></li>
