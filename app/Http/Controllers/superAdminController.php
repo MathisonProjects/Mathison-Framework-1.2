@@ -43,7 +43,21 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createObjectPost() {
+		$redirect = self::workflowManage('objects.createObjectPost','admin/super/viewObjects/');
 		
+		mfwobjects::insert(['name' => $this->sanitizeName($this->post['objectName']),
+			'objectDescription' => $this->post['objectDescription']]);
+		$data = mfwobjects::where('name',$this->sanitizeName($this->post['objectName']))->first();
+		$id = $data->id;
+
+		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
+			mfwobjects::insert(['oid' => $id,
+				'name' => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
+				'datatype' => $this->post['objectItemDataType'.$i],
+				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
+		}
+
+		return redirect($redirect);
 	}
 
 	public function createWorkflowPost() {
