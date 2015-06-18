@@ -39,10 +39,11 @@ abstract class Controller extends BaseController {
     public function __destruct() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $workflow = $this->module['workflows']->setReferrer($this->workflow['referrer'])->checkWorkflowItem();
+
             if ($workflow->finaldestination == '') {
-                return redirect($workflow->destination);
+                die("<script>location.href = '".$workflow->originaldestination."'</script>");
             } else {
-                return redirect($workflow->finaldestination);
+                die("<script>location.href = '".$workflow->finaldestination."'</script>");
             }
         }
     }
