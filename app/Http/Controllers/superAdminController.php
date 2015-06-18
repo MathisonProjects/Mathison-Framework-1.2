@@ -21,8 +21,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function viewRecords(mfwobjects $object) {	
-		$fields = mfwobjects::where('oid', $object->id)->get();
-		$object->createTable($this->db_prefix.$object->name, $fields);
+		$fields = $this->module['objects']->where('oid', $object->id)->get();
 		$records = DB::table($this->db_prefix.$object->name)->get();
 		$description = $object->objectDescription;
 		$dbName = $object->name;
@@ -43,49 +42,45 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createObjectPost() {
-		$redirect = self::workflowManage('objects.createObjectPost','admin/super/viewObjects/');
-		
-		mfwobjects::insert(['name' => $this->sanitizeName($this->post['objectName']),
+		$this->module['objects']->insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);
-		$data = mfwobjects::where('name',$this->sanitizeName($this->post['objectName']))->first();
+		$data = $this->module['objects']->where('name',$this->sanitizeName($this->post['objectName']))->first();
 		$id = $data->id;
 
 		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
-			mfwobjects::insert(['oid' => $id,
-				'name' => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
-				'datatype' => $this->post['objectItemDataType'.$i],
+			$this->module['objects']->insert(['oid' => $id,
+				'name'         => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
+				'datatype' 	   => $this->post['objectItemDataType'.$i],
 				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
 		}
 
-		return redirect($redirect);
+		$fields = $this->module['objects']->where('oid', $id)->get();
+		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
 	}
 
 	public function createWorkflowPost() {
-		$redirect = self::workflowManage('createWorkflowPost','admin/super/viewWorkflow/');
-
-		mfwworkflows::insert(['default' => $this->post['default'],
+		$this->module['workflows']->insert(['default' => $this->post['default'],
 				'workflowitem' => $this->sanitizeName($this->post['workflowitem']),
 				'originaldestination' => $this->post['originaldestination'],
 				'finaldestination' => $this->post['finaldestination']]);
 
-		return redirect($redirect);
+		
 	}
 
 	public function createRelationshipPost() {
-		$redirect = self::workflowManage('createRelationshipPost','admin/super/viewRelationship/');
-		mfwobjectrelationships::insert(['name' => $this->sanitizeName($this->post['relationshipname']),
+		$this->module['relationships']->insert(['name' => $this->sanitizeName($this->post['relationshipname']),
 			'relationshiptype' => $this->post['relationshiptype'],
 			'tableone' => $this->post['objectName'],
 			'tabletwo' => $this->post['totable'],
 			'fieldone' => $this->post['fromfield'],
 			'fieldtwo' => $this->post['tofield']]);
-		return redirect($redirect);
+		
 	}
 
 	public function viewObjectItem(mfwobjects $object, $id) {
 		// Relationship Builder
-		$allPrimaryRelationships       = mfwobjectrelationships::where('tableone', $object->name)->get();
-		$allSecondaryRelationships     = mfwobjectrelationships::where('tabletwo', $object->name)->get();
+		$allPrimaryRelationships       = $this->module['relationships']->where('tableone', $object->name)->get();
+		$allSecondaryRelationships     = $this->module['relationships']->where('tabletwo', $object->name)->get();
 		$this->sharedData['primary']   = array();
 		$this->sharedData['secondary'] = array();
 		// One to Many, A one, B many
@@ -120,24 +115,21 @@ class SuperAdminController extends Controller {
 	}
 
 	public function viewObjectAddRecord(array $array) {
-		$redirect = self::workflowManage('addRecordPost','admin/super/viewObject/');
 		$objects = new mfwobjects;
 		$objects->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);
-		return redirect($redirect);
+		
 	}
 	public function editObjectItem(mfwobjects $object, $id) {
 		$compact = array(
 			'objectName' => ucwords(str_replace('_', ' ', $object->name)),
-			'fields' => mfwobjects::where('oid', $object->id)->get(),
+			'fields' => $this->module['objects']->where('oid', $object->id)->get(),
 			'record' => DB::table($this->db_prefix.$object->name)->where('id', $id)->first(),
 			'object' => $object);
 
 		return $this->launchView('objects.editObjectItem', $compact);
 	}
 
-	public function editObjectItemPost(mfwobjects $object, $id)
-	{
-		$redirect = self::workflowManage('editRecordPost','admin/super/viewObject/');
+	public function editObjectItemPost(mfwobjects $object, $id)	{
 		foreach ($this->post as $key => $value) {
 			if ($key != 'id' && $key != 'objectName' && $key != '_token') {
 				$update[$key] = $value;
@@ -146,11 +138,11 @@ class SuperAdminController extends Controller {
 		DB::table($this->db_prefix.$this->post['objectName'])
 				->where('id', $this->post['id'])
 				->update($update);
-		return redirect($redirect);
+		
 	}
 
 	public function viewForm(mfwmanageforms $forms, $id) {
-		$apiId = mfwapis::where('fid', $id)->first()['randomid'];
+		$apiId = $this->module['apis']->where('fid', $id)->first()['randomid'];
 		$forms->viewForm($id);
 		return $this->launchView('forms.view', array('formItem' => $forms->form, 'apiId' => $apiId));
 	}
@@ -164,14 +156,8 @@ class SuperAdminController extends Controller {
 	}
 
 	public function createFormsPost(mfwmanageforms $forms) {
-		$redirect = self::workflowManage('createFormPost','admin/super/viewForms/');
 		$forms->createForm($this->post);
-		return redirect($redirect);
-	}
-
-	public function createApiPost() {
-		$redirect = self::workflowManage('createApiPost','admin/super/viewApis/');
-		return redirect($redirect);
+		
 	}
 
 	private function launchView($view,$compact) {
@@ -189,34 +175,5 @@ class SuperAdminController extends Controller {
 
 	public function viewRequired() {
 		return null;
-	}
-
-	private function workflowManage($postName, $defaultDestination) {
-		$workflow = mfwworkflows::where('workflowitem', $postName)->first();
-		if (!$workflow) {
-			mfwworkflows::insert(['default' => true,
-				'workflowitem' => $postName,
-				'originaldestination' => $defaultDestination]);
-			$workflow = mfwworkflows::where('workflowitem', $postName)->first();
-		}
-
-		if ($workflow->default) {
-			$extra = '';
-			if ($postName == 'createObjectPost' || $postName == 'addRecordPost') {
-				$extra = $this->sanitizeName($this->post['objectName']);
-			} else if ($postName == 'createWorkflowPost') {
-				$extra = $this->sanitizeName($this->post['workflowitem']);
-			} else if ($postName == 'createRelationshipPost') {
-				$extra = $this->sanitizeName($this->post['relationshipname']);
-			} else if ($postName == 'editRecordPost') {
-				$extra = $this->sanitizeName($this->post['objectName']).'/'.$this->post['id'];
-			} 
-
-			$redirect = $workflow->originaldestination.$extra;
-		} else {
-			$redirect = $workflow->finaldestination;
-		}
-
-		return $redirect;
 	}
 }

@@ -21,13 +21,29 @@ abstract class Controller extends BaseController {
 	public $menu;
 	public $post;
     public $db_prefix = 'mfwcus_';
+    public $workflow;
 
     public function __construct() {
         $this->loadModule();
         $this->loadMenu();
 
-        if (isset($_POST)) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->post = $_POST;
+            $this->workflow['referrer'] = $_SERVER['HTTP_REFERER'];
+            if (isset($_POST['destination'])) {
+                $this->workflow['destination'] = $_POST['destination'];
+            }
+        }
+    }
+
+    public function __destruct() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $workflow = $this->module['workflows']->setReferrer($this->workflow['referrer'])->checkWorkflowItem();
+            if ($workflow->finaldestination == '') {
+                return redirect($workflow->destination);
+            } else {
+                return redirect($workflow->finaldestination);
+            }
         }
     }
 
@@ -54,7 +70,7 @@ abstract class Controller extends BaseController {
         }
     }
 
-    private function sanitizeName($field) {
+    public function sanitizeName($field) {
         return str_replace(' ', '_', $field);
     }
 }

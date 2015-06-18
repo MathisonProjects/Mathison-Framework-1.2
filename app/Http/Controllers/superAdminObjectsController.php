@@ -12,13 +12,13 @@ class superAdminObjectsController extends Controller {
 		$keys = array('Object Name', 'Description');
 		$items = array();
 		foreach ($this->menu['objects'] as $key => $item) {
-			array_push($items, array($item->name,$item->objectDescription));
+			array_push($items, array('<a href="/admin/super/viewObject/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription));
 		}
 
 		$table = $tableBuilder->setKeys($keys)->
 					setValues($items)->
 					buildTable();
-					
+
 		return $this->launchView('objects.viewObjects', array('table' => $table));
 	}
 
@@ -35,12 +35,13 @@ class superAdminObjectsController extends Controller {
 
 		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
 			$this->module['objects']->insert(['oid' => $id,
-				'name' => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
-				'datatype' => $this->post['objectItemDataType'.$i],
+				'name'         => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
+				'datatype' 	   => $this->post['objectItemDataType'.$i],
 				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
 		}
 
-		return redirect($redirect);
+		$fields = $this->module['objects']->where('oid', $id)->get();
+		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
 	}
 
 	public function show($id) {
