@@ -54,4 +54,7 @@ abstract class Controller extends BaseController {
         }
     }
 
+    private function sanitizeName($field) {
+        return str_replace(' ', '_', $field);
+    }
 }

@@ -22,7 +22,7 @@ class SuperAdminController extends Controller {
 
 	public function viewRecords(mfwobjects $object) {	
 		$fields = mfwobjects::where('oid', $object->id)->get();
-		$object->createTable($object->name, $fields);
+		$object->createTable($this->db_prefix.$object->name, $fields);
 		$records = DB::table($this->db_prefix.$object->name)->get();
 		$description = $object->objectDescription;
 		$dbName = $object->name;
@@ -38,30 +38,12 @@ class SuperAdminController extends Controller {
 		return $this->launchView('workflows.viewWorkflow', $compact);
 	}
 
-	public function createObject() {
-		return $this->launchView('objects.createObject', array());
-	}
-
 	public function createWorkflow() {
 		return $this->launchView('workflows.createWorkflow', array());
 	}
 
 	public function createObjectPost() {
-		$redirect = self::workflowManage('objects.createObjectPost','admin/super/viewObjects/');
 		
-		mfwobjects::insert(['name' => $this->sanitizeName($this->post['objectName']),
-			'objectDescription' => $this->post['objectDescription']]);
-		$data = mfwobjects::where('name',$this->sanitizeName($this->post['objectName']))->first();
-		$id = $data->id;
-
-		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
-			mfwobjects::insert(['oid' => $id,
-				'name' => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
-				'datatype' => $this->post['objectItemDataType'.$i],
-				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
-		}
-
-		return redirect($redirect);
 	}
 
 	public function createWorkflowPost() {
@@ -84,10 +66,6 @@ class SuperAdminController extends Controller {
 			'fieldone' => $this->post['fromfield'],
 			'fieldtwo' => $this->post['tofield']]);
 		return redirect($redirect);
-	}
-
-	public function viewObjects() {
-		return $this->launchView('objects.viewObjects', array());
 	}
 
 	public function viewObjectItem(mfwobjects $object, $id) {
@@ -197,10 +175,6 @@ class SuperAdminController extends Controller {
 
 	public function viewRequired() {
 		return null;
-	}
-
-	private function sanitizeName($field) {
-		return str_replace(' ', '_', $field);
 	}
 
 	private function workflowManage($postName, $defaultDestination) {

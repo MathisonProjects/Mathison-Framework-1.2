@@ -11,8 +11,8 @@
 		private static $fields;
 		public function createTable($tablename,$fields) {
 			$this->fields = $fields;
-			if (!Schema::hasTable('mfwcus_'.$tablename)) {
-				Schema::create('mfwcus_'.$tablename, function(Blueprint $table) {
+			if (!Schema::hasTable($tablename)) {
+				Schema::create($tablename, function(Blueprint $table) {
 					foreach ($this->fields as $field) {
 						if ($field->name == 'id') {
 							$table->increments('id');

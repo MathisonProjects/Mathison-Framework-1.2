@@ -7,7 +7,7 @@
 @section('content')
 	
 	<h2>Create Object</h2>
-	{!! Form::open() !!}
+	{!! Form::open(array('url' => 'admin/super/createObject')) !!}
 	{!! Form::hidden('totalFields', '1', array('class' => 'totalFields')) !!}
 	<div class='row'>
 		<div class='col-md-4'>
