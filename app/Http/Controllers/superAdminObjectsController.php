@@ -3,16 +3,17 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\mfwobjects;
 use Illuminate\Http\Request;
 
 class superAdminObjectsController extends Controller {
 
 	public function index() {
 		$tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
-		$keys = array('Object Name', 'Description');
+		$keys = array('Object Name', 'Description', 'Delete');
 		$items = array();
 		foreach ($this->menu['objects'] as $key => $item) {
-			array_push($items, array('<a href="/admin/super/viewObject/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription));
+			array_push($items, array('<a href="/admin/super/viewObject/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,'<a href="/admin/super/objects/'.$item->name.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>'));
 		}
 
 		$table = $tableBuilder->setKeys($keys)->
@@ -56,8 +57,8 @@ class superAdminObjectsController extends Controller {
 		//
 	}
 
-	public function destroy($id) {
-		//
+	public function destroy(mfwobjects $object) {
+		
 	}
 
 	private function launchView($view,$compact) {
