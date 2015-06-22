@@ -59,7 +59,7 @@ class superAdminObjectsController extends Controller {
 
 	public function destroy($id) {
 		$this->module['objects']->dropCustomTables($this->db_prefix,$id);
-		return redirect()->back();
+		return redirect('/admin/super/objects');
 	}
 
 	private function launchView($view,$compact) {
