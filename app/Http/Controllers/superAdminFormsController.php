@@ -3,32 +3,27 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\mfwobjects;
-use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
-use App\mfwpages;
+
 use DB;
 
 class superAdminFormsController extends Controller
 {
     public function index() {
-        //
+        return $this->launchView('forms.views', array('formList' => $this->menu['forms']));
     }
 
     public function create() {
-        //
+        return $this->launchView('forms.create', array());
     }
 
     public function store() {
-        //
+        $this->module['forms']->createForm($this->post);
     }
 
     public function show($id) {
-        //
+        $apiId = $this->module['apis']->where('fid', $id)->first()['randomid'];
+        $this->module['forms']->viewForm($id);
+        return $this->launchView('forms.view', array('formItem' => $forms->form, 'apiId' => $apiId));
     }
 
     public function edit($id) {
@@ -44,7 +39,7 @@ class superAdminFormsController extends Controller
     }
 
     public function formFormat(mfwmanageforms $forms, $id) {
-        $apiId = mfwapis::where('fid', $id)->first()['randomid'];
+        $apiId = $this->module['apis']->where('fid', $id)->first()['randomid'];
         $forms->viewForm($id);
         return $this->launchView('forms.formView', array('formItem' => $forms->form, 'apiId' => $apiId));
     }

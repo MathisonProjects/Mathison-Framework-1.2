@@ -14,7 +14,7 @@
 		</tr>
 	@foreach ($formList as $form)
 		<tr>
-			<td style="width: 60px;text-align: center;"><a href='/admin/super/viewForm/{{$form->id}}'><span class="glyphicon glyphicon-eye-open"></span></a></td>
+			<td style="width: 60px;text-align: center;"><a href='/admin/super/forms/{{$form->id}}'><span class="glyphicon glyphicon-eye-open"></span></a></td>
 			<td style="width: 60px;text-align: center;"><a href='/admin/super/viewForm/{{$form->id}}'><span class="glyphicon glyphicon-edit"></span></a></td>
 			<td style="width: 60px;text-align: center;"><a href='/admin/super/viewForm/{{$form->id}}'><span class="glyphicon glyphicon-remove"></span></a></td>
 			<td style="width: 60px;text-align: center;">{{$form->id}}</td>

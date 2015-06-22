@@ -137,25 +137,6 @@ class SuperAdminController extends Controller {
 		
 	}
 
-	public function viewForm(mfwmanageforms $forms, $id) {
-		$apiId = $this->module['apis']->where('fid', $id)->first()['randomid'];
-		$forms->viewForm($id);
-		return $this->launchView('forms.view', array('formItem' => $forms->form, 'apiId' => $apiId));
-	}
-
-	public function viewForms(mfwmanageforms $forms) {
-		return $this->launchView('forms.views', array('formList' => $this->menu['forms']));
-	}
-
-	public function createForms() {
-		return $this->launchView('forms.create', array());
-	}
-
-	public function createFormsPost(mfwmanageforms $forms) {
-		$forms->createForm($this->post);
-		
-	}
-
 	private function launchView($view,$compact) {
 		$compact['menu'] = $this->menu;
 		return view('superAdmin.'.$view,$compact);

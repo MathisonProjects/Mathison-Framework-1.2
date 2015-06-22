@@ -39,15 +39,11 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
 		array('get'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
 		array('get'  , 'createWorkflow'                      , 'createWorkflow')         ,
-		array('get'  , 'viewForm/{id}'                       , 'viewForm')               ,
-		array('get'  , 'viewForms'                           , 'viewForms')              ,
-		array('get'  , 'createForms'                         , 'createForms')            ,
 		array('post' , 'createObject'                        , 'createObjectPost')       ,
 		array('post' , 'createWorkflow'                      , 'createWorkflowPost')     ,
 		array('post' , 'createRelationship'                  , 'createRelationshipPost') ,
 		array('post' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
 		array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
-		array('post' , 'createForms'                         , 'createFormsPost')        ,
 		array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
 		);
 

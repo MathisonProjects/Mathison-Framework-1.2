@@ -5,7 +5,13 @@
 			<a tabindex="0">Clone</a>
 		</li>
 		<li>
-			<a tabindex="0">Change Database</a>
+			<a tabindex="0">Add Composer Package</a>
+		</li>
+		<li>
+			<a tabindex="0">Remove Composer Package</a>
+		</li>
+		<li>
+			<a tabindex="0">MFW Settings</a>
 		</li>
 	</ul>
 </li>
