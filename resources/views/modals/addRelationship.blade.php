@@ -5,7 +5,7 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title" id="myModalLabel">Add Relationship for {{ $objectName }}</h4>
 	      </div>
-		  {!! Form::open(['url' => '/admin/super/createRelationship']) !!}
+		  {!! Form::open(['url' => '/admin/super/relationships/create']) !!}
 		  {!! Form::hidden('objectName', $dbName) !!}
 	      <div class="modal-body">
 	      	<div class='form-group'>

@@ -3,14 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\mfwobjects;
-use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
-use App\mfwpages;
+
 use DB;
 
 class superAdminRelationshipsController extends Controller
@@ -24,7 +17,12 @@ class superAdminRelationshipsController extends Controller
     }
 
     public function store() {
-        //
+        $this->module['relationships']->insert(['name' => $this->sanitizeName($this->post['relationshipname']),
+            'relationshiptype' => $this->post['relationshiptype'],
+            'tableone' => $this->post['objectName'],
+            'tabletwo' => $this->post['totable'],
+            'fieldone' => $this->post['fromfield'],
+            'fieldtwo' => $this->post['tofield']]);
     }
 
     public function show($id) {

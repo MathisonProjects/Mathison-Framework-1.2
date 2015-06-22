@@ -39,7 +39,6 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
 		array('get'  , 'viewWorkflow/{workflowItem}'         , 'viewWorkflow')           ,
 		array('post' , 'createObject'                        , 'createObjectPost')       ,
-		array('post' , 'createRelationship'                  , 'createRelationshipPost') ,
 		array('post' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
 		array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
 		array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
@@ -54,9 +53,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('forms/format/{id}' , 'superAdminFormsController@formFormat');
 	get('objects/{id}/delete', 'superAdminObjectsController@destroy');
 
-
 	// Super Admin Controller
-
 	$superAdminControllers = array(
 		'api'            => 'Api',
 		'pdf'            => 'Pdf',
@@ -66,8 +63,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		'relationships'  => 'Relationships',
 		'forms'			 => 'Forms',
 		'workflows'		 => 'Workflows',
-		'objects'		 => 'Objects'
-		);
+		'objects'		 => 'Objects');
 
 	foreach ($superAdminControllers as $key => $item) {
 		resource($key , 'superAdmin'.$item.'Controller');

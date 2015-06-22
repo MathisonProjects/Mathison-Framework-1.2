@@ -46,16 +46,6 @@ class SuperAdminController extends Controller {
 		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
 	}
 
-	public function createRelationshipPost() {
-		$this->module['relationships']->insert(['name' => $this->sanitizeName($this->post['relationshipname']),
-			'relationshiptype' => $this->post['relationshiptype'],
-			'tableone' => $this->post['objectName'],
-			'tabletwo' => $this->post['totable'],
-			'fieldone' => $this->post['fromfield'],
-			'fieldtwo' => $this->post['tofield']]);
-		
-	}
-
 	public function viewObjectItem(mfwobjects $object, $id) {
 		// Relationship Builder
 		$sharedDataArray = array();
