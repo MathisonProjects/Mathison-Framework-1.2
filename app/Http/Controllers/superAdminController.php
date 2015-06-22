@@ -21,14 +21,6 @@ class SuperAdminController extends Controller {
 		return $this->launchView('objects.view', compact('objectName', 'dbName', 'records', 'description','fields'));
 	}
 
-	public function viewWorkflow(mfwworkflows $entry) {
-		$compact = array(
-			'fields' => DB::select(" SHOW COLUMNS FROM mfwworkflows"),
-			'workflowName' => ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', str_replace('_', ' ', $entry->workflowitem))),
-			'entry' => $entry);
-		return $this->launchView('workflows.view', $compact);
-	}
-
 	public function createObjectPost() {
 		$this->module['objects']->insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);

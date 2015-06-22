@@ -34,7 +34,7 @@
 			} else {
 				self::insert([array(
 					'default'             => 1,
-					'name'                => '',
+					'name'                => 'N/A',
 					'referrerOrigin'      => $this->referrer,
 					'originaldestination' => $this->referrer,
 					'finaldestination'    => '')]);
