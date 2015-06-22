@@ -58,6 +58,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('template/format/{id}' , 'superAdminTemplatesController@templateFormat');
 	get('forms/format/{id}' , 'superAdminFormsController@formFormat');
 	post('forms/format/{id}' , 'superAdminFormsController@formFormat');
+	get('objects/{id}/delete', 'superAdminObjectsController@destroy');
 
 
 	// Super Admin Controller
@@ -81,6 +82,6 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 
 // Admin Controller
-Route::get('/admin/', 'adminController@index');
+get('/admin/', 'adminController@index');
 // Front Controller
-Route::get('/{custom_url}', 'pagesController@index');
+get('/{custom_url}', 'pagesController@index');

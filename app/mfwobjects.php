@@ -42,5 +42,12 @@
 			}
 			DB::table($datatable)->insert($input);
 		}
+
+		public function dropCustomTables($prefix,$id) {
+			$objectData = self::where('id', $id)->first();
+			self::where('id', $id)->delete();
+			self::where('oid', $id)->delete();
+			Schema::drop($prefix.$objectData->name);
+		}
 	}
 ?>
