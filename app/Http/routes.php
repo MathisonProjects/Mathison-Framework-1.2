@@ -52,6 +52,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	get('forms/format/{id}' , 'superAdminFormsController@formFormat');
 	post('forms/format/{id}' , 'superAdminFormsController@formFormat');
 	get('objects/{id}/delete', 'superAdminObjectsController@destroy');
+	post('objects/{id}/delete', 'superAdminObjectsController@destroy');
 
 	// Super Admin Controller
 	$superAdminControllers = array(

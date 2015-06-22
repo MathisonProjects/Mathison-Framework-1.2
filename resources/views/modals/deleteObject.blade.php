@@ -6,13 +6,10 @@
 	        <h4 class="modal-title" id="myModalLabel">Delete Object for {{ $objectName }}</h4>
 	        <h5>YOU CANNOT REVERSE THIS ACTION</h5>
 	      </div>
-		  {!! Form::open(array('url' => 'admin/super/objects/'.$fields[0]->oid.'/delete')) !!}
-		  {!! Form::hidden('objectName', $dbName) !!}
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary">Confirm Deletion</button>
+	        <a href="/admin/super/objects/{{ $fields[0]->oid }}/delete"><button type="submit" class="btn btn-primary">Confirm Deletion</button></a>
 	      </div>
-		  {!! Form::close() !!}
 	    </div>
 	  </div>
 	</div>
