@@ -5,17 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\mfwobjects;
 use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
-use App\mfwpages;
 use DB;
 
 class SuperAdminController extends Controller {
-	private $sharedData;
-
 	public function index() {
 		return $this->launchView('index', array());
 	}
@@ -66,10 +58,11 @@ class SuperAdminController extends Controller {
 
 	public function viewObjectItem(mfwobjects $object, $id) {
 		// Relationship Builder
+		$sharedDataArray = array();
 		$allPrimaryRelationships       = $this->module['relationships']->where('tableone', $object->name)->get();
 		$allSecondaryRelationships     = $this->module['relationships']->where('tabletwo', $object->name)->get();
-		$this->sharedData['primary']   = array();
-		$this->sharedData['secondary'] = array();
+		$sharedDataArray['primary']   = array();
+		$sharedDataArray['secondary'] = array();
 		// One to Many, A one, B many
 		foreach ($allPrimaryRelationships as $primary) {
 			$info['object'] = $primary->tabletwo;
@@ -78,7 +71,7 @@ class SuperAdminController extends Controller {
 								->where('a.id',$id)
 								->get();
 			
-			array_push($this->sharedData['primary'], $info);
+			array_push($sharedDataArray['primary'], $info);
 		}
 
 		foreach ($allSecondaryRelationships as $secondary) {
@@ -88,19 +81,17 @@ class SuperAdminController extends Controller {
 								->where('a.id',$id)
 								->get();
 
-			array_push($this->sharedData['secondary'], $info);
+			array_push($sharedDataArray['secondary'], $info);
 		}
 		// End Relationship Builder
-		$sharedData = $this->sharedData;
+		$sharedData = $sharedDataArray;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
 		$record = DB::table($this->db_prefix.$object->name)->where('id', $id)->get();
 		return $this->launchView('objects.viewObjectItem', compact('sharedData','objectName','record','object'));
 	}
 
 	public function viewObjectAddRecord(array $array) {
-		$objects = new mfwobjects;
-		$objects->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);
-		
+		$this->module['objects']->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);
 	}
 	public function editObjectItem(mfwobjects $object, $id) {
 		$compact = array(
