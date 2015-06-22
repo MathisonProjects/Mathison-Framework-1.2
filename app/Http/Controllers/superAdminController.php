@@ -34,11 +34,7 @@ class SuperAdminController extends Controller {
 			'fields' => DB::select(" SHOW COLUMNS FROM mfwworkflows"),
 			'workflowName' => ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', str_replace('_', ' ', $entry->workflowitem))),
 			'entry' => $entry);
-		return $this->launchView('workflows.viewWorkflow', $compact);
-	}
-
-	public function createWorkflow() {
-		return $this->launchView('workflows.createWorkflow', array());
+		return $this->launchView('workflows.view', $compact);
 	}
 
 	public function createObjectPost() {
@@ -56,15 +52,6 @@ class SuperAdminController extends Controller {
 
 		$fields = $this->module['objects']->where('oid', $id)->get();
 		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
-	}
-
-	public function createWorkflowPost() {
-		$this->module['workflows']->insert(['default' => $this->post['default'],
-				'workflowitem' => $this->sanitizeName($this->post['workflowitem']),
-				'originaldestination' => $this->post['originaldestination'],
-				'finaldestination' => $this->post['finaldestination']]);
-
-		
 	}
 
 	public function createRelationshipPost() {

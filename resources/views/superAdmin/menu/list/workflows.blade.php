@@ -2,7 +2,7 @@
 	<a tabindex="0" data-toggle="dropdown">Workflow</a>
 	<ul class="dropdown-menu">
 		<li>
-			<a tabindex="0" href="/admin/super/createWorkflow">Create Workflow Chain</a>
+			<a tabindex="0" href="/admin/super/workflows/create">Create Workflow Chain</a>
 		</li>
 		<li>
 			<a tabindex="0" href="/admin/super/workflows">View Workflow Chains</a>

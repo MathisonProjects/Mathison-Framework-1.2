@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 class superAdminWorkflowsController extends Controller {
 
 	public function index() {
-		return $this->launchView('workflows.viewWorkflows', array());
+		return $this->launchView('workflows.views', array());
 	}
 
 	public function create() {
-		//
+		return $this->launchView('workflows.create', array());
 	}
 
 	public function store() {
-		//
+		$this->module['workflows']->insert(['default' => $this->post['default'],
+			'workflowitem' => $this->sanitizeName($this->post['workflowitem']),
+			'originaldestination' => $this->post['originaldestination'],
+			'finaldestination' => $this->post['finaldestination']]);
 	}
 
 	public function show($id) {
