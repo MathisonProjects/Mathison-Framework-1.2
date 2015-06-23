@@ -13,14 +13,7 @@ class superAdminWorkflowsController extends Controller {
 		$keys = array('View', 'Edit', 'Delete', 'Workflow Name', 'Default', 'Referrer', 'Old Destination', 'New Destination');
 		$items = array();
 		foreach ($this->menu['workflows'] as $key => $item) {
-			array_push($items, array('<a href="/admin/super/workflows/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>',
-									 '<a href="/admin/super/workflows/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>',
-									 '<a href="/admin/super/workflows/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>',
-									 $item->name,
-									 $item->default,
-									 $item->referrerOrigin,
-									 $item->originaldestination,
-									 $item->finaldestination));
+			array_push($items, array('<a href="/admin/super/workflows/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>', '<a href="/admin/super/workflows/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>', '<a href="/admin/super/workflows/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>', $item->name, $item->default, $item->referrerOrigin, $item->originaldestination, $item->finaldestination));
 		}
 
 		$table = $tableBuilder->setKeys($keys)->
@@ -33,11 +26,8 @@ class superAdminWorkflowsController extends Controller {
 		return $this->launchView('workflows.create', array());
 	}
 
-	public function store() {
-		$this->module['workflows']->insert(['default' => $this->post['default'],
-			'workflowitem' => $this->sanitizeName($this->post['workflowitem']),
-			'originaldestination' => $this->post['originaldestination'],
-			'finaldestination' => $this->post['finaldestination']]);
+	public function store(request $request) {
+		$this->module['workflows']->insert($request->input());
 	}
 
 	public function show($id) {
@@ -50,11 +40,16 @@ class superAdminWorkflowsController extends Controller {
 	}
 
 	public function edit($id) {
-		//
+		$workflow = $this->module['workflows']->where('id', $id)->first();
+        return $this->launchView('workflows.edit', array('workflow' => $workflow));
 	}
 
-	public function update($id) {
-		//
+	public function update($id,request $request) {
+		echo '<pre>';
+		print_r($request->input());
+		echo '</pre>';
+		$workflow = $this->module['workflows']->where('id',$id)->first();
+        $workflow->fill($request->input())->save();
 	}
 
 	public function destroy($id) {

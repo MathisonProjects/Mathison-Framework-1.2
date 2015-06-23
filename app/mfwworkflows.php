@@ -7,6 +7,10 @@
 	use Illuminate\Support\Facades\Schema as Schema;
 	use DB;
 	class mfwworkflows extends Eloquent {
+
+	    protected $table = 'mfwworkflows';
+		protected $fillable = ['name', 'referrerOrigin', 'originaldestination','finaldestination','default'];
+
 		public $referrer;
 		public $destination;
 		public $finaldestination;
