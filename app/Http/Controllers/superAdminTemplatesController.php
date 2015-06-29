@@ -10,11 +10,11 @@ class superAdminTemplatesController extends Controller
 {
 
     public function index() {
-        return $this->launchView('templates.views', array());
+        return $this->launchView('views', array());
     }
 
     public function create() {
-        return $this->launchView('templates.create', array());
+        return $this->launchView('create', array());
     }
 
     public function store(Request $request) {
@@ -23,12 +23,12 @@ class superAdminTemplatesController extends Controller
 
     public function show($id) {
         $template = array('template' => $this->module['templates']->where('id', $id)->first());
-        return $this->launchView('templates.view',$template);
+        return $this->launchView('view',$template);
     }
 
     public function edit($id) {
         $templateData = $this->module['templates']->where('id', $id)->first();
-        return $this->launchView('templates.edit', array('templateData' => $templateData));
+        return $this->launchView('edit', array('templateData' => $templateData));
     }
 
     public function update($id,Request $request) {

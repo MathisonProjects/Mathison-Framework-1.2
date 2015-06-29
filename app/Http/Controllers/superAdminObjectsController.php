@@ -20,11 +20,11 @@ class superAdminObjectsController extends Controller {
 					setValues($items)->
 					buildTable();
 
-		return $this->launchView('objects.viewObjects', array('table' => $table));
+		return $this->launchView('viewObjects', array('table' => $table));
 	}
 
 	public function create() {
-		return $this->launchView('objects.createObject', array());
+		return $this->launchView('createObject', array());
 	}
 
 	public function store() {

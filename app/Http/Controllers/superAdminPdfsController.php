@@ -19,11 +19,11 @@ class superAdminPdfsController extends Controller {
         $table = $tableBuilder->setKeys($keys)->
             setValues($items)->
             buildTable();
-        return $this->launchView('pdfs.views', array('table' => $table));
+        return $this->launchView('views', array('table' => $table));
     }
 
     public function create() {
-        return $this->launchView('pdfs.create', array());
+        return $this->launchView('create', array());
     }
 
     public function store(request $request) {
@@ -36,7 +36,7 @@ class superAdminPdfsController extends Controller {
 
     public function edit($id) {
         $pdf = $this->module['pdfs']->where('id', $id)->first();
-        return $this->launchView('pdfs.edit', array('pdfData' => $pdf));
+        return $this->launchView('edit', array('pdfData' => $pdf));
     }
 
     public function update($id,request $request) {

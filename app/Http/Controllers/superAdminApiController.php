@@ -10,12 +10,12 @@ class superAdminApiController extends Controller
 
     public function index() {
         $compact = array('apis' => $this->menu['apis']);
-        return $this->launchView('api.views',$compact);
+        return $this->launchView('views',$compact);
     }
 
     public function create() {
         $array = array('randString' => md5($this->generateRandomString(20)));
-        return $this->launchView('api.create',$array);
+        return $this->launchView('create',$array);
     }
 
     public function store(Request $request) {
@@ -24,11 +24,11 @@ class superAdminApiController extends Controller
 
     public function show($id) {
         $api = array('api' => $this->module['apis']->where('id', $id)->first());
-        return $this->launchView('api.view',$api);
+        return $this->launchView('view',$api);
     }
 
     public function edit($id) {
-        return $this->launchView('api.edit',array());
+        return $this->launchView('edit',array());
     }
 
     public function update(request $request, $id) {

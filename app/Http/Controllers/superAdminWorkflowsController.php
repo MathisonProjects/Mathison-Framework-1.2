@@ -20,11 +20,11 @@ class superAdminWorkflowsController extends Controller {
 		$table = $tableBuilder->setKeys($keys)->
 					setValues($items)->
 					buildTable();
-		return $this->launchView('workflows.views', array('table' => $table));
+		return $this->launchView('views', array('table' => $table));
 	}
 
 	public function create() {
-		return $this->launchView('workflows.create', array());
+		return $this->launchView('create', array());
 	}
 
 	public function store(request $request) {
@@ -37,12 +37,12 @@ class superAdminWorkflowsController extends Controller {
 			'fields' => DB::select(" SHOW COLUMNS FROM mfwworkflows"),
 			'workflowName' => ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', str_replace('_', ' ', $entry->workflowitem))),
 			'entry' => $entry);
-		return $this->launchView('workflows.view', $compact);
+		return $this->launchView('view', $compact);
 	}
 
 	public function edit($id) {
 		$workflow = $this->module['workflows']->where('id', $id)->first();
-        return $this->launchView('workflows.edit', array('workflow' => $workflow));
+        return $this->launchView('edit', array('workflow' => $workflow));
 	}
 
 	public function update($id,request $request) {

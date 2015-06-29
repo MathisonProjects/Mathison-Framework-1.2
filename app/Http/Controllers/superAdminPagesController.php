@@ -9,7 +9,7 @@ class superAdminPagesController extends Controller
 {
     
     public function index() {
-        return $this->launchView('pages.views', array());
+        return $this->launchView('views', array());
     }
 
     public function create() {
@@ -17,7 +17,7 @@ class superAdminPagesController extends Controller
         foreach ($this->menu['templates'] as $template) {
             $templates[$template['id']] = $template['templatename'];
         }
-        return $this->launchView('pages.create', array('templates' => $templates));
+        return $this->launchView('create', array('templates' => $templates));
     }
 
     public function store(Request $request) {
@@ -31,7 +31,7 @@ class superAdminPagesController extends Controller
         } else {
             $page = $this->templateMapping($pageLayout, $id);
         }
-        return $this->launchView('pages.view',$page);
+        return $this->launchView('view',$page);
     }
 
     public function edit($id) {
@@ -42,7 +42,7 @@ class superAdminPagesController extends Controller
             $templates[$template['id']] = $template['templatename'];
         }
 
-        return $this->launchView('pages.edit', array('pageData' => $pageData,'templates' => $templates));
+        return $this->launchView('edit', array('pageData' => $pageData,'templates' => $templates));
     }
 
     public function update($id,Request $request) {
