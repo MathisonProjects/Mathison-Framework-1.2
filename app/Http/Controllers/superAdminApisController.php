@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 
-class superAdminApiController extends Controller
+class superAdminApisController extends Controller
 {
 
     public function index() {

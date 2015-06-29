@@ -55,7 +55,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 	// Super Admin Controller
 	$superAdminControllers = array(
-		'api'            => 'Api',
+		'apis'           => 'Apis',
 		'pdfs'           => 'Pdfs',
 		'formprocessing' => 'FormProcessing',
 		'template'       => 'Templates',
