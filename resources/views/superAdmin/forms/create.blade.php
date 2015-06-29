@@ -6,7 +6,7 @@
 
 @section('content')
 	<h2>Create Forms</h2>
-	{!! Form::open() !!}
+	{!! Form::open(['url'=>'admin/super/forms/']) !!}
 	{!! Form::hidden('totalFields', '0', array('class' => 'totalFields')) !!}
 	<div class='row'>
 		<div class='col-md-4'>

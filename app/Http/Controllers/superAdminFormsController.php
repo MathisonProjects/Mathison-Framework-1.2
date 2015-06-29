@@ -23,7 +23,7 @@ class superAdminFormsController extends Controller
     public function show($id) {
         $apiId = $this->module['apis']->where('fid', $id)->first()['randomid'];
         $this->module['forms']->viewForm($id);
-        return $this->launchView('view', array('formItem' => $forms->form, 'apiId' => $apiId));
+        return $this->launchView('view', array('formItem' => $this->module['forms']->form, 'apiId' => $apiId));
     }
 
     public function edit($id) {
