@@ -18,7 +18,8 @@ class SuperAdminController extends Controller {
 		$description = $object->objectDescription;
 		$dbName = $object->name;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
-		return $this->launchView('objects.view', compact('objectName', 'dbName', 'records', 'description','fields'));
+		$menu = $this->menu;
+		return view('superAdmin.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu'));
 	}
 
 	public function createObjectPost() {

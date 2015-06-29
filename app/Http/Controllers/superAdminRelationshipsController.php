@@ -9,11 +9,11 @@ use DB;
 class superAdminRelationshipsController extends Controller
 {
     public function index() {
-        return $this->launchView('viewRelationships', array());
+        return $this->launchView('views', array());
     }
 
     public function create() {
-        //
+        return $this->launchView('create', array());
     }
 
     public function store(Request $request) {
@@ -29,15 +29,16 @@ class superAdminRelationshipsController extends Controller
     public function show($id) {
         $relationship = $this->module['relationships']->where('id',$id)->first();
         $relationshipName = ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', str_replace('_', ' ', $relationship->name)));
-        return $this->launchView('viewRelationship', array('relationshipName' => $relationshipName, 'relationship' => $relationship));
+        return $this->launchView('view', array('relationshipName' => $relationshipName, 'relationship' => $relationship));
     }
 
     public function edit($id) {
-        //
+        $relationship = $this->module['relationships']->where('id', $id)->first();
+        return $this->launchView('edit', array('data' => $relationship));
     }
 
-    public function update($id) {
-        //
+    public function update(request $request, $id) {
+        parent::save('update',$request, array('id' => $id));
     }
 
     public function destroy($id) {
