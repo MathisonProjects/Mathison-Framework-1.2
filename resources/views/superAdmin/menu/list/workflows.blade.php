@@ -16,6 +16,6 @@
 				echo ucwords(preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('_', ' ',$item->name)));
 				?></a>
 			</li>
-			@endforeach
+		@endforeach
 		</ul>
 	</li>

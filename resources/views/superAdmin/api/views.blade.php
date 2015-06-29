@@ -1,7 +1,7 @@
 @extends('superAdmin.master')
 
 @section('content')
-	<h2>View APIs</h2>
+	<h2>APIs</h2>
 	<table class='table table-hover table-condensed'>
 		<tr>
 			<th style='width: 60px;text-align: center;'>View</th>

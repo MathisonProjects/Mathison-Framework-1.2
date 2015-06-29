@@ -6,44 +6,50 @@ use Illuminate\Http\Request;
 use DB;
 use PDF;
 
-class superAdminPdfController extends Controller
-{
+class superAdminPdfController extends Controller {
 
     public function index() {
-        PDF::SetTitle('Hello World');
-        PDF::AddPage();
-        PDF::Write(0, 'Hello World');
-        PDF::Output('hello_world.pdf','D');
-        return 'PDF Generated';
+        $tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
+        $keys  = array('View','Edit','Delete','PDF Name','Description');
+        $items = array();
+        foreach ($this->menu['pdfs'] as $key => $item) {
+            $array = array('<a href="/admin/super/pdfs/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>' , '<a href="/admin/super/pdfs/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>', '<a href="/admin/super/pdfs/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>', $item->name , $item->description);
+            array_push($items, $array);
+        }
+        $table = $tableBuilder->setKeys($keys)->
+            setValues($items)->
+            buildTable();
+        return $this->launchView('pdfs.views', array('table' => $table));
     }
 
     public function create() {
-        PDF::SetTitle('Hello World');
-        PDF::AddPage();
-        PDF::Write(0, 'Hello World');
-        PDF::Output('hello_world.pdf');
+        return $this->launchView('pdfs.create', array());
     }
 
     public function store() {
-        //
+        $this->module['pdfs']->create($request->input());
     }
 
     public function show($id) {
         //
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
+        $pdf = $this->module['pdfs']->where('id', $id)->first();
+        return $this->launchView('pdfs.edit', array('pdfData' => $pdf));
+    }
+
+    public function update($id,request $request) {
+        $pdf = $this->module['pdfs']->where('id',$id)->first();
+        $pdf->fill($request->input())->save();
+    }
+
+    public function destroy($id) {
         //
     }
 
-    public function update($id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+    private function launchView($view,$compact) {
+        $compact['menu'] = $this->menu;
+        return view('superAdmin.'.$view,$compact);
     }
 }
