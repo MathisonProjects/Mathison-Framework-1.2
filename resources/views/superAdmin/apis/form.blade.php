@@ -1,6 +1,6 @@
 
 <h2>API</h2>
-{!! Form::open(['url'=>'admin/super/api/']) !!}
+{!! Form::open(['url'=>'admin/super/apis/']) !!}
 
 	{!! Form::hidden('randomid', $randString) !!}
 <div class='row'>

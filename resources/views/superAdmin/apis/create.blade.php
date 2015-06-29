@@ -1,5 +1,5 @@
 @extends('superAdmin.master')
 
 @section('content')
-	@include('superAdmin.api.form')
+	@include('superAdmin.apis.form')
 @stop
