@@ -8,10 +8,6 @@ use DB;
 
 class pagesController extends Controller {
 
-	public function __construct(){
-		
-	}
-
 	public function index($custom_url) {
         $pageLayout = $this->module['pages']->where('stringurl', $custom_url)->first();
         if ($pageLayout['tid'] == 0) {
