@@ -46,9 +46,4 @@ class superAdminPdfController extends Controller {
     public function destroy($id) {
         //
     }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.'.$view,$compact);
-    }
 }

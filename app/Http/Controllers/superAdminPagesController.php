@@ -9,7 +9,7 @@ class superAdminPagesController extends Controller
 {
     
     public function index() {
-        return $this->launchView('views', array());
+        return $this->launchView('pages.views', array());
     }
 
     public function create() {
@@ -17,7 +17,7 @@ class superAdminPagesController extends Controller
         foreach ($this->menu['templates'] as $template) {
             $templates[$template['id']] = $template['templatename'];
         }
-        return $this->launchView('create', array('templates' => $templates));
+        return $this->launchView('pages.create', array('templates' => $templates));
     }
 
     public function store(Request $request) {
@@ -31,7 +31,7 @@ class superAdminPagesController extends Controller
         } else {
             $page = $this->templateMapping($pageLayout, $id);
         }
-        return $this->launchView('view',$page);
+        return $this->launchView('pages.view',$page);
     }
 
     public function edit($id) {
@@ -42,7 +42,7 @@ class superAdminPagesController extends Controller
             $templates[$template['id']] = $template['templatename'];
         }
 
-        return $this->launchView('edit', array('pageData' => $pageData,'templates' => $templates));
+        return $this->launchView('pages.edit', array('pageData' => $pageData,'templates' => $templates));
     }
 
     public function update($id,Request $request) {
@@ -77,10 +77,5 @@ class superAdminPagesController extends Controller
         }
         $templateArray['id'] = $id;
         return array('page' => $templateArray);
-    }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.pages.'.$view,$compact);
     }
 }

@@ -43,9 +43,4 @@ class superAdminFormsController extends Controller
         $forms->viewForm($id);
         return $this->launchView('forms.formView', array('formItem' => $forms->form, 'apiId' => $apiId));
     }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.'.$view,$compact);
-    }
 }

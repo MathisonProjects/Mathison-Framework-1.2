@@ -17,12 +17,12 @@ class superAdminApiController extends Controller
 
     public function index() {
         $compact = array('apis' => $this->menu['apis']);
-        return $this->launchView('views',$compact);
+        return $this->launchView('api.views',$compact);
     }
 
     public function create() {
         $array = array('randString' => md5($this->generateRandomString(20)));
-        return $this->launchView('create',$array);
+        return $this->launchView('api.create',$array);
     }
 
     public function store(Request $request) {
@@ -31,11 +31,11 @@ class superAdminApiController extends Controller
 
     public function show($id) {
         $api = array('api' => mfwapis::where('id', $id)->first());
-        return $this->launchView('view',$api);
+        return $this->launchView('api.view',$api);
     }
 
     public function edit($id) {
-        return $this->launchView('edit',array());
+        return $this->launchView('api.edit',array());
     }
 
     public function update(request $request, $id) {
@@ -44,11 +44,6 @@ class superAdminApiController extends Controller
 
     public function destroy($id) {
         //
-    }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.api.'.$view,$compact);
     }
 
     private function generateRandomString($length) {

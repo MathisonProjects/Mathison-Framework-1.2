@@ -9,11 +9,11 @@ use DB;
 class superAdminFormProcessingController extends Controller {
 
 	public function index() {
-        return $this->launchView('views',array());
+        return $this->launchView('formprocessing.views',array());
 	}
 
 	public function create() {
-        return $this->launchView('create',array());
+        return $this->launchView('formprocessing.create',array());
 	}
 
 	public function store(Request $request)
@@ -37,7 +37,7 @@ class superAdminFormProcessingController extends Controller {
 	}
 
 	public function show($id) {
-        return $this->launchView('view',array());
+        return $this->launchView('formprocessing.view',array());
 	}
 
 	public function edit($id) {
@@ -51,9 +51,4 @@ class superAdminFormProcessingController extends Controller {
 	public function destroy($id) {
 		//
 	}
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.formprocessing.'.$view,$compact);
-    }
 }

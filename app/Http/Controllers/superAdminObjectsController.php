@@ -61,9 +61,4 @@ class superAdminObjectsController extends Controller {
 		$this->module['objects']->dropCustomTables($this->db_prefix,$id);
 		return redirect('/admin/super/objects');
 	}
-
-	private function launchView($view,$compact) {
-		$compact['menu'] = $this->menu;
-		return view('superAdmin.'.$view,$compact);
-	}
 }

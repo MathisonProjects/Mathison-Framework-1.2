@@ -97,11 +97,6 @@ class SuperAdminController extends Controller {
 		
 	}
 
-	private function launchView($view,$compact) {
-		$compact['menu'] = $this->menu;
-		return view('superAdmin.'.$view,$compact);
-	}
-
 	public function getObjectFields(array $array) {
 		return json_encode($array[1]);
 	}

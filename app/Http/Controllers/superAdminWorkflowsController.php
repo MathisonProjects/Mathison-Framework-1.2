@@ -53,9 +53,4 @@ class superAdminWorkflowsController extends Controller {
 		$this->module['workflows']->destroy($id);
 		return redirect('superAdmin.workflows');
 	}
-	
-	private function launchView($view,$compact) {
-		$compact['menu'] = $this->menu;
-		return view('superAdmin.'.$view,$compact);
-	}
 }

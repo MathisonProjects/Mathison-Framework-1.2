@@ -10,11 +10,11 @@ class superAdminTemplatesController extends Controller
 {
 
     public function index() {
-        return $this->launchView('views', array());
+        return $this->launchView('templates.views', array());
     }
 
     public function create() {
-        return $this->launchView('create', array());
+        return $this->launchView('templates.create', array());
     }
 
     public function store(Request $request) {
@@ -23,12 +23,12 @@ class superAdminTemplatesController extends Controller
 
     public function show($id) {
         $template = array('template' => $this->module['templates']->where('id', $id)->first());
-        return $this->launchView('view',$template);
+        return $this->launchView('templates.view',$template);
     }
 
     public function edit($id) {
         $templateData = $this->module['templates']->where('id', $id)->first();
-        return $this->launchView('edit', array('templateData' => $templateData));
+        return $this->launchView('templates.edit', array('templateData' => $templateData));
     }
 
     public function update($id,Request $request) {
@@ -43,10 +43,5 @@ class superAdminTemplatesController extends Controller
         $template = $this->module['templates']->where('id', $id)->first();
         $jsonData = array('template' => $template->datatext);
         return json_encode($jsonData);
-    }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.templates.'.$view,$compact);
     }
 }

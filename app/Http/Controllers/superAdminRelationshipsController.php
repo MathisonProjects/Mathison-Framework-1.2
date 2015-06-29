@@ -9,7 +9,7 @@ use DB;
 class superAdminRelationshipsController extends Controller
 {
     public function index() {
-        return $this->launchView('viewRelationships', array());
+        return $this->launchView('relationships.viewRelationships', array());
     }
 
     public function create() {
@@ -28,7 +28,7 @@ class superAdminRelationshipsController extends Controller
     public function show($id) {
         $relationship = $this->module['relationships']->where('id',$id)->first();
         $relationshipName = ucwords(preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', str_replace('_', ' ', $relationship->name)));
-        return $this->launchView('viewRelationship', array('relationshipName' => $relationshipName, 'relationship' => $relationship));
+        return $this->launchView('relationships.viewRelationship', array('relationshipName' => $relationshipName, 'relationship' => $relationship));
     }
 
     public function edit($id) {
@@ -41,10 +41,5 @@ class superAdminRelationshipsController extends Controller
 
     public function destroy($id) {
         //
-    }
-
-    private function launchView($view,$compact) {
-        $compact['menu'] = $this->menu;
-        return view('superAdmin.relationships.'.$view,$compact);
     }
 }
