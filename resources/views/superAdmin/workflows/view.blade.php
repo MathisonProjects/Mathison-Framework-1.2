@@ -24,7 +24,10 @@
 				{{ $entry->default }}
 			</td>
 			<td>
-				{{ $entry->workflowitem }}
+				{{ $entry->name }}
+			</td>
+			<td>
+				{{ $entry->referrerOrigin }}
 			</td>
 			<td>
 				{{ $entry->originaldestination }}

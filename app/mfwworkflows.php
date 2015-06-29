@@ -12,24 +12,12 @@
 		protected $fillable = ['name', 'referrerOrigin', 'originaldestination','finaldestination','default'];
 
 		public $referrer;
-		public $destination;
-		public $finaldestination;
 
 		public function setReferrer($value) {
 			$this->referrer = $value;
 			return $this;
 		}
 
-		public function setDestination($value) {
-			$this->destination = $value;
-			return $this;
-		}
-
-		public function setFinalDestination($value) {
-			$this->finaldestination = $value;
-			return $this;
-		}
-		
 		public function checkWorkflowItem() {
 			$data = self::where('referrerOrigin', $this->referrer)->first();
 

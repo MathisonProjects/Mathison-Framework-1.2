@@ -11,9 +11,9 @@
 		<li class="divider"></li>
 		@foreach ($menu['workflows'] as $item)
 		<li>
-			<a tabindex="0" href="/admin/super/viewWorkflow/{{ $item->workflowitem }}">
+			<a tabindex="0" href="/admin/super/workflows/{{ $item->id }}">
 				<?php
-				echo ucwords(preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('_', ' ',$item->workflowitem)));
+				echo ucwords(preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('_', ' ',$item->name)));
 				?></a>
 			</li>
 			@endforeach

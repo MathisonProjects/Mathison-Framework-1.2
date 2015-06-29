@@ -40,7 +40,7 @@ abstract class Controller extends BaseController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $workflow = $this->module['workflows']->setReferrer($this->workflow['referrer'])->checkWorkflowItem();
 
-            if ($workflow->finaldestination == '') {
+            if ($workflow->finaldestination == '' || $workflow->default == 1) {
                 die("<script>location.href = '".$workflow->originaldestination."'</script>");
             } else {
                 die("<script>location.href = '".$workflow->finaldestination."'</script>");
