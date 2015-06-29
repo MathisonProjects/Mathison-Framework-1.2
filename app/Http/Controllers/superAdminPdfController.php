@@ -26,8 +26,8 @@ class superAdminPdfController extends Controller {
         return $this->launchView('pdfs.create', array());
     }
 
-    public function store() {
-        $this->module['pdfs']->create($request->input());
+    public function store(request $request) {
+        parent::save('pdfs','create',$request);
     }
 
     public function show($id) {
@@ -40,8 +40,7 @@ class superAdminPdfController extends Controller {
     }
 
     public function update($id,request $request) {
-        $pdf = $this->module['pdfs']->where('id',$id)->first();
-        $pdf->fill($request->input())->save();
+        parent::save('pdfs','update',$request, array('id' => $id));
     }
 
     public function destroy($id) {

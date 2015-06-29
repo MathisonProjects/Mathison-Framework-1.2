@@ -28,7 +28,7 @@ class superAdminWorkflowsController extends Controller {
 	}
 
 	public function store(request $request) {
-		$this->module['workflows']->create($request->input());
+        parent::save('workflows','create',$request);
 	}
 
 	public function show($id) {
@@ -46,9 +46,7 @@ class superAdminWorkflowsController extends Controller {
 	}
 
 	public function update($id,request $request) {
-
-		$workflow = $this->module['workflows']->where('id',$id)->first();
-        $workflow->fill($request->input())->save();
+        parent::save('workflows','update',$request, array('id' => $id));
 	}
 
 	public function destroy($id) {

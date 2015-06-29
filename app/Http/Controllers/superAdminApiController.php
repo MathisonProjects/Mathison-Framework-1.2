@@ -20,68 +20,28 @@ class superAdminApiController extends Controller
         return $this->launchView('views',$compact);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create() {
         $array = array('randString' => md5($this->generateRandomString(20)));
         return $this->launchView('create',$array);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store(Request $request, mfwapis $mfwapis) {
-        $mfwapis->insert([
-            'randomid' => $request->get('randomid'),
-            'action'   => $request->get('action'),
-            'name'     => $request->get('name'),
-            'fid'      => $request->get('fid'),
-            'oid'      => $request->get('oid')]);
-        return redirect('admin/super/api/');
+    public function store(Request $request) {
+        parent::save('apis','create',$request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id) {
         $api = array('api' => mfwapis::where('id', $id)->first());
         return $this->launchView('view',$api);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($id) {
         return $this->launchView('edit',array());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id) {
-        //
+    public function update(request $request, $id) {
+        parent::save('pages','update',$request, array('id' => $id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id) {
         //
     }

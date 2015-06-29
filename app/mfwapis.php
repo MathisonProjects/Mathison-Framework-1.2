@@ -8,6 +8,7 @@
 	use DB;
 
 	class mfwapis extends Eloquent {
-
+		protected $table = 'mfwapis';
+		protected $fillable = ['randomid','action','name','fid','oid'];
 	}
 ?>

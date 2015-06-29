@@ -76,4 +76,19 @@ abstract class Controller extends BaseController {
     public function sanitizeName($field) {
         return str_replace(' ', '_', $field);
     }
+
+    public function save($module, $func, $request, $params = array()) {
+        switch ($func) {
+            case 'create':
+                $this->module[$module]->create($request->input());
+                break;
+            case 'update':
+                $data = $this->module[$module]->where('id',$params['id'])->first();
+                $data->fill($request->input())->save();
+                break;
+
+            default:
+                break;
+        }
+    }
 }

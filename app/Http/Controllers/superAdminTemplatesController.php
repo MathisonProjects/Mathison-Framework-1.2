@@ -18,10 +18,7 @@ class superAdminTemplatesController extends Controller
     }
 
     public function store(Request $request) {
-        $this->module['templates']->insert([
-            'templatename' => $request->get('templatename'),
-            'datatext'     => $request->get('datatext')]);
-        return redirect('admin/super/template/');
+        parent::save('templates','create',$request);
     }
 
     public function show($id) {
@@ -35,9 +32,7 @@ class superAdminTemplatesController extends Controller
     }
 
     public function update($id,Request $request) {
-        $templates = $this->module['templates']->where('id',$id)->first();
-        $templates->fill($request->input())->save();
-        return redirect('admin/super/template/'.$id);
+        parent::save('templates','update',$request, array('id' => $id));
     }
 
     public function destroy($id) {

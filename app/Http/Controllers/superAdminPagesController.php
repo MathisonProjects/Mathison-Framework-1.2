@@ -21,11 +21,7 @@ class superAdminPagesController extends Controller
     }
 
     public function store(Request $request) {
-        $this->module['pages']->insert([
-            'stringurl' => $request->get('stringurl'),
-            'tid'       => $request->get('tid'),
-            'datatext'  => $request->get('datatext')]);
-        return redirect('admin/super/pages/');
+        parent::save('pages','create',$request);
     }
 
     public function show($id) {
@@ -50,9 +46,7 @@ class superAdminPagesController extends Controller
     }
 
     public function update($id,Request $request) {
-        $page = $this->module['pages']->where('id',$id)->first();
-        $page->fill($request->input())->save();
-        return redirect('admin/super/pages/'.$id);
+        parent::save('pages','update',$request, array('id' => $id));
     }
 
     public function destroy($id) {
