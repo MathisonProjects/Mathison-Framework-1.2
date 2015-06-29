@@ -9,7 +9,8 @@ use DB;
 
 class SuperAdminController extends Controller {
 	public function index() {
-		return $this->launchView('index', array());
+		$menu = $this->menu;
+		return view('superAdmin.index', compact('menu'));
 	}
 
 	public function viewRecords(mfwobjects $object) {	
