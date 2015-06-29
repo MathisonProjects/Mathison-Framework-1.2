@@ -21,7 +21,7 @@ class superAdminPagesController extends Controller
     }
 
     public function store(Request $request) {
-        parent::save('pages','create',$request);
+        parent::save('create',$request);
     }
 
     public function show($id) {
@@ -46,7 +46,7 @@ class superAdminPagesController extends Controller
     }
 
     public function update($id,Request $request) {
-        parent::save('pages','update',$request, array('id' => $id));
+        parent::save('update',$request, array('id' => $id));
     }
 
     public function destroy($id) {

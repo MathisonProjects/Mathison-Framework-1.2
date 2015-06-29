@@ -3,13 +3,6 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\mfwobjects;
-use App\mfwworkflows;
-use App\mfwobjectrelationships;
-use App\mfwmanageforms;
-use App\mfwapis;
-use App\mfwformprocessings;
-use App\mfwtemplates;
 use DB;
 
 class superAdminApiController extends Controller
@@ -26,11 +19,11 @@ class superAdminApiController extends Controller
     }
 
     public function store(Request $request) {
-        parent::save('apis','create',$request);
+        parent::save('create',$request);
     }
 
     public function show($id) {
-        $api = array('api' => mfwapis::where('id', $id)->first());
+        $api = array('api' => $this->module['apis']->where('id', $id)->first());
         return $this->launchView('api.view',$api);
     }
 
@@ -39,7 +32,7 @@ class superAdminApiController extends Controller
     }
 
     public function update(request $request, $id) {
-        parent::save('pages','update',$request, array('id' => $id));
+        parent::save('update',$request, array('id' => $id));
     }
 
     public function destroy($id) {

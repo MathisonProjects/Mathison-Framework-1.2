@@ -18,7 +18,7 @@ class superAdminTemplatesController extends Controller
     }
 
     public function store(Request $request) {
-        parent::save('templates','create',$request);
+        parent::save('create',$request);
     }
 
     public function show($id) {
@@ -32,7 +32,7 @@ class superAdminTemplatesController extends Controller
     }
 
     public function update($id,Request $request) {
-        parent::save('templates','update',$request, array('id' => $id));
+        parent::save('update',$request, array('id' => $id));
     }
 
     public function destroy($id) {

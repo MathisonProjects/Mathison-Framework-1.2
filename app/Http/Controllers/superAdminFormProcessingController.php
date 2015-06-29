@@ -16,8 +16,7 @@ class superAdminFormProcessingController extends Controller {
         return $this->launchView('formprocessing.create',array());
 	}
 
-	public function store(Request $request)
-	{
+	public function store(Request $request) {
 		$api    = $this->module['apis']->where('randomid', $request->get('apiId'))->first();
 		$object = $this->module['objects']->where('id', $api['oid'])->first();
 		$input = array();

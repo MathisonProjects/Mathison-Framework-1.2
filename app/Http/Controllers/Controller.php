@@ -23,10 +23,12 @@ abstract class Controller extends BaseController {
 	public $post;
     public $db_prefix = 'mfwcus_';
     public $workflow;
+    private $currentModule;
 
     public function __construct() {
         $this->loadModule();
         $this->loadMenu();
+        $this->currentModule = lcfirst(str_replace('Controller', '', str_replace('App\Http\Controllers\superAdmin', '', get_class($this))));
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->post = $_POST;
@@ -77,13 +79,13 @@ abstract class Controller extends BaseController {
         return str_replace(' ', '_', $field);
     }
 
-    public function save($module, $func, $request, $params = array()) {
+    public function save($func, $request, $params = array()) {
         switch ($func) {
             case 'create':
-                $this->module[$module]->create($request->input());
+                $this->module[$this->currentModule]->create($request->input());
                 break;
             case 'update':
-                $data = $this->module[$module]->where('id',$params['id'])->first();
+                $data = $this->module[$this->currentModule]->where('id',$params['id'])->first();
                 $data->fill($request->input())->save();
                 break;
 
