@@ -14,7 +14,7 @@ class SuperAdminController extends Controller {
 	}
 
 	public function viewRecords(mfwobjects $object) {	
-		$fields = $this->module['objects']->where('oid', $object->id)->get();
+		$fields = $this->module['objects']->where('oid', $object->id)->orderBy('id')->get();
 		$records = DB::table($this->db_prefix.$object->name)->get();
 		$description = $object->objectDescription;
 		$dbName = $object->name;
