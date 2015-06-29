@@ -12,6 +12,7 @@ use App\mfwapis;
 use App\mfwformprocessings;
 use App\mfwtemplates;
 use App\mfwpages;
+use App\mfwpdfs;
 use DB;
 
 abstract class Controller extends BaseController {
@@ -57,6 +58,7 @@ abstract class Controller extends BaseController {
         $this->module['formprocessing'] = new mfwformprocessings;
         $this->module['templates']      = new mfwtemplates;
         $this->module['pages']          = new mfwpages;
+        $this->module['pdfs']           = new mfwpdfs;
     }
 
     private function loadMenu() {

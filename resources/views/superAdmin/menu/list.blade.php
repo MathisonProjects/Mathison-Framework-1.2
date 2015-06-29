@@ -1,25 +1,27 @@
 @extends('superAdmin.menu.frame')
 
 @section('menu')
-	@include('superAdmin.menu.list.objects')
-	@include('superAdmin.menu.list.relationships')
-	<li></li><li class="divider"></li>
-	@include('superAdmin.menu.list.apis')
-	@include('superAdmin.menu.list.middleware')
-	<li></li><li class="divider"></li>
-	@include('superAdmin.menu.list.templates')
-	@include('superAdmin.menu.list.pages')
-	<li></li><li class="divider"></li>
-	@include('superAdmin.menu.list.forms')
-	@include('superAdmin.menu.list.formprocessing')
-	@include('superAdmin.menu.list.customreports')
-	<li></li><li class="divider"></li>
-	@include('superAdmin.menu.list.workflows')
-	@include('superAdmin.menu.list.pdf')
-	@include('superAdmin.menu.list.requiredfiles')
-	@include('superAdmin.menu.list.unittests')
-	<li></li><li class="divider"></li>
-	@include('superAdmin.menu.list.marketing')
-	<li></li><li class="divider"></li>
-	@include('superAdmin.menu.list.other')
+	<?php $divider = '<li></li><li class="divider"></li>'; $list = 'superAdmin.menu.list.' ?>
+	@include($list.'objects')
+	@include($list.'relationships')
+	{!! $divider !!}
+	@include($list.'apis')
+	@include($list.'middleware')
+	{!! $divider !!}
+	@include($list.'templates')
+	@include($list.'pages')
+	{!! $divider !!}
+	@include($list.'forms')
+	@include($list.'formprocessing')
+	{!! $divider !!}
+	@include($list.'pdf')
+	@include($list.'customreports')
+	{!! $divider !!}
+	@include($list.'workflows')
+	@include($list.'requiredfiles')
+	@include($list.'unittests')
+	{!! $divider !!}
+	@include($list.'marketing')
+	{!! $divider !!}
+	@include($list.'other')
 @stop

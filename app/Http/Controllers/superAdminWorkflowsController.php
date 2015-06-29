@@ -46,15 +46,14 @@ class superAdminWorkflowsController extends Controller {
 	}
 
 	public function update($id,request $request) {
-		echo '<pre>';
-		print_r($request->input());
-		echo '</pre>';
+
 		$workflow = $this->module['workflows']->where('id',$id)->first();
         $workflow->fill($request->input())->save();
 	}
 
 	public function destroy($id) {
-		//
+		$this->module['workflows']->destroy($id);
+		return redirect('superAdmin.workflows');
 	}
 	
 	private function launchView($view,$compact) {
