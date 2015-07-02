@@ -9,6 +9,6 @@
 	
 	class mfwpdfs extends Eloquent {
 	    protected $table = 'mfwreports';
-		protected $fillable = [];
+		protected $fillable = ['oid','jsonreportparsing'];
 	}
 ?>
