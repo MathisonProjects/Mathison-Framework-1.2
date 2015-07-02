@@ -10,8 +10,8 @@
         "illuminate/html": "5.*",
         "elibyy/laravel-tcpdf": "0.*",
         "divinityfound/arraytobootstraptable": "dev-master",
-        "Divinityfound/OffSiteCredentialsGrabber": "dev-master",
-        "Divinityfound/credentialsWebApi": "dev-master"
+        "divinityfound/offsitecredentials": "dev-master",
+        "divinityfound/credentialskeysapi": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
