@@ -8,6 +8,10 @@ class CreateReportsTable extends Migration {
         Schema::create('mfwreports', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('name');
+            $table->integer('oid');
+            $table->string('description')->nullable();
+            $table->binary('jsonreportparsing');
         });
     }
 
