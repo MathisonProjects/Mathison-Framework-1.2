@@ -9,6 +9,7 @@
 		"laravel/framework": "~5.0",
         "illuminate/html": "5.*",
         "elibyy/laravel-tcpdf": "0.*",
+        "enyo/dropzone": "*",
         "divinityfound/arraytobootstraptable": "dev-master",
         "divinityfound/offsitecredentials": "dev-master",
         "divinityfound/credentialskeysapi": "dev-master"

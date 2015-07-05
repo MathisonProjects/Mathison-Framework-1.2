@@ -22,6 +22,12 @@
 			{!! Form::radio('default', '1'); !!} True<br />
 			{!! Form::radio('default', '0'); !!} False<br />
 		</div>
+		<div class='form-group'>
+			<label for='redirect'>Redirect:</label><br />
+			{!! Form::radio('redirect', '1'); !!} True<br />
+			{!! Form::radio('redirect', '0'); !!} False<br />
+		</div>
+
 		{!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-12']) !!}
 	</div>
 </div>

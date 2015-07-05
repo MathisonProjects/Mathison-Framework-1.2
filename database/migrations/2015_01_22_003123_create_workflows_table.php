@@ -17,6 +17,7 @@ class CreateWorkflowsTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->boolean('default');
+			$table->boolean('redirect');
 			$table->string('name');
 			$table->string('referrerOrigin');
 			$table->string('originaldestination');

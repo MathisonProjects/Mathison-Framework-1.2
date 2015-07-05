@@ -9,7 +9,7 @@
 	class mfwworkflows extends Eloquent {
 
 	    protected $table = 'mfwworkflows';
-		protected $fillable = ['name', 'referrerOrigin', 'originaldestination','finaldestination','default'];
+		protected $fillable = ['name', 'referrerOrigin', 'originaldestination','finaldestination','default','redirect'];
 
 		public $referrer;
 
@@ -26,6 +26,7 @@
 			} else {
 				self::insert([array(
 					'default'             => 1,
+					'redirect'			  => 1,
 					'name'                => 'N/A',
 					'referrerOrigin'      => $this->referrer,
 					'originaldestination' => $this->referrer,

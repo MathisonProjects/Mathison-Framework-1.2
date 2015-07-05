@@ -10,10 +10,10 @@ class superAdminWorkflowsController extends Controller {
 
 	public function index() {
 		$tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
-			$keys = array('View'                                                                                                          , 'Edit'                                                                                                          , 'Delete'                                                                                                            , 'Workflow Name' , 'Default'      , 'Referrer'            , 'Old Destination'          , 'New Destination');
+			$keys = array('View'                                                                                                          , 'Edit'                                                                                                          , 'Delete'                                                                                                            , 'Workflow Name' , 'Default'      , 'Redirect'      , 'Referrer'            , 'Old Destination'          , 'New Destination');
 		$items = array();
 		foreach ($this->menu['workflows'] as $key => $item) {
-			$array = array('<a href="/admin/super/workflows/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>' , '<a href="/admin/super/workflows/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>' , '<a href="/admin/super/workflows/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>' , $item->name     , $item->default , $item->referrerOrigin , $item->originaldestination , $item->finaldestination);
+			$array = array('<a href="/admin/super/workflows/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>' , '<a href="/admin/super/workflows/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>' , '<a href="/admin/super/workflows/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>' , $item->name     , $item->default , $item->redirect , $item->referrerOrigin , $item->originaldestination , $item->finaldestination);
 			array_push($items, $array);
 		}
 
