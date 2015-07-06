@@ -101,4 +101,5 @@ abstract class Controller extends BaseController {
         $compact['menu'] = $this->menu;
         return view('superAdmin.'.$this->currentModule.'.'.$view,$compact);
     }
+
 }

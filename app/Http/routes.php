@@ -76,3 +76,5 @@ Route::group(['prefix' => '/admin/super/'], function() {
 get('/admin/', 'adminController@index');
 // Front Controller
 get('/{custom_url}', 'pagesController@index');
+
+post('/upload', 'superAdminController@uploads');

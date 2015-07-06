@@ -110,4 +110,9 @@ class SuperAdminController extends Controller {
 	public function viewRequired() {
 		return null;
 	}
+
+	public function uploads(Request $request) {
+		$file = $request->file('file');
+		$file->move('uploads', $file->getClientOriginalName());
+	}
 }
