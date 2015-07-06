@@ -1,6 +1,6 @@
 <html>
 	<head>
-		@include('superAdmin.head')
+		@include('superAdmin.master.head')
 		@yield('header')
 	</head>
 	<body>
@@ -19,6 +19,6 @@
 			</div>
 		</div>
 		@yield('modal')
-		@include('superAdmin.bootstrap-footer')
+		@include('superAdmin.master.bootstrap-footer')
 	</body>
 </html>
