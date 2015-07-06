@@ -44,6 +44,15 @@
 	      			<button type="button" class="btn btn-primary col-md-12 addField add_Submit">Add Submit</button>
 	      		</div>
 	      	</div>
+	      	<br />
+	      	<div class="row">
+	      		<div class='col-md-4' style='text-align: center;'>
+	      			<button type="button" class="btn btn-primary col-md-12 addField add_File">Add File Upload</button>
+	      		</div>
+	      		<div class='col-md-4' style='text-align: center;'>
+	      			<button type="button" class="btn btn-primary col-md-12 addField add_Password">Add Password</button>
+	      		</div>
+	      	</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

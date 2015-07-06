@@ -59,3 +59,6 @@ $( document ).ready(function() {
   function add_Submit(totalFields,name) {
     return '<input type="text" placeholder="Submit Display" class="form-control" maxlength="255"'+name+' />';
   }
+  function add_File(totalFields,name) {
+    return '<input type="text" placeholder="File Display" class="form-control" maxlength="255"'+name+' />';
+  }
