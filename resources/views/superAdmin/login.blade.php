@@ -1,7 +1,9 @@
 @extends('superAdmin.master')
 
 @section('content')
-
+	@if (session('Logout'))
+		<h2>{{ session('Logout') }}</h2>
+	@endif
 	@if ($count == 0)
 		{!! Form::open(['url'=>'admin/super/createAdmin/']) !!}
 	@else

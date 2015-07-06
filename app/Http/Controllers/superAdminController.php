@@ -42,6 +42,11 @@ class SuperAdminController extends Controller {
 		return redirect()->back()->with('Login','Login Successful');
 	}
 
+	public function logout() {
+		$this->module['accounts']->logout();
+		return redirect('/admin/super/')->with('Logout', 'Logout Successful');
+	}
+
 	public function viewRecords(mfwobjects $object) {	
 		$fields = $this->module['objects']->where('oid', $object->id)->orderBy('id')->get();
 		$records = DB::table($this->db_prefix.$object->name)->get();

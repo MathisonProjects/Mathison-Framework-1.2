@@ -15,3 +15,6 @@
 		</li>
 	</ul>
 </li>
+<li class="dropdown">
+	<a href="/admin/super/logout">Logout</a>
+</li>

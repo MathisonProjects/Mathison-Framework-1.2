@@ -1,7 +1,7 @@
 @extends('superAdmin.master')
 
 @section('content')
-	@if (isset(session('Login')))
+	@if (session('Login'))
 		<h2>{{ session('Login') }}</h2>
 	@endif
 	<h1>MFW 1.2 Super Administrative Panel</h1>

@@ -42,7 +42,7 @@
 		}
 
 		public function logout() {
-			Session::flush;
+			Session::flush();
 		}
 	}
 ?>
