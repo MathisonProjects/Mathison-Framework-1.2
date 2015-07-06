@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8b52c11e502a552c3dc5c2660481b7c3",
+    "hash": "3ef96f1eb3bb4ae63e4df180d552308a",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -317,16 +317,16 @@
         },
         {
             "name": "elibyy/laravel-tcpdf",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elibyy/laravel-tcpdf.git",
-                "reference": "30f6f0013709249d153fa9b26a8b5215a0d7ae11"
+                "reference": "e21da5c63d66c0042fbf87dcfd6510eec4bc94b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elibyy/laravel-tcpdf/zipball/30f6f0013709249d153fa9b26a8b5215a0d7ae11",
-                "reference": "30f6f0013709249d153fa9b26a8b5215a0d7ae11",
+                "url": "https://api.github.com/repos/elibyy/laravel-tcpdf/zipball/e21da5c63d66c0042fbf87dcfd6510eec4bc94b7",
+                "reference": "e21da5c63d66c0042fbf87dcfd6510eec4bc94b7",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +355,43 @@
                 "laravel",
                 "pdf"
             ],
-            "time": "2015-06-28 09:18:28"
+            "time": "2015-07-06 12:44:37"
+        },
+        {
+            "name": "enyo/dropzone",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enyo/dropzone.git",
+                "reference": "7ca4dc49a79a360763d6002a83e5968109b33cd5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/enyo/dropzone/zipball/7ca4dc49a79a360763d6002a83e5968109b33cd5",
+                "reference": "7ca4dc49a79a360763d6002a83e5968109b33cd5",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matias Meno",
+                    "email": "m@tias.me",
+                    "homepage": "http://www.matiasmeno.com"
+                }
+            ],
+            "description": "Handles drag and drop of files for you.",
+            "homepage": "http://www.dropzonejs.com",
+            "keywords": [
+                "drag and drop",
+                "dragndrop",
+                "file upload",
+                "upload"
+            ],
+            "time": "2015-04-28 14:19:53"
         },
         {
             "name": "illuminate/html",
@@ -554,12 +590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ea52f5949daed290c9a3381ba6e839767cc79866"
+                "reference": "dbb3eebf0818c584686ffb6a42a25db30cdf0440"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ea52f5949daed290c9a3381ba6e839767cc79866",
-                "reference": "ea52f5949daed290c9a3381ba6e839767cc79866",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dbb3eebf0818c584686ffb6a42a25db30cdf0440",
+                "reference": "dbb3eebf0818c584686ffb6a42a25db30cdf0440",
                 "shasum": ""
             },
             "require": {
@@ -674,7 +710,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-07-02 14:06:05"
+            "time": "2015-07-06 13:43:47"
         },
         {
             "name": "league/flysystem",
@@ -682,16 +718,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "e9babd47e287992ece27cfc97b6e10bfac908943"
+                "reference": "f7f546646a9b8398c517d110d9d6bf3c56278894"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e9babd47e287992ece27cfc97b6e10bfac908943",
-                "reference": "e9babd47e287992ece27cfc97b6e10bfac908943",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f7f546646a9b8398c517d110d9d6bf3c56278894",
+                "reference": "f7f546646a9b8398c517d110d9d6bf3c56278894",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -756,7 +791,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-06-25 18:33:43"
+            "time": "2015-07-06 08:15:13"
         },
         {
             "name": "monolog/monolog",
@@ -764,12 +799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "ceeb33f5213d8ef383bb8f1d46a5922b4666c8aa"
+                "reference": "6dd76b944d42d7b27bb3d09cd0f6fa88a80817f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/ceeb33f5213d8ef383bb8f1d46a5922b4666c8aa",
-                "reference": "ceeb33f5213d8ef383bb8f1d46a5922b4666c8aa",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6dd76b944d42d7b27bb3d09cd0f6fa88a80817f5",
+                "reference": "6dd76b944d42d7b27bb3d09cd0f6fa88a80817f5",
                 "shasum": ""
             },
             "require": {
@@ -832,7 +867,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-06-30 22:26:19"
+            "time": "2015-07-05 21:09:41"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -931,12 +966,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "fd7ee2e083860f40a1f7f51a3db449b5a734bab5"
+                "reference": "1d62e9d8cc1ad4fda32e33d42682453dc2e32cb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fd7ee2e083860f40a1f7f51a3db449b5a734bab5",
-                "reference": "fd7ee2e083860f40a1f7f51a3db449b5a734bab5",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1d62e9d8cc1ad4fda32e33d42682453dc2e32cb5",
+                "reference": "1d62e9d8cc1ad4fda32e33d42682453dc2e32cb5",
                 "shasum": ""
             },
             "require": {
@@ -968,7 +1003,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-06-20 10:34:10"
+            "time": "2015-07-05 18:17:52"
         },
         {
             "name": "psr/log",
@@ -2099,16 +2134,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "dev-master",
+            "version": "2.3.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "36c1e97d59630888fd022a542b1650ae5eab1f18"
+                "reference": "5858b8b111023248ff8e9fc50e914c54118cd3ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/36c1e97d59630888fd022a542b1650ae5eab1f18",
-                "reference": "36c1e97d59630888fd022a542b1650ae5eab1f18",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/5858b8b111023248ff8e9fc50e914c54118cd3ff",
+                "reference": "5858b8b111023248ff8e9fc50e914c54118cd3ff",
                 "shasum": ""
             },
             "require": {
@@ -2173,7 +2208,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-06-22 14:53:22"
+            "time": "2015-07-04 10:12:31"
         },
         {
             "name": "phpspec/prophecy",
@@ -2481,12 +2516,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "21b619c6f0386a06d1646f401a398af3d33fc047"
+                "reference": "dbf851f497ed0055290f70c5a9d4877967405884"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/21b619c6f0386a06d1646f401a398af3d33fc047",
-                "reference": "21b619c6f0386a06d1646f401a398af3d33fc047",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/dbf851f497ed0055290f70c5a9d4877967405884",
+                "reference": "dbf851f497ed0055290f70c5a9d4877967405884",
                 "shasum": ""
             },
             "require": {
@@ -2545,7 +2580,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-06-25 05:24:49"
+            "time": "2015-07-06 05:45:08"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2553,18 +2588,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "a1304c50e6982bf6d1fa5131ee276bbc6229d80b"
+                "reference": "e4862226480f86ea18ef773212ec1e2acd42ba64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/a1304c50e6982bf6d1fa5131ee276bbc6229d80b",
-                "reference": "a1304c50e6982bf6d1fa5131ee276bbc6229d80b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/e4862226480f86ea18ef773212ec1e2acd42ba64",
+                "reference": "e4862226480f86ea18ef773212ec1e2acd42ba64",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "~1.0,>=1.0.2",
                 "php": ">=5.3.3",
-                "phpunit/php-text-template": "~1.2"
+                "phpunit/php-text-template": "~1.2",
+                "sebastian/exporter": "~1.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.4"
@@ -2600,7 +2636,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-06-21 08:04:07"
+            "time": "2015-07-04 15:35:39"
         },
         {
             "name": "sebastian/comparator",
