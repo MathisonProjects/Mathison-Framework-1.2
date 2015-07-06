@@ -16,20 +16,19 @@ use App\mfwpdfs;
 use App\mfwreports;
 use App\mfwaccounts;
 use DB;
+use Session;
 
 abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
-    public $module;
-	public $menu;
-	public $post;
+    public $module, $menu, $post, $user, $workflow;
     public $db_prefix = 'mfwcus_';
-    public $workflow;
     private $currentModule;
 
     public function __construct() {
         $this->loadModule();
         $this->loadMenu();
+        $this->user = $this->module['accounts']->getAccount();
         $this->currentModule = lcfirst(str_replace('Controller', '', str_replace('App\Http\Controllers\superAdmin', '', get_class($this))));
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -37,6 +36,10 @@ abstract class Controller extends BaseController {
             $this->workflow['referrer'] = $_SERVER['HTTP_REFERER'];
             if (isset($_POST['destination'])) {
                 $this->workflow['destination'] = $_POST['destination'];
+            }
+        } else {
+            if ($this->user->sessionid == null && $_SERVER["REQUEST_URI"] != '/admin/super') {
+                $this->jsRedirect('/admin/super/');
             }
         }
     }
@@ -46,9 +49,9 @@ abstract class Controller extends BaseController {
             $workflow = $this->module['workflows']->setReferrer($this->workflow['referrer'])->checkWorkflowItem();
             if ($workflow->redirect == 1) {
                 if ($workflow->finaldestination == '' || $workflow->default == 1) {
-                    die("<script>location.href = '".$workflow->originaldestination."'</script>");
+                    $this->jsRedirect($workflow->originaldestination);
                 } else {
-                    die("<script>location.href = '".$workflow->finaldestination."'</script>");
+                    $this->jsRedirect($workflow->finaldestination);
                 }
             }
         }
@@ -104,4 +107,7 @@ abstract class Controller extends BaseController {
         return view('superAdmin.'.$this->currentModule.'.'.$view,$compact);
     }
 
+    public function jsRedirect($where) {
+        die("<script>location.href = '".$where."'</script>");
+    }
 }

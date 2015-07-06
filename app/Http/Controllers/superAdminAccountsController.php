@@ -35,4 +35,8 @@ class superAdminAccountsController extends Controller {
     public function destroy($id) {
         //
     }
+
+    public function verify($hash) {
+        $this->module['accounts']->verify($hash);
+    }
 }

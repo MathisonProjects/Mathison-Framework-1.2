@@ -9,8 +9,18 @@ use DB;
 
 class SuperAdminController extends Controller {
 	public function index() {
-		$menu = $this->menu;
-		return view('superAdmin.index', compact('menu'));
+		if ($this->module['accounts']->username != '') {
+			$menu = $this->menu;
+			return view('superAdmin.index', compact('menu'));
+		} else {
+			$message = 'Set your Super Admin Account';
+			
+			if ($this->module['accounts']->count() > 0) {
+				$message = 'Use your Super Admin credentials';
+			}
+
+			return view('superAdmin.login', compact('message'));
+		}
 	}
 
 	public function viewRecords(mfwobjects $object) {	
