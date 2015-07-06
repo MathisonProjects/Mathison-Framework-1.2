@@ -1,7 +1,12 @@
 @extends('superAdmin.master')
 
 @section('content')
-	{!! Form::open() !!}
+
+	@if ($count == 0)
+		{!! Form::open(['url'=>'admin/super/createAdmin/']) !!}
+	@else
+		{!! Form::open(['url'=>'admin/super/adminLogin/']) !!}
+	@endif
 	<div class='row'>
 		<div class='col-md-4'></div>
 		<div class='row col-md-4'>

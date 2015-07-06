@@ -9,18 +9,37 @@ use DB;
 
 class SuperAdminController extends Controller {
 	public function index() {
-		if ($this->module['accounts']->username != '') {
+		if (isset($this->user->email)) {
 			$menu = $this->menu;
 			return view('superAdmin.index', compact('menu'));
 		} else {
 			$message = 'Set your Super Admin Account';
-			
-			if ($this->module['accounts']->count() > 0) {
+			$count = $this->module['accounts']->count();
+			if ($count > 0) {
 				$message = 'Use your Super Admin credentials';
 			}
 
-			return view('superAdmin.login', compact('message'));
+			return view('superAdmin.login', compact('message','count'));
 		}
+	}
+
+	public function createAdmin(Request $request) {
+		if ($this->module['accounts']->count() < 1) {
+			$hash = md5(time());
+			$this->module['accounts']->insert([array(
+				'accountlevel' => 0,
+				'email' => $request->input('email'),
+				'password' => md5($request->input('password').$hash),
+				'hash' => $hash,
+				'active' => 1
+			)]);
+			$this->module['accounts']->login($request);
+		}
+	}
+
+	public function adminLogin(Request $request) {
+		$this->module['accounts']->login($request);
+		return redirect()->back()->with('Login','Login Successful');
 	}
 
 	public function viewRecords(mfwobjects $object) {	

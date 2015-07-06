@@ -41,6 +41,8 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		array('post' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
 		array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
 		array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
+		array('post' , 'createAdmin'    					 , 'createAdmin')		     ,
+		array('post' , 'adminLogin'      					 , 'adminLogin')       		 ,
 		);
 
 	foreach ($superAdminList as $item) {

@@ -16,11 +16,12 @@
 		}
 
 		public function login($request) {
-			$this->where('email', $request->input('email'));
-			if ($this->password == md5($request->password.$this->hash)) {
-				$this->sessionid = md5(time().$this->hash);
-				$this->save();
-				Session::put('sessionid', $this->sessionid);
+			Session::pull('sessionid');
+			$data = self::where('email', $request->input('email'))->first();
+			if ($data->password == md5($request->input('password').$data->hash) && $data->active == 1) {
+				$data->sessionid = md5(time().$data->hash);
+				$data->save();
+				Session::put('sessionid', $data->sessionid);
 			}
 		}
 
@@ -31,11 +32,13 @@
 		}
 
 		public function getAccount() {
-			$value = Session::get('sessionid', null);
+			$value = Session::get('sessionid');
+
+			$data = null;
 			if ($value != null) {
-				$this->where('sessionid', $value);
+				$data = self::where('sessionid', $value)->first();
 			}
-			return $this;
+			return $data;
 		}
 
 		public function logout() {
