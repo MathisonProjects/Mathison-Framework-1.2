@@ -53,4 +53,49 @@ class superAdminApisController extends Controller
         }
         return $randomString;
     }
+
+    public function runProcess(Request $request) {
+        $api = $this->module['apis']->where('randomid', $request->input('randomid'))->first();
+        $object = array();
+        $object[0] = $this->modules['objects']->where('id', $api->oid)->first();
+        $object[1] = $this->modules['objects']->where('oid', $api->oid)->get();
+        $object[2] = $this->db_prefix.$object[0]->name;
+        $object[3] = DB::table($object[2]);
+        if ($request->input('id')) {
+            $object[4] = $object[3]->where('id', $request->input('id'));
+        }
+
+        switch ($api->action) {
+            case 'create':
+                $this->modules['objects']->insertCustomData($object[2],$object[1],$request->input());
+                return true;
+                break;
+
+            case 'update':
+                return true;
+                break;
+
+            case 'return_one':
+                return true;
+                break;
+
+            case 'return_all':
+                return json_encode($object[3]->get());
+                break;
+
+            case 'delete_one':
+                $object[4]->delete();
+                return true;
+                break;
+
+            case 'delete_all':
+                $object[2]->delete();
+                return true;
+                break;
+            
+            default:
+                return false;
+                break;
+        }
+    }
 }

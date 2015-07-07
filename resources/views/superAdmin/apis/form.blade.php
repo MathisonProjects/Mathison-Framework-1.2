@@ -11,7 +11,13 @@
 		</div>
 		<div class='form-group'>
 			{!! Form::label('action', 'Action') !!}
-			{!! Form::select('action', array('' => 'Please Select Action', 'create' => 'Create', 'update' => 'Update', 'return_one' => 'Return Record', 'return_all' => 'Return Records', 'delete_one' => 'Delete Record', 'delete_all' => 'Delete Records'), '', ['class' => 'form-control']) !!}
+			{!! Form::select('action', array('' => 'Please Select Action',
+											'create' => 'Create',
+											'update' => 'Update',
+											'return_one' => 'Return Record',
+											'return_all' => 'Return Records',
+											'delete_one' => 'Delete Record',
+											'delete_all' => 'Delete Records'), '', ['class' => 'form-control']) !!}
 		</div>
 		<div class='form-group'>
 			<?php
