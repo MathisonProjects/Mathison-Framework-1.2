@@ -72,11 +72,18 @@ class superAdminApisController extends Controller
                 break;
 
             case 'update':
+                $update = array();
+                foreach ($object[1] as $value) {
+                    if ($value != 'id') {
+                        $update[$value] = $request->input($value);
+                    }
+                }
+                $object[4]->update($update);
                 return true;
                 break;
 
             case 'return_one':
-                return true;
+                return json_encode($object[4]->first());
                 break;
 
             case 'return_all':
