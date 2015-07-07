@@ -31,9 +31,18 @@
 				<i><span class='glyphicon glyphicon-align-justify'></span></i> Create Report</button>
 		</div>
 		<div class='col-md-2' style='text-align: center;'>
-			<button type='button' class='btn btn-primary deleteObject' data-toggle="modal" data-target="#deleteObject">      
-				<i><span class='glyphicon glyphicon-minus'></span></i> Delete Object</button>
+			<button type='button' class='btn btn-primary deleteObject' data-toggle="modal" data-target="#deleteObject"><i><span class='glyphicon glyphicon-minus'></span></i> Delete Object</button>
 		</div>
+	</div>
+	<br />
+	<div class='row'>
+		<div class='col-md-2' style='text-align: center;'>
+			<button type='button' class='btn btn-primary importData' data-toggle='modal' data-target='#importData'><i><span class='glyphicon glyphicon-import'></span></i> Import CSV</button>
+		</div>
+		<div class='col-md-2' style='text-align: center;'>
+			<button type='button' class='btn btn-primary exportData' data-toggle='modal' data-target='#exportData'><i><span class='glyphicon glyphicon-export'></span></i> Export CSV</button>
+		</div>
+
 	</div>
 	<br />
 	{!! $table !!}
@@ -45,4 +54,5 @@
 	@include('modals.createAPI')
 	@include('modals.createForm')
 	@include('modals.deleteObject')
+	@include('modals.importData')
 @stop

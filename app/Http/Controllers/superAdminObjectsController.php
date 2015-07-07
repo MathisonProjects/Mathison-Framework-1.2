@@ -57,4 +57,9 @@ class superAdminObjectsController extends Controller {
 		$this->module['objects']->dropCustomTables($this->db_prefix,$id);
 		return redirect('/admin/super/objects');
 	}
+
+	public function import($id, Request $request) {
+		$object = $this->module['objects']->where('id', $id)->first();
+		$fields = $this->module['objects']->where('oid', $id)->get();
+	}
 }
