@@ -11,10 +11,10 @@ class superAdminObjectsController extends Controller {
 	static $miscData = array();
 
 	public function index() {
-		$keys = array('Object Name', 'Description', 'Delete');
+		$keys = array('Object Name', 'Description', 'Total Records', 'Delete');
 		$items = array();
 		foreach ($this->menu['objects'] as $key => $item) {
-			array_push($items, array('<a href="/admin/super/viewObject/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,'<a href="/admin/super/objects/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>'));
+			array_push($items, array('<a href="/admin/super/viewObject/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,DB::table($this->db_prefix.$item->name)->count(),'<a href="/admin/super/objects/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>'));
 		}
         $table = $this->tableBuilder($keys,$items);
 
