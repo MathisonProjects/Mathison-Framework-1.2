@@ -34,6 +34,7 @@ class SuperAdminController extends Controller {
 				'active' => 1
 			)]);
 			$this->module['accounts']->login($request);
+			return redirect()->back()->with('Login','Login Successful');
 		}
 	}
 
