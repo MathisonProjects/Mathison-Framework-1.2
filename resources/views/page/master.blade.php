@@ -1,6 +1,6 @@
 <html>
 	<head>
-		@include('superAdmin.head')
+		@include('superAdmin.master.head')
 	</head>
 	<body>
 		<div class='container'>
@@ -10,6 +10,6 @@
 				</div>
 			</div>
 		</div>
-		@include('superAdmin.bootstrap-footer')
+		@include('superAdmin.master.bootstrap-footer')
 	</body>
 </html>
