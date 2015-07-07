@@ -9,7 +9,13 @@ class superAdminPagesController extends Controller
 {
     
     public function index() {
-        return $this->launchView('views', array());
+        $keys  = array('View','Edit','Delete','Id','String URL','Template ID');
+        $items = array();
+        foreach ($this->menu['pages'] as $key => $item) {
+            array_push($items, array("<a href='/admin/super/pages/".$item->id."'>".$this->vedIcon['View']."</a>","<a href='/admin/super/pages/".$item->id."/edit'>".$this->vedIcon['Edit']."</a>","<a href='/admin/super/pages/".$item->id."/delete'>".$this->vedIcon['Delete']."</a>",$item->id,$item->stringurl,$item->tid));
+        }
+        $table = $this->tableBuilder($keys,$items);
+        return $this->launchView('views', array('table' => $table));
     }
 
     public function create() {
