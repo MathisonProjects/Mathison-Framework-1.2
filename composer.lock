@@ -122,12 +122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Divinityfound/ArrayToBootstrapTable.git",
-                "reference": "edef843cdb652bfd94aea2b04be74619d53bc40d"
+                "reference": "4326b4fe13fd4ec0b63eba8c47f8fb503e945cc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Divinityfound/ArrayToBootstrapTable/zipball/edef843cdb652bfd94aea2b04be74619d53bc40d",
-                "reference": "edef843cdb652bfd94aea2b04be74619d53bc40d",
+                "url": "https://api.github.com/repos/Divinityfound/ArrayToBootstrapTable/zipball/4326b4fe13fd4ec0b63eba8c47f8fb503e945cc3",
+                "reference": "4326b4fe13fd4ec0b63eba8c47f8fb503e945cc3",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +147,7 @@
                 }
             ],
             "description": "Makes it easier to convert arrays to bootstrap tables.",
-            "time": "2015-06-18 17:21:33"
+            "time": "2015-07-07 19:07:54"
         },
         {
             "name": "divinityfound/credentialskeysapi",
@@ -254,12 +254,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d"
+                "reference": "b0b2feffb47906a03b570777c07044c529d1d124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d",
-                "reference": "e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/b0b2feffb47906a03b570777c07044c529d1d124",
+                "reference": "b0b2feffb47906a03b570777c07044c529d1d124",
                 "shasum": ""
             },
             "require": {
@@ -313,7 +313,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-01-01 18:34:57"
+            "time": "2015-07-07 15:32:45"
         },
         {
             "name": "elibyy/laravel-tcpdf",
@@ -718,12 +718,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f7f546646a9b8398c517d110d9d6bf3c56278894"
+                "reference": "06eff44c429803db6ee3b3c7f3231b4937a6d27a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f7f546646a9b8398c517d110d9d6bf3c56278894",
-                "reference": "f7f546646a9b8398c517d110d9d6bf3c56278894",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/06eff44c429803db6ee3b3c7f3231b4937a6d27a",
+                "reference": "06eff44c429803db6ee3b3c7f3231b4937a6d27a",
                 "shasum": ""
             },
             "require": {
@@ -791,7 +791,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-07-06 08:15:13"
+            "time": "2015-07-07 19:08:06"
         },
         {
             "name": "maatwebsite/excel",

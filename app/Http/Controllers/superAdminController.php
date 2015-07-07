@@ -40,11 +40,14 @@ class SuperAdminController extends Controller {
 
 	public function adminLogin(Request $request) {
 		$this->module['accounts']->login($request);
-		if (session('sessionid') && $this->user->accountlevel == 0) {
-			return redirect()->back()->with('Login','Login Successful');
-		} else {
-			return redirect()->back()->with('Logout','Login credentials incorrect');
+		if (session('sessionid')) {
+			$this->user = $this->module['accounts']->getAccount();
+			if ($this->user->accountlevel == 0) {
+				return redirect()->back()->with('Login','Login Successful');
+			}
 		}
+		return redirect()->back()->with('Logout','Login credentials incorrect');
+		
 	}
 
 	public function logout() {

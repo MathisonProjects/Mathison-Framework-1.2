@@ -115,6 +115,7 @@ abstract class Controller extends BaseController {
         $tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
         return $tableBuilder->setKeys($keys)->
             setValues($items)->
+            addClass('dataTableFormat')->
             buildTable();;
     }
 }
