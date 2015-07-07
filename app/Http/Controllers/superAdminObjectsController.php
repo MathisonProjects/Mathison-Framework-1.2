@@ -5,8 +5,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use DB;
+use Maatwebsite\Excel\Facades\Excel as Excel;
 
 class superAdminObjectsController extends Controller {
+	static $miscData = array();
 
 	public function index() {
 		$keys = array('Object Name', 'Description', 'Delete');
@@ -60,6 +62,26 @@ class superAdminObjectsController extends Controller {
 
 	public function import($id, Request $request) {
 		$object = $this->module['objects']->where('id', $id)->first();
-		$fields = $this->module['objects']->where('oid', $id)->get();
+		self::$miscData['objectName'] = $this->db_prefix.$object->name;
+		self::$miscData['fields'] = $this->module['objects']->where('oid', $id)->get();
+		$file = $request->file('file');
+
+		Excel::load($file, function($reader) {
+            $i = 0;
+            $results = $reader->get();
+
+            foreach ($results as $row) {
+            	$array = array();
+            	foreach (self::$miscData['fields'] as $field) {
+            		$fname = $field->name;
+            		if ($fname != 'id') {
+            			$array[$fname] = $row->$fname;
+            		}
+            	}
+                DB::table(self::$miscData['objectName'])->insert($array);
+                $i++;
+                echo $i.': ROW PROCESSED<br />';
+            }
+        });
 	}
 }
