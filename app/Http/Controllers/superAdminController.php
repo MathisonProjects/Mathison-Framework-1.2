@@ -59,7 +59,39 @@ class SuperAdminController extends Controller {
 		$dbName = $object->name;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
 		$menu = $this->menu;
-		return view('superAdmin.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu'));
+
+		$tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
+        $keys = array();
+        foreach ($fields as $field) {
+        	if ($field->name == 'id') {
+        		array_push($keys,'View');
+        		array_push($keys,'Edit');
+        		array_push($keys,'Delete');
+        	}
+        	array_push($keys,$field->name);
+        }
+        $items = array();
+
+        foreach ($records as $record) {
+        	$data = array();
+        	foreach ($fields as $field) {
+        		$fname = $field->name;
+	        	if ($fname == 'id') {
+	        		array_push($data,"<a href='/admin/super/viewObject/".$dbName."/".$record->id."'><i><span class='glyphicon glyphicon-eye-open'></span></i></a>");
+	        		array_push($data,"<a href='/admin/super/viewObject/".$dbName."/".$record->id."/edit'><i><span class='glyphicon glyphicon-edit'></span></i></a>");
+	        		array_push($data,"<a href='#'><i><span class='glyphicon glyphicon-remove'></span></i></a>");
+	        	}
+
+	        	array_push($data, $record->$fname);
+        	}
+        	array_push($items,$data);
+        }
+
+        $table = $tableBuilder->setKeys($keys)->
+            setValues($items)->
+            buildTable();
+
+		return view('superAdmin.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu','table'));
 	}
 
 	public function createObjectPost() {

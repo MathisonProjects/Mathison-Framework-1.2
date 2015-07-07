@@ -36,30 +36,7 @@
 		</div>
 	</div>
 	<br />
-	<table class='table table-hover table-condensed'>
-		<tr>
-		@foreach ($fields as $field)
-			@if ($field->name == 'id')
-				<th style='width: 60px;text-align: center;'>View</th>
-				<th style='width: 60px;text-align: center;'>Edit</th>
-				<th style='width: 60px;text-align: center;'>Delete</th>
-			@endif
-			<th style='text-align: center;'>{{ $field->name }}</th>
-		@endforeach
-		</tr>
-		@foreach ($records as $record)
-			<tr>
-				@foreach ($fields as $field)
-					@if ($field->name == 'id')
-						<td style='width: 60px;text-align: center;'><a href='/admin/super/viewObject/{{ $dbName }}/{{ $record->id }}'><i><span class='glyphicon glyphicon-eye-open'></span></i></a></td>
-						<td style='width: 60px;text-align: center;'><a href='/admin/super/viewObject/{{ $dbName }}/{{ $record->id }}/edit'><i><span class='glyphicon glyphicon-edit'></span></i></a></td>
-						<td style='width: 60px;text-align: center;'><a href='#'><i><span class='glyphicon glyphicon-remove'></span></i></a></td>
-					@endif
-					<td style='text-align: center;'>{{ $record->{$field->name} }}</td>
-				@endforeach
-			</tr>
-		@endforeach
-	</table>
+	{!! $table !!}
 @stop
 
 @section('modal')
