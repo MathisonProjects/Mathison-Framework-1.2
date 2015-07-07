@@ -25,6 +25,10 @@ abstract class Controller extends BaseController {
     public $module, $menu, $post, $user, $workflow;
     public $db_prefix = 'mfwcus_';
     private $currentModule;
+    public $vedIcon = array(
+        'View'   => "<i><span class='glyphicon glyphicon-eye-open'></span></i>",
+        'Edit'   => "<i><span class='glyphicon glyphicon-edit'></span></i>",
+        'Delete' => "<i><span class='glyphicon glyphicon-remove'></span></i>");
 
     public function __construct() {
         $this->loadModule();

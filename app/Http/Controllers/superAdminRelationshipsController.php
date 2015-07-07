@@ -9,7 +9,13 @@ use DB;
 class superAdminRelationshipsController extends Controller
 {
     public function index() {
-        return $this->launchView('views', array());
+        $keys  = array('View','Edit','Delete','Id','Name','Type');
+        $items = array();
+        foreach ($this->menu['relationships'] as $key => $item) {
+            array_push($items, array($this->vedIcon['View'],$this->vedIcon['Edit'],$this->vedIcon['Delete'],$item->id,$item->name,$item->type));
+        }
+        $table = $this->tableBuilder($keys,$items);
+        return $this->launchView('views', array('table' => $table));
     }
 
     public function create() {

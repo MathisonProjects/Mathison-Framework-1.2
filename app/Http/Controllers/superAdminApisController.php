@@ -9,8 +9,13 @@ class superAdminApisController extends Controller
 {
 
     public function index() {
-        $compact = array('apis' => $this->menu['apis']);
-        return $this->launchView('views',$compact);
+        $keys = array('View', 'Edit', 'Delete', 'Id', 'Random Id', 'Action', 'Name', 'Form Processing Id');
+        $items = array();
+        foreach ($this->menu['apis'] as $key => $item) {
+            array_push($items, array('<a href="/admin/super/apis/'.$item->id.'">'.$this->vedIcon['View'].'</a>','<a href="/admin/super/apis/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>','<a href="/admin/super/apis/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>',$item->id,$item->randomid,$item->action,$item->name,$item->fid));
+        }
+        $table = $this->tableBuilder($keys,$items);
+        return $this->launchView('views',array('table' => $table));
     }
 
     public function create() {
