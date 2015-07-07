@@ -60,7 +60,6 @@ class SuperAdminController extends Controller {
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
 		$menu = $this->menu;
 
-		$tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
         $keys = array();
         foreach ($fields as $field) {
         	if ($field->name == 'id') {
@@ -87,9 +86,7 @@ class SuperAdminController extends Controller {
         	array_push($items,$data);
         }
 
-        $table = $tableBuilder->setKeys($keys)->
-            setValues($items)->
-            buildTable();
+        $table = $this->tableBuilder($keys,$items);
 
 		return view('superAdmin.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu','table'));
 	}

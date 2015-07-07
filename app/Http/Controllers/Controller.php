@@ -110,4 +110,11 @@ abstract class Controller extends BaseController {
     public function jsRedirect($where) {
         die("<script>location.href = '".$where."'</script>");
     }
+
+    public function tableBuilder($keys,$items) {
+        $tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
+        return $tableBuilder->setKeys($keys)->
+            setValues($items)->
+            buildTable();;
+    }
 }

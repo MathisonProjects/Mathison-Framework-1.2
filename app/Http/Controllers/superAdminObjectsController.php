@@ -9,16 +9,12 @@ use DB;
 class superAdminObjectsController extends Controller {
 
 	public function index() {
-		$tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
 		$keys = array('Object Name', 'Description', 'Delete');
 		$items = array();
 		foreach ($this->menu['objects'] as $key => $item) {
 			array_push($items, array('<a href="/admin/super/viewObject/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,'<a href="/admin/super/objects/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>'));
 		}
-
-		$table = $tableBuilder->setKeys($keys)->
-					setValues($items)->
-					buildTable();
+        $table = $this->tableBuilder($keys,$items);
 
 		return $this->launchView('viewObjects', array('table' => $table));
 	}

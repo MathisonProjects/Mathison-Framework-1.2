@@ -9,16 +9,13 @@ use PDF;
 class superAdminPdfsController extends Controller {
 
     public function index() {
-        $tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
         $keys  = array('View','Edit','Delete','PDF Name','Description');
         $items = array();
         foreach ($this->menu['pdfs'] as $key => $item) {
             $array = array('<a href="/admin/super/pdfs/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>' , '<a href="/admin/super/pdfs/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>', '<a href="/admin/super/pdfs/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>', $item->name , $item->description);
             array_push($items, $array);
         }
-        $table = $tableBuilder->setKeys($keys)->
-            setValues($items)->
-            buildTable();
+        $table = $this->tableBuilder($keys,$items);
         return $this->launchView('views', array('table' => $table));
     }
 
