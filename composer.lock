@@ -718,12 +718,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "06eff44c429803db6ee3b3c7f3231b4937a6d27a"
+                "reference": "258dfa65f0b0a471618ae7af1e6cb775df34ad1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/06eff44c429803db6ee3b3c7f3231b4937a6d27a",
-                "reference": "06eff44c429803db6ee3b3c7f3231b4937a6d27a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/258dfa65f0b0a471618ae7af1e6cb775df34ad1c",
+                "reference": "258dfa65f0b0a471618ae7af1e6cb775df34ad1c",
                 "shasum": ""
             },
             "require": {
@@ -791,7 +791,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-07-07 19:08:06"
+            "time": "2015-07-07 19:11:31"
         },
         {
             "name": "maatwebsite/excel",

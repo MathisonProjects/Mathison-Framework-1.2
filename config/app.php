@@ -152,7 +152,7 @@ return [
 		 */
 		'Illuminate\Html\HtmlServiceProvider',
     	'Elibyy\TCPDF\ServiceProvider',
-    	'Maatwebsite\Excel\ExcelServiceProvider',
+    	'Maatwebsite\Excel\ExcelServiceProvider'
 	],
 
 	/*
@@ -200,7 +200,7 @@ return [
 		// Not native to Laravel
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'HTML'		=> 'Illuminate\Html\HtmlFacade',
-		'Excel'     => 'Maatwebsite\Excel\Facades\Excel',
+		'Excel'     => 'Maatwebsite\Excel\Facades\Excel'
 	],
 
 ];

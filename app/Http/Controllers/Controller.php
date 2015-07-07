@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Divinityfound\ArrayToBootstrapTable\Table as Table;
 
 use App\mfwobjects;
 use App\mfwworkflows;
@@ -112,8 +113,8 @@ abstract class Controller extends BaseController {
     }
 
     public function tableBuilder($keys,$items) {
-        $tableBuilder = new \Divinityfound\ArrayToBootstrapTable\Table();
-        return $tableBuilder->setKeys($keys)->
+        $table = new Table();
+        return $table->setKeys($keys)->
             setValues($items)->
             addClass('dataTableFormat')->
             buildTable();;
