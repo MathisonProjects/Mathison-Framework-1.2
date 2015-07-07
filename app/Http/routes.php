@@ -67,7 +67,8 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		'forms'			 => 'Forms',
 		'workflows'		 => 'Workflows',
 		'objects'		 => 'Objects',
-		'reports'		 => 'Reports');
+		'reports'		 => 'Reports',
+		'accounts'		 => 'Accounts');
 
 	foreach ($superAdminControllers as $key => $item) {
 		resource($key , 'superAdmin'.$item.'Controller');

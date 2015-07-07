@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class superAdminAccountsController extends Controller {
     public function index() {
-        //
+        
     }
 
     public function create() {

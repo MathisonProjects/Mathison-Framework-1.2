@@ -3,6 +3,8 @@
 @section('menu')
 	@if (isset($menu))
 		<?php $divider = '<li></li><li class="divider"></li>'; $list = 'superAdmin.menu.list.' ?>
+		@include($list.'accounts')
+		{!! $divider !!}
 		@include($list.'objects')
 		@include($list.'relationships')
 		{!! $divider !!}

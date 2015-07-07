@@ -9,7 +9,7 @@ use DB;
 
 class SuperAdminController extends Controller {
 	public function index() {
-		if (isset($this->user->email)) {
+		if (isset($this->user->email) && $this->user->accountlevel == 0) {
 			$menu = $this->menu;
 			return view('superAdmin.index', compact('menu'));
 		} else {
@@ -40,7 +40,11 @@ class SuperAdminController extends Controller {
 
 	public function adminLogin(Request $request) {
 		$this->module['accounts']->login($request);
-		return redirect()->back()->with('Login','Login Successful');
+		if (session('sessionid') && $this->user->accountlevel == 0) {
+			return redirect()->back()->with('Login','Login Successful');
+		} else {
+			return redirect()->back()->with('Logout','Login credentials incorrect');
+		}
 	}
 
 	public function logout() {

@@ -38,7 +38,7 @@ abstract class Controller extends BaseController {
                 $this->workflow['destination'] = $_POST['destination'];
             }
         } else {
-            if (!isset($this->user->sessionid) && $_SERVER["REQUEST_URI"] != '/admin/super') {
+            if ((!isset($this->user->sessionid) ||$this->user->accountlevel != 0) && $_SERVER["REQUEST_URI"] != '/admin/super') {
                 $this->jsRedirect('/admin/super/');
             }
         }

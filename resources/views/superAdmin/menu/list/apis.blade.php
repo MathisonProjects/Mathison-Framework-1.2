@@ -15,7 +15,7 @@
 				<?php
 				echo ucwords(str_replace('_', ' ',$item->name));
 				?></a>
-			</li>
-			@endforeach
-		</ul>
-	</li>
+		</li>
+		@endforeach
+	</ul>
+</li>
