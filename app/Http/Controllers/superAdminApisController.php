@@ -61,8 +61,11 @@ class superAdminApisController extends Controller
         $object[1] = $this->module['objects']->where('oid', $api->oid)->get();
         $object[2] = $this->db_prefix.$object[0]->name;
         $object[3] = DB::table($object[2]);
-        if ($request->input('id')) {
-            $object[4] = $object[3]->where('id', $request->input('id'));
+        $object[4] = DB::table($object[2]);
+        foreach ($object[1] as $value) {
+            if ($request->input("filter_".$value->name)) {
+                $object[4] = $object[4]->where($value->name, $request->input("filter_".$value->name));
+            }
         }
 
         switch ($api->action) {
