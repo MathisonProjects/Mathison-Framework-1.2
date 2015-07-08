@@ -100,7 +100,7 @@ class superAdminApisController extends Controller
                 break;
             
             default:
-                return false;
+                return 'Invalid API Key';
                 break;
         }
 

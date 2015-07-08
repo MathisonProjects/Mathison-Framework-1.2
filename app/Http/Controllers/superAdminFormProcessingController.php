@@ -17,22 +17,7 @@ class superAdminFormProcessingController extends Controller {
 	}
 
 	public function store(Request $request) {
-		$api    = $this->module['apis']->where('randomid', $request->get('apiId'))->first();
-		$object = $this->module['objects']->where('id', $api['oid'])->first();
-		$input = array();
-		foreach ($request->input() as $key => $value) {
-			if ($key != '_token' && $key != 'apiId') {
-				$input[$key] = $value;
-			}
-		}
-
-		if ($api['action'] == 'create') {
-			DB::table($this->db_prefix.$object['name'])->insert($input);
-		} else if ($api['action'] == 'update') {
-			DB::table($this->db_prefix.$object['name'])->where('id', $request->get('id'))->update($input);
-		}
-
-        return redirect('admin/super/viewObject/'.$object['name']);
+		
 	}
 
 	public function show($id) {
