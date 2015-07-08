@@ -77,6 +77,10 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	}
 });
 
+Route::group(['prefix' => '/api/v1/'], function() {
+	get('/', 'superAdminApisController@runProcess');
+	post('/', 'superAdminApisController@runProcess');
+});
 
 // Admin Controller
 get('/admin/', 'adminController@index');
