@@ -9,7 +9,6 @@ class CreateReportsTable extends Migration {
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->integer('oid');
             $table->string('description')->nullable();
             $table->binary('jsonreportparsing');
         });
