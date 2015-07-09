@@ -16,13 +16,15 @@ use App\mfwpages;
 use App\mfwpdfs;
 use App\mfwreports;
 use App\mfwaccounts;
+use App\mfwsessions;
+use App\mfwconstants;
 use DB;
 use Session;
 
 abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
-    public $module, $menu, $post, $user, $workflow;
+    public $module, $menu, $post, $user, $workflow, $constants;
     public $db_prefix = 'mfwcus_';
     private $currentModule;
     public $vedIcon = array(
@@ -34,6 +36,8 @@ abstract class Controller extends BaseController {
         $this->loadModule();
         $this->loadMenu();
         $this->user = $this->module['accounts']->getAccount();
+        $this->constants = $this->module['constants']->setConst();
+        $this->module['sessions']->startSessions();
         $this->currentModule = lcfirst(str_replace('Controller', '', str_replace('App\Http\Controllers\superAdmin', '', get_class($this))));
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -43,7 +47,7 @@ abstract class Controller extends BaseController {
                 $this->workflow['destination'] = $_POST['destination'];
             }
         } else {
-            if ((!isset($this->user->sessionid) ||$this->user->accountlevel != 0) && $_SERVER["REQUEST_URI"] != '/admin/super' && strpos($_SERVER["REQUEST_URI"], '/admin/super') !== false) {
+            if ((!isset($this->user->sessionid) || $this->user->accountlevel != 0) && $_SERVER["REQUEST_URI"] != '/admin/super' && strpos($_SERVER["REQUEST_URI"], '/admin/super') !== false) {
                 $this->jsRedirect('/admin/super/');
             }
         }
@@ -74,6 +78,8 @@ abstract class Controller extends BaseController {
         $this->module['pdfs']           = new mfwpdfs;
         $this->module['reports']        = new mfwreports;
         $this->module['accounts']       = new mfwaccounts;
+        $this->module['sessions']       = new mfwsessions;
+        $this->module['constants']      = new mfwconstants;
     }
 
     private function loadMenu() {
@@ -109,7 +115,7 @@ abstract class Controller extends BaseController {
 
     public function launchView($view, $compact = array()) {
         $compact['menu'] = $this->menu;
-        return view('superAdmin.'.$this->currentModule.'.'.$view,$compact);
+        return view('superAdmin.modules.'.$this->currentModule.'.'.$view,$compact);
     }
 
     public function jsRedirect($where) {

@@ -12,7 +12,7 @@ class superAdminAccountsController extends Controller {
         $keys = array('Edit','Delete','Account Level', 'Email','Username','Active');
         $items = array();
         foreach ($this->menu['accounts'] as $key => $item) {
-            array_push($items, array("<i><span class='glyphicon glyphicon-edit'></span></i>","<i><span class='glyphicon glyphicon-remove'></span></i>",$item->accountlevel,$item->email,$item->username,$item->active));
+            array_push($items, array('<a href="#">'.$this->vedIcon['Edit'].'</a>','<a href="#">'.$this->vedIcon['Delete'].'</a>',$item->accountlevel,$item->email,$item->username,$item->active));
         }
         $table = $this->tableBuilder($keys,$items);
 
@@ -28,7 +28,7 @@ class superAdminAccountsController extends Controller {
     }
 
     public function show($id) {
-        //
+        return $this->launchView('view');
     }
 
     public function edit($id) {
