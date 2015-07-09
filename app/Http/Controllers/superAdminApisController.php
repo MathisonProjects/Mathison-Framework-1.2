@@ -33,7 +33,7 @@ class superAdminApisController extends Controller
     }
 
     public function edit($id) {
-        return $this->launchView('edit',array());
+        return $this->launchView('edit');
     }
 
     public function update(request $request, $id) {

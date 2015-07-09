@@ -22,7 +22,7 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function create() {
-		return $this->launchView('createObject', array());
+		return $this->launchView('createObject');
 	}
 
 	public function store() {

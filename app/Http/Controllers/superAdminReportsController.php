@@ -24,14 +24,14 @@ class superAdminReportsController extends Controller
         return $this->launchView('views', array('table' => $table));
     }
     public function create() {
-        //
+        return $this->launchView('create');
     }
     public function store() {
         //
     }
      
     public function show($id) {
-        //
+        return $this->launchView('view');
     }
      
     public function edit($id) {

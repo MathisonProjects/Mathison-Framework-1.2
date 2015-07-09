@@ -1,5 +1,4 @@
-<h2>REports</h2>
-<div class='row'>
+div class='row'>
 	<div class='col-md-4'>
 		<div class='form-group'>
 			{!! Form::label('name', 'PDF Name') !!}

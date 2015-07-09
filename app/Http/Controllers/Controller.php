@@ -107,7 +107,7 @@ abstract class Controller extends BaseController {
         }
     }
 
-    public function launchView($view,$compact) {
+    public function launchView($view, $compact = array()) {
         $compact['menu'] = $this->menu;
         return view('superAdmin.'.$this->currentModule.'.'.$view,$compact);
     }

@@ -19,7 +19,7 @@ class superAdminRelationshipsController extends Controller
     }
 
     public function create() {
-        return $this->launchView('create', array());
+        return $this->launchView('create');
     }
 
     public function store(Request $request) {

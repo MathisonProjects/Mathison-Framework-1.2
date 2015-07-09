@@ -20,7 +20,7 @@ class superAdminPdfsController extends Controller {
     }
 
     public function create() {
-        return $this->launchView('create', array());
+        return $this->launchView('create');
     }
 
     public function store(request $request) {
