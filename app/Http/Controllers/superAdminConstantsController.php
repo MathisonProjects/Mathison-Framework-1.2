@@ -9,8 +9,18 @@ use App\Http\Controllers\Controller;
 
 class superAdminConstantsController extends Controller {
     public function index() {
-        $keys = array();
+        $keys = array('View', 'Edit', 'Delete', 'Id', 'Constant', 'Value');
         $items = array();
+        foreach ($this->menu['sessions'] as $key => $items) {
+            array_push($items, array(
+                    '<a href="/admin/super/templates/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
+                    '<a href="/admin/super/templates/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
+                    '<a href="/admin/super/templates/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
+                    $item->id,
+                    $item->name,
+                    $item->value
+                ));
+        }
         $table = $this->tableBuilder($keys,$items);
         return $this->launchView('views', array('table' => $table));
     }
