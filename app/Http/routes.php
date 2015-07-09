@@ -49,8 +49,8 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	foreach ($superAdminList as $item) {
 		$item[0]($item[1], 'superAdminController@'.$item[2]);
 	}
-	get('template/format/{id}' , 'superAdminTemplatesController@templateFormat');
-	post('template/format/{id}' , 'superAdminTemplatesController@templateFormat');
+	get('templates/format/{id}' , 'superAdminTemplatesController@templateFormat');
+	post('templates/format/{id}' , 'superAdminTemplatesController@templateFormat');
 	get('forms/format/{id}' , 'superAdminFormsController@formFormat');
 	post('forms/format/{id}' , 'superAdminFormsController@formFormat');
 	get('objects/{id}/delete', 'superAdminObjectsController@destroy');
@@ -60,20 +60,22 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 	// Super Admin Controller
 	$superAdminControllers = array(
-		'apis'           => 'Apis',
-		'pdfs'           => 'Pdfs',
-		'formprocessing' => 'FormProcessing',
-		'template'       => 'Templates',
-		'pages'          => 'Pages',
-		'relationships'  => 'Relationships',
-		'forms'			 => 'Forms',
-		'workflows'		 => 'Workflows',
-		'objects'		 => 'Objects',
-		'reports'		 => 'Reports',
-		'accounts'		 => 'Accounts');
+		'apis'           ,
+		'pdfs'           ,
+		'formprocessing' ,
+		'templates'      ,
+		'pages'          ,
+		'relationships'  ,
+		'forms'			 ,
+		'workflows'		 ,
+		'objects'		 ,
+		'reports'		 ,
+		'accounts'		 ,
+		'constants'		 ,
+		'sessions');
 
-	foreach ($superAdminControllers as $key => $item) {
-		resource($key , 'superAdmin'.$item.'Controller');
+	foreach ($superAdminControllers as $item) {
+		resource($item , 'superAdmin'.ucfirst($item).'Controller');
 	}
 });
 

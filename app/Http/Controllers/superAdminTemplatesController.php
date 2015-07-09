@@ -10,7 +10,20 @@ class superAdminTemplatesController extends Controller
 {
 
     public function index() {
-        return $this->launchView('views');
+        $keys = array('View','Edit','Delete','Id','Template Name');
+        $items = array();
+        foreach ($this->menu['templates'] as $key => $item) {
+            array($items, array(
+                    '<a href="/admin/super/templates/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
+                    '<a href="/admin/super/templates/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
+                    '<a href="/admin/super/templates/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
+                    $item->id,
+                    $item->templatename
+                ));
+        }
+
+        $table = $this->tableBuilder($keys,$items);
+        return $this->launchView('views', array('table' => $table));
     }
 
     public function create() {

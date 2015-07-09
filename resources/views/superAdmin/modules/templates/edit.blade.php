@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	{!! Form::model($templateData, ['url' => 'admin/super/template/'.$templateData->id, 'method' => 'PATCH']) !!}
+	{!! Form::model($templateData, ['url' => 'admin/super/templates/'.$templateData->id, 'method' => 'PATCH']) !!}
 	@include('superAdmin.modules.templates.form')
 	{!! Form::close() !!}
 @stop

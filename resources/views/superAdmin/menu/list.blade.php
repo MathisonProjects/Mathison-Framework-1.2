@@ -4,6 +4,8 @@
 	@if (isset($menu))
 		<?php $divider = '<li></li><li class="divider"></li>'; $list = 'superAdmin.menu.list.' ?>
 		@include($list.'accounts')
+		@include($list.'sessions')
+		@include($list.'constants')
 		{!! $divider !!}
 		@include($list.'objects')
 		@include($list.'relationships')

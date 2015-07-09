@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	{!! Form::open(['url'=>'admin/super/template/']) !!}
+	{!! Form::open(['url'=>'admin/super/templates/']) !!}
 	@include('superAdmin.modules.templates.form')
 	{!! Form::close() !!}
 @stop
