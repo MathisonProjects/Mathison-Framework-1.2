@@ -1,6 +1,1 @@
-@extends('superAdmin.master')
-
-@section('content')
-	<h2>Relationships</h2>
-	{!! $table !!}
-@stop
+@include('superAdmin.master.default.views', ['section_header' => 'Relationships'])
