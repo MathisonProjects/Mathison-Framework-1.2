@@ -1,5 +1,1 @@
-@extends('superAdmin.master')
-
-@section('content')
-
-@stop
+@include('superAdmin.master.default.edit', ['module' => 'apis','data' => $data])

@@ -1,0 +1,1 @@
+@include('superAdmin.master.default.edit', ['module' => 'constants','data' => $data])
