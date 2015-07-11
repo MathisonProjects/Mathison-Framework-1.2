@@ -64,7 +64,7 @@ class superAdminApisController extends Controller
         $object[4] = DB::table($object[2]);
         foreach ($object[1] as $value) {
             if ($request->input("filter_".$value->name)) {
-                $object[4] = $object[4]->where($value->name, $request->input("filter_".$value->name));
+                $object[4] = $object[4]->where($value->name, '%'.$request->input("filter_".$value->name).'%');
             }
         }
 
