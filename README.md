@@ -7,7 +7,7 @@ This solution was inspired by a multitude of different online solutions to a var
 
 ###Bash Installation
 
-1. git clone https://github.com/Divinityfound/MFW1.2.git websiteFolder/
+1. git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolder/
 2. Upload a Laravel 5 database.php file to config folder with DB credentials
 3. websiteFolder# composer update
 4. websiteFolder# php artisan migrate
