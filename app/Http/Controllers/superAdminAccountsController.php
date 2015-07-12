@@ -12,19 +12,24 @@ class superAdminAccountsController extends Controller {
         $keys = array('Edit','Delete','Account Level', 'Email','Username','Active');
         $items = array();
         foreach ($this->menu['accounts'] as $key => $item) {
-            array_push($items, array('<a href="#">'.$this->vedIcon['Edit'].'</a>','<a href="#">'.$this->vedIcon['Delete'].'</a>',$item->accountlevel,$item->email,$item->username,$item->active));
+            array_push($items, array('<a href="/admin/super/accounts/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
+                                     '<a href="/admin/super/accounts/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
+                                     $item->accountlevel,
+                                     $item->email,
+                                     $item->username,
+                                     $item->active));
         }
-        $table = $this->tableBuilder($keys,$items);
+        $table = $this->tableBuilder($keys, $items);
 
         return $this->launchView('views', array('table' => $table));
     }
 
     public function create() {
-        //
+        return $this->launchView('create');
     }
 
     public function store() {
-        //
+        parent::save('create',$request);
     }
 
     public function show($id) {
@@ -32,11 +37,12 @@ class superAdminAccountsController extends Controller {
     }
 
     public function edit($id) {
-        //
+        $data = $this->module['accounts']->where('id', $id)->first();
+        return $this->launchView('edit', array('data' => $data));
     }
 
-    public function update($id) {
-        //
+    public function update($id, request $request) {
+        parent::save('update',$request, array('id' => $id));
     }
 
     public function destroy($id) {

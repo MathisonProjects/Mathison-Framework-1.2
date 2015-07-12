@@ -33,7 +33,8 @@ class superAdminApisController extends Controller
     }
 
     public function edit($id) {
-        return $this->launchView('edit');
+        $data = $this->module['apis']->where('id', $id)->first();
+        return $this->launchView('edit', array('data' => $data));
     }
 
     public function update(request $request, $id) {
