@@ -15,7 +15,7 @@
 
 		public function setConst() {
 			foreach (self::get() as $var) {
-				$const[$var->name] = $var->value;
+				$this->const[$var->name] = $var->value;
 			}
 			return $this;
 		}

@@ -11,7 +11,7 @@ class superAdminConstantsController extends Controller {
     public function index() {
         $keys = array('View', 'Edit', 'Delete', 'Id', 'Constant', 'Value');
         $items = array();
-        foreach ($this->menu['sessions'] as $key => $item) {
+        foreach ($this->menu['constants'] as $key => $item) {
             array_push($items, array(
                     '<a href="/admin/super/constants/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
                     '<a href="/admin/super/constants/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
