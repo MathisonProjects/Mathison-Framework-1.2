@@ -4,7 +4,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\mfwobjects;
-use App\mfwworkflows;
 use DB;
 
 class SuperAdminController extends Controller {
@@ -21,44 +20,6 @@ class SuperAdminController extends Controller {
 
 			return view('superAdmin.login', compact('message','count'));
 		}
-	}
-
-	public function createAdmin(Request $request) {
-		if ($this->module['accounts']->count() < 1) {
-			$hash = md5(time());
-			$inputArray = array(
-				'accountlevel' => 0,
-				'password' => md5($request->input('password').$hash),
-				'hash' => $hash,
-				'active' => 1);
-			if (filter_var($request->input('email'), FILTER_VALIDATE_EMAIL)) {
-				$inputArray['email'] = $request->input('email');
-			} else {
-				$inputArray['username'] = $request->input('email');
-			}
-
-
-			$this->module['accounts']->insert($inputArray);
-			$this->module['accounts']->login($request);
-			return redirect()->back()->with('Login','Login Successful');
-		}
-	}
-
-	public function adminLogin(Request $request) {
-		$this->module['accounts']->login($request);
-		if (session('sessionid')) {
-			$this->user = $this->module['accounts']->getAccount();
-			if ($this->user->accountlevel == 0) {
-				return redirect()->back()->with('Login','Login Successful');
-			}
-		}
-		return redirect()->back()->with('Logout','Login credentials incorrect');
-		
-	}
-
-	public function logout() {
-		$this->module['accounts']->logout();
-		return redirect('/admin/super/')->with('Logout', 'Logout Successful');
 	}
 
 	public function viewRecords(mfwobjects $object) {	
@@ -98,23 +59,6 @@ class SuperAdminController extends Controller {
         $table = $this->tableBuilder($keys,$items);
 
 		return view('superAdmin.modules.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu','table'));
-	}
-
-	public function createObjectPost() {
-		$this->module['objects']->insert(['name' => $this->sanitizeName($this->post['objectName']),
-			'objectDescription' => $this->post['objectDescription']]);
-		$data = $this->module['objects']->where('name',$this->sanitizeName($this->post['objectName']))->first();
-		$id = $data->id;
-
-		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
-			$this->module['objects']->insert(['oid' => $id,
-				'name'         => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
-				'datatype' 	   => $this->post['objectItemDataType'.$i],
-				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
-		}
-
-		$fields = $this->module['objects']->where('oid', $id)->get();
-		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
 	}
 
 	public function viewObjectItem(mfwobjects $object, $id) {

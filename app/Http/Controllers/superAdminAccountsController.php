@@ -52,4 +52,42 @@ class superAdminAccountsController extends Controller {
     public function verify($hash) {
         $this->module['accounts']->verify($hash);
     }
+
+    public function createAdmin(Request $request) {
+        if ($this->module['accounts']->count() < 1) {
+            $hash = md5(time());
+            $inputArray = array(
+                'accountlevel' => 0,
+                'password' => md5($request->input('password').$hash),
+                'hash' => $hash,
+                'active' => 1);
+            if (filter_var($request->input('email'), FILTER_VALIDATE_EMAIL)) {
+                $inputArray['email'] = $request->input('email');
+            } else {
+                $inputArray['username'] = $request->input('email');
+            }
+
+
+            $this->module['accounts']->insert($inputArray);
+            $this->module['accounts']->login($request);
+            return redirect()->back()->with('Login','Login Successful');
+        }
+    }
+
+    public function adminLogin(Request $request) {
+        $this->module['accounts']->login($request);
+        if (session('sessionid')) {
+            $this->user = $this->module['accounts']->getAccount();
+            if ($this->user->accountlevel == 0) {
+                return redirect()->back()->with('Login','Login Successful');
+            }
+        }
+        return redirect()->back()->with('Logout','Login credentials incorrect');
+        
+    }
+
+    public function logout() {
+        $this->module['accounts']->logout();
+        return redirect('/admin/super/')->with('Logout', 'Logout Successful');
+    }
 }

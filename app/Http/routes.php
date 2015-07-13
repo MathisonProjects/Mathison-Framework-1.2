@@ -37,25 +37,29 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		array('get'  , 'viewObject/{objectName}'             , 'viewRecords')            ,
 		array('get'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
 		array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
-		array('get'  , 'logout'								 , 'logout')				 ,
-		array('post' , 'createObject'                        , 'createObjectPost')       ,
 		array('post' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
 		array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
 		array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
-		array('post' , 'createAdmin'    					 , 'createAdmin')		     ,
-		array('post' , 'adminLogin'      					 , 'adminLogin')       		 ,
 		);
 
 	foreach ($superAdminList as $item) {
 		$item[0]($item[1], 'superAdminController@'.$item[2]);
 	}
-	get('templates/format/{id}' , 'superAdminTemplatesController@templateFormat');
+	get('templates/format/{id}'  , 'superAdminTemplatesController@templateFormat');
 	post('templates/format/{id}' , 'superAdminTemplatesController@templateFormat');
-	get('forms/format/{id}' , 'superAdminFormsController@formFormat');
-	post('forms/format/{id}' , 'superAdminFormsController@formFormat');
-	get('objects/{id}/delete', 'superAdminObjectsController@destroy');
-	post('objects/{id}/delete', 'superAdminObjectsController@destroy');
-	post('objects/{id}/import', 'superAdminObjectsController@import');
+	get('forms/format/{id}'      , 'superAdminFormsController@formFormat');
+	post('forms/format/{id}'     , 'superAdminFormsController@formFormat');
+
+	// Objects
+	get('objects/{id}/delete'    , 'superAdminObjectsController@destroy');
+	post('objects/{id}/delete'   , 'superAdminObjectsController@destroy');
+	post('objects/{id}/import'   , 'superAdminObjectsController@import');
+	post('createObject'          , 'superAdminObjectsController@createObjectPost');
+
+	// Accounts
+	get('logout'      , 'superAdminAccountsController@logout');
+	post('createAdmin', 'superAdminAccountsController@createAdmin');
+	post('adminLogin' , 'superAdminAccountsController@adminLogin');
 
 
 	// Super Admin Controller
