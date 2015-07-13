@@ -43,15 +43,15 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('forms/format/{id}'     , 'superAdminFormsController@formFormat');
 
 	// Objects
-	get('objects/{id}/delete'    			, 'superAdminObjectsController@destroy');
-	get('objects/{objectName}'				, 'superAdminObjectsController@viewRecords');
-	get('objects/{objectName}/{id}'			, 'superAdminObjectsController@viewObjectItem');
-	get('objects/{objectName}/{id}/edit'	, 'superAdminObjectsController@editObjectItem');
-	post('objects/{id}/delete'   			, 'superAdminObjectsController@destroy');
-	post('objects/{id}/import'   			, 'superAdminObjectsController@import');
-	post('createObject'          			, 'superAdminObjectsController@createObjectPost');
-	post('objects/{objectFieldsNeeded'		, 'superAdminObjectsController@viewObjectAddRecord');
-	post('objects/{objectName}/{id}/edit'	, 'superAdminObjectsController@editObjectItemPost');
+	get('objects/{id}/delete'    					, 'superAdminObjectsController@destroy');
+	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
+	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
+	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
+	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');
+	post('objects/{id}/import'   					, 'superAdminObjectsController@import');
+	post('createObject'          					, 'superAdminObjectsController@createObjectPost');
+	post('objects/{objectFieldsNeeded'				, 'superAdminObjectsController@viewObjectAddRecord');
+	post('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
 	post('objects/getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
 
 
@@ -63,32 +63,29 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 	// Super Admin Controller
 	$superAdminControllers = array(
-		'apis'           ,
-		'pdfs'           ,
-		'formprocessing' ,
-		'templates'      ,
-		'pages'          ,
-		'relationships'  ,
-		'forms'			 ,
-		'workflows'		 ,
-		'objects'		 ,
-		'reports'		 ,
-		'accounts'		 ,
-		'constants'		 ,
-		'sessions'		 ,
-		'middlewares');
+		'accounts'		 ,  'apis'           ,
+		'constants'		 ,  'formprocessing' ,
+		'forms'			 ,  'middlewares'	 ,
+		'objects'		 ,  'pages'          ,
+		'pdfs'           ,  'relationships'  ,
+		'reports'		 ,  'sessions'		 ,
+		'templates'      ,  'workflows');
 
 	foreach ($superAdminControllers as $item) {
 		resource($item , 'superAdmin'.ucfirst($item).'Controller');
 	}
 });
 
+// API Version 1
 Route::group(['prefix' => '/api/v1/'], function() {
 	post('/', 'superAdminApisController@runProcess');
 });
 
-// Admin Controller
-get('/admin/', 'adminController@index');
+// Admin Panel
+Route::group(['prefix' => '/admin'], function() {
+	get('', 'adminController@index');
+});
+
 // Front Controller
 get('/{custom_url}', 'pagesController@index');
 
