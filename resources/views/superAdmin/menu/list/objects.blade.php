@@ -11,7 +11,7 @@
 		<li class="divider"></li>
 		@foreach ($menu['objects'] as $item)
 			<li>
-				<a tabindex="0" href="/admin/super/viewObject/{{ $item->name }}">
+				<a tabindex="0" href="/admin/super/objects/{{ $item->name }}">
 				<?php
 					echo ucwords(str_replace('_', ' ',$item->name));
 				?></a>

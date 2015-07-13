@@ -32,29 +32,28 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		return App\mfwobjectrelationships::where('name', $input)->first();
 	});
 
-	$superAdminList = array(
-		array('get'  , ''                                    , 'index')                  ,
-		array('get'  , 'viewObject/{objectName}'             , 'viewRecords')            ,
-		array('get'  , 'viewObject/{objectName}/{id}'        , 'viewObjectItem')         ,
-		array('get'  , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItem')         ,
-		array('post' , 'viewObject/{objectFieldsNeeded}'     , 'viewObjectAddRecord')    ,
-		array('post' , 'viewObject/{objectName}/{id}/edit'   , 'editObjectItemPost')     ,
-		array('post' , 'getFields/{objectFieldsNeeded}'      , 'getObjectsFields')       ,
-		);
+	get('', 'superAdminController@index');
 
-	foreach ($superAdminList as $item) {
-		$item[0]($item[1], 'superAdminController@'.$item[2]);
-	}
+	// Templates
 	get('templates/format/{id}'  , 'superAdminTemplatesController@templateFormat');
 	post('templates/format/{id}' , 'superAdminTemplatesController@templateFormat');
+
+	// Forms
 	get('forms/format/{id}'      , 'superAdminFormsController@formFormat');
 	post('forms/format/{id}'     , 'superAdminFormsController@formFormat');
 
 	// Objects
-	get('objects/{id}/delete'    , 'superAdminObjectsController@destroy');
-	post('objects/{id}/delete'   , 'superAdminObjectsController@destroy');
-	post('objects/{id}/import'   , 'superAdminObjectsController@import');
-	post('createObject'          , 'superAdminObjectsController@createObjectPost');
+	get('objects/{id}/delete'    			, 'superAdminObjectsController@destroy');
+	get('objects/{objectName}'				, 'superAdminObjectsController@viewRecords');
+	get('objects/{objectName}/{id}'			, 'superAdminObjectsController@viewObjectItem');
+	get('objects/{objectName}/{id}/edit'	, 'superAdminObjectsController@editObjectItem');
+	post('objects/{id}/delete'   			, 'superAdminObjectsController@destroy');
+	post('objects/{id}/import'   			, 'superAdminObjectsController@import');
+	post('createObject'          			, 'superAdminObjectsController@createObjectPost');
+	post('objects/{objectFieldsNeeded'		, 'superAdminObjectsController@viewObjectAddRecord');
+	post('objects/{objectName}/{id}/edit'	, 'superAdminObjectsController@editObjectItemPost');
+	post('objects/getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
+
 
 	// Accounts
 	get('logout'      , 'superAdminAccountsController@logout');
