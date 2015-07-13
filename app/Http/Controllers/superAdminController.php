@@ -97,7 +97,7 @@ class SuperAdminController extends Controller {
 
         $table = $this->tableBuilder($keys,$items);
 
-		return view('superAdmin.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu','table'));
+		return view('superAdmin.modules.objects.view', compact('objectName', 'dbName', 'records', 'description','fields','menu','table'));
 	}
 
 	public function createObjectPost() {
@@ -148,7 +148,8 @@ class SuperAdminController extends Controller {
 		$sharedData = $sharedDataArray;
 		$objectName = ucwords(str_replace('_', ' ', $object->name));
 		$record = DB::table($this->db_prefix.$object->name)->where('id', $id)->get();
-		return $this->launchView('objects.viewObjectItem', compact('sharedData','objectName','record','object'));
+		$menu = $this->menu;
+		return view('superAdmin.modules.objects.viewObjectItem', compact('sharedData','objectName','record','object','menu'));
 	}
 
 	public function viewObjectAddRecord(array $array) {
@@ -159,9 +160,10 @@ class SuperAdminController extends Controller {
 			'objectName' => ucwords(str_replace('_', ' ', $object->name)),
 			'fields' => $this->module['objects']->where('oid', $object->id)->get(),
 			'record' => DB::table($this->db_prefix.$object->name)->where('id', $id)->first(),
-			'object' => $object);
+			'object' => $object,
+			'menu'   => $this->menu);
 
-		return $this->launchView('objects.editObjectItem', $compact);
+		return view('superAdmin.modules.objects.editObjectItem', $compact);
 	}
 
 	public function editObjectItemPost(mfwobjects $object, $id)	{
