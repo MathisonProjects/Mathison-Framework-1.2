@@ -72,7 +72,8 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		'reports'		 ,
 		'accounts'		 ,
 		'constants'		 ,
-		'sessions');
+		'sessions'		 ,
+		'middlewares');
 
 	foreach ($superAdminControllers as $item) {
 		resource($item , 'superAdmin'.ucfirst($item).'Controller');

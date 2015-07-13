@@ -26,13 +26,19 @@ class SuperAdminController extends Controller {
 	public function createAdmin(Request $request) {
 		if ($this->module['accounts']->count() < 1) {
 			$hash = md5(time());
-			$this->module['accounts']->insert([array(
+			$inputArray = array(
 				'accountlevel' => 0,
-				'email' => $request->input('email'),
 				'password' => md5($request->input('password').$hash),
 				'hash' => $hash,
-				'active' => 1
-			)]);
+				'active' => 1);
+			if (filter_var($request->input('email'), FILTER_VALIDATE_EMAIL)) {
+				$inputArray['email'] = $request->input('email');
+			} else {
+				$inputArray['username'] = $request->input('email');
+			}
+
+
+			$this->module['accounts']->insert($inputArray);
 			$this->module['accounts']->login($request);
 			return redirect()->back()->with('Login','Login Successful');
 		}

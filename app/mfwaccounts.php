@@ -17,7 +17,11 @@
 
 		public function login($request) {
 			Session::pull('sessionid');
-			$data = self::where('email', $request->input('email'))->first();
+			if (filter_var($request->input('email'), FILTER_VALIDATE_EMAIL)) {
+				$data = self::where('email', $request->input('email'))->first();
+			} else {
+				$data = self::where('username', $request->input('email'))->first();
+			}
 			if ($data->password == md5($request->input('password').$data->hash) && $data->active == 1) {
 				$data->sessionid = md5(time().$data->hash);
 				$data->save();

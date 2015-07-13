@@ -18,6 +18,7 @@ use App\mfwreports;
 use App\mfwaccounts;
 use App\mfwsessions;
 use App\mfwconstants;
+use App\mfwmiddlewares;
 use DB;
 use Session;
 
@@ -80,6 +81,7 @@ abstract class Controller extends BaseController {
         $this->module['accounts']       = new mfwaccounts;
         $this->module['sessions']       = new mfwsessions;
         $this->module['constants']      = new mfwconstants;
+        $this->module['middlewares']     = new mfwmiddlewares;
     }
 
     private function loadMenu() {
