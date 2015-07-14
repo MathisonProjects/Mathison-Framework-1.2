@@ -17,8 +17,12 @@ class CreateFormProcessingTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->string('apiid');
-			$table->string('eventlocation');
+			$table->integer('aid'); // API Id
+			$table->integer('executionorder');
+			$table->string('processor');
+			$table->string('method');
+			$table->string('data1');
+			$table->string('data2');
 		});
 	}
 

@@ -4,7 +4,7 @@
 	<h2>{{$formItem[0]['name']}}</h2>
 	<h3>{{$formItem[0]['description']}}</h3>
 	{!! Form::open(['url'=>'admin/super/api/v1/']) !!}
-		{!! Form::hidden('apiId', $apiId) !!}
+		{!! Form::hidden('randomid', $apiId) !!}
 		@foreach ($formItem[1] as $key => $item)
 			<div class='row'>
 				<div class='col-md-4 form-group'>
