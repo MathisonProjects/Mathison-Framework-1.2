@@ -44,6 +44,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 	// Objects
 	get('objects/{id}/delete'    					, 'superAdminObjectsController@destroy');
+	get('objects/create'						    , 'superAdminObjectsController@create');
 	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
 	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
 	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
