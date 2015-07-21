@@ -47,10 +47,11 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
 	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
 	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
+	post('objects/{id}/getFieldList'				, 'superAdminObjectsController@getFields');
 	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');
 	post('objects/{id}/import'   					, 'superAdminObjectsController@import');
 	post('createObject'          					, 'superAdminObjectsController@createObjectPost');
-	post('objects/{objectFieldsNeeded'				, 'superAdminObjectsController@viewObjectAddRecord');
+	post('objects/{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
 	post('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
 	post('objects/getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
 

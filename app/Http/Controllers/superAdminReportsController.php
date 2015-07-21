@@ -24,10 +24,14 @@ class superAdminReportsController extends Controller
         return $this->launchView('views', array('table' => $table));
     }
     public function create() {
-        return $this->launchView('create');
+        $objects = array('' => '');
+        foreach ($this->menu['objects'] as $key => $object) {
+            $objects[$object->id] = ucfirst($object->name);
+        }
+        return $this->launchView('create', array('objects' => $objects));
     }
-    public function store() {
-        //
+    public function store(Request $request) {
+        
     }
      
     public function show($id) {
@@ -38,11 +42,15 @@ class superAdminReportsController extends Controller
         //
     }
      
-    public function update($id) {
+    public function update($id,Request $request) {
         //
     }
      
     public function destroy($id) {
         //
+    }
+
+    public function compileReportRequest($request) {
+
     }
 }

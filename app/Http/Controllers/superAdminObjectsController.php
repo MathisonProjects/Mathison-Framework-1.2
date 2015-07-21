@@ -204,4 +204,13 @@ class superAdminObjectsController extends Controller {
 	public function getObjectFields(array $array) {
 		return json_encode($array[1]);
 	}
+
+	public function getFields($id) {
+		$fields = $this->module['objects']->where('oid', $id)->get();
+		$returnFields = array();
+		foreach ($fields as $key => $field) {
+			$returnFields[$field->id] = ucfirst($field->name);
+		}
+		return json_encode($returnFields);
+	}
 }

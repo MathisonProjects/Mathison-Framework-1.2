@@ -27,6 +27,7 @@ abstract class Controller extends BaseController {
 	use DispatchesCommands, ValidatesRequests;
     public $module, $menu, $post, $user, $workflow, $constants;
     public $db_prefix = 'mfwcus_';
+    public static $is_ajax;
     private $currentModule;
     public $vedIcon = array(
         'View'   => "<i><span class='glyphicon glyphicon-eye-open'></span></i>",
@@ -34,6 +35,9 @@ abstract class Controller extends BaseController {
         'Delete' => "<i><span class='glyphicon glyphicon-remove'></span></i>");
 
     public function __construct() {
+        if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {    
+          self::$is_ajax = true;
+        }
         $this->loadModule();
         $this->loadMenu();
         $this->user = $this->module['accounts']->getAccount();
@@ -48,7 +52,9 @@ abstract class Controller extends BaseController {
                 $this->workflow['destination'] = $_POST['destination'];
             }
         } else {
-            if ((!isset($this->user->sessionid) || $this->user->accountlevel != 0) && $_SERVER["REQUEST_URI"] != '/admin/super' && strpos($_SERVER["REQUEST_URI"], '/admin/super') !== false) {
+            if ((!isset($this->user->sessionid) || $this->user->accountlevel != 0)
+                    && $_SERVER["REQUEST_URI"] != '/admin/super'
+                    && strpos($_SERVER["REQUEST_URI"], '/admin/super') !== false) {
                 $this->jsRedirect('/admin/super/');
             }
         }
@@ -121,7 +127,9 @@ abstract class Controller extends BaseController {
     }
 
     public function jsRedirect($where) {
-        die("<script>location.href = '".$where."'</script>");
+        if (!self::$is_ajax) {
+            die("<script>location.href = '".$where."'</script>");
+        }
     }
 
     public function tableBuilder($keys,$items) {

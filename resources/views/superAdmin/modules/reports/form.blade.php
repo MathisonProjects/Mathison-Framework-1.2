@@ -1,7 +1,7 @@
 <div class='row'>
 	<div class='col-md-4'>
 		<div class='form-group'>
-			{!! Form::label('name', 'PDF Name') !!}
+			{!! Form::label('name', 'Report Name') !!}
 			{!! Form::text('name', null, array('id' => 'name', 'placeholder' => 'name', 'class' => 'form-control', 'maxlength' => '25')) !!}
 		</div>
 
@@ -9,7 +9,45 @@
 			{!! Form::label('description', 'Description') !!}
 			{!! Form::text('description', null, array('id' => 'description', 'placeholder' => 'Description', 'class' => 'form-control', 'maxlength' => '255')) !!}
 		</div>
-		MUST BUILD OUT REPORT BUILDER
+		<div class='form-group'>
+			{!! Form::label('object', 'Object') !!}
+			{!! Form::select('object', $objects, null, array('class' => 'form-control')) !!}
+		</div>
+		<div class='form-group'>
+			{!! Form::label('fields', 'Fields') !!}
+			{!! Form::select('fields', array(), null, array('class' => 'form-control', 'multiple')) !!}
+		</div>
+		<div class='form-group'>
+			{!! Form::label('filter', 'Filter') !!}
+			<div id='filterArea'>
+
+			</div>
+		</div>
+		<div class='form-group'>
+			{!! Form::label('totals', 'Totals') !!}
+			<div id='ftotalsArea'>
+
+			</div>
+		</div>
+		
 		{!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-12']) !!}
 	</div>
 </div>
+
+<?php
+
+
+array(
+	'object' => 'objectname',
+	'fields' => array('fieldone','fieldtwo','fieldthree','fieldfour'),
+	'filter' => array(
+		array('fieldone'  , '==', 'value'),
+		array('fieldtwo'  , '!=', 'value'),
+		array('fieldthree', '>=', 'value'),
+		array('fieldfour' , '<=', 'value')),
+	'totals' => array(
+		array('fieldone', 'sum'),
+		array('fieldtwo', 'difference'),
+		array('average' , 'average'))
+	);
+?>
