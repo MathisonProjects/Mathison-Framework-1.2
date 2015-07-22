@@ -31,7 +31,7 @@ class superAdminReportsController extends Controller
         return $this->launchView('create', array('objects' => $objects));
     }
     public function store(Request $request) {
-        
+        $this->module['reports']->processRequest($request);
     }
      
     public function show($id) {

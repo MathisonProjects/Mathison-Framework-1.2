@@ -15,17 +15,17 @@
 		</div>
 		<div class='form-group'>
 			{!! Form::label('fields', 'Fields') !!}
-			{!! Form::select('fields', array(), null, array('class' => 'form-control', 'multiple')) !!}
+			{!! Form::select('fields[]', array(), null, array('class' => 'form-control', 'multiple', 'id' => 'fields')) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('filter', 'Filter') !!}
+			{!! Form::label('filter', 'Filter Options') !!}
 			<div id='filterArea'>
 
 			</div>
 		</div>
 		<div class='form-group'>
-			{!! Form::label('totals', 'Totals') !!}
-			<div id='ftotalsArea'>
+			{!! Form::label('totals', 'Totals Options') !!}
+			<div id='totalsArea'>
 
 			</div>
 		</div>
