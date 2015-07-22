@@ -30,9 +30,10 @@ abstract class Controller extends BaseController {
     public static $is_ajax;
     private $currentModule;
     public $vedIcon = array(
-        'View'   => "<i><span class='glyphicon glyphicon-eye-open'></span></i>",
-        'Edit'   => "<i><span class='glyphicon glyphicon-edit'></span></i>",
-        'Delete' => "<i><span class='glyphicon glyphicon-remove'></span></i>");
+        'View'     => "<i><span class='glyphicon glyphicon-eye-open'></span></i>",
+        'Edit'     => "<i><span class='glyphicon glyphicon-edit'></span></i>",
+        'Delete'   => "<i><span class='glyphicon glyphicon-remove'></span></i>",
+        'Download' => "<i><span class='glyphicon glyphicon-download'></span></i>");
 
     public function __construct() {
         if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {    

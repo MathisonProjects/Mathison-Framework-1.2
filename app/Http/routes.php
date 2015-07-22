@@ -62,6 +62,9 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('createAdmin', 'superAdminAccountsController@createAdmin');
 	post('adminLogin' , 'superAdminAccountsController@adminLogin');
 
+	// PDFs
+	get('pdfs/{id}/download', 'superAdminPdfsController@download');
+
 
 	// Super Admin Controller
 	$superAdminControllers = array(

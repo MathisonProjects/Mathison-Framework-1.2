@@ -51,14 +51,13 @@ class superAdminReportsController extends Controller
         foreach ($reportJson['filter'] as $key => $filter) {
             if (isset($filter['filtered']) && $filter['filtered'] == 'on') {
                 $field = $this->module['objects']->where('id',$key)->first();
-                if ($filter['operator'] != 'contains') {
-                    $dataset = $dataset->where($field->name, $filter['operator'], $filter['comparison']);
-                } else if ($filter['operator'] == 'contains') {
-                    $dataset = $dataset->where($field->name, 'like', '%'.$filter['comparison'].'%');
-                }
+                if ($filter['operator'] == 'like') {
+                    $filter['comparison'] = '%'.$filter['comparison'].'%';
+                } 
+                $dataset = $dataset->where($field->name, $filter['operator'], $filter['comparison']);
             }
         }
-        $dataset = $dataset->get();
+        $dataset = $dataset->orderBy('id')->get();
 
         foreach ($reportJson['totals'] as $key => $total) {
             if (isset($total['compute']) && $total['compute'] == 'on') {
@@ -109,9 +108,5 @@ class superAdminReportsController extends Controller
      
     public function destroy($id) {
         //
-    }
-
-    public function compileReportRequest($request) {
-
     }
 }

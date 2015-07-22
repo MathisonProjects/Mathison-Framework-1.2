@@ -4,15 +4,19 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
-use PDF;
 
 class superAdminPdfsController extends Controller {
 
     public function index() {
-        $keys  = array('View','Edit','Delete','PDF Name','Description');
+        $keys  = array('Download', 'View','Edit','Delete','PDF Name','Description');
         $items = array();
         foreach ($this->menu['pdfs'] as $key => $item) {
-            $array = array('<a href="/admin/super/pdfs/'.$item->id.'"><i><span class="glyphicon glyphicon-eye-open"></span></i></a>' , '<a href="/admin/super/pdfs/'.$item->id.'/edit"><i><span class="glyphicon glyphicon-edit"></span></i></a>', '<a href="/admin/super/pdfs/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>', $item->name , $item->description);
+            $array = array('<a href="/admin/super/pdfs/'.$item->id.'/download">'.$this->vedIcon["Download"].'</a>',
+                           '<a href="/admin/super/pdfs/'.$item->id.'">'.$this->vedIcon["View"].'</a>',
+                           '<a href="/admin/super/pdfs/'.$item->id.'/edit">'.$this->vedIcon["Edit"].'</a>',
+                           '<a href="/admin/super/pdfs/'.$item->id.'/delete">'.$this->vedIcon["Delete"].'</a>',
+                           $item->name,
+                           $item->description);
             array_push($items, $array);
         }
         $table = $this->tableBuilder($keys,$items);
@@ -20,7 +24,12 @@ class superAdminPdfsController extends Controller {
     }
 
     public function create() {
-        return $this->launchView('create');
+        $dbreports = $this->module['reports']->get();
+        $reports = array('');
+        foreach ($dbreports as $key => $report) {
+            $reports[$report->id] = ucfirst($report->name);
+        }
+        return $this->launchView('create', array('reports' => $reports));
     }
 
     public function store(request $request) {
@@ -33,7 +42,12 @@ class superAdminPdfsController extends Controller {
 
     public function edit($id) {
         $pdf = $this->module['pdfs']->where('id', $id)->first();
-        return $this->launchView('edit', array('pdfData' => $pdf));
+        $dbreports = $this->module['reports']->get();
+        $reports = array('');
+        foreach ($dbreports as $key => $report) {
+            $reports[$report->id] = ucfirst($report->name);
+        }
+        return $this->launchView('edit', array('data' => $pdf,'reports' => $reports));
     }
 
     public function update($id,request $request) {
@@ -42,5 +56,12 @@ class superAdminPdfsController extends Controller {
 
     public function destroy($id) {
         //
+    }
+
+    public function download($id) {
+        $data = $this->module['pdfs']->where('id', $id)->first();
+        $report = $this->module['reports']->generateReport($data->id);
+        $this->module['pdfs']->createPdf($data,$report);
+        return 'PDF Generated';
     }
 }

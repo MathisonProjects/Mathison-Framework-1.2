@@ -17,7 +17,9 @@ class CreatePdfsTable extends Migration {
 			$table->timestamps();
 			$table->string('name');
 			$table->string('description')->nullable();
-			$table->binary('pdfbody')->nullable();
+			$table->binary('pdfheader')->nullable();
+			$table->binary('pdffooter')->nullable();
+			$table->integer('rid');
 		});
 	}
 

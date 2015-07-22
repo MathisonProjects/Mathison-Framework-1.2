@@ -1,1 +1,1 @@
-@include('superAdmin.master.default.edit', ['module' => 'edit','data' => $data])
+@include('superAdmin.master.default.edit', ['module' => 'pdfs','data' => $data])
