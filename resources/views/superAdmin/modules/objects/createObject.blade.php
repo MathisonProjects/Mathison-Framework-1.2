@@ -29,6 +29,7 @@
 					{!! Form::hidden('object[name][1]' 		, 'id') !!}
 					{!! Form::hidden('object[data][1]'  	, 'int') !!}
 					{!! Form::hidden('object[quantity][1]'  , '11') !!}
+					{!! Form::hidden('object[default][1]'   , '') !!}
 					{!! Form::label('object[name][1]' 		, 'id'       , array('id' => 'object[name][1]'		, 'class' => 'form-control')) !!}
 					{!! Form::label('object[data][1]'   	, 'int'      , array('id' => 'object[data][1]'  	, 'class' => 'form-control')) !!}
 					{!! Form::label('object[quantity][1]'   , '11'       , array('id' => 'object[quantity][1]'  , 'class' => 'form-control')) !!}	

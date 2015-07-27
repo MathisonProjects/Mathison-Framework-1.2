@@ -10,10 +10,8 @@ class CreateObjectsTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up()
-	{
-		Schema::create('mfwobjects', function(Blueprint $table)
-		{
+	public function up() {
+		Schema::create('mfwobjects', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->integer('oid')->default('0');
@@ -21,6 +19,7 @@ class CreateObjectsTable extends Migration {
 			$table->string('objectDescription')->nullable();
 			$table->string('datatype')->nullable();
 			$table->string('dataquantity')->nullable();
+			$table->string('defaultval')->nullable();
 		});
 	}
 
@@ -29,8 +28,7 @@ class CreateObjectsTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function down()
-	{
+	public function down() {
 		Schema::drop('mfwobjects');
 	}
 

@@ -30,7 +30,8 @@ $( document ).ready(function() {
 			'<input type="text" id="object[name]['+totalFields+']" placeholder="Field Name" class="form-control" maxlength="255" name="object[name]['+totalFields+']">' +
 			$datatypeoptions.format(totalFields) +
 			'<input type="text" id="object[quantity]['+totalFields+']" placeholder="Permitted Characters" class="form-control" maxlength="255" name="object[quantity]['+totalFields+']">' +
-		'</div></div>');
+		  '<input type="text" id="object[default]['+totalFields+']" placeholder="Default Value" class="form-control" maxlength="255" name="object[default]['+totalFields+']">' +
+    '</div></div>');
   });
 
 });

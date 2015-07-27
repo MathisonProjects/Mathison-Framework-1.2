@@ -97,7 +97,8 @@ class superAdminObjectsController extends Controller {
 			$this->module['objects']->insert(['oid' => $id,
 				'name'         => $this->sanitizeName($this->post['object']['name'][$i]),
 				'datatype' 	   => $this->post['object']['data'][$i],
-				'dataquantity' => $this->post['object']['quantity'][$i]]);
+				'dataquantity' => $this->post['object']['quantity'][$i],
+				'defaultval'   => $this->post['object']['default'][$i]]);
 		}
 
 		$fields = $this->module['objects']->where('oid', $id)->get();
