@@ -20,7 +20,8 @@
 				{!! Form::label('email', 'Email or Username') !!}
 				{!! Form::text('email', null, array('id' => 'email', 'placeholder' => 'Email', 'class' => 'form-control', 'maxlength' => '25', 'ng-model' => 'email', 'required' => '')) !!}
 				  <span style="color:red" ng-show="Login.email.$invalid">
-				  	<span ng-show="Login.email.$error.required">Email or Username is required.</span>
+				  	<span ng-show="Login.email.$error.required">Email or Username is required.
+				  </span>
 				  </span>
 			</div>
 			<div class='col-md-12'>

@@ -7,13 +7,16 @@
 @section('content')
 	
 	<h2>Create Object</h2>
-	{!! Form::open(array('url' => 'admin/super/createObject')) !!}
+	{!! Form::open(['url' => 'admin/super/createObject', 'ng-app' => 'ObjectsApp', 'ng-controller' => 'ObjectsController', 'name' => 'Objects', 'novalidate' => '']) !!}
 	{!! Form::hidden('totalFields', '1', array('class' => 'totalFields')) !!}
 	<div class='row'>
 		<div class='col-md-4'>
 			<div class='form-group'>
 				<label for='objectName'>Name:</label>
-				{!! Form::text('objectName', null, array('id' => 'objectName', 'placeholder' => 'Object Name', 'class' => 'form-control', 'maxlength' => '25')) !!}
+				{!! Form::text('objectName', null, array('id' => 'objectName', 'placeholder' => 'Object Name', 'class' => 'form-control', 'maxlength' => '25', 'ng-model' => 'objectName', 'required' => '')) !!}
+				<span style="color:red" ng-show="Objects.objectName.$invalid">
+					<span ng-show="Objects.objectName.$error.required">Object Name is required.
+				</span>
 			</div>
 			<div class='form-group'>
 				<label for='objectDescription'>Description:</label>
@@ -34,11 +37,18 @@
 		<div class='col-md-4'>
 			<br />
 			<button type='button' class='btn btn-default addField col-md-12'>+ Add Field</button><br /><br />
-			<button type='submit' class='btn btn-primary col-md-12'>Submit</button>
+			<button type='submit' class='btn btn-primary col-md-12' ng-disabled='Objects.objectName.$invalid'>Submit</button>
 		</div>
 	</div>
 	<div class='row'>
 		<div class='extraFields'></div>
 	</div>
 	{!! Form::close() !!}
+
+	<script>
+		var app = angular.module('ObjectsApp', []);
+		app.controller('ObjectsController', function($scope) {
+
+		});
+	</script>
 @stop
