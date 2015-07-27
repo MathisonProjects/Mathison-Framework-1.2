@@ -87,16 +87,17 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function createObjectPost() {
+
 		$this->module['objects']->insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);
 		$data = $this->module['objects']->where('name',$this->sanitizeName($this->post['objectName']))->first();
 		$id = $data->id;
-
 		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
+
 			$this->module['objects']->insert(['oid' => $id,
-				'name'         => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
-				'datatype' 	   => $this->post['objectItemDataType'.$i],
-				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
+				'name'         => $this->sanitizeName($this->post['object']['name'][$i]),
+				'datatype' 	   => $this->post['object']['data'][$i],
+				'dataquantity' => $this->post['object']['quantity'][$i]]);
 		}
 
 		$fields = $this->module['objects']->where('oid', $id)->get();
