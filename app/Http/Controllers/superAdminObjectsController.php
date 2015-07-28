@@ -12,10 +12,10 @@ class superAdminObjectsController extends Controller {
 	static $miscData = array();
 
 	public function index() {
-		$keys = array('Object Name', 'Description', 'Total Records', 'Delete');
+		$keys = array('Object Name', 'Description', 'Total Records', 'Edit Name', 'Edit Columns', 'Delete');
 		$items = array();
 		foreach ($this->menu['objects'] as $key => $item) {
-			array_push($items, array('<a href="/admin/super/objects/'.$item->name.'">'.$item->name.'</a> <a href="/admin/super/objects/'.$item->id.'/rename">'.$this->vedIcon['Edit'].'</a>',$item->objectDescription,DB::table($this->db_prefix.$item->name)->count(),'<a href="/admin/super/objects/'.$item->id.'/delete"><i><span class="glyphicon glyphicon-remove"></span></i></a>'));
+			array_push($items, array('<a href="/admin/super/objects/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,DB::table($this->db_prefix.$item->name)->count(),'<a href="/admin/super/objects/'.$item->id.'/rename">'.$this->vedIcon['Edit'].'</a>', '<a href="/admin/super/objects/'.$item->id.'/editColumns">'.$this->vedIcon['Settings'].'</a>' ,'<a href="/admin/super/objects/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>'));
 		}
         $table = $this->tableBuilder($keys,$items);
 
@@ -63,11 +63,20 @@ class superAdminObjectsController extends Controller {
 
 	public function rename($id) {
 		$object = $this->module['objects']->where('id', $id)->first();
-		return $this->launchView('rename', array('object' => $object));
+		return $this->launchView('renameTable', array('object' => $object));
 	}
 
 	public function renamePost($id, request $request) {
 		$this->module['objects']->renameTable($this->db_prefix, $id, $request->input('newName'));
+	}
+
+	public function editColumns($id) {
+		$object = $this->module['objects']->where('oid', $id)->get();
+		return $this->launchView('editColumns', array('object' => $object));
+	}
+
+	public function editColumnsPost($id,request $request) {
+
 	}
 
 	public function import($id, Request $request) {

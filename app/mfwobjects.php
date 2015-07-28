@@ -56,5 +56,15 @@
 			$object->name = $newName;
 			$object->save();
 		}
+
+		public function editColumn($prefix, $id, $from, $to) {
+			$object = $this->where('id', $id)->first();
+			Schema::table($prefix.$object->name, function($table) {
+			    $table->renameColumn($from, $to);
+			});
+			$field = $this->where('oid', $id)->where('name',$from)->first();
+			$field->name = $to;
+			$field->save();
+		}
 	}
 ?>

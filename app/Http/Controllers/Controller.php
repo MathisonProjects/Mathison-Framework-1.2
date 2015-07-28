@@ -32,6 +32,7 @@ abstract class Controller extends BaseController {
     public $vedIcon = array(
         'View'     => "<i><span class='glyphicon glyphicon-eye-open'></span></i>",
         'Edit'     => "<i><span class='glyphicon glyphicon-edit'></span></i>",
+        'Settings' => "<i><span class='glyphicon glyphicon-cog'></span></i>",
         'Delete'   => "<i><span class='glyphicon glyphicon-remove'></span></i>",
         'Download' => "<i><span class='glyphicon glyphicon-download'></span></i>");
 

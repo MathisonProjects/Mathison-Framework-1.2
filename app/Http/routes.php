@@ -45,6 +45,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	// Objects
 	get('objects/{id}/delete'    					, 'superAdminObjectsController@destroy');
 	get('objects/{id}/rename'						, 'superAdminObjectsController@rename');
+	get('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumns');
 	get('objects/create'						    , 'superAdminObjectsController@create');
 	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
 	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
@@ -52,6 +53,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('objects/{id}/getFieldList'				, 'superAdminObjectsController@getFields');
 	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');
 	post('objects/{id}/rename'						, 'superAdminObjectsController@renamePost');
+	post('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumnsPost');
 	post('objects/{id}/import'   					, 'superAdminObjectsController@import');
 	post('createObject'          					, 'superAdminObjectsController@createObjectPost');
 	post('objects/{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
