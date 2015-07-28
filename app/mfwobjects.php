@@ -48,5 +48,13 @@
 			self::where('oid', $id)->delete();
 			Schema::drop($prefix.$objectData->name);
 		}
+
+		public function renameTable($prefix, $id, $newName) {
+			$object = $this->where('id', $id)->first();
+			Schema::rename($prefix.$object->name, $prefix.$newName);
+
+			$object->name = $newName;
+			$object->save();
+		}
 	}
 ?>
