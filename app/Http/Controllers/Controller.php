@@ -76,20 +76,22 @@ abstract class Controller extends BaseController {
     }
 
     private function loadModule() {
-        $this->module['objects']        = new mfwobjects;
-        $this->module['forms']          = new mfwmanageforms;
-        $this->module['workflows']      = new mfwworkflows;
-        $this->module['relationships']  = new mfwobjectrelationships;
-        $this->module['apis']           = new mfwapis;
-        $this->module['formprocessing'] = new mfwformprocessings;
-        $this->module['templates']      = new mfwtemplates;
-        $this->module['pages']          = new mfwpages;
-        $this->module['pdfs']           = new mfwpdfs;
-        $this->module['reports']        = new mfwreports;
-        $this->module['accounts']       = new mfwaccounts;
-        $this->module['sessions']       = new mfwsessions;
-        $this->module['constants']      = new mfwconstants;
-        $this->module['middlewares']     = new mfwmiddlewares;
+        $this->module['objects']           = new mfwobjects;
+        $this->module['forms']             = new mfwmanageforms;
+        $this->module['workflows']         = new mfwworkflows;
+        $this->module['relationships']     = new mfwobjectrelationships;
+        $this->module['apis']              = new mfwapis;
+        $this->module['formprocessing']    = new mfwformprocessings;
+        $this->module['templates']         = new mfwtemplates;
+        $this->module['pages']             = new mfwpages;
+        $this->module['pdfs']              = new mfwpdfs;
+        $this->module['reports']           = new mfwreports;
+        $this->module['accounts']          = new mfwaccounts;
+        $this->module['sessions']          = new mfwsessions;
+        $this->module['constants']         = new mfwconstants;
+        $this->module['middlewares']       = new mfwmiddlewares;
+        $this->module['googlecredentials'] = new mfwgooglecredentials;
+        $this->module['googledrives']      = new mfwgoogledrives;
     }
 
     private function loadMenu() {

@@ -2,14 +2,10 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use DB;
 
 class CreateObjectsTable extends Migration {
-
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
+    public $db_prefix = 'mfwcus_';
 	public function up() {
 		Schema::create('mfwobjects', function(Blueprint $table) {
 			$table->increments('id');
@@ -29,6 +25,10 @@ class CreateObjectsTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
+		$tables = DB::table('mfwobjects')->where('oid', 0)->get();
+		foreach ($tables as $table) {
+			Schema::drop($this->db_prefix.$table->name);
+		}
 		Schema::drop('mfwobjects');
 	}
 
