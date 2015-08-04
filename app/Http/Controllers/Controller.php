@@ -19,6 +19,8 @@ use App\mfwaccounts;
 use App\mfwsessions;
 use App\mfwconstants;
 use App\mfwmiddlewares;
+use App\mfwgooglecredentials;
+use App\mfwgoogledrives;
 use DB;
 use Session;
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateGoogleDriveTable extends Migration {
 
     public function up() {
-        Schema::table('mfwcgoogleredentials', function (Blueprint $table) {
+        Schema::create('mfwgooglecredentials', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('client_id');
@@ -15,17 +15,17 @@ class CreateGoogleDriveTable extends Migration {
             $table->string('sub');
         });
 
-        Schema::table('mfwgoogledrives', function (Blueprint $table) {
+        Schema::create('mfwgoogledrives', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('credentials');
+            $table->integer('credentials')->unsigned();
             $table->string('drive_key');
-            $table->foreign('credentials')->references('id')->on('mfwcgoogleredentials');
+            $table->foreign('credentials')->references('id')->on('mfwgooglecredentials');
         });
     }
 
     public function down() {
-        Schema::drop('mfwcgoogleredentials');
+        Schema::drop('mfwgooglecredentials');
         Schema::drop('mfwgoogledrives');
     }
 }

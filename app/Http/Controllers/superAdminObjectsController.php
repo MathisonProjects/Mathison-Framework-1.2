@@ -76,7 +76,7 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function editColumnsPost($id,request $request) {
-
+		
 	}
 
 	public function import($id, Request $request) {

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use DB;
+use \Illuminate\Support\Facades\DB;
 
 class CreateObjectsTable extends Migration {
     public $db_prefix = 'mfwcus_';

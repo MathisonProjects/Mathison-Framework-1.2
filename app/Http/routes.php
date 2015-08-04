@@ -79,7 +79,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		'pdfs'           ,  'relationships'  ,
 		'reports'		 ,  'sessions'		 ,
 		'templates'      ,  'workflows'		 ,
-		'googleDrive');
+		'googleDrive'    ,  'googleCredentials');
 
 	foreach ($superAdminControllers as $item) {
 		resource($item , 'superAdmin'.ucfirst($item).'Controller');
