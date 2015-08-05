@@ -72,13 +72,13 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 	// Super Admin Controller
 	$superAdminControllers = array(
-		'accounts'		 ,  'apis'           ,
-		'constants'		 ,  'formprocessing' ,
-		'forms'			 ,  'middlewares'	 ,
-		'objects'		 ,  'pages'          ,
-		'pdfs'           ,  'relationships'  ,
-		'reports'		 ,  'sessions'		 ,
-		'templates'      ,  'workflows'		 ,
+		'accounts'		 ,  'apis'            ,
+		'constants'		 ,  'formProcessings' ,
+		'forms'			 ,  'middlewares'	  ,
+		'objects'		 ,  'pages'           ,
+		'pdfs'           ,  'relationships'   ,
+		'reports'		 ,  'sessions'		  ,
+		'templates'      ,  'workflows'		  ,
 		'googleDrive'    ,  'googleCredentials');
 
 	foreach ($superAdminControllers as $item) {

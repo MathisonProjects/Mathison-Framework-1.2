@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class superAdminFormProcessingController extends Controller {
+class superAdminFormProcessingsController extends Controller {
 
 	public function index() {
-        return $this->launchView('views');
+		$keys = array('View', 'Edit', 'Delete', 'Id');
+        $items = array();
+        foreach ($this->menu['formprocessing'] as $key => $item) {
+            array_push($items, array('<a href="/admin/super/apis/'.$item->id.'">'.$this->vedIcon['View'].'</a>','<a href="/admin/super/apis/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>','<a href="/admin/super/apis/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>',$item->id));
+        }
+        $table = $this->tableBuilder($keys,$items);
+        return $this->launchView('views', array('table' => $table));
 	}
 
 	public function create() {
