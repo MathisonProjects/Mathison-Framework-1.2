@@ -76,7 +76,11 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function editColumnsPost($id,request $request) {
-		
+		foreach ($request->input() as $key => $value) {
+			if ($key != '_token') {
+				$this->module['objects']->editColumn($this->db_prefix, $id, $key, $value);
+			}
+		}
 	}
 
 	public function import($id, Request $request) {

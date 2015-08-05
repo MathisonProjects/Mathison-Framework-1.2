@@ -9,6 +9,7 @@
 
 	class mfwobjects extends Eloquent {
 		private static $fields;
+		private static $params;
 		public function createTable($tablename,$fields) {
 			$this->fields = $fields;
 			if (!Schema::hasTable($tablename)) {
@@ -59,9 +60,12 @@
 
 		public function editColumn($prefix, $id, $from, $to) {
 			$object = $this->where('id', $id)->first();
-			Schema::table($prefix.$object->name, function($table) {
-			    $table->renameColumn($from, $to);
-			});
+			$this->params = array('from' => $from, 'to' => $to);
+			if (Schema::hasTable($prefix.$object->name)) {
+				Schema::table($prefix.$object->name, function(Blueprint $table) {
+				    $table->renameColumn($this->params['from'], $this->params['to']);
+				});
+			}
 			$field = $this->where('oid', $id)->where('name',$from)->first();
 			$field->name = $to;
 			$field->save();
