@@ -7,17 +7,13 @@ This solution was inspired by a multitude of different online solutions to a var
 
 ###Bash Installation
 
-1. git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolder/
 2. Upload a Laravel 5 database.php file to config folder with DB credentials
-3. websiteFolder# composer update
-4. websiteFolder# php artisan migrate
-5. websiteFolder# chmod -R 755 .
 6. Visit www.YOURURL.com/admin/super/
 7. Build out the backend of your site!
 
-```bash
-git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolder/
-composer update
-chmod -R 755 .
-php artisan migrate
+```
+/> git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolder/
+websiteFolder> composer update
+websiteFolder> chmod -R 755 .
+websiteFolder> php artisan migrate
 ```
