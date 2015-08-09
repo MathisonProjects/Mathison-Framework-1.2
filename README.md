@@ -14,3 +14,10 @@ This solution was inspired by a multitude of different online solutions to a var
 5. websiteFolder# chmod -R 755 .
 6. Visit www.YOURURL.com/admin/super/
 7. Build out the backend of your site!
+
+```bash
+git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolder/
+composer update
+chmod -R 755 .
+php artisan migrate
+```
