@@ -32,11 +32,12 @@
 		</div>
 		<div class='form-group'>
 			{!! Form::label('frequency', 'Frequency') !!}
+			{!! Form::text('frequency', null, array('class' => 'form-control', 'placeholder' => 'Logic to come...')) !!}
 		</div>
 		<div class='form-group'>
 			{!! Form::label('lastran', 'Start Date') !!}
 			<div class="input-append date" id="dp3" data-date="<?php echo date('M/d/Y'); ?>" data-date-format="mm/dd/yyyy">
-				<input class="datepicker form-control" type="text" value="<?php echo date('m/d/Y'); ?>">
+			{!! Form::text('lastran', date('m/d/Y'), array('class' => 'datepicker form-control')) !!}
 			</div>
 		</div>
 		<div class='form-group'>
