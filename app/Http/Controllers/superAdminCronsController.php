@@ -10,14 +10,16 @@ use App\Http\Controllers\Controller;
 class superAdminCronsController extends Controller {
     public function index() {
         $module = 'crons';
-        $keys = array('View', 'Edit', 'Delete', 'Id');
+        $keys = array('View', 'Edit', 'Delete', 'Id', 'Name', 'Description');
         $items = array();
         foreach ($this->menu[$module] as $key => $item) {
             array_push($items, array(
                     '<a href="/admin/super/'.$module.'/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
                     '<a href="/admin/super/'.$module.'/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
                     '<a href="/admin/super/'.$module.'/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
-                    $item->id
+                    $item->id,
+                    $item->name,
+                    $item->description
                 ));
         }
 
