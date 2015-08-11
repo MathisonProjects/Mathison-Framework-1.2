@@ -9,6 +9,6 @@
 
 	class mfwcrons extends Eloquent {
 	    protected $table = 'mfwcrons';
-		protected $fillable = ['frequency', 'lastran', 'jsondata'];
+		protected $fillable = ['name','description','active','oid','fid','modtype','modifier','frequency','lastran'];
 	}
 ?>

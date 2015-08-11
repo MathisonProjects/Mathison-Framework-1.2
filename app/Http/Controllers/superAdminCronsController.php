@@ -26,7 +26,11 @@ class superAdminCronsController extends Controller {
     }
 
     public function create() {
-        return $this->launchView('create');
+        $objects = array('' => '');
+        foreach ($this->menu['objects'] as $key => $object) {
+            $objects[$object->id] = ucfirst($object->name);
+        }
+        return $this->launchView('create', array('objects' => $objects));
     }
 
     public function store(Request $request) {

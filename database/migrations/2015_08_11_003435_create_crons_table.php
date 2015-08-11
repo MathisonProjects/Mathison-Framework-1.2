@@ -8,17 +8,19 @@ class CreateCronsTable extends Migration {
         Schema::create('mfwcrons', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('name');
+            $table->string('description');
+            $table->integer('active');
+            $table->integer('oid');
+            $table->integer('fid');
+            $table->string('modtype');
+            $table->double('modifier');
             $table->string('frequency');
             $table->dateTime('lastran');
-            $table->binary('jsondata');
         });
 
         //
         //  array(
-        // 'oid'         => OBJECTID,
-        // 'modtype'     => MODTYPE,
-        // 'field'       => FIELDID,
-        // 'modifier'    => QUANTITY,
         // 'conditional' => CONDITIONAL);
         //
     }

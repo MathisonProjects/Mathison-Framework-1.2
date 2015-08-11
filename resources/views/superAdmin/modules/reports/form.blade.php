@@ -33,21 +33,3 @@
 		{!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-12']) !!}
 	</div>
 </div>
-
-<?php
-
-
-array(
-	'object' => 'objectname',
-	'fields' => array('fieldone','fieldtwo','fieldthree','fieldfour'),
-	'filter' => array(
-		array('fieldone'  , '==', 'value'),
-		array('fieldtwo'  , '!=', 'value'),
-		array('fieldthree', '>=', 'value'),
-		array('fieldfour' , '<=', 'value')),
-	'totals' => array(
-		array('fieldone', 'sum'),
-		array('fieldtwo', 'difference'),
-		array('average' , 'average'))
-	);
-?>

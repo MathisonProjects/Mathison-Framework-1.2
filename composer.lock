@@ -1072,12 +1072,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2f1e0b8d7c24bb783d3a8d4fe4120ef82e5da648"
+                "reference": "dd5ec4ae1a849a86a81b0472a2d22cd1fdc5023d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2f1e0b8d7c24bb783d3a8d4fe4120ef82e5da648",
-                "reference": "2f1e0b8d7c24bb783d3a8d4fe4120ef82e5da648",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dd5ec4ae1a849a86a81b0472a2d22cd1fdc5023d",
+                "reference": "dd5ec4ae1a849a86a81b0472a2d22cd1fdc5023d",
                 "shasum": ""
             },
             "require": {
@@ -1192,7 +1192,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-08-05 12:51:18"
+            "time": "2015-08-09 16:57:44"
         },
         {
             "name": "league/flysystem",
@@ -1200,12 +1200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f05e882457722b96b9027ceba87a8db9ca8eaa08"
+                "reference": "a53297cfb21e34a17aa2ad29f59b512cd5b80a1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f05e882457722b96b9027ceba87a8db9ca8eaa08",
-                "reference": "f05e882457722b96b9027ceba87a8db9ca8eaa08",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a53297cfb21e34a17aa2ad29f59b512cd5b80a1f",
+                "reference": "a53297cfb21e34a17aa2ad29f59b512cd5b80a1f",
                 "shasum": ""
             },
             "require": {
@@ -1273,7 +1273,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-07-28 20:37:53"
+            "time": "2015-08-07 20:54:37"
         },
         {
             "name": "maatwebsite/excel",
@@ -1348,12 +1348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "d93492fb60e05e67522f38796b54b9c5205bba90"
+                "reference": "5779c3740ec7902c898dc7353b28d70ab0e690e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d93492fb60e05e67522f38796b54b9c5205bba90",
-                "reference": "d93492fb60e05e67522f38796b54b9c5205bba90",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5779c3740ec7902c898dc7353b28d70ab0e690e5",
+                "reference": "5779c3740ec7902c898dc7353b28d70ab0e690e5",
                 "shasum": ""
             },
             "require": {
@@ -1390,7 +1390,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15.x-dev"
+                    "dev-master": "1.16.x-dev"
                 }
             },
             "autoload": {
@@ -1416,7 +1416,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-07-31 10:19:40"
+            "time": "2015-08-11 10:25:54"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -2116,12 +2116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "863af6898081b34c65d42100c370b9f3c51b70ca"
+                "reference": "38c326b689dda8f33223a74e30c42526c684fe2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/863af6898081b34c65d42100c370b9f3c51b70ca",
-                "reference": "863af6898081b34c65d42100c370b9f3c51b70ca",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/38c326b689dda8f33223a74e30c42526c684fe2e",
+                "reference": "38c326b689dda8f33223a74e30c42526c684fe2e",
                 "shasum": ""
             },
             "require": {
@@ -2161,7 +2161,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-22 10:11:00"
+            "time": "2015-08-05 15:45:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -2298,12 +2298,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "ea9134f277162b02e5f80ac058b75a77637b0d26"
+                "reference": "71fed8c6e21f6925c67ea2d4c7365a50d1989055"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/ea9134f277162b02e5f80ac058b75a77637b0d26",
-                "reference": "ea9134f277162b02e5f80ac058b75a77637b0d26",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/71fed8c6e21f6925c67ea2d4c7365a50d1989055",
+                "reference": "71fed8c6e21f6925c67ea2d4c7365a50d1989055",
                 "shasum": ""
             },
             "require": {
@@ -2361,7 +2361,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2015-07-09 16:07:40"
+            "time": "2015-08-05 15:45:00"
         },
         {
             "name": "symfony/translation",
@@ -2785,16 +2785,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.3.0-beta",
+            "version": "2.3.0-beta3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "5858b8b111023248ff8e9fc50e914c54118cd3ff"
+                "reference": "a897a7b02f42d278ac2381f4cd19b0d2b3b6f478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/5858b8b111023248ff8e9fc50e914c54118cd3ff",
-                "reference": "5858b8b111023248ff8e9fc50e914c54118cd3ff",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/a897a7b02f42d278ac2381f4cd19b0d2b3b6f478",
+                "reference": "a897a7b02f42d278ac2381f4cd19b0d2b3b6f478",
                 "shasum": ""
             },
             "require": {
@@ -2806,15 +2806,14 @@
                 "symfony/console": "~2.3",
                 "symfony/event-dispatcher": "~2.1",
                 "symfony/finder": "~2.1",
-                "symfony/process": "~2.1",
+                "symfony/process": "^2.6",
                 "symfony/yaml": "~2.1"
             },
             "require-dev": {
                 "behat/behat": "^3.0.11",
                 "bossa/phpspec2-expect": "~1.0",
                 "phpunit/phpunit": "~4.4",
-                "symfony/filesystem": "~2.1",
-                "symfony/process": "~2.1"
+                "symfony/filesystem": "~2.1"
             },
             "suggest": {
                 "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
@@ -2859,7 +2858,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-07-04 10:12:31"
+            "time": "2015-08-08 15:09:58"
         },
         {
             "name": "phpspec/prophecy",
@@ -3167,12 +3166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0fe5ed323f0017624a65746153ae3fd69c308c1b"
+                "reference": "fd3050e26e3105f416d74c4d33aea659b406c59d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0fe5ed323f0017624a65746153ae3fd69c308c1b",
-                "reference": "0fe5ed323f0017624a65746153ae3fd69c308c1b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fd3050e26e3105f416d74c4d33aea659b406c59d",
+                "reference": "fd3050e26e3105f416d74c4d33aea659b406c59d",
                 "shasum": ""
             },
             "require": {
@@ -3231,7 +3230,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-02 08:24:28"
+            "time": "2015-08-10 09:16:56"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3239,12 +3238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "ca2e42cad8446a05691cc4327b7ce3ed45bfdb11"
+                "reference": "dccd8011934fba6fb77c7182c74926ad58c9ecd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/ca2e42cad8446a05691cc4327b7ce3ed45bfdb11",
-                "reference": "ca2e42cad8446a05691cc4327b7ce3ed45bfdb11",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/dccd8011934fba6fb77c7182c74926ad58c9ecd1",
+                "reference": "dccd8011934fba6fb77c7182c74926ad58c9ecd1",
                 "shasum": ""
             },
             "require": {
@@ -3287,7 +3286,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-08-02 07:29:52"
+            "time": "2015-08-09 04:15:55"
         },
         {
             "name": "sebastian/comparator",
@@ -3461,12 +3460,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "66fb20c9e1b3617651c3f66be7a1747479d96ba5"
+                "reference": "f88f8936517d54ae6d589166810877fb2015d0a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/66fb20c9e1b3617651c3f66be7a1747479d96ba5",
-                "reference": "66fb20c9e1b3617651c3f66be7a1747479d96ba5",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/f88f8936517d54ae6d589166810877fb2015d0a2",
+                "reference": "f88f8936517d54ae6d589166810877fb2015d0a2",
                 "shasum": ""
             },
             "require": {
@@ -3520,7 +3519,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-07-30 09:58:30"
+            "time": "2015-08-09 04:23:41"
         },
         {
             "name": "sebastian/global-state",
