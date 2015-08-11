@@ -22,6 +22,7 @@
 		@include($list.'pdf')
 		@include($list.'customreports')
 		{!! $divider !!}
+		@include($list.'googledrive')
 		@include($list.'workflows')
 		@include($list.'requiredfiles')
 		@include($list.'unittests')
