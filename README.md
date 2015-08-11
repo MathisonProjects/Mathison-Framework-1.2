@@ -15,12 +15,14 @@ This solution was inspired by a multitude of different online solutions to a var
 
 *Bash*
 ```
-/> git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolder/
-websiteFolder> composer update
-websiteFolder> chmod -R 755 .
-websiteFolder> php artisan migrate
+/> git clone https://github.com/Divinityfound/Mathison-Framework-1.2.git websiteFolderName/
+/> cd websiteFolderName/
+websiteFolderName> composer update
+websiteFolderName> chmod -R 755 .
+websiteFolderName> php artisan migrate
 ```
 
 ###Site Set Up
 
 1. You'll be able to create your secured admin backend now. Add credentials now. Admin is the default username if you don't use an email.
+2. Set up your cron jobs to target www.YOURURL.com/admin/super/crons/run at the frequency you desire. [Feature coming]
