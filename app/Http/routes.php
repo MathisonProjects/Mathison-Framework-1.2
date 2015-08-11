@@ -69,6 +69,9 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	// PDFs
 	get('pdfs/{id}/download', 'superAdminPdfsController@download');
 
+	// CRONs
+	get('crons/run', 'superAdminCronsController@run');
+	post('crons/run', 'superAdminCronsController@run');
 
 	// Super Admin Controller
 	$superAdminControllers = array(

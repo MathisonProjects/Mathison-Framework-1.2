@@ -7,81 +7,50 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class superAdminCronsController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
+class superAdminCronsController extends Controller {
+    public function index() {
+        $module = 'crons';
+        $keys = array('View', 'Edit', 'Delete', 'Id');
+        $items = array();
+        foreach ($this->menu[$module] as $key => $item) {
+            array_push($items, array(
+                    '<a href="/admin/super/'.$module.'/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
+                    '<a href="/admin/super/'.$module.'/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
+                    '<a href="/admin/super/'.$module.'/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
+                    $item->id
+                ));
+        }
+
+        $table = $this->tableBuilder($keys,$items);
+        return $this->launchView('views', array('table' => $table));
+    }
+
+    public function create() {
+        return $this->launchView('create');
+    }
+
+    public function store(Request $request) {
+        parent::save('create',$request);
+    }
+
+    public function show($id) {
+        return $this->launchView('view');
+    }
+
+    public function edit($id) {
+        $data = $this->module['sessions']->where('id', $id)->first();
+        return $this->launchView('edit', array('data' => $data));
+    }
+
+    public function update($id, request $request) {
+        parent::save('update',$request, array('id' => $id));
+    }
+
+    public function destroy($id) {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function run() {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
