@@ -27,10 +27,7 @@ class superAdminCronsController extends Controller {
     }
 
     public function create() {
-        $objects = array('' => '');
-        foreach ($this->menu['objects'] as $key => $object) {
-            $objects[$object->id] = ucfirst($object->name);
-        }
+        $objects = $this->loadObjects();
         return $this->launchView('create', array('objects' => $objects));
     }
 
@@ -44,8 +41,9 @@ class superAdminCronsController extends Controller {
     }
 
     public function edit($id) {
+        $objects = $this->loadObjects();
         $data = $this->module[$this->currentModule]->where('id', $id)->first();
-        return $this->launchView('edit', array('data' => $data));
+        return $this->launchView('edit', array('data' => $data, 'objects' => $objects));
     }
 
     public function update($id, request $request) {
@@ -58,5 +56,13 @@ class superAdminCronsController extends Controller {
 
     public function run() {
 
+    }
+
+    private function loadObjects() {
+        $objects = array('' => '');
+        foreach ($this->menu['objects'] as $key => $object) {
+            $objects[$object->id] = ucfirst($object->name);
+        }
+        return $objects;
     }
 }
