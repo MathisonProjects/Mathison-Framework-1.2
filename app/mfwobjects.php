@@ -24,7 +24,7 @@
 						} elseif ($field->datatype == 'blob') {
 							$table->binary($field->name)->default($field->defaultval);
 						} elseif ($field->datatype == 'datetime') {
-							$table->dateTime($field->name)->default($field->defaultval);
+							$table->dateTime($field->name);
 						} elseif ($field->datatype == 'decimal') {
 							$table->decimal($field->name, 8, 3)->default($field->defaultval);
 						}

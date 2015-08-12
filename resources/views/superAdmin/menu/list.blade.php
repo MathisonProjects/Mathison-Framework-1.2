@@ -29,6 +29,7 @@
 		{!! $divider !!}
 		@include($list.'marketing')
 		{!! $divider !!}
+		@include($list.'crons')
 		@include($list.'other')
 	@endif
 @stop

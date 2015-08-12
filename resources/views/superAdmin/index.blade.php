@@ -44,7 +44,10 @@
 				<td>MySQL                  </td>
 				<td>PHP Blade              </td>
 			</tr>
-
+			<tr>
+				<td></td>
+				<td>AngularJS</td>
+			</tr>
 		</tbody>
 	</table>
 @stop

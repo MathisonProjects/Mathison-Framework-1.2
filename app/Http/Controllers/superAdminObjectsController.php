@@ -115,7 +115,6 @@ class superAdminObjectsController extends Controller {
 		$data = $this->module['objects']->where('name',$this->sanitizeName($this->post['objectName']))->first();
 		$id = $data->id;
 		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
-
 			$this->module['objects']->insert(['oid' => $id,
 				'name'         => $this->sanitizeName($this->post['object']['name'][$i]),
 				'datatype' 	   => $this->post['object']['data'][$i],
