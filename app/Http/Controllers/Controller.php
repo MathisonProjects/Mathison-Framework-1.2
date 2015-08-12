@@ -28,10 +28,9 @@ use Session;
 abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
-    public $module, $menu, $post, $user, $workflow, $constants;
+    public $module, $menu, $post, $user, $workflow, $constants, $currentModule;
     public $db_prefix = 'mfwcus_';
     public static $is_ajax;
-    private $currentModule;
     public $vedIcon = array(
         'View'     => "<i><span class='glyphicon glyphicon-eye-open'></span></i>",
         'Edit'     => "<i><span class='glyphicon glyphicon-edit'></span></i>",

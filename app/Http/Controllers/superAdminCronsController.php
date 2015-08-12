@@ -9,14 +9,13 @@ use App\Http\Controllers\Controller;
 
 class superAdminCronsController extends Controller {
     public function index() {
-        $module = 'crons';
         $keys = array('View', 'Edit', 'Delete', 'Id', 'Name', 'Description');
         $items = array();
-        foreach ($this->menu[$module] as $key => $item) {
+        foreach ($this->menu[$this->currentModule] as $key => $item) {
             array_push($items, array(
-                    '<a href="/admin/super/'.$module.'/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
-                    '<a href="/admin/super/'.$module.'/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
-                    '<a href="/admin/super/'.$module.'/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
+                    '<a href="/admin/super/'.$this->currentModule.'/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
+                    '<a href="/admin/super/'.$this->currentModule.'/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
+                    '<a href="/admin/super/'.$this->currentModule.'/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
                     $item->id,
                     $item->name,
                     $item->description
@@ -40,11 +39,12 @@ class superAdminCronsController extends Controller {
     }
 
     public function show($id) {
-        return $this->launchView('view');
+        $data = $this->module[$this->currentModule]->where('id', $id)->first();
+        return $this->launchView('view', array('data' => $data));
     }
 
     public function edit($id) {
-        $data = $this->module['sessions']->where('id', $id)->first();
+        $data = $this->module[$this->currentModule]->where('id', $id)->first();
         return $this->launchView('edit', array('data' => $data));
     }
 

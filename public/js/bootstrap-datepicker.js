@@ -132,9 +132,9 @@
 				if (this.component){
 					this.element.find('input').prop('value', formated);
 				}
-				this.element.data('date', formated);
+				this.element.data('date', formated + ' 01:00:00');
 			} else {
-				this.element.prop('value', formated);
+				this.element.prop('value', formated + ' 01:00:00');
 			}
 		},
 		

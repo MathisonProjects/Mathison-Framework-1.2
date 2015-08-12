@@ -9,12 +9,12 @@
 			{!! Form::text('description', null, array('id' => 'description', 'placeholder' => 'Description', 'class' => 'form-control', 'maxlength' => '255')) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('object', 'Object') !!}
-			{!! Form::select('object', $objects, null, array('class' => 'form-control')) !!}
+			{!! Form::label('oid', 'Object') !!}
+			{!! Form::select('oid', $objects, null, array('id' => 'object', 'class' => 'form-control')) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('field', 'Field') !!}
-			{!! Form::select('field', array(), null, array('id' => 'fields', 'class' => 'form-control')) !!}
+			{!! Form::label('fid', 'Field') !!}
+			{!! Form::select('fid', array(), null, array('id' => 'fields', 'class' => 'form-control')) !!}
 		</div>
 		<div class='form-group'>
 			{!! Form::label('modtype', 'Mod Type') !!}
@@ -36,8 +36,8 @@
 		</div>
 		<div class='form-group'>
 			{!! Form::label('lastran', 'Start Date') !!}
-			<div class="input-append date" id="dp3" data-date="<?php echo date('M/d/Y'); ?>" data-date-format="mm/dd/yyyy">
-			{!! Form::text('lastran', date('m/d/Y'), array('class' => 'datepicker form-control')) !!}
+			<div class="input-append date" id="dp3" data-date="<?php echo date('Y-m-d H:i:s'); ?>" data-date-format="Y-m-d H:i:s">
+			{!! Form::text('lastran', date('Y-m-d H:i:s'), array('class' => 'datepicker form-control')) !!}
 			</div>
 		</div>
 		<div class='form-group'>
@@ -49,5 +49,8 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$('.datepicker').datepicker();
+	$('.datepicker').datepicker({
+		format: 'yyyy-mm-dd'
+	});
+	
 </script>

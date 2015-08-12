@@ -25,6 +25,9 @@ class CreateGoogleDriveTable extends Migration {
     }
 
     public function down() {
+        Schema::table('mfwgoogledrives', function (Blueprint $table) {
+            $table->dropForeign('mfwgoogledrives_credentials_foreign');
+        });
         Schema::drop('mfwgooglecredentials');
         Schema::drop('mfwgoogledrives');
     }
