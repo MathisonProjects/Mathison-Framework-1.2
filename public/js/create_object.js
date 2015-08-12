@@ -33,5 +33,4 @@ $( document ).ready(function() {
 		  '<input type="text" id="object[default]['+totalFields+']" placeholder="Default Value" class="form-control" maxlength="255" name="object[default]['+totalFields+']">' +
     '</div></div>');
   });
-
 });

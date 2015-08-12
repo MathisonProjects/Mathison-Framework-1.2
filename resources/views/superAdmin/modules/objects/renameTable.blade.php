@@ -12,10 +12,14 @@
 		<div class='col-md-4'>
 			<div class='form-group'>
 				{!! Form::label('newName', 'New Name') !!}
-				{!! Form::text('newName', '', array('id' => 'newName', 'class' => 'form-control', 'ng-model' => 'newName', 'required' => '')) !!}
+				{!! Form::text('newName', '', array('id' => 'newName', 'class' => 'form-control', 'ng-model' => 'newName', 'ng-trim' => 'false', 'required' => '')) !!}
 				<span style="color:red" ng-show="Rename.newName.$invalid">
 				  	<span ng-show="Rename.newName.$error.required">Object Name is required.
 				</span>
+			</div>
+			<div class='form-group'>
+				{!! Form::label('newDescription', 'New Description') !!}
+				{!! Form::text('newDescription', $object->objectDescription, array('id' => 'newDescription', 'class' => 'form-control', 'placeholder' => 'Description (Optional)')) !!}
 			</div>
 			<div class='form-group'>
 				{!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-12', 'ng-disabled' => 'Rename.newName.$invalid']) !!}
@@ -29,6 +33,9 @@
 		var app = angular.module('RenameApp', []);
 		app.controller('RenameController', function($scope) {
 			$scope.newName = "{{ $object->name }}";
+			$scope.$watch('newName', function() {
+			    $scope.newName = $scope.newName.toLowerCase().replace(/\s+/g,'');
+			});
 		});
 	</script>
 @stop

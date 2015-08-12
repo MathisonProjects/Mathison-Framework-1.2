@@ -17,7 +17,7 @@
 		<div class='col-md-4'>
 			<div class='form-group'>
 				<label for='objectName'>Name:</label>
-				{!! Form::text('objectName', null, array('id' => 'objectName', 'placeholder' => 'Object Name', 'class' => 'form-control', 'maxlength' => '25', 'ng-model' => 'objectName', 'required' => '')) !!}
+				{!! Form::text('objectName', null, array('id' => 'objectName', 'placeholder' => 'Object Name', 'class' => 'form-control', 'maxlength' => '25', 'ng-model' => 'objectName','ng-trim' => 'false', 'required' => '')) !!}
 				<span style="color:red" ng-show="Objects.objectName.$invalid">
 					<span ng-show="Objects.objectName.$error.required">Object Name is required.
 				</span>
@@ -53,7 +53,9 @@
 	<script>
 		var app = angular.module('ObjectsApp', []);
 		app.controller('ObjectsController', function($scope) {
-
+			$scope.$watch('objectName', function() {
+			    $scope.objectName = $scope.objectName.toLowerCase().replace(/\s+/g,'');
+			});
 		});
 	</script>
 @stop
