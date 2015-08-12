@@ -1,5 +1,9 @@
 @extends('superAdmin.master')
 
+@section('title')
+| Create Object
+@endsection
+
 @section('header')
 	<script src='/js/create_object.js'></script>
 @stop

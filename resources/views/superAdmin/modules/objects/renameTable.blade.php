@@ -1,5 +1,8 @@
 @extends('superAdmin.master')
 
+@section('title')
+| Rename Object
+@endsection
 
 @section('content')
 	<h2>Rename Object</h2>

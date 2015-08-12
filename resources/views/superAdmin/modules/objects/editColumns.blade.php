@@ -1,5 +1,9 @@
 @extends('superAdmin.master')
 
+@section('title')
+| Edit Object Columns
+@endsection
+
 @section('content')
 	<h2>Edit Object Columns</h2>
 	{!! Form::open(['ng-app' => 'ColumnsApp', 'ng-controller' => 'ColumnsController', 'name' => 'Columns', 'novalidate' => '']) !!}

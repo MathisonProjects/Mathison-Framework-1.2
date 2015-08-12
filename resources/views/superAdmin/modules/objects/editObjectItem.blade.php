@@ -1,5 +1,9 @@
 @extends('superAdmin.master')
 
+@section('title')
+| Edit Object Record
+@endsection
+
 @section('content')
 	<h2>Edit {{ $objectName }}: ID# {{ $record->id }}</h2>
 
