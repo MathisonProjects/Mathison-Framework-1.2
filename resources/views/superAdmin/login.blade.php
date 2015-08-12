@@ -1,5 +1,9 @@
 @extends('superAdmin.master')
 
+@section('title')
+| Login
+@endsection
+
 @section('content')
 	@if (session('Logout'))
 		<h2>{{ session('Logout') }}</h2>
