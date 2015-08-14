@@ -1,5 +1,5 @@
 <li class="dropdown-submenu">
-	<a tabindex="0" data-toggle="dropdown">
+	<a tabindex="0" data-toggle="dropdown_general">
 		@yield('section')
 	</a>
 	<ul class="dropdown-menu">

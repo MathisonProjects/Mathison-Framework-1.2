@@ -1,6 +1,6 @@
 @extends('superAdmin.menu.frame')
 
-@section('menu')
+@section('menu_general')
 	@if (isset($menu))
 		<?php $divider = '<li></li><li class="divider"></li>'; $list = 'superAdmin.menu.list.' ?>
 		@include($list.'accounts')
@@ -31,5 +31,12 @@
 		{!! $divider !!}
 		@include($list.'crons')
 		@include($list.'other')
+	@endif
+@stop
+
+@section('menu_functions')
+	@if (isset($menu))
+		<?php $divider = '<li></li><li class="divider"></li>'; $function = 'superAdmin.menu.function.' ?>
+		@include($function.'listgeneration')
 	@endif
 @stop
