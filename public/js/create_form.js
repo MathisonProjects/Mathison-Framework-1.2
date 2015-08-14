@@ -1,18 +1,6 @@
 $( document ).ready(function() {
   console.log("Create Form Ready!");
 
-  if (!String.prototype.format) {
-    String.prototype.format = function() {
-      var args = arguments;
-      return this.replace(/{(\d+)}/g, function(match, number) { 
-        return typeof args[number] != 'undefined'
-          ? args[number]
-          : match
-        ;
-      });
-    };
-  }
-
   $('.addField').click(function(event) {
     var totalFields = Number($('.totalFields').val()) + 1;
     $('.totalFields').val(totalFields);
