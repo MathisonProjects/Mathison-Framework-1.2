@@ -47,9 +47,11 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	get('objects/{id}/rename'						, 'superAdminObjectsController@rename');
 	get('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumns');
 	get('objects/create'						    , 'superAdminObjectsController@create');
+	get('objects/sorting'							, 'superAdminObjectsController@sortDisplay');
 	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
 	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
 	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
+	post('objects/sorting'							, 'superAdminObjectsController@postSortDisplay');
 	post('objects/{id}/getFieldList'				, 'superAdminObjectsController@getFields');
 	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');
 	post('objects/{id}/rename'						, 'superAdminObjectsController@renamePost');

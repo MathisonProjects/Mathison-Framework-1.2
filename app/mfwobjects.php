@@ -20,13 +20,13 @@
 						} elseif ($field->datatype == 'varchar') {
 							$table->string($field->name, $field->dataquantity)->default($field->defaultval);
 						} elseif ($field->datatype == 'int') {
-							$table->integer($field->name)->default($field->defaultval);
+							$table->integer($field->name);
 						} elseif ($field->datatype == 'blob') {
 							$table->binary($field->name)->default($field->defaultval);
 						} elseif ($field->datatype == 'datetime') {
 							$table->dateTime($field->name);
 						} elseif ($field->datatype == 'decimal') {
-							$table->decimal($field->name, 8, 3)->default($field->defaultval);
+							$table->decimal($field->name, 8, 3);
 						}
 					}
 				});

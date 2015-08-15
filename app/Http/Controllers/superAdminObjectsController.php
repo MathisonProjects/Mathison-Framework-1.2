@@ -167,8 +167,8 @@ class superAdminObjectsController extends Controller {
 	public function viewObjectItem(mfwobjects $object, $id) {
 		// Relationship Builder
 		$sharedDataArray = array();
-		$allPrimaryRelationships       = $this->module['relationships']->where('tableone', $object->name)->get();
-		$allSecondaryRelationships     = $this->module['relationships']->where('tabletwo', $object->name)->get();
+		$allPrimaryRelationships      = $this->module['relationships']->where('tableone', $object->name)->get();
+		$allSecondaryRelationships    = $this->module['relationships']->where('tabletwo', $object->name)->get();
 		$sharedDataArray['primary']   = array();
 		$sharedDataArray['secondary'] = array();
 		// One to Many, A one, B many
@@ -235,5 +235,59 @@ class superAdminObjectsController extends Controller {
 			$returnFields[$field->id] = ucfirst($field->name);
 		}
 		return json_encode($returnFields);
+	}
+
+	public function sortDisplay() {
+        $objects = array('' => '');
+        foreach ($this->menu['objects'] as $key => $object) {
+            $objects[$object->id] = ucfirst($object->name);
+        }
+
+		return $this->launchView('sortObjects1', array('objects' => $objects));
+	}
+
+	public function postSortDisplay(request $request) {
+		if ($request->input('page') == '1') {
+			$keys = array('Use Record');
+			$fields = array();
+
+			foreach ($request->input('fields') as $key => $field) {
+				$data = $this->module['objects']->where('id', $field)->first();
+				array_push($fields, $data->name);
+				array_push($keys, ucwords(str_replace('_', ' ', $data->name)));
+			}
+
+			$objectData = $this->getObjectData($request->input('object'));
+			$items = array();
+			
+			foreach ($objectData as $key => $item) {
+				$array = array('<input type="checkbox" name="value['.$item->id.']" value="'.$item->id.'" class="form-control" />');
+				foreach ($fields as $key2 => $field) {
+					array_push($array, $item->$field);
+				}
+				array_push($items, $array);
+			}
+
+        	$table = $this->tableBuilder($keys,$items);
+
+        	$calculated = array();
+
+        	foreach ($request->input('calculated') as $key => $field) {
+				$data = $this->module['objects']->where('id', $field)->first();
+				array_push($calculated, $data->name);
+			}
+
+			return $this->launchView('sortObjects2', array('table' => $table, 'calculated' => $calculated, 'oid' => $request->input('object')));
+		} else if ($request->input('page') == '2') {
+				echo "<pre>";
+				print_r($request->input());
+				echo "</pre>";
+				exit();
+		}
+	}
+
+	public function getObjectData($objectId) {
+		$object = $this->module['objects']->where('id', $objectId)->first();
+		return DB::table($this->db_prefix.$object->name)->orderBy('id')->get();
 	}
 }
