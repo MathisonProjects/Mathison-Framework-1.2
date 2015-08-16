@@ -268,7 +268,7 @@ class superAdminObjectsController extends Controller {
 				array_push($items, $array);
 			}
 
-        	$table = $this->tableBuilder($keys,$items);
+        	$table = $this->tableBuilderTwo($keys,$items);
 
         	$calculated = array();
 

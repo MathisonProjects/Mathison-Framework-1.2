@@ -146,4 +146,11 @@ abstract class Controller extends BaseController {
             addClass('dataTableFormat')->
             buildTable();;
     }
+
+    public function tableBuilderTwo($keys,$items) {
+        $table = new Table();
+        return $table->setKeys($keys)->
+            setValues($items)->
+            buildTable();;
+    }
 }
