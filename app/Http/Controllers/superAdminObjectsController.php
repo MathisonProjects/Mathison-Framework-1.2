@@ -302,11 +302,6 @@ class superAdminObjectsController extends Controller {
 					}
 				});
 			})->download('csv');
-
-				echo "<pre>";
-				print_r($combinations);
-				echo "</pre>";
-				exit();
 		}
 	}
 
