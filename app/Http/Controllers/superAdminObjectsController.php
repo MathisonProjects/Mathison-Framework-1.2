@@ -279,11 +279,96 @@ class superAdminObjectsController extends Controller {
 
 			return $this->launchView('sortObjects2', array('table' => $table, 'calculated' => $calculated, 'oid' => $request->input('object')));
 		} else if ($request->input('page') == '2') {
+			$object = $this->module['objects']->where('id', $request->input('oid'))->first();
+			$combinations = array();
+			$allData = array();
+			$loop = true;
+
+			foreach ($request->input('value') as $key => $value) {
+				array_push($allData, DB::table($this->db_prefix.$object->name)->where('id', $value)->first());
+			}
+
+			$combinations = $this->pc_array_power_set($allData,$request->input('groupsof'));
+
+			foreach ($request->input('rule') as $key => $parser) {
+				$combinations = $this->sanitizeSortList($combinations,$request->input('groupsof'),$parser['variable'], $key, $parser['amount']);
+			}
 				echo "<pre>";
-				print_r($request->input());
+				print_r($combinations);
 				echo "</pre>";
 				exit();
 		}
+	}
+
+	private function pc_array_power_set($array,$quantity_desired) {
+	    // initialize by adding the empty set
+	    $results = array(array( ));
+
+	    foreach ($array as $element) {
+	        foreach ($results as $combination) {
+	            array_push($results, array_merge(array($element), $combination));
+	        }
+	    }
+	    $true_results = array();
+	    foreach ($results as $key => $array) {
+	    	if (count($array) == $quantity_desired) {
+	    		array_push($true_results, $array);
+	    	}
+	    }
+
+	    return $true_results;
+	}
+
+	private function sanitizeSortList($array, $quantity, $comparison, $field, $limit) {
+		$final_array = array();
+		foreach ($array as $key => $value) {
+			$amount = 0;
+			foreach ($value as $to_be_calculated) {
+				$amount += $to_be_calculated->$field;
+			}
+
+			switch ($comparison) {
+				case '>':
+					if ($amount > $limit) {
+						array_push($final_array, $value);
+					}
+					break;
+
+				case '>=':
+					if ($amount >= $limit) {
+						array_push($final_array, $value);
+					}
+					break;
+
+				case '==':
+					if ($amount == $limit) {
+						array_push($final_array, $value);
+					}
+					break;
+
+				case '<=':
+					if ($amount <= $limit) {
+						array_push($final_array, $value);
+					}
+					break;
+
+				case '<':
+					if ($amount < $limit) {
+						array_push($final_array, $value);
+					}
+					break;
+
+				case 'A':
+					if ($amount/$quantity == $limit) {
+						array_push($final_array, $value);
+					}
+					break;
+				
+				default:
+					break;
+			}
+		}
+		return $final_array;
 	}
 
 	public function getObjectData($objectId) {
