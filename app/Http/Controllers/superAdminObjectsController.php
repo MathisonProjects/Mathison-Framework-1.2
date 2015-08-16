@@ -326,45 +326,57 @@ class superAdminObjectsController extends Controller {
 
 	private function sanitizeSortList($array, $quantity, $comparison, $field, $limit) {
 		$final_array = array();
+		$i = 0;
 		foreach ($array as $key => $value) {
 			$amount = 0;
 			foreach ($value as $to_be_calculated) {
 				$amount += $to_be_calculated[$field];
 			}
-
 			switch ($comparison) {
 				case '>':
 					if ($amount > $limit) {
+						$i++;
+						array_push($value, array('List '.$i,$amount));
 						array_push($final_array, $value);
 					}
 					break;
 
 				case '>=':
 					if ($amount >= $limit) {
+						$i++;
+						array_push($value, array('List '.$i,$amount));
 						array_push($final_array, $value);
 					}
 					break;
 
 				case '==':
 					if ($amount == $limit) {
+						$i++;
+						array_push($value, array('List '.$i,$amount));
 						array_push($final_array, $value);
 					}
 					break;
 
 				case '<=':
 					if ($amount <= $limit) {
+						$i++;
+						array_push($value, array('List '.$i,$amount));
 						array_push($final_array, $value);
 					}
 					break;
 
 				case '<':
 					if ($amount < $limit) {
+						$i++;
+						array_push($value, array('List '.$i,$amount));
 						array_push($final_array, $value);
 					}
 					break;
 
 				case 'A':
 					if ($amount/$quantity == $limit) {
+						$i++;
+						array_push($value, array('List '.$i,$amount));
 						array_push($final_array, $value);
 					}
 					break;
