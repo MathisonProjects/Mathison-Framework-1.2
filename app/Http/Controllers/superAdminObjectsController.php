@@ -285,7 +285,7 @@ class superAdminObjectsController extends Controller {
 			$loop = true;
 
 			foreach ($request->input('value') as $key => $value) {
-				array_push($allData, DB::table($this->db_prefix.$object->name)->where('id', $value)->first());
+				array_push($allData, (array)DB::table($this->db_prefix.$object->name)->where('id', $value)->first());
 			}
 
 			$combinations = $this->pc_array_power_set($allData,$request->input('groupsof'));
@@ -293,6 +293,16 @@ class superAdminObjectsController extends Controller {
 			foreach ($request->input('rule') as $key => $parser) {
 				$combinations = $this->sanitizeSortList($combinations,$request->input('groupsof'),$parser['variable'], $key, $parser['amount']);
 			}
+
+			self::$miscData['combos'] = $combinations;
+			Excel::create($object->name.'_sorted_list', function($excel) {
+				$excel->sheet('Combinations', function($sheet) {
+					foreach (self::$miscData['combos'] as $key => $set) {
+						$sheet->fromArray($set);
+					}
+				});
+			})->download('csv');
+
 				echo "<pre>";
 				print_r($combinations);
 				echo "</pre>";
@@ -306,7 +316,7 @@ class superAdminObjectsController extends Controller {
 
 	    foreach ($array as $element) {
 	        foreach ($results as $combination) {
-	            array_push($results, array_merge(array($element), $combination));
+	            array_push($results, array_merge(array($element), (array)$combination));
 	        }
 	    }
 	    $true_results = array();
@@ -324,7 +334,7 @@ class superAdminObjectsController extends Controller {
 		foreach ($array as $key => $value) {
 			$amount = 0;
 			foreach ($value as $to_be_calculated) {
-				$amount += $to_be_calculated->$field;
+				$amount += $to_be_calculated[$field];
 			}
 
 			switch ($comparison) {
