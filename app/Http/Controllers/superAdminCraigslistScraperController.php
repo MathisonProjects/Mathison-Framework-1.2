@@ -70,7 +70,7 @@ class superAdminCraigslistScraperController extends Controller {
             }
 
             echo "<pre>";
-            print_r($cleaned_results);
+            print_r(array_unique($cleaned_results));
             echo "</pre>";
             exit();
 
