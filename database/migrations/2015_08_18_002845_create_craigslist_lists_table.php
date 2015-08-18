@@ -9,7 +9,8 @@ class CreateCraigslistListsTable extends Migration {
         Schema::create('mfwcraigslistLists', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('url');
+            $table->string('citycode');
+            $table->string('section');
         });
     }
 
