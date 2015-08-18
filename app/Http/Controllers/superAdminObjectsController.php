@@ -311,7 +311,11 @@ class superAdminObjectsController extends Controller {
 
 	    foreach ($array as $element) {
 	        foreach ($results as $combination) {
-	            array_push($results, array_merge(array($element), (array)$combination));
+	            if (count($element) != $quantity_desired) {
+	            	array_push($results, array_merge(array($element), (array)$combination));
+	        	} else {
+	        		break;
+	        	}
 	        }
 	    }
 	    $true_results = array();
