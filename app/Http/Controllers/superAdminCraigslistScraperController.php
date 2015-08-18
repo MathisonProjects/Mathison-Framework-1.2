@@ -43,7 +43,7 @@ class superAdminCraigslistScraperController extends Controller {
     public function getSearchResults($city, $category, $totalPages) {
         $contents = null;
 
-        $url = $url_main = "http://{$city}.craigslist.org/search/{$category}/";
+        $url = $url_main = "http://".$city.".craigslist.org/search/".$category."/";
         $searchResults = array();
 
         $pageIteration = 0;
@@ -185,5 +185,4 @@ class superAdminCraigslistScraperController extends Controller {
         }
     }
 
-}
 }

@@ -96,7 +96,6 @@ abstract class Controller extends BaseController {
         $this->module['googlecredentials'] = new mfwgooglecredentials;
         $this->module['googledrives']      = new mfwgoogledrives;
         $this->module['crons']             = new mfwcrons;
-        $this->module['craigslist']        = new mfwcraigslistscraper;
     }
 
     private function loadMenu() {
