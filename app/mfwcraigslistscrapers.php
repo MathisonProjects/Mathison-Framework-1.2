@@ -6,8 +6,8 @@
 	use Illuminate\Support\Facades\Schema as Schema;
 	use DB;
 
-	class mfwcraigslistscraper extends Eloquent {
-	    protected $table = 'mfwcraigslistscraper';
+	class mfwcraigslistscrapers extends Eloquent {
+	    protected $table = 'mfwcraigslistscrapers';
 		protected $fillable = ['citycode','section'];
 	}
 ?>

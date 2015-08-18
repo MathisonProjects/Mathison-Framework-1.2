@@ -22,7 +22,7 @@ use App\mfwmiddlewares;
 use App\mfwgooglecredentials;
 use App\mfwgoogledrives;
 use App\mfwcrons;
-use App\mfwcraigslistscraper;
+use App\mfwcraigslistscrapers;
 use DB;
 use Session;
 
@@ -96,6 +96,7 @@ abstract class Controller extends BaseController {
         $this->module['googlecredentials'] = new mfwgooglecredentials;
         $this->module['googledrives']      = new mfwgoogledrives;
         $this->module['crons']             = new mfwcrons;
+        $this->module['craigslist']        = new mfwcraigslistscrapers;
     }
 
     private function loadMenu() {

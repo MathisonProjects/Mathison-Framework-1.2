@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCraigslistListsTable extends Migration {
 
     public function up() {
-        Schema::create('mfwcraigslistLists', function (Blueprint $table) {
+        Schema::create('mfwcraigslistscrapers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('citycode');
@@ -15,6 +15,6 @@ class CreateCraigslistListsTable extends Migration {
     }
 
     public function down() {
-        Schema::drop('mfwcraigslistLists');
+        Schema::drop('mfwcraigslistscrapers');
     }
 }
