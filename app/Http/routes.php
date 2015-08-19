@@ -106,4 +106,4 @@ Route::group(['prefix' => '/admin'], function() {
 get('/{custom_url}', 'pagesController@index');
 
 post('/upload', 'superAdminController@uploads');
-get('api/{city}/{category}/{page}', 'superAdminCraigslistScraperController@getSearchResults');
+get('api/{city}/{category}', 'superAdminCraigslistScraperController@getSearchResults');

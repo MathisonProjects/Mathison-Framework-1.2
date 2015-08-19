@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5b28557b4aacb4cc68470c40dd30dd31",
+    "hash": "b971440dd275752e392446f2d01916b3",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ClassPreloader/ClassPreloader.git",
-                "reference": "8c3c14b10309e3b40bce833913a6c0c0b8c8f962"
+                "reference": "2709d403270d685fd7b64b0a69522f389d072438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/8c3c14b10309e3b40bce833913a6c0c0b8c8f962",
-                "reference": "8c3c14b10309e3b40bce833913a6c0c0b8c8f962",
+                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2709d403270d685fd7b64b0a69522f389d072438",
+                "reference": "2709d403270d685fd7b64b0a69522f389d072438",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "class",
                 "preload"
             ],
-            "time": "2015-06-28 21:39:13"
+            "time": "2015-08-14 18:47:21"
         },
         {
             "name": "danielstjules/stringy",
@@ -148,6 +148,40 @@
             ],
             "description": "Makes it easier to convert arrays to bootstrap tables.",
             "time": "2015-07-07 19:07:54"
+        },
+        {
+            "name": "divinityfound/craigslistapi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Divinityfound/craigslist-api.git",
+                "reference": "677243fd7d81f5410a64a1251054c1a31583f6ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Divinityfound/craigslist-api/zipball/677243fd7d81f5410a64a1251054c1a31583f6ea",
+                "reference": "677243fd7d81f5410a64a1251054c1a31583f6ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Divinityfound\\CraigslistApi": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Jacob Mathison",
+                    "email": "jmathison@bitbasic.com",
+                    "role": "Software Engineer"
+                }
+            ],
+            "description": "Parse Craigslist data and return it in json format.",
+            "time": "2015-08-19 00:31:01"
         },
         {
             "name": "divinityfound/credentialskeysapi",
@@ -1050,7 +1084,7 @@
                     "name": "Jeremy Lindblom",
                     "email": "jeremeamia@gmail.com",
                     "homepage": "https://github.com/jeremeamia",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "Serialize Closure objects, including their context and binding",
@@ -1072,12 +1106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8a03ec8d47413a07d40de600105b2193ceab68f8"
+                "reference": "837080228b4b2ca0492ef5d72ec1211ba57f94e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8a03ec8d47413a07d40de600105b2193ceab68f8",
-                "reference": "8a03ec8d47413a07d40de600105b2193ceab68f8",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/837080228b4b2ca0492ef5d72ec1211ba57f94e1",
+                "reference": "837080228b4b2ca0492ef5d72ec1211ba57f94e1",
                 "shasum": ""
             },
             "require": {
@@ -1192,7 +1226,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-08-14 13:06:12"
+            "time": "2015-08-18 13:40:24"
         },
         {
             "name": "league/flysystem",
@@ -1348,12 +1382,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "5779c3740ec7902c898dc7353b28d70ab0e690e5"
+                "reference": "d58755629d665abe7955e87ecb0a7a17912670ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5779c3740ec7902c898dc7353b28d70ab0e690e5",
-                "reference": "5779c3740ec7902c898dc7353b28d70ab0e690e5",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d58755629d665abe7955e87ecb0a7a17912670ad",
+                "reference": "d58755629d665abe7955e87ecb0a7a17912670ad",
                 "shasum": ""
             },
             "require": {
@@ -1370,7 +1404,7 @@
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
-                "raven/raven": "~0.8",
+                "raven/raven": "~0.11",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
@@ -1416,7 +1450,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-08-11 10:25:54"
+            "time": "2015-08-17 16:40:30"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1560,12 +1594,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PHPExcel.git",
-                "reference": "663d9422056de325f388f9775cf609bcd9764dd7"
+                "reference": "6eae1393015beed089c59b3d571039359868e077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/663d9422056de325f388f9775cf609bcd9764dd7",
-                "reference": "663d9422056de325f388f9775cf609bcd9764dd7",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/6eae1393015beed089c59b3d571039359868e077",
+                "reference": "6eae1393015beed089c59b3d571039359868e077",
                 "shasum": ""
             },
             "require": {
@@ -1612,7 +1646,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2015-08-03 18:40:16"
+            "time": "2015-08-14 18:50:24"
         },
         {
             "name": "psr/log",
@@ -2430,12 +2464,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "e8903ebba5eb019f5886ffce739ea9e3b7519579"
+                "reference": "479c4f743f0faf94a21224456154581e51076fa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e8903ebba5eb019f5886ffce739ea9e3b7519579",
-                "reference": "e8903ebba5eb019f5886ffce739ea9e3b7519579",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/479c4f743f0faf94a21224456154581e51076fa3",
+                "reference": "479c4f743f0faf94a21224456154581e51076fa3",
                 "shasum": ""
             },
             "require": {
@@ -2481,7 +2515,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2015-07-28 15:18:12"
+            "time": "2015-08-17 08:58:33"
         },
         {
             "name": "tecnick.com/tcpdf",
@@ -2599,12 +2633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "ae388efe53a2c352ddd270f4d316bad58952b8e3"
+                "reference": "c5232d963bca31ab886fb40ab706d89f42769fcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/ae388efe53a2c352ddd270f4d316bad58952b8e3",
-                "reference": "ae388efe53a2c352ddd270f4d316bad58952b8e3",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/c5232d963bca31ab886fb40ab706d89f42769fcc",
+                "reference": "c5232d963bca31ab886fb40ab706d89f42769fcc",
                 "shasum": ""
             },
             "require": {
@@ -2642,7 +2676,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2015-02-19 20:37:05"
+            "time": "2015-01-30 14:58:26"
         }
     ],
     "packages-dev": [
@@ -2701,21 +2735,78 @@
             "time": "2015-06-14 21:17:01"
         },
         {
-            "name": "phpdocumentor/reflection-docblock",
-            "version": "2.0.4",
+            "name": "phpdocumentor/reflection-common",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8"
+                "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
+                "reference": "8dfc66d8a72f6741ed9f5a39227f99f78ae8d9a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d68dbdc53dc358a816f00b300704702b2eaff7b8",
-                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/8dfc66d8a72f6741ed9f5a39227f99f78ae8d9a5",
+                "reference": "8dfc66d8a72f6741ed9f5a39227f99f78ae8d9a5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaap van Otterdijk",
+                    "email": "opensource@ijaap.nl"
+                }
+            ],
+            "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
+            "homepage": "http://www.phpdoc.org",
+            "keywords": [
+                "FQSEN",
+                "phpDocumentor",
+                "phpdoc",
+                "reflection",
+                "static analysis"
+            ],
+            "time": "2015-08-09 12:13:56"
+        },
+        {
+            "name": "phpdocumentor/reflection-docblock",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+                "reference": "09352d340640520f1047ff29f7a8e73129e2eb1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/09352d340640520f1047ff29f7a8e73129e2eb1c",
+                "reference": "09352d340640520f1047ff29f7a8e73129e2eb1c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "phpdocumentor/reflection-common": "^1.0@dev",
+                "phpdocumentor/type-resolver": "^0.1.2",
+                "webmozart/assert": "^1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -2747,7 +2838,54 @@
                     "email": "mike.vanriel@naenius.com"
                 }
             ],
-            "time": "2015-02-03 12:10:50"
+            "time": "2015-02-03 20:57:02"
+        },
+        {
+            "name": "phpdocumentor/type-resolver",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/TypeResolver.git",
+                "reference": "14bb2da6387c6a58648b4a87ff02d4c971050309"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/14bb2da6387c6a58648b4a87ff02d4c971050309",
+                "reference": "14bb2da6387c6a58648b4a87ff02d4c971050309",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "phpdocumentor/reflection-common": "^1.0@dev"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "me@mikevanriel.com"
+                }
+            ],
+            "time": "2015-07-02 17:28:34"
         },
         {
             "name": "phpspec/php-diff",
@@ -2926,12 +3064,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "40103f9b335f1d84daed099f180b9de12ba080e7"
+                "reference": "751653e81e3fcbddbe026f36e6e16fafd0a19f46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/40103f9b335f1d84daed099f180b9de12ba080e7",
-                "reference": "40103f9b335f1d84daed099f180b9de12ba080e7",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/751653e81e3fcbddbe026f36e6e16fafd0a19f46",
+                "reference": "751653e81e3fcbddbe026f36e6e16fafd0a19f46",
                 "shasum": ""
             },
             "require": {
@@ -2980,7 +3118,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-04 03:45:55"
+            "time": "2015-08-17 07:51:01"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3117,12 +3255,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "09fc125d65c344c53a7c7ad8f261e3f3af9f76c5"
+                "reference": "92d472f7ac0cd45b7f6d66cb807646432cf89f5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/09fc125d65c344c53a7c7ad8f261e3f3af9f76c5",
-                "reference": "09fc125d65c344c53a7c7ad8f261e3f3af9f76c5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/92d472f7ac0cd45b7f6d66cb807646432cf89f5d",
+                "reference": "92d472f7ac0cd45b7f6d66cb807646432cf89f5d",
                 "shasum": ""
             },
             "require": {
@@ -3158,7 +3296,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-08-13 14:23:08"
+            "time": "2015-08-18 15:47:59"
         },
         {
             "name": "phpunit/phpunit",
@@ -3166,12 +3304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fd3050e26e3105f416d74c4d33aea659b406c59d"
+                "reference": "650f482841ac845c165e47758617e773e471bbe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fd3050e26e3105f416d74c4d33aea659b406c59d",
-                "reference": "fd3050e26e3105f416d74c4d33aea659b406c59d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/650f482841ac845c165e47758617e773e471bbe0",
+                "reference": "650f482841ac845c165e47758617e773e471bbe0",
                 "shasum": ""
             },
             "require": {
@@ -3230,7 +3368,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-10 09:16:56"
+            "time": "2015-08-18 03:58:29"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3708,6 +3846,55 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2015-07-29 07:12:56"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "ca9ee1dab6062238174de38f8dd19658b716cef3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/ca9ee1dab6062238174de38f8dd19658b716cef3",
+                "reference": "ca9ee1dab6062238174de38f8dd19658b716cef3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "time": "2015-07-25 15:19:30"
         }
     ],
     "aliases": [],
@@ -3716,7 +3903,8 @@
         "divinityfound/arraytobootstraptable": 20,
         "divinityfound/offsitecredentials": 20,
         "divinityfound/credentialskeysapi": 20,
-        "divinityfound/googledrivetree": 20
+        "divinityfound/googledrivetree": 20,
+        "divinityfound/craigslistapi": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

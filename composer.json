@@ -15,7 +15,8 @@
         "divinityfound/arraytobootstraptable": "dev-master",
         "divinityfound/offsitecredentials": "dev-master",
         "divinityfound/credentialskeysapi": "dev-master",
-        "divinityfound/googledrivetree": "dev-master"
+        "divinityfound/googledrivetree": "dev-master",
+        "divinityfound/craigslistapi": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
