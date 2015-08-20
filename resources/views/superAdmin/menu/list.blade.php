@@ -27,6 +27,7 @@
 		@include($list.'requiredfiles')
 		@include($list.'unittests')
 		{!! $divider !!}
+		@include($list.'craigslist')
 		@include($list.'marketing')
 		{!! $divider !!}
 		@include($list.'crons')

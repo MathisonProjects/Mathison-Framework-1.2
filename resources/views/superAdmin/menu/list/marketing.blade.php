@@ -5,9 +5,6 @@
 			<a tabindex="0">Assign Social Media</a>
 		</li>
 		<li>
-			<a tabindex="0">Assign Craigslist Listeners</a>
-		</li>
-		<li>
 			<a tabindex="0">Marketing Dashpanel</a>
 		</li>
 	</ul>

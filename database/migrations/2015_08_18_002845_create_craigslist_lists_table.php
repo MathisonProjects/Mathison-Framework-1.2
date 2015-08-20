@@ -12,9 +12,16 @@ class CreateCraigslistListsTable extends Migration {
             $table->string('citycode');
             $table->string('section');
         });
+
+        Schema::create('mfwcraigslistphrasefilters', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('phrase');
+        });
     }
 
     public function down() {
         Schema::drop('mfwcraigslistscrapers');
+        Schema::drop('mfwcraigslistphrasefilters');
     }
 }

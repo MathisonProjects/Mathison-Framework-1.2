@@ -74,6 +74,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	// CRONs
 	get('crons/run', 'superAdminCronsController@run');
 	post('crons/run', 'superAdminCronsController@run');
+	get('craigslistScraper/showList', 'superAdminCraigslistScraperController@showList');
 
 	// Super Admin Controller
 	$superAdminControllers = array(
@@ -85,7 +86,8 @@ Route::group(['prefix' => '/admin/super/'], function() {
 		'reports'		 ,  'sessions'		  ,
 		'templates'      ,  'workflows'		  ,
 		'googleDrives'   ,  'googleCredentials',
-		'crons');
+		'crons'			 ,  'craigslistScraper',
+		'craigslistFilter');
 
 	foreach ($superAdminControllers as $item) {
 		resource($item , 'superAdmin'.ucfirst($item).'Controller');

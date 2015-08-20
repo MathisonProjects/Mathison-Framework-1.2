@@ -13,7 +13,7 @@ class superAdminReportsController extends Controller
     public function index() {
         $keys  = array('View','Edit','Delete','Report Name','Description');
         $items = array();
-        foreach ($this->menu['reports'] as $key => $item) {
+        foreach ($this->menu[$this->currentModule] as $key => $item) {
             $array = array('<a href="/admin/super/reports/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
                            '<a href="/admin/super/reports/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
                            '<a href="/admin/super/reports/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>',
@@ -32,7 +32,7 @@ class superAdminReportsController extends Controller
         return $this->launchView('create', array('objects' => $objects));
     }
     public function store(Request $request) {
-        $this->module['reports']->processRequest($request);
+        $this->module[$this->currentModule]->processRequest($request);
     }
      
     public function show($id) {
@@ -40,7 +40,7 @@ class superAdminReportsController extends Controller
         $items      = array();
         $totals     = array();
         $trueTotal  = array();
-        $report     = $this->module['reports']->where('id',$id)->first();
+        $report     = $this->module[$this->currentModule]->where('id',$id)->first();
         $reportJson = json_decode($report->jsonreportparsing, true);
         $object     = $this->module['objects']->where('id',$reportJson['object'])->first();
         $dataset    = DB::table($this->db_prefix.$object->name);

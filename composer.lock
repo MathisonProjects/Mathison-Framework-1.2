@@ -155,12 +155,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Divinityfound/craigslist-api.git",
-                "reference": "677243fd7d81f5410a64a1251054c1a31583f6ea"
+                "reference": "d81696295afff1cdc7e09e6de97b136e9bb81a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Divinityfound/craigslist-api/zipball/677243fd7d81f5410a64a1251054c1a31583f6ea",
-                "reference": "677243fd7d81f5410a64a1251054c1a31583f6ea",
+                "url": "https://api.github.com/repos/Divinityfound/craigslist-api/zipball/d81696295afff1cdc7e09e6de97b136e9bb81a60",
+                "reference": "d81696295afff1cdc7e09e6de97b136e9bb81a60",
                 "shasum": ""
             },
             "require": {
@@ -181,7 +181,7 @@
                 }
             ],
             "description": "Parse Craigslist data and return it in json format.",
-            "time": "2015-08-19 00:31:01"
+            "time": "2015-08-19 00:48:54"
         },
         {
             "name": "divinityfound/credentialskeysapi",
@@ -461,12 +461,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "3661cd8bc5152598dbe6772e98b78d1fa8281a67"
+                "reference": "aacbad222c7daaf94b8e40285b66f1e315065937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/3661cd8bc5152598dbe6772e98b78d1fa8281a67",
-                "reference": "3661cd8bc5152598dbe6772e98b78d1fa8281a67",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/aacbad222c7daaf94b8e40285b66f1e315065937",
+                "reference": "aacbad222c7daaf94b8e40285b66f1e315065937",
                 "shasum": ""
             },
             "require": {
@@ -519,7 +519,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2015-08-05 11:14:49"
+            "time": "2015-08-19 10:02:04"
         },
         {
             "name": "doctrine/common",
@@ -1106,12 +1106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "837080228b4b2ca0492ef5d72ec1211ba57f94e1"
+                "reference": "7d46e10e451e85634ff83576db6fa2c46ed718d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/837080228b4b2ca0492ef5d72ec1211ba57f94e1",
-                "reference": "837080228b4b2ca0492ef5d72ec1211ba57f94e1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7d46e10e451e85634ff83576db6fa2c46ed718d5",
+                "reference": "7d46e10e451e85634ff83576db6fa2c46ed718d5",
                 "shasum": ""
             },
             "require": {
@@ -1226,7 +1226,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-08-18 13:40:24"
+            "time": "2015-08-19 15:34:06"
         },
         {
             "name": "league/flysystem",
@@ -3304,12 +3304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "650f482841ac845c165e47758617e773e471bbe0"
+                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/650f482841ac845c165e47758617e773e471bbe0",
-                "reference": "650f482841ac845c165e47758617e773e471bbe0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b7417edaf28059ea63d86be941e6004dbfcc0cc",
+                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc",
                 "shasum": ""
             },
             "require": {
@@ -3368,7 +3368,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-18 03:58:29"
+            "time": "2015-08-19 09:20:57"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3376,12 +3376,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "dccd8011934fba6fb77c7182c74926ad58c9ecd1"
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/dccd8011934fba6fb77c7182c74926ad58c9ecd1",
-                "reference": "dccd8011934fba6fb77c7182c74926ad58c9ecd1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
                 "shasum": ""
             },
             "require": {
@@ -3424,7 +3424,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-08-09 04:15:55"
+            "time": "2015-08-19 09:14:08"
         },
         {
             "name": "sebastian/comparator",

@@ -14,7 +14,7 @@ class superAdminObjectsController extends Controller {
 	public function index() {
 		$keys = array('Object Name', 'Description', 'Total Records', 'Edit Name', 'Edit Columns', 'Delete');
 		$items = array();
-		foreach ($this->menu['objects'] as $key => $item) {
+		foreach ($this->menu[$this->currentModule] as $key => $item) {
 			array_push($items, array('<a href="/admin/super/objects/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,DB::table($this->db_prefix.$item->name)->count(),'<a href="/admin/super/objects/'.$item->id.'/rename">'.$this->vedIcon['Edit'].'</a>', '<a href="/admin/super/objects/'.$item->id.'/editColumns">'.$this->vedIcon['Settings'].'</a>' ,'<a href="/admin/super/objects/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>'));
 		}
         $table = $this->tableBuilder($keys,$items);
@@ -28,20 +28,20 @@ class superAdminObjectsController extends Controller {
 
 	public function store() {
 		// NEEDS TWEAKING. NOT WORKING YET
-		$this->module['objects']->insert(['name' => $this->sanitizeName($this->post['objectName']),
+		$this->module[$this->currentModule]->insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);
-		$data = $this->module['objects']->where('name',$this->sanitizeName($this->post['objectName']))->first();
+		$data = $this->module[$this->currentModule]->where('name',$this->sanitizeName($this->post['objectName']))->first();
 		$id = $data->id;
 
 		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
-			$this->module['objects']->insert(['oid' => $id,
+			$this->module[$this->currentModule]->insert(['oid' => $id,
 				'name'         => $this->sanitizeName($this->post['objectItemFieldName'.$i]),
 				'datatype' 	   => $this->post['objectItemDataType'.$i],
 				'dataquantity' => $this->post['objectItemQuantity'.$i]]);
 		}
 
-		$fields = $this->module['objects']->where('oid', $id)->get();
-		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
+		$fields = $this->module[$this->currentModule]->where('oid', $id)->get();
+		$this->module[$this->currentModule]->createTable($this->db_prefix.$this->post['objectName'], $fields);
 	}
 
 	public function show($id) {
@@ -57,36 +57,36 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function destroy($id) {
-		$this->module['objects']->dropCustomTables($this->db_prefix,$id);
+		$this->module[$this->currentModule]->dropCustomTables($this->db_prefix,$id);
 		return redirect('/admin/super/objects');
 	}
 
 	public function rename($id) {
-		$object = $this->module['objects']->where('id', $id)->first();
+		$object = $this->module[$this->currentModule]->where('id', $id)->first();
 		return $this->launchView('renameTable', array('object' => $object));
 	}
 
 	public function renamePost($id, request $request) {
-		$this->module['objects']->renameTable($this->db_prefix, $id, $request->input('newName'));
+		$this->module[$this->currentModule]->renameTable($this->db_prefix, $id, $request->input('newName'));
 	}
 
 	public function editColumns($id) {
-		$object = $this->module['objects']->where('oid', $id)->get();
+		$object = $this->module[$this->currentModule]->where('oid', $id)->get();
 		return $this->launchView('editColumns', array('object' => $object));
 	}
 
 	public function editColumnsPost($id,request $request) {
 		foreach ($request->input() as $key => $value) {
 			if ($key != '_token') {
-				$this->module['objects']->editColumn($this->db_prefix, $id, $key, $value);
+				$this->module[$this->currentModule]->editColumn($this->db_prefix, $id, $key, $value);
 			}
 		}
 	}
 
 	public function import($id, Request $request) {
-		$object = $this->module['objects']->where('id', $id)->first();
+		$object = $this->module[$this->currentModule]->where('id', $id)->first();
 		self::$miscData['objectName'] = $this->db_prefix.$object->name;
-		self::$miscData['fields'] = $this->module['objects']->where('oid', $id)->get();
+		self::$miscData['fields'] = $this->module[$this->currentModule]->where('oid', $id)->get();
 		$file = $request->file('file');
 
 		Excel::load($file, function($reader) {
@@ -110,24 +110,24 @@ class superAdminObjectsController extends Controller {
 
 	public function createObjectPost() {
 
-		$this->module['objects']->insert(['name' => $this->sanitizeName($this->post['objectName']),
+		$this->module[$this->currentModule]->insert(['name' => $this->sanitizeName($this->post['objectName']),
 			'objectDescription' => $this->post['objectDescription']]);
-		$data = $this->module['objects']->where('name',$this->sanitizeName($this->post['objectName']))->first();
+		$data = $this->module[$this->currentModule]->where('name',$this->sanitizeName($this->post['objectName']))->first();
 		$id = $data->id;
 		for ($i = 1; $i <= $this->post['totalFields']; $i++) {
-			$this->module['objects']->insert(['oid' => $id,
+			$this->module[$this->currentModule]->insert(['oid' => $id,
 				'name'         => $this->sanitizeName($this->post['object']['name'][$i]),
 				'datatype' 	   => $this->post['object']['data'][$i],
 				'dataquantity' => $this->post['object']['quantity'][$i],
 				'defaultval'   => $this->post['object']['default'][$i]]);
 		}
 
-		$fields = $this->module['objects']->where('oid', $id)->get();
-		$this->module['objects']->createTable($this->db_prefix.$this->post['objectName'], $fields);
+		$fields = $this->module[$this->currentModule]->where('oid', $id)->get();
+		$this->module[$this->currentModule]->createTable($this->db_prefix.$this->post['objectName'], $fields);
 	}
 
 	public function viewRecords(mfwobjects $object) {	
-		$fields = $this->module['objects']->where('oid', $object->id)->orderBy('id')->get();
+		$fields = $this->module[$this->currentModule]->where('oid', $object->id)->orderBy('id')->get();
 		$records = DB::table($this->db_prefix.$object->name)->get();
 		$description = $object->objectDescription;
 		$dbName = $object->name;
@@ -199,13 +199,13 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function viewObjectAddRecord(array $array) {
-		$this->module['objects']->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);
+		$this->module[$this->currentModule]->insertCustomData($this->db_prefix.$array[0],$array[1],$this->post);
 	}
 
 	public function editObjectItem(mfwobjects $object, $id) {
 		$compact = array(
 			'objectName' => ucwords(str_replace('_', ' ', $object->name)),
-			'fields' => $this->module['objects']->where('oid', $object->id)->get(),
+			'fields' => $this->module[$this->currentModule]->where('oid', $object->id)->get(),
 			'record' => DB::table($this->db_prefix.$object->name)->where('id', $id)->first(),
 			'object' => $object);
 
@@ -229,7 +229,7 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function getFields($id) {
-		$fields = $this->module['objects']->where('oid', $id)->get();
+		$fields = $this->module[$this->currentModule]->where('oid', $id)->get();
 		$returnFields = array();
 		foreach ($fields as $key => $field) {
 			$returnFields[$field->id] = ucfirst($field->name);
@@ -239,11 +239,11 @@ class superAdminObjectsController extends Controller {
 
 	public function sortDisplay() {
         $objects = array('' => '');
-        foreach ($this->menu['objects'] as $key => $object) {
+        foreach ($this->menu[$this->currentModule] as $key => $object) {
             $objects[$object->id] = ucfirst($object->name);
         }
 
-		return $this->launchView('sortObjects1', array('objects' => $objects));
+		return $this->launchView('sortObjects1', array($this->currentModule => $objects));
 	}
 
 	public function postSortDisplay(request $request) {
@@ -252,7 +252,7 @@ class superAdminObjectsController extends Controller {
 			$fields = array();
 
 			foreach ($request->input('fields') as $key => $field) {
-				$data = $this->module['objects']->where('id', $field)->first();
+				$data = $this->module[$this->currentModule]->where('id', $field)->first();
 				array_push($fields, $data->name);
 				array_push($keys, ucwords(str_replace('_', ' ', $data->name)));
 			}
@@ -273,13 +273,13 @@ class superAdminObjectsController extends Controller {
         	$calculated = array();
 
         	foreach ($request->input('calculated') as $key => $field) {
-				$data = $this->module['objects']->where('id', $field)->first();
+				$data = $this->module[$this->currentModule]->where('id', $field)->first();
 				array_push($calculated, $data->name);
 			}
 
 			return $this->launchView('sortObjects2', array('table' => $table, 'calculated' => $calculated, 'oid' => $request->input('object')));
 		} else if ($request->input('page') == '2') {
-			$object = $this->module['objects']->where('id', $request->input('oid'))->first();
+			$object = $this->module[$this->currentModule]->where('id', $request->input('oid'))->first();
 			$combinations = array();
 			$allData = array();
 			$loop = true;
@@ -393,7 +393,7 @@ class superAdminObjectsController extends Controller {
 	}
 
 	public function getObjectData($objectId) {
-		$object = $this->module['objects']->where('id', $objectId)->first();
+		$object = $this->module[$this->currentModule]->where('id', $objectId)->first();
 		return DB::table($this->db_prefix.$object->name)->orderBy('id')->get();
 	}
 }

@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class superAdminSessionsController extends Controller {
+class superAdminCraigslistFilterController extends Controller
+{
     public function index() {
-        $keys = array('View', 'Edit', 'Delete', 'Id', 'Session');
+        $keys = array('View', 'Edit', 'Delete', 'Id', 'Phrase');
         $items = array();
         foreach ($this->menu[$this->currentModule] as $key => $item) {
             array_push($items, array(
-                    '<a href="/admin/super/sessions/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
-                    '<a href="/admin/super/sessions/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
-                    '<a href="/admin/super/sessions/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
+                    '<a href="/admin/super/'.$this->currentModule.'/'.$item->id.'">'.$this->vedIcon['View'].'</a>',
+                    '<a href="/admin/super/'.$this->currentModule.'/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
+                    '<a href="/admin/super/'.$this->currentModule.'/'.$item->id.'/destroy">'.$this->vedIcon['Delete'].'</a>',
                     $item->id,
-                    $item->name
+                    $item->phrase
                 ));
         }
 
