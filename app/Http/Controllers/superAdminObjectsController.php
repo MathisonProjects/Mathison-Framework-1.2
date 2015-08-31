@@ -19,7 +19,7 @@ class superAdminObjectsController extends Controller {
 				DB::table($this->db_prefix.$item->name)->count(),
 				'<a href="/admin/super/objects/'.$item->id.'/rename">'.$this->vedIcon['Edit'].'</a>',
 				'<a href="/admin/super/objects/'.$item->id.'/editColumns">'.$this->vedIcon['Settings'].'</a>',
-				'<a href="/admin/super/objects/.'.$item->id.'/truncate">'.$this->vedIcon['Truncate'].'</a>',
+				'<a href="/admin/super/objects/'.$item->id.'/truncate">'.$this->vedIcon['Truncate'].'</a>',
 				'<a href="/admin/super/objects/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>'));
 		}
         $table = $this->tableBuilder($keys,$items);
