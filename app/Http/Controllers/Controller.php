@@ -38,6 +38,7 @@ abstract class Controller extends BaseController {
         'Edit'     => "<i><span class='glyphicon glyphicon-edit'></span></i>",
         'Settings' => "<i><span class='glyphicon glyphicon-cog'></span></i>",
         'Delete'   => "<i><span class='glyphicon glyphicon-remove'></span></i>",
+        'Truncate' => "<i><span class='glyphicon glyphicon-trash'></span></i>",
         'Download' => "<i><span class='glyphicon glyphicon-download'></span></i>");
 
     public function __construct() {

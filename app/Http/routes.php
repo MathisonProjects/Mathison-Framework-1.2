@@ -51,6 +51,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
 	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
 	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
+	get('objects/{objectName}/{objectId}/truncate'	, 'superAdminObjectsController@truncateTable');
 	post('objects/sorting'							, 'superAdminObjectsController@postSortDisplay');
 	post('objects/{id}/getFieldList'				, 'superAdminObjectsController@getFields');
 	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');

@@ -12,10 +12,15 @@ class superAdminObjectsController extends Controller {
 	static $miscData = array();
 
 	public function index() {
-		$keys = array('Object Name', 'Description', 'Total Records', 'Edit Name', 'Edit Columns', 'Delete');
+		$keys = array('Object Name', 'Description', 'Total Records', 'Edit Name', 'Edit Columns', 'Truncate DB', 'Delete');
 		$items = array();
 		foreach ($this->menu[$this->currentModule] as $key => $item) {
-			array_push($items, array('<a href="/admin/super/objects/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,DB::table($this->db_prefix.$item->name)->count(),'<a href="/admin/super/objects/'.$item->id.'/rename">'.$this->vedIcon['Edit'].'</a>', '<a href="/admin/super/objects/'.$item->id.'/editColumns">'.$this->vedIcon['Settings'].'</a>' ,'<a href="/admin/super/objects/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>'));
+			array_push($items, array('<a href="/admin/super/objects/'.$item->name.'">'.$item->name.'</a>',$item->objectDescription,
+				DB::table($this->db_prefix.$item->name)->count(),
+				'<a href="/admin/super/objects/'.$item->id.'/rename">'.$this->vedIcon['Edit'].'</a>',
+				'<a href="/admin/super/objects/'.$item->id.'/editColumns">'.$this->vedIcon['Settings'].'</a>',
+				'<a href="/admin/super/objects/.'.$item->id.'/truncate">'.$this->vedIcon['Truncate'].'</a>',
+				'<a href="/admin/super/objects/'.$item->id.'/delete">'.$this->vedIcon['Delete'].'</a>'));
 		}
         $table = $this->tableBuilder($keys,$items);
 
@@ -395,5 +400,11 @@ class superAdminObjectsController extends Controller {
 	public function getObjectData($objectId) {
 		$object = $this->module[$this->currentModule]->where('id', $objectId)->first();
 		return DB::table($this->db_prefix.$object->name)->orderBy('id')->get();
+	}
+
+	public function truncateTable($objectId) {
+		$object = $this->module[$this->currentModule]->where('id', $objectId)->first();
+		DB::table($this->db_prefix.$object->name)->truncate();
+		return redirect()->back();
 	}
 }
