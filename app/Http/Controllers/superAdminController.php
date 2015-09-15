@@ -23,6 +23,8 @@ class SuperAdminController extends Controller {
 
 	public function uploads(Request $request) {
 		$file = $request->file('file');
-		$file->move('uploads', $file->getClientOriginalName());
+		$mimetype = $file->guessExtension();
+        $newFileName = str_random(20).'.'.$mimetype;
+		$file->move('uploads', $newFileName);
 	}
 }
