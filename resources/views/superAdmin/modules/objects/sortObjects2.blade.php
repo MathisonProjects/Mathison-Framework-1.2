@@ -10,7 +10,7 @@
 
 @section('content')
 	<h2>Sort Object</h2>
-	{!! Form::open() !!}
+	{!! Form::open(['class' => 'form_sortable']) !!}
 		{!! $table !!}
 		{!! Form::hidden('oid', $oid) !!}
 		{!! Form::hidden('page', '2') !!}
@@ -33,8 +33,15 @@
 				</div>
 				@endforeach
 				<div class='form-group'>
+					{!! Form::button('Dynamic Sort', ['class' => 'btn btn-primary col-md-12 dynamic_sort']) !!}
+				</div>
+				<br /><br />
+				<div class='form-group'>
 					{!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-12']) !!}
 				</div>
+			</div>
+			<div class='col-md-8 testing_combo'>
+				
 			</div>
 		</div>
 	{!! Form::close() !!}
