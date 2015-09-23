@@ -1,7 +1,6 @@
 $( document ).ready(function() {
   console.log("sortObjects.js Ready!");
-    $.fn.fireAjax = function(type,url,params,action) {
-
+  $.fn.getFieldList = function(type,url,params,action) {
   	$.ajax({
   	  type: type,
   	  url: url,
@@ -19,41 +18,39 @@ $( document ).ready(function() {
     });
   }
 
-  $.fn.getCombinations = function(list) {
-    // Empty list has one permutation
-    if (list.length == 0)
-      return [[]];
-      
-      
-    var result = [];
-    
-    for (var i=0; i<list.length; i++)
-    {
-      // Clone list (kind of)
-      var copy = Object.create(list);
+  $.fn.getObjectData = function(type,url) {
+    return $.parseJSON($.ajax({
+        type: type,
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        async: false
+      }).responseText);
+  }
 
-      // Cut one element from list
-      var head = copy.splice(i, 1);
-      
-      // Permute rest of list
-      var rest = $(this).getCombinations(copy);
-      
-      // Add head to each permutation of rest of list
-      for (var j=0; j<rest.length; j++)
-      {
-        var next = head.concat(rest[j]);
-        result.push(next);
-      }
+  $.fn.sets = function(input, size) {
+    var results = [], result, mask, total = Math.pow(2, input.length);
+    for(mask = 0; mask < total; mask++){
+        result = [];
+        i = input.length - 1;
+        do{
+            if( (mask & (1 << i)) !== 0){
+                result.push(input[i]);
+            }
+        }while(i--);
+        if( result.length == size){
+            results.push(result);
+        }
     }
-    
-    return result;
+
+    return results; 
   }
 
   $('#object').change(function() {
     $('#fields').empty();
     $('#calculated').empty();
     $this = $(this);
-    $this.fireAjax('POST','/admin/super/objects/'+$this.val()+'/getFieldList', '', 'showFields');
+    $this.getFieldList('POST','/admin/super/objects/'+$this.val()+'/getFieldList', '', 'showFields');
   });
 
   $('.dynamic_sort').click(function() {
@@ -67,13 +64,21 @@ $( document ).ready(function() {
         }
     });
 
+    var itemData = [];
+    $(allData).each(function(index, obj) {
+      $this = $(this);
+      itemData[itemData.length] = $this.getObjectData('POST','/admin/super/objects/'+allData[index]+'/'+data['oid']+'/getJsonObjectItemData');
+    });
+
+    console.log(itemData);
+
     if (allData.length < data['groupsof']) {
       $('.testing_combo').html('<pre>Too few items chosen.</pre>');
     } else {
       $('.testing_combo').html('<pre>Processing...</pre>');
-      var result = $(this).getCombinations(allData);
+      var result = $(this).sets(allData,data['groupsof']);
     }
-    console.log(result);
+    // console.log(result);
     // console.log(data);
   });
 

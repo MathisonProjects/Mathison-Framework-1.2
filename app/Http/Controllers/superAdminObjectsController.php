@@ -397,6 +397,12 @@ class superAdminObjectsController extends Controller {
 		return $final_array;
 	}
 
+	public function getJsonObjectItemData($id, $oid) {
+		$object = $this->module[$this->currentModule]->where('id', $oid)->first();
+		$item = DB::table($this->db_prefix.$object->name)->where('id', $id)->first();
+		return json_encode($item);
+	}
+
 	public function getObjectData($objectId) {
 		$object = $this->module[$this->currentModule]->where('id', $objectId)->first();
 		return DB::table($this->db_prefix.$object->name)->orderBy('id')->get();

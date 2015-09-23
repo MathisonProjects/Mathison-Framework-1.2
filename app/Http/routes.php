@@ -62,7 +62,7 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('objects/{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
 	post('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
 	post('objects/getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
-
+	post('objects/{id}/{oid}/getJsonObjectItemData'	, 'superAdminObjectsController@getJsonObjectItemData');
 
 	// Accounts
 	get('logout'      , 'superAdminAccountsController@logout');
