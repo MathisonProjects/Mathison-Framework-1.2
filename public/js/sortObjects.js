@@ -50,9 +50,18 @@ $( document ).ready(function() {
     });
 
     $(aggregatedArray).each(function(index,obj){
-      var passData = obj.data;
+      var passData = '';
+      $(obj.data).each(function(index2,obj2){
+        if (passData != '') {
+          passData += '&';
+        }
+        passData += obj2.name + "=" + obj2.value;
+      });
       $(obj.addon).each(function(index2,obj2){
-        // passData.push(obj2);
+        if (passData != '') {
+          passData += '&';
+        }
+        passData += obj2.name + "=" + obj2.value;
       })
 
     });
