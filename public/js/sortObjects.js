@@ -38,6 +38,7 @@ $( document ).ready(function() {
     var finalArray = [];
     var aggregatedArray = [];
     var i = 0;
+    var finalArray = [];
 
     $(combos).each(function(index,obj){
       var form = $().formDataParse(formData);
@@ -61,11 +62,27 @@ $( document ).ready(function() {
         if (passData != '') {
           passData += '&';
         }
-        passData += obj2.name + "=" + obj2.value;
+        passData += 'item' + index2 + "=" + obj2.item;
       })
 
-    });
+      var splitData = passData.split("&");
+      var sendData = {};
+      for(var key in splitData) {
+          sendData[splitData[key].split("=")[0]] = splitData[key].split("=")[1];
+      }
 
+      var valid = $.ajax({
+        type: 'POST',
+        url: '/admin/super/objects/sorting/test',
+        data: JSON.stringify(sendData),
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        async: false
+      }).responseText;
+      if (valid == 'true') {
+        finalArray.push(obj.addon);
+      }
+    });
     return finalArray;
   }
 
@@ -114,11 +131,12 @@ $( document ).ready(function() {
     if (allData.length < data['groupsof']) {
       $('.testing_combo').html('<pre>Too few items chosen.</pre>');
     } else {
-      $('.testing_combo').html('<pre>Processing...</pre>');
+      $('.testing_combo').html('<center><img src="/images/processing.gif" /></center>');
       var result = $(this).sets(allData,data['groupsof']);
     }
-    console.log(result);
     var validResults = $(this).runComparisons(result,itemData,formdata);
+    console.log(validResults);
+    $('.testing_combo').html('<pre>Completed Dynamic Sort</pre>');
   });
 
 });

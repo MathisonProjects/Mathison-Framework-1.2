@@ -286,17 +286,19 @@ class superAdminObjectsController extends Controller {
 		} else if ($request->input('page') == '2') {
 			$object = $this->module[$this->currentModule]->where('id', $request->input('oid'))->first();
 			$combinations = array();
+			$idData  = array();
 			$allData = array();
 			$loop = true;
 
 			foreach ($request->input('value') as $key => $value) {
-				array_push($allData, (array)DB::table($this->db_prefix.$object->name)->where('id', $value)->first());
+				$allData[$value] = (array)DB::table($this->db_prefix.$object->name)->where('id', $value)->first();
+				array_push($idData, $value);
 			}
 
-			$combinations = $this->pc_array_power_set($allData,$request->input('groupsof'));
+			$combinations = $this->pc_array_power_set($idData,$request->input('groupsof'));
 
 			foreach ($request->input('rule') as $key => $parser) {
-				$combinations = $this->sanitizeSortList($combinations,$request->input('groupsof'),$parser['variable'], $key, $parser['amount']);
+				$combinations = $this->sanitizeSortList($combinations,$allData,$request->input('groupsof'),$parser['variable'], $key, $parser['amount']);
 			}
 
 			self::$miscData['combos'] = $combinations;
@@ -310,18 +312,43 @@ class superAdminObjectsController extends Controller {
 		}
 	}
 
+	public function postSortingTest(request $request) {
+		$object = $this->module[$this->currentModule]->where('id', $request->json('oid'))->first();
+		$items = array();
+		$array = array();
+
+		for ($i = 0; $i < $request->json('groupsof'); $i++) {
+			$items[$request->json('item'.$i)] = DB::table($this->db_prefix.$object->name)->where('id', $request->json('item'.$i))->first();
+			array_push($array, array($request->json('item'.$i)));
+		}
+
+		$result = $this->sanitizeSortList($array,$items,$request->json('groupsof'),'>', 'field', 'limit');
+
+		echo '<pre>';
+		print_r($request->json());
+		print_r($items);
+		echo '</pre>';
+		exit;
+
+		return 'false';
+		return 'true';
+	}
+
 	private function pc_array_power_set($array,$quantity_desired) {
 	    // initialize by adding the empty set
 	    $results = array(array( ));
-
 	    foreach ($array as $element) {
-	        foreach ($results as $combination) {
-	            if (count($element) != $quantity_desired) {
-	            	array_push($results, array_merge(array($element), (array)$combination));
-	        	} else {
-	        		break;
-	        	}
-	        }
+	    	if ($break == false) {
+		        foreach ($results as $combination) {
+		            if (count($element) != $quantity_desired) {
+		            	array_push($results, array_merge(array($element), (array)$combination));
+		        	} else {
+		        		break;
+		        	}
+		        }
+	    	} else {
+	    		break;
+	    	}
 	    }
 	    $true_results = array();
 	    foreach ($results as $key => $array) {
@@ -333,13 +360,14 @@ class superAdminObjectsController extends Controller {
 	    return $true_results;
 	}
 
-	private function sanitizeSortList($array, $quantity, $comparison, $field, $limit) {
+	private function sanitizeSortList($array, $idData, $quantity, $comparison, $field, $limit) {
 		$final_array = array();
 		$i = 0;
 		foreach ($array as $key => $value) {
 			$amount = 0;
-			foreach ($value as $to_be_calculated) {
-				$amount += $to_be_calculated[$field];
+			foreach ($value as $key => $to_be_calculated) {
+				$value[$key] = $idData[$to_be_calculated];
+				$amount += $idData[$to_be_calculated][$field];
 			}
 			switch ($comparison) {
 				case '>':
