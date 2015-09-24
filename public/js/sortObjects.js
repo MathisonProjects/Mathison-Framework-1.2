@@ -28,6 +28,38 @@ $( document ).ready(function() {
       }).responseText);
   }
 
+  $.fn.formDataParse = function(data) {
+    this.data = data;
+    this.addon = [];
+    return this;
+  }
+
+  $.fn.runComparisons = function(combos, dataList, formData) {
+    var finalArray = [];
+    var aggregatedArray = [];
+    var i = 0;
+
+    $(combos).each(function(index,obj){
+      var form = $().formDataParse(formData);
+      $(obj).each(function(index2,obj2){
+        var item = 'item' + index2;
+        var addon = {item:obj2};
+        form.addon.push(addon);
+      });
+      aggregatedArray.push(form);
+    });
+
+    $(aggregatedArray).each(function(index,obj){
+      var passData = obj.data;
+      $(obj.addon).each(function(index2,obj2){
+        // passData.push(obj2);
+      })
+
+    });
+
+    return finalArray;
+  }
+
   $.fn.sets = function(input, size) {
     var results = [], result, mask, total = Math.pow(2, input.length);
     for(mask = 0; mask < total; mask++){
@@ -70,16 +102,14 @@ $( document ).ready(function() {
       itemData[itemData.length] = $this.getObjectData('POST','/admin/super/objects/'+allData[index]+'/'+data['oid']+'/getJsonObjectItemData');
     });
 
-    console.log(itemData);
-
     if (allData.length < data['groupsof']) {
       $('.testing_combo').html('<pre>Too few items chosen.</pre>');
     } else {
       $('.testing_combo').html('<pre>Processing...</pre>');
       var result = $(this).sets(allData,data['groupsof']);
     }
-    // console.log(result);
-    // console.log(data);
+    console.log(result);
+    var validResults = $(this).runComparisons(result,itemData,formdata);
   });
 
 });
