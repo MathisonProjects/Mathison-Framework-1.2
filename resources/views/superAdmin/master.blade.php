@@ -20,7 +20,6 @@
 	                </button>
 	                <a class="navbar-brand" href="/admin/super/" title="This is MFW 1.2 (Mathison Framework 1.2), a simple solution to many rapid development problems that people may run into. The objective of MFW 1.2 is to smooth out the development process by incorporating ease of access between objects and data, mapping them efficiently and elegantly.">MFW 1.2</a>
 	            </div>
-	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav">
 	                    <li>
@@ -35,6 +34,12 @@
 				<div class='col-md12'>
 					@yield('content')
 				</div>
+			</div>
+		</div>
+
+		<div class='row'>
+			<div class='col-md-12'>
+				<span class='pull-right'>Open Source: <strong><a href='https://github.com/Divinityfound/Mathison-Framework-1.2' target='_BLANK' title='Mathison Framework 1.2 Github'>MFW1.2</a></strong> ©2013-<?php echo date('y'); ?></span>
 			</div>
 		</div>
 		@yield('modal')

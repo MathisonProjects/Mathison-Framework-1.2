@@ -284,6 +284,7 @@ class superAdminObjectsController extends Controller {
 
 			return $this->launchView('sortObjects2', array('table' => $table, 'calculated' => $calculated, 'oid' => $request->input('object')));
 		} else if ($request->input('page') == '2') {
+			$groupCount = $request->input('groupsof');
 			$object = $this->module[$this->currentModule]->where('id', $request->input('oid'))->first();
 			$combinations = array();
 			$idData  = array();
@@ -295,20 +296,62 @@ class superAdminObjectsController extends Controller {
 				array_push($idData, $value);
 			}
 
-			$combinations = $this->pc_array_power_set($idData,$request->input('groupsof'));
+			$combinations = $this->pc_array_power_set($idData,$groupCount);
 
 			foreach ($request->input('rule') as $key => $parser) {
-				$combinations = $this->sanitizeSortList($combinations,$allData,$request->input('groupsof'),$parser['variable'], $key, $parser['amount']);
+				$combinations = $this->sanitizeSortList($combinations,$allData,$groupCount,$parser['variable'], $key, $parser['amount']);
 			}
 
-			self::$miscData['combos'] = $combinations;
-			Excel::create($object->name.'_sorted_list', function($excel) {
-				$excel->sheet('Combinations', function($sheet) {
-					foreach (self::$miscData['combos'] as $key => $set) {
-						$sheet->fromArray($set);
+			$keys = array('Select','Group','Total');
+			$items = array();
+
+			foreach ($combinations as $key => $combo) {
+				$group = '<table class="table table-hover table-condensed">';
+				for ($i=0; $i < $groupCount; $i++) { 
+					$group .= '<tr>';
+					if ($i == 0) {
+						foreach ($combo[$i] as $key2 => $item) {
+							$group .= '<th>'.ucfirst($key2).'</th>';
+						}
 					}
-				});
-			})->download('csv');
+					$group .= '</tr>';
+					foreach ($combo[$i] as $key2 => $item) {
+						$group .= '<td>'.$item.'</td>';
+					}
+				}
+				$group .= '</table>';
+
+				array_push($items, array(
+						$key,
+						$group,
+						$combo[$groupCount][1]));
+			}
+
+	        $table = $this->tableBuilderTwo($keys,$items);
+
+			return $this->launchView('sortObjects3', array('table' => $table));
+
+			echo '<table>';
+			echo '<tr><th>Group</th><th>Cost</th><th>Count</th></tr>';
+			foreach ($combinations as $key => $combo) {
+				echo '<tr><td>';
+				for ($i=0; $i < $groupCount; $i++) { 
+					echo $combo[$i]['name'].'<br />';
+				}
+				echo '</td>';
+				echo '<td>'.$combo[$groupCount][1].'</td>';
+				echo '<td>'.$combo[$groupCount][0].'</td></tr>';
+			}
+			echo '</table>';
+
+			// self::$miscData['combos'] = $combinations;
+			// Excel::create($object->name.'_sorted_list', function($excel) {
+			// 	$excel->sheet('Combinations', function($sheet) {
+			// 		foreach (self::$miscData['combos'] as $key => $set) {
+			// 			$sheet->fromArray($set);
+			// 		}
+			// 	});
+			// })->download('csv');
 		}
 	}
 
@@ -337,12 +380,14 @@ class superAdminObjectsController extends Controller {
 	private function pc_array_power_set($array,$quantity_desired) {
 	    // initialize by adding the empty set
 	    $results = array(array( ));
+	    $break = false;
 	    foreach ($array as $element) {
 	    	if ($break == false) {
 		        foreach ($results as $combination) {
 		            if (count($element) != $quantity_desired) {
 		            	array_push($results, array_merge(array($element), (array)$combination));
 		        	} else {
+		        		$break = true;
 		        		break;
 		        	}
 		        }
@@ -422,6 +467,7 @@ class superAdminObjectsController extends Controller {
 					break;
 			}
 		}
+
 		return $final_array;
 	}
 
