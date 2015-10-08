@@ -369,28 +369,6 @@ class superAdminObjectsController extends Controller {
 		}
 	}
 
-	public function postSortingTest(request $request) {
-		$object = $this->module[$this->currentModule]->where('id', $request->json('oid'))->first();
-		$items = array();
-		$array = array();
-
-		for ($i = 0; $i < $request->json('groupsof'); $i++) {
-			$items[$request->json('item'.$i)] = DB::table($this->db_prefix.$object->name)->where('id', $request->json('item'.$i))->first();
-			array_push($array, array($request->json('item'.$i)));
-		}
-
-		$result = $this->sanitizeSortList($array,$items,$request->json('groupsof'),'>', 'field', 'limit');
-
-		echo '<pre>';
-		print_r($request->json());
-		print_r($items);
-		echo '</pre>';
-		exit;
-
-		return 'false';
-		return 'true';
-	}
-
 	private function pc_array_power_set($array,$quantity_desired) {
 	    // initialize by adding the empty set
 	    $results = array(array( ));
