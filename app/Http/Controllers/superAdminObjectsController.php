@@ -322,36 +322,50 @@ class superAdminObjectsController extends Controller {
 				$group .= '</table>';
 
 				array_push($items, array(
-						$key,
+						'<input type="checkbox" name="value['.$key.']" value="'.$key.'" class="form-control" />',
 						$group,
 						$combo[$groupCount][1]));
 			}
 
 	        $table = $this->tableBuilderTwo($keys,$items);
 
-			return $this->launchView('sortObjects3', array('table' => $table));
+			return $this->launchView('sortObjects3', array('table' => $table, 'requestInfo' => json_encode($request->input())));
 
-			echo '<table>';
-			echo '<tr><th>Group</th><th>Cost</th><th>Count</th></tr>';
-			foreach ($combinations as $key => $combo) {
-				echo '<tr><td>';
-				for ($i=0; $i < $groupCount; $i++) { 
-					echo $combo[$i]['name'].'<br />';
-				}
-				echo '</td>';
-				echo '<td>'.$combo[$groupCount][1].'</td>';
-				echo '<td>'.$combo[$groupCount][0].'</td></tr>';
+		} else if ($request->input('page') == '3') {
+			$previousInput = json_decode($request->input('previousInput'),true);
+
+			$groupCount = $previousInput['groupsof'];
+			$object = $this->module[$this->currentModule]->where('id', $previousInput['oid'])->first();
+			$combinations = array();
+			$idData  = array();
+			$allData = array();
+			$loop = true;
+
+			foreach ($previousInput['value'] as $key => $value) {
+				$allData[$value] = (array)DB::table($this->db_prefix.$object->name)->where('id', $value)->first();
+				array_push($idData, $value);
 			}
-			echo '</table>';
 
-			// self::$miscData['combos'] = $combinations;
-			// Excel::create($object->name.'_sorted_list', function($excel) {
-			// 	$excel->sheet('Combinations', function($sheet) {
-			// 		foreach (self::$miscData['combos'] as $key => $set) {
-			// 			$sheet->fromArray($set);
-			// 		}
-			// 	});
-			// })->download('csv');
+			$combinations = $this->pc_array_power_set($idData,$groupCount);
+
+			foreach ($previousInput['rule'] as $key => $parser) {
+				$combinations = $this->sanitizeSortList($combinations,$allData,$groupCount,$parser['variable'], $key, $parser['amount']);
+			}
+
+			$accepted = array();
+
+			foreach ($request->input('value') as $key => $item) {
+				array_push($accepted, $combinations[$item]);
+			}
+
+			self::$miscData['combos'] = $accepted;
+			Excel::create($object->name.'_sorted_list', function($excel) {
+				$excel->sheet('Combinations', function($sheet) {
+					foreach (self::$miscData['combos'] as $key => $set) {
+						$sheet->fromArray($set);
+					}
+				});
+			})->download('csv');
 		}
 	}
 

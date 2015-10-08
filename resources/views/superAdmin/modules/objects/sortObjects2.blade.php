@@ -32,9 +32,6 @@
 					{!! Form::text('rule['.$field.'][amount]', '0.00', array('class' => 'form-control')) !!}
 				</div>
 				@endforeach
-				<div class='form-group'>
-					{!! Form::button('Dynamic Sort', ['class' => 'btn btn-primary col-md-12 dynamic_sort']) !!}
-				</div>
 				<br /><br />
 				<div class='form-group'>
 					{!! Form::submit('Submit', ['class' => 'btn btn-primary col-md-12']) !!}
