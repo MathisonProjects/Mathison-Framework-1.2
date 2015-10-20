@@ -158,4 +158,12 @@ abstract class Controller extends BaseController {
             setValues($items)->
             buildTable();;
     }
+
+    public function alertGenerate($level, $message) {
+        $response = '<div class="alert alert-'.$level.' fade in" style="position: absolute;z-index: 1;width: 100%;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>'.ucfirst($level).'!</strong> '.$message.'
+            </div>';
+        return $response;
+    }
 }
