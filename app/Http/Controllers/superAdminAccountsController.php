@@ -70,7 +70,7 @@ class superAdminAccountsController extends Controller {
 
             $this->module['accounts']->insert($inputArray);
             $this->module['accounts']->login($request);
-            return redirect()->back()->with('Login','Login Successful');
+            return redirect()->back()->with('Alerts',$this->messages(1));
         }
     }
 
@@ -79,15 +79,27 @@ class superAdminAccountsController extends Controller {
         if (session('sessionid')) {
             $this->user = $this->module['accounts']->getAccount();
             if ($this->user->accountlevel == 0) {
-                return redirect()->back()->with('Login','Login Successful');
+                return redirect()->back()->with('Alerts',$this->messages(1));
             }
         }
-        return redirect()->back()->with('Logout','Login credentials incorrect');
+        return redirect()->back()->with('Alerts',$this->messages(3));
         
     }
 
     public function logout() {
         $this->module['accounts']->logout();
-        return redirect('/admin/super/')->with('Logout', 'Logout Successful');
+        return redirect('/admin/super/')->with('Alerts', $this->messages(2));
+    }
+
+    private function messages($id) {
+        if ($id == 1) {
+            return $this->alertGenerate('success', 'Login Successful');
+        } else if ($id == 2) {
+            return $this->alertGenerate('success', 'Logout Successful');
+        } else if ($id == 3) {
+            return $this->alertGenerate('warning', 'Login credentials incorrect');
+        } else {
+            return $this->alertGenerate('danger' , 'Unhandled Error');
+        }
     }
 }

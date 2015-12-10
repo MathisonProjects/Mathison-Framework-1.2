@@ -5,9 +5,6 @@
 @endsection
 
 @section('content')
-	@if (session('Login'))
-		<h2>{{ session('Login') }}</h2>
-	@endif
 	<h1>MFW 1.2 Super Administrative Panel</h1>
 	<p>This is MFW 1.2 (Mathison Framework 1.2), a simple solution to many rapid development problems that people may run into. The objective of MFW 1.2 is to smooth out the development process by incorporating ease of access between objects and data, mapping them efficiently and elegantly.</p>
 	<p>Technologies included are:</p>
@@ -24,11 +21,11 @@
 			<tr>
 				<td>HTML 5                 </td>
 				<td>jQuery 2.1.1           </td>
-				<td>Laravel 5              </td>
+				<td>Laravel 5.1            </td>
 				<td>Sugar CRM              </td>
 			</tr>
 			<tr>
-				<td>PHP 5.4                </td>
+				<td>PHP 5.5                </td>
 				<td>Bootstrap 3.3.2        </td>
 				<td>MFW 1.1 (Upgraded)     </td>
 				<td>Wordpress              </td>
