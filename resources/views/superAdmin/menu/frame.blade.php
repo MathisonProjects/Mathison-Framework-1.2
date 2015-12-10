@@ -11,5 +11,10 @@
 			@yield('menu_functions')
 		</ul>
 	</li>
-
+	<li class="dropdown">
+		<a href="#" tabindex="0" data-toggle="dropdown">Authorize.Net <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+			@yield('menu_authorizenet')
+		</ul>
+	</li>
 @endif

@@ -24,6 +24,8 @@ use App\mfwgoogledrives;
 use App\mfwcrons;
 use App\mfwcraigslistscrapers;
 use App\mfwcraigslistphrasefilters;
+use App\mfwauthorizenetcredentials;
+use App\mfwauthorizenetpaymentprofile;
 use DB;
 use Session;
 
@@ -100,6 +102,8 @@ abstract class Controller extends BaseController {
         $this->module['crons']             = new mfwcrons;
         $this->module['craigslistScraper'] = new mfwcraigslistscrapers;
         $this->module['craigslistFilter']  = new mfwcraigslistphrasefilters;
+        $this->module['authorizekeys']     = new mfwauthorizenetcredentials;
+        $this->module['authorizeprofiles'] = new mfwauthorizenetpaymentprofile;
     }
 
     private function loadMenu() {

@@ -13,7 +13,7 @@
 
 
 // Super Admin
-Route::group(['prefix' => '/admin/super/'], function() {
+Route::group(['prefix' => 'admin/super'], function() {
 	Route::bind('objectName', function($input) {
 		return App\mfwobjects::where('name', $input)->first();
 	});
@@ -43,28 +43,44 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('forms/format/{id}'     , 'superAdminFormsController@formFormat');
 
 	// Objects
-	get('objects/{id}/delete'    					, 'superAdminObjectsController@destroy');
-	get('objects/{id}/rename'						, 'superAdminObjectsController@rename');
-	get('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumns');
-	get('objects/{objectId}/truncate'				, 'superAdminObjectsController@truncateTable');
-	get('objects/create'						    , 'superAdminObjectsController@create');
-	get('objects/sorting'							, 'superAdminObjectsController@sortDisplay');
-	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
-	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
-	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
-	post('objects/sorting'							, 'superAdminObjectsController@postSortDisplay');
-	post('objects/sorting/test'						, 'superAdminObjectsController@postSortingTest');
-	post('objects/{id}/getFieldList'				, 'superAdminObjectsController@getFields');
-	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');
-	post('objects/{id}/rename'						, 'superAdminObjectsController@renamePost');
-	post('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumnsPost');
-	post('objects/{id}/import'   					, 'superAdminObjectsController@import');
-	post('createObject'          					, 'superAdminObjectsController@createObjectPost');
-	post('objects/{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
-	post('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
-	post('objects/getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
-	post('objects/{id}/{oid}/getJsonObjectItemData'	, 'superAdminObjectsController@getJsonObjectItemData');
+	Route::group(['prefix' => 'objects'], function() {
+		get('{id}/delete'    					, 'superAdminObjectsController@destroy');
+		get('{id}/rename'						, 'superAdminObjectsController@rename');
+		get('{id}/editColumns'					, 'superAdminObjectsController@editColumns');
+		get('{objectId}/truncate'				, 'superAdminObjectsController@truncateTable');
+		get('create'						    , 'superAdminObjectsController@create');
+		get('sorting'							, 'superAdminObjectsController@sortDisplay');
+		get('{objectName}'						, 'superAdminObjectsController@viewRecords');
+		get('{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
+		get('{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
+		post('sorting'							, 'superAdminObjectsController@postSortDisplay');
+		post('sorting/test'						, 'superAdminObjectsController@postSortingTest');
+		post('{id}/getFieldList'				, 'superAdminObjectsController@getFields');
+		post('{id}/delete'   					, 'superAdminObjectsController@destroy');
+		post('{id}/rename'						, 'superAdminObjectsController@renamePost');
+		post('{id}/editColumns'					, 'superAdminObjectsController@editColumnsPost');
+		post('{id}/import'   					, 'superAdminObjectsController@import');
+		post('{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
+		post('{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
+		post('getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
+		post('{id}/{oid}/getJsonObjectItemData'	, 'superAdminObjectsController@getJsonObjectItemData');
 
+	});
+	post('createObject'          					, 'superAdminObjectsController@createObjectPost');
+
+	Route::group(['prefix' => 'authorizenet'], function() {
+		get('/credentials/create'      , 'superAdminAuthorizeNetController@apiKeyCreate');
+		get('/credentials'             , 'superAdminAuthorizeNetController@apiKeyView');
+		get('/credentials/{id}/delete' , 'superAdminAuthorizeNetController@apiKeyDelete');
+		get('/profiles/create'         , 'superAdminAuthorizeNetController@paymentProfileCreate');
+		get('/profiles'                , 'superAdminAuthorizeNetController@paymentProfileView');
+		get('/profiles/{id}/delete'    , 'superAdminAuthorizeNetController@paymentProfileDelete');
+		get('/payments/create'         , 'superAdminAuthorizeNetController@paymentProcess');
+		get('/payments'                , 'superAdminAuthorizeNetController@paymentsView');
+		post('/credentials/create'     , 'superAdminAuthorizeNetController@apiKeyCreatePost');
+		post('/profiles/create'        , 'superAdminAuthorizeNetController@paymentProfileCreatePost');
+		post('/payments/create'        , 'superAdminAuthorizeNetController@paymentProcessPost');
+	});
 	// Accounts
 	get('logout'      , 'superAdminAccountsController@logout');
 	post('createAdmin', 'superAdminAccountsController@createAdmin');

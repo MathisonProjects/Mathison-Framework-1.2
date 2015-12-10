@@ -1,8 +1,9 @@
 @extends('superAdmin.menu.frame')
 
+<?php $divider = '<li></li><li class="divider"></li>'; ?>
 @section('menu_general')
 	@if (isset($menu))
-		<?php $divider = '<li></li><li class="divider"></li>'; $list = 'superAdmin.menu.list.' ?>
+		<?php $list = 'superAdmin.menu.list.' ?>
 		@include($list.'accounts')
 		@include($list.'sessions')
 		@include($list.'constants')
@@ -37,7 +38,14 @@
 
 @section('menu_functions')
 	@if (isset($menu))
-		<?php $divider = '<li></li><li class="divider"></li>'; $function = 'superAdmin.menu.function.' ?>
+		<?php $function = 'superAdmin.menu.function.' ?>
 		@include($function.'listgeneration')
+	@endif
+@stop
+
+@section('menu_authorizenet')
+	@if (isset($menu))
+		<?php $authorize = 'superAdmin.menu.authorizenet.' ?>
+		@include($authorize.'list')
 	@endif
 @stop
