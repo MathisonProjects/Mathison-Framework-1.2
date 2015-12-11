@@ -9,6 +9,6 @@
 
 	class mfwauthorizenetpaymentprofile extends Eloquent {
 	    protected $table = 'mfwauthorizenet_paymentprofile';
-		protected $fillable = ['owner','authorize_id','last_four','cid'];
+		protected $fillable = ['owner','authorize_id_customer','authorize_id_cc','last_four','cid'];
 	}
 ?>

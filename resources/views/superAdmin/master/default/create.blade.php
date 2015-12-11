@@ -1,12 +1,21 @@
 @extends('superAdmin.master')
 
 @section('title')
-| Create
+| {{ $module }} Create
 @endsection
 
 @section('content')
 	<h2>Create {{ ucfirst($module) }}</h2>
-	{!! Form::open(['url'=>'admin/super/'.$module.'/']) !!}
-		@include('superAdmin.modules.'.$module.'.form')
+	@if (!isset($extension))
+		{!! Form::open(['url'=>'admin/super/'.$module.'/']) !!}
+	@else
+		{!! Form::open(['url'=>'admin/super/'.$module.'/'.$extension]) !!}
+	@endif
+
+		@if (!isset($form))
+			@include('superAdmin.modules.'.$module.'.form')
+		@else
+			@include('superAdmin.modules.'.$module.'.'.$form)
+		@endif
 	{!! Form::close() !!}
 @stop

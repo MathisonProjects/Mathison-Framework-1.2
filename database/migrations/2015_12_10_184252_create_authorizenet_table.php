@@ -20,7 +20,8 @@ class CreateAuthorizenetTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('owner');
-            $table->string('authorize_id');
+            $table->string('authorize_id_customer');
+            $table->string('authorize_id_cc');
             $table->string('last_four');
             $table->integer('cid');
         });
