@@ -135,11 +135,49 @@ class superAdminAuthorizeNetController extends Controller
     }
 
     public function paymentProcess() {
-
+        $authorizekeys = $this->module['authorizeprofiles']->get();
+        $paymentProfiles = [''];
+        foreach ($authorizekeys as $items) {
+            $paymentProfiles[$items->id] = $items->owner.' - '.$items->last_four;
+        }
+        return $this->launchView('processPayment', array('paymentProfiles' => $paymentProfiles));
     }
 
     public function paymentProcessPost(Request $request) {
+        $paymentProfile = $this->module['authorizeprofiles']->where('id', $request->input('paymentProfile'))->first();
 
+        if (!defined('AUTHORIZENET_API_LOGIN_ID')) {
+            $authorize = $this->module['authorizekeys']->where('id', $paymentProfile->cid)->first();
+            define("AUTHORIZENET_API_LOGIN_ID", $authorize->api_login_id);
+            define("AUTHORIZENET_TRANSACTION_KEY", $authorize->transaction_key);
+            if ($authorize->sandbox == 1) {
+                define("AUTHORIZENET_SANDBOX", true);
+            } else {
+                define("AUTHORIZENET_SANDBOX", false);
+            }
+        }
+
+        $authorize_cim                         = new \AuthorizeNetCIM;
+        $transaction                           = new \AuthorizeNetTransaction;
+        $transaction->amount                   = $request->input('amount');
+        $transaction->customerProfileId        = $paymentProfile->authorize_id_customer;
+        $transaction->customerPaymentProfileId = $paymentProfile->authorize_id_cc;
+        if ($request->input('name') != '') {
+            $lineItem                              = new \AuthorizeNetLineItem;
+            $lineItem->itemId                      = $request->input('itemId');
+            $lineItem->name                        = $request->input('name');
+            $lineItem->description                 = $request->input('description');
+            $lineItem->quantity                    = $request->input('quantity');
+            $lineItem->unitPrice                   = $request->input('unitPrice');
+            $lineItem->taxable                     = $request->input('taxable');
+            $transaction->lineItems[]              = $lineItem;
+        }
+
+        $response = $authorize_cim->createCustomerProfileTransaction("AuthCapture", $transaction);
+        echo '<pre>';
+        print_r($response);
+        echo '</pre>';
+        exit;
     }
 
     public function paymentsView() {
