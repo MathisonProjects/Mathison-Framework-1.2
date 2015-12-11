@@ -67,9 +67,23 @@ class superAdminAuthorizeNetController extends Controller
 
         // Add payment profile.
         $paymentProfile                                      = new \AuthorizeNetPaymentProfile;
-        $paymentProfile->customerType                        = "individual";
-        $paymentProfile->payment->creditCard->cardNumber     = str_replace('-', '', $request->input('card_number'));
-        $paymentProfile->payment->creditCard->expirationDate = $request->input('expiration_year').'-'.$request->input('expiration_month');
+        if ($request->input('card_number') != '') {
+            $paymentProfile->customerType                        = "individual";
+            $paymentProfile->payment->creditCard->cardNumber     = str_replace('-', '', $request->input('card_number'));
+            $paymentProfile->payment->creditCard->expirationDate = $request->input('expiration_year').'-'.$request->input('expiration_month');
+            
+        } else {
+            $paymentProfile->customerType                        = "business";
+            $paymentProfile->payment->bankAccount->accountType   = $request->input('accountType');
+            $paymentProfile->payment->bankAccount->routingNumber = $request->input('routingNumber');
+            $paymentProfile->payment->bankAccount->accountNumber = $request->input('accountNumber');
+            $paymentProfile->payment->bankAccount->nameOnAccount = $request->input('first_name').' '.$request->input('last_name');
+            $paymentProfile->payment->bankAccount->echeckType    = "WEB";
+            $paymentProfile->payment->bankAccount->bankName      = $request->input('bankName');
+            
+        }
+
+
         $paymentProfile->payment->creditCard->cardCode       = $request->input('ccv');
         $paymentProfile->billTo->firstName                   = $request->input('first_name');
         $paymentProfile->billTo->lastName                    = $request->input('last_name');
@@ -85,11 +99,16 @@ class superAdminAuthorizeNetController extends Controller
         $ids['customer'] = (array)$response->xml->customerProfileId;
         $ids['cc']       = (array)$response->xml->customerPaymentProfileIdList->numericString;
 
-        $params = ['owner'          => $request->input('first_name').' '.$request->input('last_name'),
-            'authorize_id_customer' => $ids['customer'][0],
-            'authorize_id_cc'       => $ids['cc'][0],
-            'last_four'             => 'XXXX'.substr($request->input('card_number'),-4),
-            'cid'                   => $request->input('cid')];
+        $params = [];
+        $params['owner']                 = $request->input('first_name').' '.$request->input('last_name');
+        $params['authorize_id_customer'] = $ids['customer'][0];
+        $params['authorize_id_cc']       = $ids['cc'][0];
+        $params['cid']                   = $request->input('cid');
+        if ($request->input('card_number') != '') {
+            $params['last_four'] = 'XXXX'.substr($request->input('card_number'),-4);
+        } else {
+            $params['last_four'] = 'XXXX'.substr($request->input('accountNumber'),-4);
+        }
 
         $this->module['authorizeprofiles']->create($params);
     }
@@ -100,7 +119,7 @@ class superAdminAuthorizeNetController extends Controller
     }
 
     public function paymentProfileView() {
-        $keys = array('Edit','Delete','Owner', 'Customer ID', 'CC ID', 'Last Four');
+        $keys = array('Edit','Delete','Owner', 'Customer ID', 'Payment ID', 'Last Four');
         $items = array();
         foreach ($this->menu['authorizeprofiles'] as $key => $item) {
             array_push($items, array('<a href="/admin/super/authorizenet/credentials/'.$item->id.'/edit">'.$this->vedIcon['Edit'].'</a>',
