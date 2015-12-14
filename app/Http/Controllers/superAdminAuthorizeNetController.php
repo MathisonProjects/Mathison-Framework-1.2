@@ -174,10 +174,6 @@ class superAdminAuthorizeNetController extends Controller
         }
 
         $response = $authorize_cim->createCustomerProfileTransaction("AuthCapture", $transaction);
-        echo '<pre>';
-        print_r($response);
-        echo '</pre>';
-        exit;
     }
 
     public function paymentsView() {
