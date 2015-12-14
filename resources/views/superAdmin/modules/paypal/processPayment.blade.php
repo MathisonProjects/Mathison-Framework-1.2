@@ -1,0 +1,1 @@
+@include('superAdmin.master.default.create', ['module' => 'authorizenet', 'form' => 'formProcessPayment', 'extension' => 'payments/create'])

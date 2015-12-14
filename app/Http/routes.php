@@ -81,6 +81,21 @@ Route::group(['prefix' => 'admin/super'], function() {
 		post('/profiles/create'        , 'superAdminAuthorizeNetController@paymentProfileCreatePost');
 		post('/payments/create'        , 'superAdminAuthorizeNetController@paymentProcessPost');
 	});
+	Route::group(['prefix' => 'Paypal'], function() {
+		get('/credentials/create'      , 'superAdminPaypalController@apiKeyCreate');
+		get('/credentials'             , 'superAdminPaypalController@apiKeyView');
+		get('/credentials/{id}/delete' , 'superAdminPaypalController@apiKeyDelete');
+		get('/profiles/create'         , 'superAdminPaypalController@paymentProfileCreate');
+		get('/profiles'                , 'superAdminPaypalController@paymentProfileView');
+		get('/profiles/{id}/delete'    , 'superAdminPaypalController@paymentProfileDelete');
+		get('/payments/create'         , 'superAdminPaypalController@paymentProcess');
+		get('/payments'                , 'superAdminPaypalController@paymentsView');
+		post('/credentials/create'     , 'superAdminPaypalController@apiKeyCreatePost');
+		post('/profiles/create'        , 'superAdminPaypalController@paymentProfileCreatePost');
+		post('/payments/create'        , 'superAdminPaypalController@paymentProcessPost');
+	});
+
+
 	// Accounts
 	get('logout'      , 'superAdminAccountsController@logout');
 	post('createAdmin', 'superAdminAccountsController@createAdmin');
