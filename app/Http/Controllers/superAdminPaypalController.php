@@ -9,7 +9,15 @@ use App\Http\Controllers\Controller;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\CreditCard;
-use PayPal\Api\BankAccount;
+use PayPal\Api\CreditCardToken;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\FundingInstrument;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\Transaction;
 
 
 class superAdminPaypalController extends Controller
@@ -67,6 +75,9 @@ class superAdminPaypalController extends Controller
                 ->setCvv2($request->input('ccv'))
                 ->setFirstName($request->input('first_name'))
                 ->setLastName($request->input('last_name'));
+
+            $card->setMerchantId("MFW");
+            $card->setExternalCardId('MFW'.uniqid());
             $card->create($apiContext);
         } else {
             // TBD
@@ -115,7 +126,69 @@ class superAdminPaypalController extends Controller
     }
 
     public function paymentProcessPost(Request $request) {
+        $paymentProfile = $this->module['paypalprofiles']->where('id', $request->input('paymentProfile'))->first();
+        $paypal      = $this->module['paypalkeys']->where('id', $paymentProfile->cid)->first();
 
+        $apiContext = new ApiContext(new OAuthTokenCredential($paypal->client_id,$paypal->client_secret));
+        if ($paypal->sandbox == 1) {
+            $apiContext->setConfig(array('mode' => 'sandbox'));
+        }
+
+        $card = CreditCard::get($paymentProfile->payment_id, $apiContext);
+        $creditCardToken = new CreditCardToken();
+        $creditCardToken->setCreditCardId($card->getId());
+        $fi = new FundingInstrument();
+        $fi->setCreditCardToken($creditCardToken);
+        $payer = new Payer();
+        $payer->setPaymentMethod("credit_card")
+            ->setFundingInstruments(array($fi));
+
+        if ($request->input('name') != '') {
+            $item = new Item();
+            $item->setName($request->input('name'))
+                ->setDescription($request->input('description'))
+                ->setCurrency('USD')
+                ->setQuantity($request->input('quantity'))
+                ->setPrice($request->input('unitPrice'))
+                ->setTax(0);
+            $itemList = new ItemList();
+            $itemList->setItems(array($item));
+        }
+
+        $details = new Details();
+        $details->setShipping(0)
+            ->setTax(0)
+            ->setSubtotal($request->input('quantity')*$request->input('unitPrice'));
+
+        $amount = new Amount();
+        $amount->setCurrency("USD")
+            ->setTotal($request->input('amount'))
+            ->setDetails($details);
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setInvoiceNumber(uniqid());
+
+        if (isset($itemList)) {
+            $transaction->setItemList($itemList)
+                ->setDescription($request->input('description'));   
+        }
+
+        $payment = new Payment();
+        $payment->setIntent("sale")
+            ->setPayer($payer)
+            ->setTransactions(array($transaction));
+
+
+        $request = clone $payment;
+
+        try {
+            $payment->create($apiContext);
+        } catch (Exception $ex) {
+            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+            ResultPrinter::printError("Create Payment using Saved Card", "Payment", null, $request, $ex);
+            exit(1);
+        }
     }
 
     public function paymentsView() {
