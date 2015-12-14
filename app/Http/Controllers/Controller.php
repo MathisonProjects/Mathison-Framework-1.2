@@ -26,6 +26,8 @@ use App\mfwcraigslistscrapers;
 use App\mfwcraigslistphrasefilters;
 use App\mfwauthorizenetcredentials;
 use App\mfwauthorizenetpaymentprofile;
+use App\mfwpaypalcredentials;
+use App\mfwpaypalpaymentprofile;
 use DB;
 use Session;
 
@@ -104,6 +106,8 @@ abstract class Controller extends BaseController {
         $this->module['craigslistFilter']  = new mfwcraigslistphrasefilters;
         $this->module['authorizekeys']     = new mfwauthorizenetcredentials;
         $this->module['authorizeprofiles'] = new mfwauthorizenetpaymentprofile;
+        $this->module['paypalkeys']        = new mfwpaypalcredentials;
+        $this->module['paypalprofiles']    = new mfwpaypalpaymentprofile;
     }
 
     private function loadMenu() {
