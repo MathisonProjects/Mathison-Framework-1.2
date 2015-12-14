@@ -1,12 +1,12 @@
 <div class='row'>
 	<div class='col-md-4'>
 		<div class='form-group'>
-			{!! Form::label('api_login_id', 'API Login ID') !!}
-			{!! Form::text('api_login_id', null, ['class' => 'form-control', 'placeholder' => 'API Login ID']) !!}
+			{!! Form::label('client_id', 'Client ID') !!}
+			{!! Form::text('client_id', null, ['class' => 'form-control', 'placeholder' => 'Client ID']) !!}
 		</div>
 		<div class='form-group'>
-			{!! Form::label('transaction_key', 'Transaction Key') !!}
-			{!! Form::text('transaction_key', null, ['class' => 'form-control', 'placeholder' => 'Transaction Key']) !!}
+			{!! Form::label('client_secret', 'Client Secret') !!}
+			{!! Form::text('client_secret', null, ['class' => 'form-control', 'placeholder' => 'Client Secret']) !!}
 		</div>
 		<div class='form-group'>
 			{!! Form::label('sandbox', 'Sandbox') !!}

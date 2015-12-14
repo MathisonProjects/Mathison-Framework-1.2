@@ -1,1 +1,1 @@
-@include('superAdmin.master.default.create', ['module' => 'authorizenet', 'form' => 'formKey', 'extension' => 'credentials/create'])
+@include('superAdmin.master.default.create', ['module' => 'paypal', 'form' => 'formKey', 'extension' => 'credentials/create'])

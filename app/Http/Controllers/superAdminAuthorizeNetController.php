@@ -40,7 +40,7 @@ class superAdminAuthorizeNetController extends Controller
         $authorizekeys = $this->module['authorizekeys']->get();
         $credentials = [''];
         foreach ($authorizekeys as $items) {
-            $credentials[$items->id] = $items->api_login_id;
+            $credentials[$items->id] = $items->client_id;
         }
         return $this->launchView('createPaymentProfile', array('credentials' => $credentials));
     }

@@ -52,7 +52,7 @@
 
 @section('menu_paypal')
 	@if (isset($menu))
-		<?php $authorize = 'superAdmin.menu.paypal.' ?>
-		@include($authorize.'list')
+		<?php $paypal = 'superAdmin.menu.paypal.' ?>
+		@include($paypal.'list')
 	@endif
 @stop

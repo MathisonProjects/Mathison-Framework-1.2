@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin/super'], function() {
 		post('/profiles/create'        , 'superAdminAuthorizeNetController@paymentProfileCreatePost');
 		post('/payments/create'        , 'superAdminAuthorizeNetController@paymentProcessPost');
 	});
-	Route::group(['prefix' => 'Paypal'], function() {
+	Route::group(['prefix' => 'paypal'], function() {
 		get('/credentials/create'      , 'superAdminPaypalController@apiKeyCreate');
 		get('/credentials'             , 'superAdminPaypalController@apiKeyView');
 		get('/credentials/{id}/delete' , 'superAdminPaypalController@apiKeyDelete');
