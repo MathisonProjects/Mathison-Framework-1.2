@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorizenetTable extends Migration
+class CreatePaypalTable extends Migration
 {
     public function up()
     {
-        Schema::create('mfwapaypal_credentials', function(Blueprint $table)
+        Schema::create('mfwpaypal_credentials', function(Blueprint $table)
         {
             $table->increments('id');
             $table->timestamps();
@@ -15,7 +15,7 @@ class CreateAuthorizenetTable extends Migration
             $table->string('client_secret');
             $table->boolean('sandbox');
         });
-        Schema::create('mfwapaypal_paymentprofile', function(Blueprint $table)
+        Schema::create('mfwpaypal_paymentprofile', function(Blueprint $table)
         {
             $table->increments('id');
             $table->timestamps();
@@ -28,7 +28,7 @@ class CreateAuthorizenetTable extends Migration
 
     public function down()
     {
-        Schema::drop('mfwapaypal_credentials');
-        Schema::drop('mfwapaypal_paymentprofile');
+        Schema::drop('mfwpaypal_credentials');
+        Schema::drop('mfwpaypal_paymentprofile');
     }
 }
