@@ -49,3 +49,10 @@
 		@include($authorize.'list')
 	@endif
 @stop
+
+@section('menu_paypal')
+	@if (isset($menu))
+		<?php $authorize = 'superAdmin.menu.paypal.' ?>
+		@include($authorize.'list')
+	@endif
+@stop
