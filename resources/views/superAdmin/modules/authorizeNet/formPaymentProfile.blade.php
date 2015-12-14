@@ -16,7 +16,7 @@
 			{!! Form::text('address_state', null, ['class' => 'form-control', 'placeholder' => 'State: St']) !!}
 			{!! Form::text('address_zip', null, ['class' => 'form-control', 'placeholder' => 'Zip: 55555']) !!}
 			{!! Form::text('address_phone', null, ['class' => 'form-control', 'placeholder' => 'Phone: 555-555-5555']) !!}
-			{!! Form::text('address_email', null, ['class' => 'form-control', 'placeholder' => 'Emaili: example@example.com']) !!}
+			{!! Form::text('address_email', null, ['class' => 'form-control', 'placeholder' => 'Email: example@example.com']) !!}
 		</div>
 
 		<ul class="nav nav-tabs">

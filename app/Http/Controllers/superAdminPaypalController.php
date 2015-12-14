@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
+use PayPal\Api\CreditCard;
+use PayPal\Api\BankAccount;
+
 
 class superAdminPaypalController extends Controller
 {
@@ -40,13 +45,44 @@ class superAdminPaypalController extends Controller
         $paypalkeys = $this->module['paypalkeys']->get();
         $credentials = [''];
         foreach ($paypalkeys as $items) {
-            $credentials[$items->id] = $items->api_login_id;
+            $credentials[$items->id] = $items->client_id;
         }
         return $this->launchView('createPaymentProfile', array('credentials' => $credentials));
     }
 
     public function paymentProfileCreatePost(Request $request) {
+        $paypal = $this->module['paypalkeys']->where('id', $request->input('cid'))->first();
 
+        $apiContext = new ApiContext(new OAuthTokenCredential($paypal->client_id,$paypal->client_secret));
+        if ($request->input('sandbox') == 1) {
+            $apiContext->setConfig(array('mode' => 'sandbox'));
+        }
+
+        if ($request->input('card_number') != '') {
+            $card = new CreditCard();
+            $card->setType($request->input('cardType'))
+                ->setNumber(str_replace('-', '', $request->input('card_number')))
+                ->setExpireMonth($request->input('expiration_month'))
+                ->setExpireYear($request->input('expiration_year'))
+                ->setCvv2($request->input('ccv'))
+                ->setFirstName($request->input('first_name'))
+                ->setLastName($request->input('last_name'));
+            $card->create($apiContext);
+        } else {
+            // TBD
+        }
+
+        $params = [];
+        $params['owner']      = $request->input('first_name').' '.$request->input('last_name');
+        $params['payment_id'] = $card->getId();
+        $params['cid']        = $request->input('cid');
+        if ($request->input('card_number') != '') {
+            $params['last_four'] = 'XXXX'.substr($request->input('card_number'),-4);
+        } else {
+            $params['last_four'] = 'XXXX'.substr($request->input('accountNumber'),-4);
+        }
+
+        $this->module['paypalprofiles']->create($params);
     }
 
     public function paymentProfileDelete($id) {
@@ -79,6 +115,7 @@ class superAdminPaypalController extends Controller
     }
 
     public function paymentProcessPost(Request $request) {
+
     }
 
     public function paymentsView() {

@@ -16,7 +16,7 @@
 			{!! Form::text('address_state', null, ['class' => 'form-control', 'placeholder' => 'State: St']) !!}
 			{!! Form::text('address_zip', null, ['class' => 'form-control', 'placeholder' => 'Zip: 55555']) !!}
 			{!! Form::text('address_phone', null, ['class' => 'form-control', 'placeholder' => 'Phone: 555-555-5555']) !!}
-			{!! Form::text('address_email', null, ['class' => 'form-control', 'placeholder' => 'Emaili: example@example.com']) !!}
+			{!! Form::text('address_email', null, ['class' => 'form-control', 'placeholder' => 'Email: example@example.com']) !!}
 		</div>
 
 		<ul class="nav nav-tabs">
@@ -26,6 +26,14 @@
 
 		<div class="tab-content">
 		  <div id="cc" class="tab-pane fade in active">
+		  	<div class='form-group'>
+				{!! Form::label('cardType', 'Card Type') !!}
+				{!! Form::select('cardType', array('',
+					'visa'       => 'Visa',
+					'mastercard' => 'MasterCard',
+					'amex'       => 'American Express',
+					'discover'   => 'Discover'), null, ['class' => 'form-control']) !!}
+			</div>
 			<div class='form-group'>
 				{!! Form::label('card_number', 'Debit/Credit Card Number') !!}
 				{!! Form::text('card_number', null, ['class' => 'form-control', 'placeholder' => '6555-5555-5555-5555']) !!}
@@ -50,15 +58,15 @@
 					'11' => '11 - November',
 					'12' => '12 - December'), null, ['class' => 'form-control']) !!}
 				{!! Form::select('expiration_year', array('',
-					'16' => '2016',
-					'17' => '2017',
-					'18' => '2018',
-					'19' => '2019',
-					'20' => '2020',
-					'21' => '2021',
-					'22' => '2022',
-					'23' => '2023',
-					'24' => '2024'), null, ['class' => 'form-control']) !!}
+					'2016' => '2016',
+					'2017' => '2017',
+					'2018' => '2018',
+					'2019' => '2019',
+					'2020' => '2020',
+					'2021' => '2021',
+					'2022' => '2022',
+					'2023' => '2023',
+					'2024' => '2024'), null, ['class' => 'form-control']) !!}
 			</div>
 		  </div>
 		  <div id="bank" class="tab-pane fade">

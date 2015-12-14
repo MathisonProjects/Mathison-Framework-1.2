@@ -1,7 +1,7 @@
 @extends('superAdmin.master')
 
 @section('title')
-| {{ $module }} Create
+| {{ ucfirst($module) }} Create
 @endsection
 
 @section('content')
