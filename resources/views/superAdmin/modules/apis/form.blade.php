@@ -30,16 +30,6 @@
 			{!! Form::select('oid', $objects, '', ['class' => 'form-control']) !!}
 		</div>
 		<div class='form-group'>
-			<?php
-				$forms = array('0' => 'Please Select Form');
-				foreach ($menu['forms'] as $item) {
-					$forms[$item['id']] = $item['name'];
-				}
-			?>
-			{!! Form::label('fid', 'Form') !!}
-			{!! Form::select('fid', $forms, '0', ['class' => 'form-control']) !!}
-		</div>
-		<div class='form-group'>
 			{!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 		</div>
 	</div>

@@ -7,7 +7,9 @@
 	use Illuminate\Support\Facades\Schema as Schema;
 	use DB;
 
-	class mfwformprocessings extends Eloquent {
+	class mfwformprocessing extends Eloquent {
 
+	    protected $table = 'mfwformprocessing';
+		protected $fillable = ['name','aid','nextFid','data'];
 	}
 ?>

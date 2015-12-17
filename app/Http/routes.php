@@ -112,7 +112,7 @@ Route::group(['prefix' => 'admin/super'], function() {
 	// Super Admin Controller
 	$superAdminControllers = array(
 		'accounts'		 ,  'apis'            ,
-		'constants'		 ,  'formProcessings' ,
+		'constants'		 ,  'formProcessing' ,
 		'forms'			 ,  'middlewares'	  ,
 		'objects'		 ,  'pages'           ,
 		'pdfs'           ,  'relationships'   ,

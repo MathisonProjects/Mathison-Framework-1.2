@@ -19,7 +19,6 @@ class CreateApiTable extends Migration {
 			$table->string('randomid');
 			$table->string('action');
 			$table->string('name');
-			$table->integer('fid');
 			$table->integer('oid');
 		});
 	}

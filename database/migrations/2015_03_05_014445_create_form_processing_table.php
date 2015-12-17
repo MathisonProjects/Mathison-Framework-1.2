@@ -5,36 +5,21 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFormProcessingTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
 	public function up()
 	{
-
-		Schema::create('mfwformprocessings', function(Blueprint $table)
+		Schema::create('mfwformprocessing', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->integer('aid'); // API Id
-			$table->integer('executionorder');
-			$table->string('processor');
-			$table->string('method');
-			$table->string('data1');
-			$table->string('data2');
+			$table->string('name');
+			$table->integer('aid');
+			$table->integer('nextFid');
+			$table->string('data');
 		});
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
-
-		Schema::drop('mfwformprocessings');
+		Schema::drop('mfwformprocessing');
 	}
-
 }

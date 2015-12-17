@@ -10,7 +10,7 @@ use App\mfwworkflows;
 use App\mfwobjectrelationships;
 use App\mfwmanageforms;
 use App\mfwapis;
-use App\mfwformprocessings;
+use App\mfwformprocessing;
 use App\mfwtemplates;
 use App\mfwpages;
 use App\mfwpdfs;
@@ -90,7 +90,7 @@ abstract class Controller extends BaseController {
         $this->module['workflows']         = new mfwworkflows;
         $this->module['relationships']     = new mfwobjectrelationships;
         $this->module['apis']              = new mfwapis;
-        $this->module['formprocessing']    = new mfwformprocessings;
+        $this->module['formProcessing']    = new mfwformprocessing;
         $this->module['templates']         = new mfwtemplates;
         $this->module['pages']             = new mfwpages;
         $this->module['pdfs']              = new mfwpdfs;
