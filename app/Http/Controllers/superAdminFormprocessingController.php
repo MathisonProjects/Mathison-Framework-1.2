@@ -42,7 +42,9 @@ class superAdminFormProcessingController extends Controller {
 	}
 
 	public function store(Request $request) {
+		$request->merge(array('data' => json_encode($request->input('data'))));
         parent::save('create',$request);
+        return redirect()->back()->with('Alert', $this->messages(1));
 	}
 
 	public function show($id) {
@@ -80,12 +82,9 @@ class superAdminFormProcessingController extends Controller {
 	}
 
 	public function update($id, request $request) {
-
-		echo '<pre>';
-		print_r($request);
-		echo '</pre>';
-		exit;
+		$request->merge(array('data' => json_encode($request->input('data'))));
         parent::save('update',$request, array('id' => $id));
+        return redirect()->back()->with('Alert', $this->messages(2));
 	}
 
 	public function destroy($id) {
@@ -108,4 +107,16 @@ class superAdminFormProcessingController extends Controller {
  			DB::table($this->db_prefix.$object['name'])->where('id', $request->get('id'))->update($input);
  		}
 	}
+
+	    private function messages($id) {
+        if ($id == 1) {
+            return $this->alertGenerate('success', 'Form Process Created');
+        } else if ($id == 2) {
+            return $this->alertGenerate('success', 'Form Process Edited');
+        } else if ($id == 3) {
+            return $this->alertGenerate('warning', 'Invalid Input');
+        } else {
+            return $this->alertGenerate('danger' , 'Unhandled Error');
+        }
+    }
 }
