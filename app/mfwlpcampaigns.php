@@ -10,5 +10,10 @@
 	class mfwlpcampaigns extends Eloquent {
 		protected $table = 'mfwlpcampaigns';
 		protected $fillable = ['name', 'description'];
+
+		public function landingPages()
+		{
+			return $this->hasMany('App\mfwlandingpages');
+		}
 	}
 ?>

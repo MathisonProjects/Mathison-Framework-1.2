@@ -7,7 +7,8 @@
 	use Illuminate\Support\Facades\Schema as Schema;
 	use DB;
 
-	class mfwformprocessings extends Eloquent {
-
+	class mfwpaypalpaymentprofile extends Eloquent {
+	    protected $table = 'mfwpaypal_paymentprofile';
+		protected $fillable = ['owner','payment_id','last_four','cid'];
 	}
 ?>

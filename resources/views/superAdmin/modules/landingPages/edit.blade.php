@@ -1,0 +1,1 @@
+@include('superAdmin.master.default.edit', ['module' => 'landingPages','data' => $data])

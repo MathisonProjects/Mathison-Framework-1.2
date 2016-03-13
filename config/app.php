@@ -200,7 +200,8 @@ return [
 		// Not native to Laravel
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'HTML'		=> 'Illuminate\Html\HtmlFacade',
-		'Excel'     => 'Maatwebsite\Excel\Facades\Excel'
+		'Excel'     => 'Maatwebsite\Excel\Facades\Excel',
+		'Uuid'      => 'J20\Uuid\Uuid',
 	],
 
 ];

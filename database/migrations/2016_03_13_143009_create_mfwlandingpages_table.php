@@ -10,8 +10,9 @@ class CreateMfwlandingpagesTable extends Migration
         Schema::create('mfwlandingpages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('guid');
             $table->string('name');
-            $table->integer('cid');
+            $table->integer('cid')->references('id')->on('mfwlpcampaigns');
             $table->binary('landingPage');
         });
     }

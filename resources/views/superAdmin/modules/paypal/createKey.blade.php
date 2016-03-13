@@ -1,0 +1,1 @@
+@include('superAdmin.master.default.create', ['module' => 'paypal', 'form' => 'formKey', 'extension' => 'credentials/create'])

@@ -9,6 +9,11 @@
 
 	class mfwlandingpages extends Eloquent {
 		protected $table = 'mfwlandingpages';
-		protected $fillable = ['name','cid','landingPage'];
+		protected $fillable = ['name','guid','cid','landingPage'];
+
+		public function campaign()
+		{
+			return $this->belongsTo('App\mfwlpcampaigns');
+		}
 	}
 ?>

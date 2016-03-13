@@ -13,7 +13,7 @@
 
 
 // Super Admin
-Route::group(['prefix' => '/admin/super/'], function() {
+Route::group(['prefix' => 'admin/super'], function() {
 	Route::bind('objectName', function($input) {
 		return App\mfwobjects::where('name', $input)->first();
 	});
@@ -43,27 +43,58 @@ Route::group(['prefix' => '/admin/super/'], function() {
 	post('forms/format/{id}'     , 'superAdminFormsController@formFormat');
 
 	// Objects
-	get('objects/{id}/delete'    					, 'superAdminObjectsController@destroy');
-	get('objects/{id}/rename'						, 'superAdminObjectsController@rename');
-	get('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumns');
-	get('objects/{objectId}/truncate'				, 'superAdminObjectsController@truncateTable');
-	get('objects/create'						    , 'superAdminObjectsController@create');
-	get('objects/sorting'							, 'superAdminObjectsController@sortDisplay');
-	get('objects/{objectName}'						, 'superAdminObjectsController@viewRecords');
-	get('objects/{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
-	get('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
-	post('objects/sorting'							, 'superAdminObjectsController@postSortDisplay');
-	post('objects/sorting/test'						, 'superAdminObjectsController@postSortingTest');
-	post('objects/{id}/getFieldList'				, 'superAdminObjectsController@getFields');
-	post('objects/{id}/delete'   					, 'superAdminObjectsController@destroy');
-	post('objects/{id}/rename'						, 'superAdminObjectsController@renamePost');
-	post('objects/{id}/editColumns'					, 'superAdminObjectsController@editColumnsPost');
-	post('objects/{id}/import'   					, 'superAdminObjectsController@import');
+	Route::group(['prefix' => 'objects'], function() {
+		get('{id}/delete'    					, 'superAdminObjectsController@destroy');
+		get('{id}/rename'						, 'superAdminObjectsController@rename');
+		get('{id}/editColumns'					, 'superAdminObjectsController@editColumns');
+		get('{objectId}/truncate'				, 'superAdminObjectsController@truncateTable');
+		get('create'						    , 'superAdminObjectsController@create');
+		get('sorting'							, 'superAdminObjectsController@sortDisplay');
+		get('{objectName}'						, 'superAdminObjectsController@viewRecords');
+		get('{objectName}/{id}'					, 'superAdminObjectsController@viewObjectItem');
+		get('{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItem');
+		post('sorting'							, 'superAdminObjectsController@postSortDisplay');
+		post('sorting/test'						, 'superAdminObjectsController@postSortingTest');
+		post('{id}/getFieldList'				, 'superAdminObjectsController@getFields');
+		post('{id}/delete'   					, 'superAdminObjectsController@destroy');
+		post('{id}/rename'						, 'superAdminObjectsController@renamePost');
+		post('{id}/editColumns'					, 'superAdminObjectsController@editColumnsPost');
+		post('{id}/import'   					, 'superAdminObjectsController@import');
+		post('{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
+		post('{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
+		post('getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
+		post('{id}/{oid}/getJsonObjectItemData'	, 'superAdminObjectsController@getJsonObjectItemData');
+
+	});
 	post('createObject'          					, 'superAdminObjectsController@createObjectPost');
-	post('objects/{objectFieldsNeeded}'				, 'superAdminObjectsController@viewObjectAddRecord');
-	post('objects/{objectName}/{id}/edit'			, 'superAdminObjectsController@editObjectItemPost');
-	post('objects/getFields/{objectFieldsNeeded}'	, 'superAdminObjectsController@getObjectsFields');
-	post('objects/{id}/{oid}/getJsonObjectItemData'	, 'superAdminObjectsController@getJsonObjectItemData');
+
+	Route::group(['prefix' => 'authorizenet'], function() {
+		get('/credentials/create'      , 'superAdminAuthorizeNetController@apiKeyCreate');
+		get('/credentials'             , 'superAdminAuthorizeNetController@apiKeyView');
+		get('/credentials/{id}/delete' , 'superAdminAuthorizeNetController@apiKeyDelete');
+		get('/profiles/create'         , 'superAdminAuthorizeNetController@paymentProfileCreate');
+		get('/profiles'                , 'superAdminAuthorizeNetController@paymentProfileView');
+		get('/profiles/{id}/delete'    , 'superAdminAuthorizeNetController@paymentProfileDelete');
+		get('/payments/create'         , 'superAdminAuthorizeNetController@paymentProcess');
+		get('/payments'                , 'superAdminAuthorizeNetController@paymentsView');
+		post('/credentials/create'     , 'superAdminAuthorizeNetController@apiKeyCreatePost');
+		post('/profiles/create'        , 'superAdminAuthorizeNetController@paymentProfileCreatePost');
+		post('/payments/create'        , 'superAdminAuthorizeNetController@paymentProcessPost');
+	});
+	Route::group(['prefix' => 'paypal'], function() {
+		get('/credentials/create'      , 'superAdminPaypalController@apiKeyCreate');
+		get('/credentials'             , 'superAdminPaypalController@apiKeyView');
+		get('/credentials/{id}/delete' , 'superAdminPaypalController@apiKeyDelete');
+		get('/profiles/create'         , 'superAdminPaypalController@paymentProfileCreate');
+		get('/profiles'                , 'superAdminPaypalController@paymentProfileView');
+		get('/profiles/{id}/delete'    , 'superAdminPaypalController@paymentProfileDelete');
+		get('/payments/create'         , 'superAdminPaypalController@paymentProcess');
+		get('/payments'                , 'superAdminPaypalController@paymentsView');
+		post('/credentials/create'     , 'superAdminPaypalController@apiKeyCreatePost');
+		post('/profiles/create'        , 'superAdminPaypalController@paymentProfileCreatePost');
+		post('/payments/create'        , 'superAdminPaypalController@paymentProcessPost');
+	});
+
 
 	// Accounts
 	get('logout'      , 'superAdminAccountsController@logout');
@@ -80,16 +111,17 @@ Route::group(['prefix' => '/admin/super/'], function() {
 
 	// Super Admin Controller
 	$superAdminControllers = array(
-		'accounts'		 ,  'apis'            ,
-		'constants'		 ,  'formProcessings' ,
-		'forms'			 ,  'middlewares'	  ,
-		'objects'		 ,  'pages'           ,
-		'pdfs'           ,  'relationships'   ,
-		'reports'		 ,  'sessions'		  ,
-		'templates'      ,  'workflows'		  ,
-		'googleDrives'   ,  'googleCredentials',
-		'crons'			 ,  'craigslistScraper',
-		'craigslistFilter');
+		'accounts'		  ,  'apis'           	,
+		'constants'		  ,  'formProcessing' 	,
+		'forms'			  ,  'middlewares'	  	,
+		'objects'		  ,  'pages'          	,
+		'pdfs'            ,  'relationships'  	,
+		'reports'		  ,  'sessions'		  	,
+		'templates'       ,  'workflows'	  	,
+		'googleDrives'    ,  'googleCredentials',
+		'crons'			  ,  'craigslistScraper',
+		'craigslistFilter',  'lPCampaigns'		,
+		'landingPages');
 
 	foreach ($superAdminControllers as $item) {
 		resource($item , 'superAdmin'.ucfirst($item).'Controller');
