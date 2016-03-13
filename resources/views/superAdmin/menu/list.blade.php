@@ -39,5 +39,6 @@
 	@if (isset($menu))
 		<?php $divider = '<li></li><li class="divider"></li>'; $function = 'superAdmin.menu.function.' ?>
 		@include($function.'listgeneration')
+		@include($function.'landingpagecampaigns')
 	@endif
 @stop

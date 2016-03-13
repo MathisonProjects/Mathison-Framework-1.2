@@ -12,6 +12,7 @@
         "elibyy/laravel-tcpdf": "0.*",
         "enyo/dropzone": "*",
         "maatwebsite/excel": "~2.0.0",
+        "j20/php-uuid": "dev-master",
         "divinityfound/arraytobootstraptable": "dev-master",
         "divinityfound/offsitecredentials": "dev-master",
         "divinityfound/credentialskeysapi": "dev-master",
