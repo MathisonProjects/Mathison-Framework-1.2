@@ -14,6 +14,10 @@
 			{!! Form::select('cid', $campaigns, null, ['class' => 'form-control']) !!}
 		</div>
 		<div class='form-group'>
+			{!! Form::label('lpType', 'Landing Page Type') !!}
+			{!! Form::select('lpType', array('' => '', 'video' => 'Video', 'ecommerce' => 'E-Commerce', 'leadCapture' => 'Lead Capture'), null, ['class' => 'form-control', 'id' => 'lpType']) !!}
+		</div>
+		<div class='form-group'>
 			{!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 		</div>
 	</div>
@@ -21,52 +25,15 @@
 {!! Form::close() !!}
 
 <div class='row'>
-	<div class='col-md-9' id='landingPage' style='height: 100%;'>
-		<div class='row'>
-			<div class='col-md-4' id='logoPlaceholder'></div>
-			<div class='col-md-8' id='headlinePlaceholder'>Landing Page Test View</div>
-		</div>
-	</div>
-	<div class='col-md-3' id='dataCollection'>
-		<div class='form-group'>
-			{!! Form::label('background', 'Background') !!}
-			{!! Form::text('background', null, ['class' => 'form-control', 'id' => 'background', 'placeholder' => 'URL for your background']) !!}
-		</div>
-		<div class='form-group'>
-			{!! Form::label('logo', 'Logo') !!}
-			{!! Form::text('logo', null, ['class' => 'form-control', 'id' => 'logo', 'placeholder' => 'URL for your logo']) !!}
-		</div>
-		<div class='form-group'>
-			{!! Form::label('headline', 'Headline') !!}
-			{!! Form::text('headline', null, ['class' => 'form-control', 'id' => 'headline', 'maxlength' => '28', 'placeholder' => 'What is your headline?']) !!}
-		</div>
-		<div class='form-group'>
-			{!! Form::label('section', 'Section') !!}
-			{!! Form::select('section', array('' => '', 'form' => 'Form', 'text' => 'Text', 'video' => 'Video'), null, ['class' => 'form-control', 'id' => 'section']) !!}
-		</div>
-		<div class='form-group' id='form'>
-			{!! Form::label('form', 'Form') !!}
-			{!! Form::text('form', null, ['class' => 'form-control']) !!}
-		</div>
-		<div class='form-group' id='text'>
-			{!! Form::label('text', 'Text') !!}
-			{!! Form::text('text', null, ['class' => 'form-control']) !!}
-		</div>
-		<div class='form-group' id='video'>
-			{!! Form::label('video', 'Youtube URL') !!}
-			{!! Form::text('video', null, ['class' => 'form-control']) !!}
-		</div>
-		<div id='additionalSections'></div>
-		<div class='form-group'>
-			<a href='#' id='addSection' class='btn btn-primary col-md-12'>Add Section</a>
-		</div>
-	</div>
+		@include('superAdmin.modules.landingPages.landingPageTypes.video')
+		@include('superAdmin.modules.landingPages.landingPageTypes.ecommerce')
+		@include('superAdmin.modules.landingPages.landingPageTypes.leadCapture')
 </div>
 
 <script type="text/javascript">
-	$('#form').hide();
-	$('#text').hide();
 	$('#video').hide();
+	$('#ecommerce').hide();
+	$('#leadCapture').hide();
 
 	$('#background').keyup(function() {
 		$('#landingPage').css('background-image', 'url('+$('#background').val()+')');
@@ -80,10 +47,16 @@
 		$('#headlinePlaceholder').html('<h1>'+$('#headline').val()+'</h1>');
 	});
 
-	$('#section').change(function() {
-		$('#form').hide();
-		$('#text').hide();
+	$('#lpType').change(function() {
 		$('#video').hide();
-		$('#'+$("#section").val()).show();
+		$('#ecommerce').hide();
+		$('#leadCapture').hide();
+		if ($('#lpType').val() == 'video') {
+			$('#video').show();
+		} else if ($('#lpType').val() == 'ecommerce') {
+			$('#ecommerce').show();
+		} else if ($('#lpType').val() == 'leadCapture') {
+			$('#leadCapture').show();
+		}
 	});
 </script>
