@@ -53,7 +53,7 @@
 				</div>
 				<div class='form-group'>
 					{!! Form::label('v_cta_url_new_tab', 'Open Link in New Tab') !!}
-					{!! Form::text('v_button_subtext', null, ['class' => 'form-control', 'id' => 'v_button_subtext', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::checkbox('v_cta_url_new_tab', 'v_cta_url_new_tab', false, ['class' => 'form-control', 'id' => 'v_cta_url_new_tab']) !!}
 				</div>
 			</div>
 		</div>
@@ -74,8 +74,8 @@
 					{!! Form::text('v_terms_and_conditions_url', null, ['class' => 'form-control', 'id' => 'v_terms_and_conditions_url', 'placeholder' => 'Terms and Conditions URL']) !!}
 				</div>
 				<div class='form-group'>
-					{!! Form::label('v_button_subtext', 'Open Term Link in New Tab') !!}
-					{!! Form::text('v_button_subtext', null, ['class' => 'form-control', 'id' => 'v_button_subtext', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::label('v_open_term_link_in_new_tab', 'Open Term Link in New Tab') !!}
+					{!! Form::checkbox('v_open_term_link_in_new_tab', 'v_open_term_link_in_new_tab', false, ['class' => 'form-control', 'id' => 'v_open_term_link_in_new_tab']) !!}
 				</div>
 				<div class='form-group'>
 					{!! Form::label('v_terms_and_conditions', 'Terms & Conditions') !!}
@@ -101,19 +101,19 @@
 			<div class='panel-body'>
 				<div class='form-group'>
 					{!! Form::label('v_fb_share_title', 'FB Share Title') !!}
-					{!! Form::text('v_fb_share_title', null, ['class' => 'form-control', 'id' => 'v_fb_share_title', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::text('v_fb_share_title', null, ['class' => 'form-control', 'id' => 'v_fb_share_title', 'placeholder' => 'FB Share Title']) !!}
 				</div>
 				<div class='form-group'>
 					{!! Form::label('v_fb_share_description', 'FB Share Description') !!}
-					{!! Form::text('v_fb_share_description', null, ['class' => 'form-control', 'id' => 'v_fb_share_description', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::text('v_fb_share_description', null, ['class' => 'form-control', 'id' => 'v_fb_share_description', 'placeholder' => 'FB Share Description']) !!}
 				</div>
 				<div class='form-group'>
 					{!! Form::label('v_fb_share_image_url', 'FB Share Image URL') !!}
-					{!! Form::text('v_fb_share_image_url', null, ['class' => 'form-control', 'id' => 'v_fb_share_image_url', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::text('v_fb_share_image_url', null, ['class' => 'form-control', 'id' => 'v_fb_share_image_url', 'placeholder' => 'FB Share Image URL']) !!}
 				</div>
 				<div class='form-group'>
 					{!! Form::label('v_tracking_code', 'Tracking Code') !!}
-					{!! Form::text('v_tracking_code', null, ['class' => 'form-control', 'id' => 'v_tracking_code', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::textarea('v_tracking_code', null, ['class' => 'form-control', 'id' => 'v_tracking_code', 'placeholder' => 'FB Tracking Code']) !!}
 				</div>
 			</div>
 		</div>
@@ -123,7 +123,7 @@
 			<div class='panel-body'>
 				<div class='form-group'>
 					{!! Form::label('v_google_analytics_code', 'Google Analytics Code') !!}
-					{!! Form::text('v_google_analytics_code', null, ['class' => 'form-control', 'id' => 'v_google_analytics_code', 'placeholder' => 'Button Subtext']) !!}
+					{!! Form::textarea('v_google_analytics_code', null, ['class' => 'form-control', 'id' => 'v_google_analytics_code', 'placeholder' => 'Google Analytics Code']) !!}
 				</div>
 			</div>
 		</div>
