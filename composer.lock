@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5d9795a059183f11d65392c272652d81",
-    "content-hash": "a2815cf6a5f3984fa6a3040d3d627554",
+    "hash": "4ed62c45322a9e2245c15547feb8c49d",
+    "content-hash": "dbff3c0c29445e3591304424f4faf8e7",
     "packages": [
         {
             "name": "authorizenet/authorizenet",
@@ -1402,12 +1402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cc00dedec9f36a2647a4cc1cde1014ed67e65d82"
+                "reference": "b9f072942bc2f98da3018fa3c3bceeb87288b442"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cc00dedec9f36a2647a4cc1cde1014ed67e65d82",
-                "reference": "cc00dedec9f36a2647a4cc1cde1014ed67e65d82",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b9f072942bc2f98da3018fa3c3bceeb87288b442",
+                "reference": "b9f072942bc2f98da3018fa3c3bceeb87288b442",
                 "shasum": ""
             },
             "require": {
@@ -1522,7 +1522,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-03-09 16:31:00"
+            "time": "2016-03-16 17:18:43"
         },
         {
             "name": "league/flysystem",
@@ -1530,12 +1530,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "635ee279a522233a567984756bf9da1db243d9bf"
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/635ee279a522233a567984756bf9da1db243d9bf",
-                "reference": "635ee279a522233a567984756bf9da1db243d9bf",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
                 "shasum": ""
             },
             "require": {
@@ -1605,7 +1605,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-03-12 19:04:33"
+            "time": "2016-03-14 21:54:11"
         },
         {
             "name": "maatwebsite/excel",
@@ -1613,12 +1613,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "aae17dbd6f39606cf8f588359a7a79438ab5aa53"
+                "reference": "33ca8f634167c502771a18e612bd0e853a783150"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/aae17dbd6f39606cf8f588359a7a79438ab5aa53",
-                "reference": "aae17dbd6f39606cf8f588359a7a79438ab5aa53",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/33ca8f634167c502771a18e612bd0e853a783150",
+                "reference": "33ca8f634167c502771a18e612bd0e853a783150",
                 "shasum": ""
             },
             "require": {
@@ -1673,7 +1673,7 @@
                 "import",
                 "laravel"
             ],
-            "time": "2016-03-01 17:45:44"
+            "time": "2016-03-14 11:04:52"
         },
         {
             "name": "monolog/monolog",
@@ -1850,12 +1850,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "fc36239be5a3abf0619fd24edd8e8bdc53ab5e24"
+                "reference": "e7ca4b7b04e1e10e37e2e411fc8c47a5bb6c9bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fc36239be5a3abf0619fd24edd8e8bdc53ab5e24",
-                "reference": "fc36239be5a3abf0619fd24edd8e8bdc53ab5e24",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e7ca4b7b04e1e10e37e2e411fc8c47a5bb6c9bae",
+                "reference": "e7ca4b7b04e1e10e37e2e411fc8c47a5bb6c9bae",
                 "shasum": ""
             },
             "require": {
@@ -1893,7 +1893,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-03-10 12:01:42"
+            "time": "2016-03-15 16:39:37"
         },
         {
             "name": "paragonie/random_compat",
@@ -2045,12 +2045,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PHPExcel.git",
-                "reference": "bf2b74b57eb0fc72423ed7edfd8bd14743100f1a"
+                "reference": "7d1c140974a4988f8a9739d167335d24fb59955e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/bf2b74b57eb0fc72423ed7edfd8bd14743100f1a",
-                "reference": "bf2b74b57eb0fc72423ed7edfd8bd14743100f1a",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/7d1c140974a4988f8a9739d167335d24fb59955e",
+                "reference": "7d1c140974a4988f8a9739d167335d24fb59955e",
                 "shasum": ""
             },
             "require": {
@@ -2098,7 +2098,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2016-03-07 07:59:19"
+            "time": "2016-03-15 11:48:49"
         },
         {
             "name": "phpoption/phpoption",
@@ -2552,12 +2552,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "9116263e778f720dcdecffb8e66c4d6b8b1cfc49"
+                "reference": "47d2d8cade9b1c3987573d2943bb9352536cdb87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
-                "reference": "9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/47d2d8cade9b1c3987573d2943bb9352536cdb87",
+                "reference": "47d2d8cade9b1c3987573d2943bb9352536cdb87",
                 "shasum": ""
             },
             "require": {
@@ -2604,7 +2604,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:54:35"
+            "time": "2016-03-07 14:04:32"
         },
         {
             "name": "symfony/finder",
@@ -2661,12 +2661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "81eb7567f484b7c3f9aaa7e033dcef6476b9d5ed"
+                "reference": "fe4be6b5785dbc6fbcaafa10ef6311d6f735f28d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/81eb7567f484b7c3f9aaa7e033dcef6476b9d5ed",
-                "reference": "81eb7567f484b7c3f9aaa7e033dcef6476b9d5ed",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/fe4be6b5785dbc6fbcaafa10ef6311d6f735f28d",
+                "reference": "fe4be6b5785dbc6fbcaafa10ef6311d6f735f28d",
                 "shasum": ""
             },
             "require": {
@@ -2709,7 +2709,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-10 19:23:56"
+            "time": "2016-03-15 06:08:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -2717,12 +2717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "8d2d50d2a4bb91205acc6b2bd87593d08ab667a7"
+                "reference": "d4c96b4f0fe6552189ec5249406b189f746334d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/8d2d50d2a4bb91205acc6b2bd87593d08ab667a7",
-                "reference": "8d2d50d2a4bb91205acc6b2bd87593d08ab667a7",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/d4c96b4f0fe6552189ec5249406b189f746334d0",
+                "reference": "d4c96b4f0fe6552189ec5249406b189f746334d0",
                 "shasum": ""
             },
             "require": {
@@ -2791,7 +2791,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-10 10:49:29"
+            "time": "2016-03-16 16:00:15"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2966,12 +2966,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "9956fa4751c11b37e1d8a5e882b3bb8cb7c65d8f"
+                "reference": "d5983f94b16d7726cc3faa970f67433110d65e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/9956fa4751c11b37e1d8a5e882b3bb8cb7c65d8f",
-                "reference": "9956fa4751c11b37e1d8a5e882b3bb8cb7c65d8f",
+                "url": "https://api.github.com/repos/symfony/process/zipball/d5983f94b16d7726cc3faa970f67433110d65e7e",
+                "reference": "d5983f94b16d7726cc3faa970f67433110d65e7e",
                 "shasum": ""
             },
             "require": {
@@ -3007,7 +3007,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-13 10:06:10"
+            "time": "2016-03-16 16:00:15"
         },
         {
             "name": "symfony/routing",
@@ -3089,12 +3089,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "2db15c3a9409aa357e109ca729c89839b32e3517"
+                "reference": "ed51dc504d6b6b6657bb7840d8e757f89bebc96a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/2db15c3a9409aa357e109ca729c89839b32e3517",
-                "reference": "2db15c3a9409aa357e109ca729c89839b32e3517",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/ed51dc504d6b6b6657bb7840d8e757f89bebc96a",
+                "reference": "ed51dc504d6b6b6657bb7840d8e757f89bebc96a",
                 "shasum": ""
             },
             "require": {
@@ -3144,7 +3144,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:52:28"
+            "time": "2016-03-16 16:00:15"
         },
         {
             "name": "symfony/var-dumper",
@@ -3274,12 +3274,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
-                "reference": "266261dc85ed423457b1f48cc4fbf70b3caf6780"
+                "reference": "9753fc340726e327e4d48b7c0604f85475ae0bc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/266261dc85ed423457b1f48cc4fbf70b3caf6780",
-                "reference": "266261dc85ed423457b1f48cc4fbf70b3caf6780",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/9753fc340726e327e4d48b7c0604f85475ae0bc3",
+                "reference": "9753fc340726e327e4d48b7c0604f85475ae0bc3",
                 "shasum": ""
             },
             "require": {
@@ -3312,7 +3312,7 @@
             ],
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
-            "time": "2015-11-20 17:25:43"
+            "time": "2015-12-08 16:14:14"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3831,12 +3831,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "10a2f5ab92bf64d4b4cf40696ffc32a52ffb8550"
+                "reference": "1a1b63266c046e1856fd03812a4e0ac2b51aa2d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/10a2f5ab92bf64d4b4cf40696ffc32a52ffb8550",
-                "reference": "10a2f5ab92bf64d4b4cf40696ffc32a52ffb8550",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1a1b63266c046e1856fd03812a4e0ac2b51aa2d5",
+                "reference": "1a1b63266c046e1856fd03812a4e0ac2b51aa2d5",
                 "shasum": ""
             },
             "require": {
@@ -3895,7 +3895,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-13 15:32:16"
+            "time": "2016-03-14 15:10:21"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4378,8 +4378,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "maatwebsite/excel": 20,
         "j20/php-uuid": 20,
+        "maatwebsite/excel": 20,
         "divinityfound/arraytobootstraptable": 20,
         "divinityfound/offsitecredentials": 20,
         "divinityfound/credentialskeysapi": 20,

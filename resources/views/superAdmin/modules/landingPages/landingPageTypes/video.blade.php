@@ -1,14 +1,14 @@
 <div id='video'>
-	<div class='col-md-9' id='landingPage' style='height: 100%;'>
+	<div class='col-md-8' id='v_landingPage' style='height: 100%;'>
 		@include('superAdmin.modules.landingPages.landingPageExample')
 	</div>
-	<div class='col-md-3' id='dataCollection'>
+	<div class='col-md-4' id='dataCollection'>
 		<div class='panel panel-default'>
 			<div class='panel-heading'>Hidden</div>
 			<div class='panel-body'>
 				<div class='form-group'>
-					{!! Form::label('background', 'Background') !!}
-					{!! Form::text('background', null, ['class' => 'form-control', 'id' => 'background', 'placeholder' => 'URL for your background']) !!}
+					{!! Form::label('v_background', 'Background') !!}
+					{!! Form::text('v_background', null, ['class' => 'form-control', 'id' => 'v_background', 'placeholder' => 'URL for your background']) !!}
 				</div>
 			</div>
 		</div>
@@ -16,12 +16,12 @@
 			<div class='panel-heading'>Header</div>
 			<div class='panel-body'>
 				<div class='form-group'>
-					{!! Form::label('logo', 'Logo') !!}
-					{!! Form::text('logo', null, ['class' => 'form-control', 'id' => 'logo', 'placeholder' => 'URL for your logo']) !!}
+					{!! Form::label('v_logo', 'Logo') !!}
+					{!! Form::text('v_logo', null, ['class' => 'form-control', 'id' => 'v_logo', 'placeholder' => 'URL for your logo']) !!}
 				</div>
 				<div class='form-group'>
-					{!! Form::label('headline', 'Headline') !!}
-					{!! Form::text('headline', null, ['class' => 'form-control', 'id' => 'headline', 'maxlength' => '28', 'placeholder' => 'What is your headline?']) !!}
+					{!! Form::label('v_headline', 'Headline') !!}
+					{!! Form::text('v_headline', null, ['class' => 'form-control', 'id' => 'v_headline', 'maxlength' => '28', 'placeholder' => 'What is your headline?']) !!}
 				</div>
 			</div>
 		</div>
@@ -30,8 +30,8 @@
 			<div class='panel-heading'>Ad Image</div>
 			<div class='panel-body'>
 				<div class='form-group'>
-					{!! Form::label('adUrl', 'Ad Image URL') !!}
-					{!! Form::text('adUrl', null, ['class' => 'form-control', 'id' => 'logo', 'placeholder' => 'URL for your logo']) !!}
+					{!! Form::label('v_adUrl', 'Ad Image URL') !!}
+					{!! Form::text('v_adUrl', null, ['class' => 'form-control', 'id' => 'v_adUrl', 'placeholder' => 'URL for your logo']) !!}
 				</div>
 			</div>
 		</div>
@@ -39,46 +39,92 @@
 		<div class='panel panel-default'>
 			<div class='panel-heading'>CTA Button</div>
 			<div class='panel-body'>
-				CTA URL
-				Button Text
-				Button Subtext
-				Open Link in New Tab
+				<div class='form-group'>
+					{!! Form::label('v_cta_url', 'CTA URL') !!}
+					{!! Form::text('v_cta_url', null, ['class' => 'form-control', 'id' => 'v_cta_url', 'placeholder' => 'CTA URL']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_button_text', 'Button Text') !!}
+					{!! Form::text('v_button_text', null, ['class' => 'form-control', 'id' => 'v_button_text', 'placeholder' => 'Button Text']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_button_subtext', 'Button Subtext') !!}
+					{!! Form::text('v_button_subtext', null, ['class' => 'form-control', 'id' => 'v_button_subtext', 'placeholder' => 'Button Subtext']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_cta_url_new_tab', 'Open Link in New Tab') !!}
+					{!! Form::text('v_button_subtext', null, ['class' => 'form-control', 'id' => 'v_button_subtext', 'placeholder' => 'Button Subtext']) !!}
+				</div>
 			</div>
 		</div>
 
 		<div class='panel panel-default'>
 			<div class='panel-heading'>Video</div>
 			<div class='panel-body'>
-				Embed
+				{!! Form::label('v_youtube_url', 'Youtube URL') !!}
+				{!! Form::text('v_youtube_url', null, ['class' => 'form-control', 'id' => 'v_youtube_url', 'placeholder' => 'Youtube URL']) !!}
 			</div>
 		</div>
 
 		<div class='panel panel-default'>
 			<div class='panel-heading'>Footer</div>
 			<div class='panel-body'>
-				Terms and Conditions URL
-				Open Term Link in New Tab
-				Terms & Conditions
-				Privacy URL
-				Privacy Text
-				Copyright
+				<div class='form-group'>
+					{!! Form::label('v_terms_and_conditions_url', 'Terms and Conditions URL') !!}
+					{!! Form::text('v_terms_and_conditions_url', null, ['class' => 'form-control', 'id' => 'v_terms_and_conditions_url', 'placeholder' => 'Terms and Conditions URL']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_button_subtext', 'Open Term Link in New Tab') !!}
+					{!! Form::text('v_button_subtext', null, ['class' => 'form-control', 'id' => 'v_button_subtext', 'placeholder' => 'Button Subtext']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_terms_and_conditions', 'Terms & Conditions') !!}
+					{!! Form::text('v_terms_and_conditions', 'Terms & Conditions', ['class' => 'form-control', 'id' => 'v_terms_and_conditions', 'placeholder' => 'Terms & Conditions']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_privacy_url', 'Privacy URL') !!}
+					{!! Form::text('v_privacy_url', null, ['class' => 'form-control', 'id' => 'v_privacy_url', 'placeholder' => 'Privacy URL']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_privacy_text', 'Privacy Text') !!}
+					{!! Form::text('v_privacy_text', 'Privacy Policy', ['class' => 'form-control', 'id' => 'v_privacy_text', 'placeholder' => 'Privacy Text']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_copyright', 'Copyright') !!}
+					{!! Form::text('v_copyright', 'All Rights Reserved ©'.date('Y'), ['class' => 'form-control', 'id' => 'v_copyright', 'placeholder' => 'Copyright']) !!}
+				</div>
 			</div>
 		</div>
 
 		<div class='panel panel-default'>
 			<div class='panel-heading'>Social and Tracking Settings</div>
 			<div class='panel-body'>
-				FB Share Title
-				FB Share Description
-				FB Share Image URL
-				Tracking Code
+				<div class='form-group'>
+					{!! Form::label('v_fb_share_title', 'FB Share Title') !!}
+					{!! Form::text('v_fb_share_title', null, ['class' => 'form-control', 'id' => 'v_fb_share_title', 'placeholder' => 'Button Subtext']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_fb_share_description', 'FB Share Description') !!}
+					{!! Form::text('v_fb_share_description', null, ['class' => 'form-control', 'id' => 'v_fb_share_description', 'placeholder' => 'Button Subtext']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_fb_share_image_url', 'FB Share Image URL') !!}
+					{!! Form::text('v_fb_share_image_url', null, ['class' => 'form-control', 'id' => 'v_fb_share_image_url', 'placeholder' => 'Button Subtext']) !!}
+				</div>
+				<div class='form-group'>
+					{!! Form::label('v_tracking_code', 'Tracking Code') !!}
+					{!! Form::text('v_tracking_code', null, ['class' => 'form-control', 'id' => 'v_tracking_code', 'placeholder' => 'Button Subtext']) !!}
+				</div>
 			</div>
 		</div>
 
 		<div class='panel panel-default'>
 			<div class='panel-heading'>Google Analytics</div>
 			<div class='panel-body'>
-				Google Analytics Code
+				<div class='form-group'>
+					{!! Form::label('v_google_analytics_code', 'Google Analytics Code') !!}
+					{!! Form::text('v_google_analytics_code', null, ['class' => 'form-control', 'id' => 'v_google_analytics_code', 'placeholder' => 'Button Subtext']) !!}
+				</div>
 			</div>
 		</div>
 	</div>
