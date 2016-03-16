@@ -35,16 +35,16 @@
 	$('#ecommerce').hide();
 	$('#leadCapture').hide();
 
-	$('#background').keyup(function() {
-		$('#landingPage').css('background-image', 'url('+$('#background').val()+')');
+	$('#v_background').keyup(function() {
+		$('#landingPage').css('background-image', 'url('+$('#v_background').val()+')');
 	});
 
-	$('#logo').keyup(function() {
-		$('#logoPlaceholder').html('<img src="'+$('#logo').val()+'" class="col-md-12" />');
+	$('#v_logo').keyup(function() {
+		$('#logoPlaceholder').html('<img src="'+$('#v_logo').val()+'" class="col-md-12" />');
 	});
 
-	$('#headline').keyup(function() {
-		$('#headlinePlaceholder').html('<h1>'+$('#headline').val()+'</h1>');
+	$('#v_headline').keyup(function() {
+		$('#headlinePlaceholder').html('<h1>'+$('#v_headline').val()+'</h1>');
 	});
 
 	$('#lpType').change(function() {
