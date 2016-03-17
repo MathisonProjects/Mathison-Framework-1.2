@@ -36,16 +36,85 @@
 	$('#leadCapture').hide();
 
 	$('#v_background').keyup(function() {
-		$('#landingPage').css('background-image', 'url('+$('#v_background').val()+')');
+		$('#v_landingPage').css('background-image', 'url('+$('#v_background').val()+')');
 	});
 
 	$('#v_logo').keyup(function() {
-		$('#logoPlaceholder').html('<img src="'+$('#v_logo').val()+'" class="col-md-12" />');
+		$('#v_landingPage #logoPlaceholder').html('<img src="'+$('#v_logo').val()+'" class="col-md-12" />');
 	});
 
 	$('#v_headline').keyup(function() {
-		$('#headlinePlaceholder').html('<h1>'+$('#v_headline').val()+'</h1>');
+		$('#v_landingPage #headlinePlaceholder').html('<h1>'+$('#v_headline').val()+'</h1>');
 	});
+
+	$('#v_adUrl').keyup(function() {
+
+	});
+
+	$('#v_cta_url').keyup(function() {
+		$('#v_landingPage #ctaButton').html('<a href="'+$('#v_cta_url').val()+'" class="btn-primary col-md-12"><h4>'+$('#v_button_text').val()+'</h4>'+$('#v_button_subtext').val()+'</a>');
+	});
+
+	$('#v_button_text').keyup(function() {
+		$('#v_landingPage #ctaButton').html('<a href="'+$('#v_cta_url').val()+'" class="btn-primary col-md-12"><h4>'+$('#v_button_text').val()+'</h4>'+$('#v_button_subtext').val()+'</a>');
+	});
+
+	$('#v_button_subtext').keyup(function() {
+		$('#v_landingPage #ctaButton').html('<a href="'+$('#v_cta_url').val()+'" class="btn-primary col-md-12"><h4>'+$('#v_button_text').val()+'</h4>'+$('#v_button_subtext').val()+'</a>');
+	});
+
+	$('#v_cta_url_new_tab').click(function() {
+
+	});
+
+	$('#v_youtube_url').keyup(function() {
+
+	});
+
+	$('#v_terms_and_conditions_url').keyup(function() {
+		$('#v_landingPage #termsAndConditions').html('<a href="'+$('#v_terms_and_conditions_url').val()+'">'+$('#v_terms_and_conditions').val()+'</a>');
+	});
+
+	$('#v_open_term_link_in_new_tab').click(function() {
+
+	});
+
+	$('#v_terms_and_conditions').keyup(function() {
+		$('#v_landingPage #termsAndConditions').html('<a href="'+$('#v_terms_and_conditions_url').val()+'">'+$('#v_terms_and_conditions').val()+'</a>');
+	});
+
+	$('#v_privacy_url').keyup(function() {
+		$('#v_landingPage #privacyPolicy').html('<a href="'+$('#v_privacy_url').val()+'">'+$('#v_privacy_text').val()+'</a>');
+	});
+
+	$('#v_privacy_text').keyup(function() {
+		$('#v_landingPage #privacyPolicy').html('<a href="'+$('#v_privacy_url').val()+'">'+$('#v_privacy_text').val()+'</a>');
+	});
+
+	$('#v_copyright').keyup(function() {
+		$('#v_landingPage #copyright').text($('#v_copyright').val());
+	});
+
+	$('#v_fb_share_title').keyup(function() {
+
+	});
+
+	$('#v_fb_share_description').keyup(function() {
+
+	});
+
+	$('#v_fb_share_image_url').keyup(function() {
+
+	});
+
+	$('#v_tracking_code').keyup(function() {
+
+	});
+
+	$('#v_google_analytics_code').keyup(function() {
+
+	});
+
 
 	$('#lpType').change(function() {
 		$('#video').hide();
