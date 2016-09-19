@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Cache;
+use Carbon\Carbon;
 
 class superAdminCraigslistScraperController extends Controller {
     const SOCKET_TIMEOUT = 10;
@@ -59,6 +61,7 @@ class superAdminCraigslistScraperController extends Controller {
         $keys = array('View', 'Post Date', 'City', 'Section', 'Name');
         $items = array();
         $filtersDB = $this->module['craigslistFilter']->get();
+        $cl_viewed_urls = Cache::get('cl_viewed_urls', array());
         
         foreach ($this->menu[$this->currentModule] as $key => $item) {
             $data = $this->getSearchResults($item->citycode, $item->section);
@@ -74,13 +77,14 @@ class superAdminCraigslistScraperController extends Controller {
                     continue;
                 }
 
-                array_push($items, array(
-                        '<a href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['View'].'</a>',
-                        $values['submission'],
-                        $item->citycode,
-                        $item->section,
-                        $values['title']));
-
+                if (!in_array('http://'.$values['url'], $cl_viewed_urls)) {
+                    array_push($items, array(
+                            '<a href="http://'.$values['url'].'" target="_blank" class="clclicklistener">'.$this->vedIcon['View'].'</a>',
+                            $values['submission'],
+                            $item->citycode,
+                            $item->section,
+                            $values['title']));                    
+                }
             }
         }
 
@@ -88,6 +92,16 @@ class superAdminCraigslistScraperController extends Controller {
         return $this->launchView('showList', array('table' => $table));
     }
 
+    public function addToCache(Request $request) {
+        $cl_viewed_urls = Cache::pull('cl_viewed_urls', array());
+
+        array_push($cl_viewed_urls, $request->input('url'));
+
+        $threeDays = 60*24*3;
+        $expiresAt = Carbon::now()->addMinutes($threeDays);
+
+        Cache::put('cl_viewed_urls', $cl_viewed_urls, $threeDays);
+    }
     
     public function getSearchResults($city, $category) {
         $craigslist = new \Divinityfound\CraigslistApi\Reader;

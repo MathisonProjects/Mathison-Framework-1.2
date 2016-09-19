@@ -26,4 +26,20 @@
 		</div>
 	</div>
 
+
+	<script>
+		$('.clclicklistener').click(function() {
+			var href = $(this).attr('href');
+			console.log(href);
+
+			$.ajax({
+				url: '/admin/super/craigslistScraper/addToCache',
+				type: 'POST',
+				data: {url: href},
+			}).done(function() {
+				console.log("Craigslist Item Stored");
+			});
+			
+		});
+	</script>
 @stop
