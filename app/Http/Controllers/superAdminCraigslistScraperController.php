@@ -60,6 +60,7 @@ class superAdminCraigslistScraperController extends Controller {
     public function showList() {
         $keys = array('View', 'Post Date', 'City', 'Section', 'Name');
         $items = array();
+        $itemsSeen = array();
         $filtersDB = $this->module['craigslistFilter']->get();
         $cl_viewed_urls = Cache::get('cl_viewed_urls', array());
         
@@ -84,12 +85,20 @@ class superAdminCraigslistScraperController extends Controller {
                             $item->citycode,
                             $item->section,
                             $values['title']));                    
+                } else {
+                    array_push($itemsSeen, array(
+                            '<a href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['View'].'</a>',
+                            $values['submission'],
+                            $item->citycode,
+                            $item->section,
+                            $values['title'])); 
                 }
             }
         }
 
         $table = $this->tableBuilder($keys,$items);
-        return $this->launchView('showList', array('table' => $table));
+        $viewedTable = $this->tableBuilder($keys,$itemsSeen);
+        return $this->launchView('showList', array('table' => $table, 'viewedTable' => $viewedTable));
     }
 
     public function addToCache(Request $request) {

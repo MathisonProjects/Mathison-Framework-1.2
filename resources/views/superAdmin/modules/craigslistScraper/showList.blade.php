@@ -22,7 +22,7 @@
         	FAVORITES
 		</div>
 		<div class="tab-pane" id="history">
-        	HISTORY
+        	{!! $viewedTable !!}
 		</div>
 	</div>
 
