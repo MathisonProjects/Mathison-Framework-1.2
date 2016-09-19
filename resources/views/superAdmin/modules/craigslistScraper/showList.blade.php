@@ -19,7 +19,7 @@
 			{!! $table !!}
 		</div>
 		<div class="tab-pane" id="favorites">
-        	FAVORITES
+			{!! $favoriteTable !!}
 		</div>
 		<div class="tab-pane" id="history">
         	{!! $viewedTable !!}
@@ -30,8 +30,6 @@
 	<script>
 		$('.clclicklistener').click(function() {
 			var href = $(this).attr('href');
-			console.log(href);
-
 			$.ajax({
 				url: '/admin/super/craigslistScraper/addToCache',
 				type: 'POST',
@@ -39,7 +37,26 @@
 			}).done(function() {
 				console.log("Craigslist Item Stored");
 			});
-			
+		});
+		$('.favoriteit').click(function() {
+			var href = $(this).attr('href');
+			$.ajax({
+				url: '/admin/super/craigslistScraper/favoriteit',
+				type: 'POST',
+				data: {url: href},
+			}).done(function() {
+				console.log("Craigslist Item Stored");
+			});
+		});
+		$('.unfavoriteit').click(function() {
+			var href = $(this).attr('href');
+			$.ajax({
+				url: '/admin/super/craigslistScraper/unfavoriteit',
+				type: 'POST',
+				data: {url: href},
+			}).done(function() {
+				console.log("Craigslist Item Stored");
+			});
 		});
 	</script>
 @stop

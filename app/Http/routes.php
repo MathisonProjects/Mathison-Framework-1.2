@@ -109,6 +109,8 @@ Route::group(['prefix' => 'admin/super'], function() {
 	post('crons/run', 'superAdminCronsController@run');
 	get('craigslistScraper/showList', 'superAdminCraigslistScraperController@showList');
 	post('craigslistScraper/addToCache', 'superAdminCraigslistScraperController@addToCache');
+	post('craigslistScraper/favoriteit', 'superAdminCraigslistScraperController@favoriteIt');
+	post('craigslistScraper/unfavoriteit', 'superAdminCraigslistScraperController@unfavoriteIt');
 
 	// Super Admin Controller
 	$superAdminControllers = array(

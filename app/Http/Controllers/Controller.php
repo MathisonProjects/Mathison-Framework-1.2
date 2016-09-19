@@ -45,7 +45,9 @@ abstract class Controller extends BaseController {
         'Settings' => "<i><span class='glyphicon glyphicon-cog'></span></i>",
         'Delete'   => "<i><span class='glyphicon glyphicon-remove'></span></i>",
         'Truncate' => "<i><span class='glyphicon glyphicon-trash'></span></i>",
-        'Download' => "<i><span class='glyphicon glyphicon-download'></span></i>");
+        'Download' => "<i><span class='glyphicon glyphicon-download'></span></i>",
+        'Save'     => "<i><span class='glyphicon glyphicon-star'></span></i>",
+        'Unsave'     => "<i><span class='glyphicon glyphicon-star-empty'></span></i>");
 
     public function __construct() {
         if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {    

@@ -58,9 +58,11 @@ class superAdminCraigslistScraperController extends Controller {
     }
 
     public function showList() {
-        $keys = array('View', 'Post Date', 'City', 'Section', 'Name');
+        $keys1 = array('View', 'Save', 'Post Date', 'City', 'Section', 'Name');
+        $keys2 = array('View', 'Unsave', 'Post Date', 'City', 'Section', 'Name');
         $items = array();
         $itemsSeen = array();
+        $itemsSaved = array();
         $filtersDB = $this->module['craigslistFilter']->get();
         $cl_viewed_urls = Cache::get('cl_viewed_urls', array());
         
@@ -78,16 +80,28 @@ class superAdminCraigslistScraperController extends Controller {
                     continue;
                 }
 
-                if (!in_array('http://'.$values['url'], $cl_viewed_urls)) {
+
+
+                if (!array_key_exists('http://'.$values['url'], $cl_viewed_urls)) {
                     array_push($items, array(
                             '<a href="http://'.$values['url'].'" target="_blank" class="clclicklistener">'.$this->vedIcon['View'].'</a>',
+                            '<a class="favoriteit" href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['Save'].'</a>',
                             $values['submission'],
                             $item->citycode,
                             $item->section,
                             $values['title']));                    
+                } else if ($cl_viewed_urls['http://'.$values['url']] == 1) {
+                    array_push($itemsSaved, array(
+                            '<a href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['View'].'</a>',
+                            '<a class="unfavoriteit" href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['Save'].'</a>',
+                            $values['submission'],
+                            $item->citycode,
+                            $item->section,
+                            $values['title'])); 
                 } else {
                     array_push($itemsSeen, array(
                             '<a href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['View'].'</a>',
+                            '<a class="favoriteit" href="http://'.$values['url'].'" target="_blank">'.$this->vedIcon['Save'].'</a>',
                             $values['submission'],
                             $item->citycode,
                             $item->section,
@@ -96,15 +110,29 @@ class superAdminCraigslistScraperController extends Controller {
             }
         }
 
-        $table = $this->tableBuilder($keys,$items);
-        $viewedTable = $this->tableBuilder($keys,$itemsSeen);
-        return $this->launchView('showList', array('table' => $table, 'viewedTable' => $viewedTable));
+        $table = $this->tableBuilder($keys1,$items);
+        $viewedTable = $this->tableBuilder($keys1,$itemsSeen);
+        $favoriteTable = $this->tableBuilder($keys2,$itemsSaved);
+        return $this->launchView('showList', array('table' => $table, 'viewedTable' => $viewedTable, 'favoriteTable' => $favoriteTable));
     }
 
     public function addToCache(Request $request) {
         $cl_viewed_urls = Cache::pull('cl_viewed_urls', array());
+        $this->cachingCL($cl_viewed_urls, $request, 0);
+    }
 
-        array_push($cl_viewed_urls, $request->input('url'));
+    public function favoriteIt(Request $request) {
+        $cl_viewed_urls = Cache::pull('cl_viewed_urls', array());
+        $this->cachingCL($cl_viewed_urls, $request, 1);
+    }
+
+    public function unfavoriteIt(Request $request) {
+        $cl_viewed_urls = Cache::pull('cl_viewed_urls', array());
+        $this->cachingCL($cl_viewed_urls, $request, 0);
+    }
+
+    public function cachingCL($cl_viewed_urls, $request, $value) {
+        $cl_viewed_urls[$request->input('url')] = $value;
 
         $threeDays = 60*24*3;
         $expiresAt = Carbon::now()->addMinutes($threeDays);
