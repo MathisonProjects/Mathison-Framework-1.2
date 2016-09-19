@@ -125,6 +125,8 @@ Route::group(['prefix' => 'admin/super'], function() {
 
 	foreach ($superAdminControllers as $item) {
 		resource($item , 'superAdmin'.ucfirst($item).'Controller');
+		get($item.'/{id}/destroy','superAdmin'.ucfirst($item).'Controller@destroy');
+		post($item.'/{id}/destroy','superAdmin'.ucfirst($item).'Controller@destroy');
 	}
 });
 

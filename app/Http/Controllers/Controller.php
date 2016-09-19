@@ -171,6 +171,10 @@ abstract class Controller extends BaseController {
             buildTable();;
     }
 
+    public function deleteItem($table, $id) {
+        $table->destroy($id);
+    }
+
     public function alertGenerate($level, $message) {
         $response = '<div class="alert alert-'.$level.' fade in" style="position: absolute;z-index: 1;width: 100%;">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -178,4 +182,5 @@ abstract class Controller extends BaseController {
             </div>';
         return $response;
     }
+
 }

@@ -46,6 +46,7 @@ class superAdminMiddlewaresController extends Controller {
     }
 
     public function destroy($id) {
-        //
+        $this->deleteItem($this->module[$this->currentModule], $id);
+        return $this->launchView('views');
     }
 }
