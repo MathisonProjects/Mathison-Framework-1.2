@@ -13,6 +13,16 @@
 
 
 // Super Admin
+
+Route::get('/deploy', function() {
+    return view('deploy');
+});
+
+Route::post('/deploy', function() {
+    return view('deploy');
+});
+
+
 Route::group(['prefix' => 'admin/super'], function() {
 	Route::bind('objectName', function($input) {
 		return App\mfwobjects::where('name', $input)->first();
